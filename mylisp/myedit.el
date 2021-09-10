@@ -382,36 +382,5 @@ undo."
   )
 
 
-;; ======================================================================
-(use-package popper
-  :straight t
-  :bind (("C-|"   . popper-toggle-latest)
-         ("M-|"   . popper-cycle)
-         ("C-M-|" . popper-toggle-type)
-         )
-  :init
-  (setq popper-reference-buffers
-         '(("^\\*Warnings\\*$" . hide)
-                  ("^\\*Compile-Log\\*$" . hide)
-                  "^\\*Matlab Help\\*"
-                  ;; "^\\*Messages\\*$"
-                  "^\\*Backtrace\\*"
-                  "^\\*evil-registers\\*"
-                  "^\\*Apropos"
-                  "^Calc:"
-                  "^\\*TeX errors\\*"
-                  "^\\*ielm\\*"
-                  "^\\*TeX Help\\*"
-                  "\\*Shell Command Output\\*"
-                  ("\\*Async Shell Command\\*" . hide)
-                  "\\*Completions\\*"
-                  ;; "\\*scratch\\*"
-                  "[Oo]utput\\*")
-         )
-  )
-;; ----------------------------------------------------------------------
-
-
-
 
 (provide 'myedit)

@@ -322,31 +322,62 @@
                     'outline-minor-faces-add-font-lock-keywords))
 
 
-;; ----------------------------------------------------------------------
-;;                               Shackle
-;; ----------------------------------------------------------------------
-;; Shackle gives you the means to put an end to popped up buffers not behaving they way you’d like them to.
-;; By setting up simple rules you can for instance make Emacs always select help buffers for you or make everything reuse your currently selected window.
-(use-package shackle
-  :disabled t
+;; ====================================================================
+(use-package popper
   :straight t
-  :hook
-  (after-init . shackle-mode)
-  :custom
-  (shackle-inhibit-window-quit-on-same-windows t)
-  (shackle-rules '((help-mode :same t)
-                   (helpful-mode :same t)
-                   (process-menu-mode :same t)))
-  (shackle-select-reused-windows t)
-  :config
-  (shackle-mode)
+  :init
+  (when window-system
+    (pcase (system-name)
+      ;; PC escritorio casa
+      ("nivaca-pc" (bind-keys*
+                    ("C-|"   . popper-toggle-latest)
+                    ("M-|"   . popper-cycle)
+                    ("C-M-|" . popper-toggle-type)))
+      ;; XPS 13
+      ("nivaca-xps" (bind-keys*
+                     ("C-`"   . popper-toggle-latest)
+                     ("M-`"   . popper-cycle)
+                     ("C-M-`" . popper-toggle-type)))
+      ;; TP
+      ("nivaca-tp" (bind-keys*
+                    ("C-|"   . popper-toggle-latest)
+                    ("M-|"   . popper-cycle)
+                    ("C-M-|" . popper-toggle-type))))
+    ;; Mac
+    (when IS-MAC (bind-keys*
+                  ("C-|"   . popper-toggle-latest)
+                  ("M-|"   . popper-cycle)
+                  ("C-M-|" . popper-toggle-type))))
+  ;;
+  (setq popper-group-function #'popper-group-by-project)
+  (setq popper-reference-buffers
+        '(Custom-mode
+          (compilation-mode . hide)
+          messages-buffer-mode
+          ("^\\*Warnings\\*$" . hide)
+          ("^\\*Compile-Log\\*$" . hide)
+          "^\\*Matlab Help\\*"
+          ;; "^\\*Messages\\*$"
+          "^\\*Backtrace\\*"
+          "^\\*evil-registers\\*"
+          "^\\*Apropos"
+          "^Calc:"
+          "^\\*TeX errors\\*"
+          "^\\*ielm\\*"
+          "^\\*TeX Help\\*"
+          "\\*Shell Command Output\\*"
+          ("\\*Async Shell Command\\*" . hide)
+          "\\*Completions\\*"
+          ;; "\\*scratch\\*"
+          "[Oo]utput\\*"))
+  (popper-mode +1)
   )
+;; --------------------------------------------------------------------
 
 
 
 
-
-;; ----------------------------------------------------------------------
+;; --------------------------------------------------------------------
 (setq display-buffer-base-action
       '(display-buffer-reuse-mode-window
         display-buffer-reuse-window
