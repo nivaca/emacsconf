@@ -11,3 +11,4 @@
 .yas-compiled-snippets.el
 .cask
 .emacs.desktop.lock
+org-roam.db
