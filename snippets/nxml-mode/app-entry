@@ -1,0 +1,8 @@
+#name : app-entry
+#key: app-entry
+#binding: C-c C-y a
+# --
+<app>
+    <lem>`yas-selected-text`</lem>
+    <rdg $2>$1</rdg>
+</app>

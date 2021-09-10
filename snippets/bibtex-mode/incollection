@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: incollection
+# key: @in
+# --
+@incollection{,
+  Title = {},
+  Author = {},
+  Booktitle = {},
+  Editor = {},
+  Publisher = {},
+  Location = {},
+  Pages = {},
+  Year = {},
+}
