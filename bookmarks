@@ -1,8 +1,13 @@
-;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;;; Emacs Bookmark Format Version 1 ;;;; -*- coding: utf-8-emacs -*-
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("myinit.el"
+(("org-capture-last-stored"
+ (filename . "~/roamnotes/20210914201137-generate_requirements_txt.org")
+ (front-context-string . "#+filetags: :com")
+ (rear-context-string . "equirements.txt\n")
+ (position . 103))
+("myinit.el"
  (filename . "~/emacs/myinit.el")
  (front-context-string . ";;; myedit.el -*")
  (rear-context-string)

@@ -20,7 +20,7 @@
 
 
 (use-package base16-theme
-  ;; :disabled
+  :disabled
   :straight t
   :config
   (load-theme 'base16-flat t))
@@ -28,7 +28,7 @@
 
 
 (use-package doom-themes
-  :disabled
+  ;; :disabled
   :straight t
   :custom
   (doom-nord-brighter-comments t)

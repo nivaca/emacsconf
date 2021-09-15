@@ -202,12 +202,15 @@ the given regular expression."
   (interactive)
   (cond ((eq system-type 'gnu/linux)
          ;; Linux
-         (call-process "konsole" nil 0 nil "--workdir" default-directory)
-         ;; (call-process "/usr/bin/x-terminal-emulator" nil 0 nil "--directory" default-directory)
+         ;; (call-process "konsole" nil 0 nil "--workdir" default-directory)
+         (when (file-exists-p "/usr/bin/kitty")
+           (call-process "/usr/bin/kitty" nil 0 nil "-d" default-directory)
+           )
          )
         ((eq system-type 'darwin)
          ;; Mac
-         (call-process "/Users/nicolasvaughan/bin/iterm" nil 0 nil "--workdir" default-directory)
+         ;; (call-process "/Users/nicolasvaughan/bin/iterm" nil 0 nil "--workdir" default-directory)
+         (call-process (expand-file-name "~/bin/iterm") nil 0 nil "--workdir" default-directory)
          )
         )
   )

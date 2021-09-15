@@ -14,6 +14,8 @@
         aspell-program-name "/usr/bin/aspell"
         ispell-dictionary "en_GB-ise-wo_accents"
         ispell-program-name "/usr/bin/aspell")
+  (unbind-key "C-." flyspell-mode-map)
+  (unbind-key "C-," flyspell-mode-map)
   (when IS-MAC
     (progn
       (setq ispell-program-name "aspell"

@@ -6,11 +6,15 @@
 ;; nivaca-tp: portátil Thinkpad X240
 
 (tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 (use-package menu-bar
   :straight
   :bind
-  ([S-f10] . menu-bar-mode))
+  ([S-f10] . menu-bar-mode)
+  :config
+  (menu-bar-mode -1)
+  )
 
 
 (use-package tooltip
@@ -71,23 +75,31 @@
 ;; ----------------------------------------------------------------------
 ;;                                Fonts
 ;; ----------------------------------------------------------------------
+(setq nv-frame-font "Fantasque Sans Mono")
+
 (when window-system
   (pcase (system-name)
     ;; PC escritorio casa
     ;; ("nivaca-pc" (set-frame-font "JetBrains Mono NL 13" nil t))
-    ("nivaca-pc" (set-frame-font "Fantasque Sans Mono 14" nil t))
+    ("nivaca-pc" (set-frame-font
+                  (concat nv-frame-font " 14")
+                  nil t))
     ;; XPS 13
-    ("nivaca-xps" (set-frame-font "Fantasque Sans Mono 14"))
+    ("nivaca-xps" (set-frame-font
+                  (concat nv-frame-font " 14")
+                  nil t))
     ;; TP
-    ("nivaca-tp" (set-frame-font "Fantasque Sans Mono 14"))
+    ("nivaca-tp" (set-frame-font
+                  (concat nv-frame-font " 14")
+                  nil t))
     )
   )
 ;; Mac
 (when IS-MAC
-  (set-frame-font "Fantasque Sans Mono 20"))
+  (set-frame-font (concat nv-frame-font " 20")))
 
 
-;; ----------------------------------------------------------------------
+;; -----------------------------------------------------------------
 ;; pretty-mode
 (use-package pretty-mode
   :straight t
@@ -349,15 +361,16 @@
                   ("M-|"   . popper-cycle)
                   ("C-M-|" . popper-toggle-type))))
   ;;
-  (setq popper-group-function #'popper-group-by-project)
+  ;; (setq popper-group-function #'popper-group-by-project)
   (setq popper-reference-buffers
         '(Custom-mode
           (compilation-mode . hide)
           messages-buffer-mode
-          ("^\\*Warnings\\*$" . hide)
-          ("^\\*Compile-Log\\*$" . hide)
+          "^\\*Warnings\\*$"
+          "^\\*straight-process\\*$"
+          "^\\*Compile-Log\\*$"
           "^\\*Matlab Help\\*"
-          ;; "^\\*Messages\\*$"
+          "^\\*Messages\\*$"
           "^\\*Backtrace\\*"
           "^\\*evil-registers\\*"
           "^\\*Apropos"
@@ -366,7 +379,6 @@
           "^\\*ielm\\*"
           "^\\*TeX Help\\*"
           "\\*Shell Command Output\\*"
-          ("\\*Async Shell Command\\*" . hide)
           "\\*Completions\\*"
           ;; "\\*scratch\\*"
           "[Oo]utput\\*"))

@@ -186,7 +186,10 @@ some custom behavior added."
 
 
 ;; Kill all buffers
-(bind-key "<s-escape>" 'nv-kill-all-buffers)
+;; (bind-key "<s-escape>" 'nv-kill-all-buffers)
+;; (bind-key "<s-escape>" nil)
+(unbind-key "<s-escape>")
+
 
 ;; defined in myedit.el
 (bind-key "C-M-n" 'narrow-or-widen-dwim)
