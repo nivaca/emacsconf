@@ -96,7 +96,7 @@
   )
 ;; Mac
 (when IS-MAC
-  (set-frame-font (concat nv-frame-font " 20")))
+  (set-frame-font (concat nv-frame-font " 18")))
 
 
 ;; -----------------------------------------------------------------
@@ -397,5 +397,28 @@
 
 ;; If a popup does happen, don't resize windows to be equal-sized
 (setq even-window-sizes nil)
+
+
+(defun nv-set-frame-position ()
+  (interactive)
+  (when window-system  ;; not in console
+    (setq frame-resize-pixelwise t)
+    (set-frame-position (selected-frame) 0 0)
+    (pcase (system-name)
+      ;; PC escritorio casa
+      ("nivaca-pc" (set-frame-size (selected-frame) (/ 1920 2) 1080 t))
+      ;; XPS 13
+      ("nivaca-xps" (set-frame-size (selected-frame) (/ 1920 2) 1200 t))
+      ;; TP
+      ("nivaca-tp" (set-frame-size (selected-frame) (/ 1366 2) 768 t))
+      ) ;; end: pcase
+    ;; Mac
+    (when IS-MAC
+      (set-frame-size (selected-frame) 1024 600 t))
+    ) ;; end: when window-system
+  ) ;; end: defun nv-set-frame-position
+
+
+
 
 (provide 'mydisplay)

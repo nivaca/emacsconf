@@ -279,5 +279,12 @@
 (unless noninteractive
   (persp-state-load persp-state-default-file))
 
+
+(nv-set-frame-position)
+
+
+
+
+;; -------------------------------------------------------------------
 (provide 'myinit)
 ;;; myinit.el ends here
