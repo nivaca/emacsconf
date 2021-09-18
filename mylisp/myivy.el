@@ -61,17 +61,6 @@
   )
 
 
-;; (use-package ivy-bibtex
-;;   :straight t
-;;   :after ivy
-;;   :custom
-;;   (ivy-re-builders-alist
-;;       '((ivy-bibtex . ivy--regex-ignore-order)
-;;         (t . ivy--regex-plus)))
-;;   )
-
-
-
 (use-package marginalia
   :after ivy
   :straight t
@@ -90,12 +79,5 @@
   (setq ivy-flx-limit 10000)
   )
 
-;; prescient
-;; (straight-use-package 'prescient)
-;; (straight-use-package 'ivy-prescient)
-;; (use-package ivy-prescient
-;;   :config
-;;   (ivy-prescient-mode 1)
-;;   )
 
 (provide 'myivy)

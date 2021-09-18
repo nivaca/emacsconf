@@ -1,8 +1,5 @@
 ;;; mylisp/mythemes.el -*- lexical-binding: t; -*-
 
-;; (setq custom-theme-directory (concat user-emacs-directory "otherlisp/themes"))
-;; (load-theme 'gnome2 t)
-
 (use-package tron-legacy-theme
   :disabled
   :straight t
@@ -24,7 +21,6 @@
   :straight t
   :config
   (load-theme 'base16-flat t))
-
 
 
 (use-package doom-themes

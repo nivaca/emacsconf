@@ -144,7 +144,8 @@
                           "\\.mime-example" "\\.ido.last" "COMMIT_EDITMSG"
                           ".gz"
                           "~$" "/tmp/pc/" "/tmp/xps/" "/tmp/dell/" "/tmp/mac/" "/ssh:" "/sudo:" "/scp:")
-        recentf-auto-cleanup 600)
+        ;;recentf-auto-cleanup 600
+        )
   (when (not noninteractive) (recentf-mode 1))
 
   (defun recentf-save-list ()

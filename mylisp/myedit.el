@@ -1,57 +1,61 @@
 ;;; mylisp/myedit.el -*- lexical-binding: t; -*-
 
-;; Don't highlight matches with jump-char - it's distracting
-(setq jump-char-lazy-highlight-face nil)
+(use-package emacs
+  :config
+  ;; Don't highlight matches with jump-char - it's distracting
+  (setq jump-char-lazy-highlight-face nil)
 
-;; Easily navigate sillycased words
-(global-subword-mode 1)
+  ;; Easily navigate sillycased words
+  (global-subword-mode 1)
 
-;; Don't break lines for me, please
-(setq-default truncate-lines t)
+  ;; Don't break lines for me, please
+  (setq-default truncate-lines t)
 
-;; Tabs
-(setq tab-width 2)
-(setq-default indent-tabs-mode nil)
+  ;; Tabs
+  (setq tab-width 2)
+  (setq-default indent-tabs-mode nil)
 
-;; Line spacing
-(setq-default line-spacing 3)
+  ;; Line spacing
+  (setq-default line-spacing 3)
 
-;; Standard indent
-(setq standard-indent 2)
+  ;; Standard indent
+  (setq standard-indent 2)
 
-;; Remove text in active region if inserting text
-(delete-selection-mode +1)
+  ;; Remove text in active region if inserting text
+  (delete-selection-mode +1)
 
-;; Never insert tabs
-(set-default 'indent-tabs-mode nil)
+  ;; Never insert tabs
+  (set-default 'indent-tabs-mode nil)
 
-;; Remove trailing spaces
-;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
+  ;; Remove trailing spaces
+  ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; give keyboard focus to help window
-(setq-default help-window-select t)
+  ;; give keyboard focus to help window
+  (setq-default help-window-select t)
+  )
+
 
 ;; winner mode
-(use-package winner
-  :if (not noninteractive)
-  :straight t
-  ;;:defer 5
-  :bind (("s-r" . winner-redo)
-         ("s-u" . winner-undo))
-  :custom
-  (winner-boring-buffers
-   '("*Completions*"
-     "*Compile-Log*"
-     "*inferior-lisp*"
-     "*Fuzzy Completions*"
-     "*Apropos*"
-     "*Help*"
-     "*cvs*"
-     "*Buffer List*"
-     "*Ibuffer*"
-     "*esh command on file*"))
-  :config
-  (winner-mode 1))
+;; (use-package winner
+;;   :if (not noninteractive)
+;;   :straight t
+;;   ;;:defer 5
+;;   :bind (("s-r" . winner-redo)
+;;          ("s-u" . winner-undo))
+;;   :custom
+;;   (winner-boring-buffers
+;;    '("*Completions*"
+;;      "*Compile-Log*"
+;;      "*inferior-lisp*"
+;;      "*Fuzzy Completions*"
+;;      "*Apropos*"
+;;      "*Help*"
+;;      "*cvs*"
+;;      "*Buffer List*"
+;;      "*Ibuffer*"
+;;      "*esh command on file*"))
+;;   :config
+;;   (winner-mode 1))
 
 
 
@@ -70,25 +74,30 @@
 ;;   )
 
 
+
 ;; =============== Scrolling ==================
 ;; Vertical Scroll
-(setq scroll-step 1)
-(setq scroll-margin 1)
-(setq scroll-conservatively 101)
-(setq scroll-up-aggressively 0.01)
-(setq scroll-down-aggressively 0.01)
-(setq auto-window-vscroll nil)
-(setq fast-but-imprecise-scrolling nil)
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
-(setq mouse-wheel-progressive-speed t)
-;; Horizontal Scroll
-(setq hscroll-step 1)
-(setq hscroll-margin 1)
+(use-package emacs
+  :config
+  (setq scroll-step 1)
+  (setq scroll-margin 1)
+  (setq scroll-conservatively 101)
+  (setq scroll-up-aggressively 0.01)
+  (setq scroll-down-aggressively 0.01)
+  (setq auto-window-vscroll nil)
+  (setq fast-but-imprecise-scrolling nil)
+  (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+  (setq mouse-wheel-progressive-speed t)
+  ;; Horizontal Scroll
+  (setq hscroll-step 1)
+  (setq hscroll-margin 1)
 
-(when IS-MAC
-  ;; sane trackpad/mouse scroll settings
-  (setq mac-redisplay-dont-reset-vscroll t
-        mac-mouse-wheel-smooth-scroll nil))
+  (when IS-MAC
+    ;; sane trackpad/mouse scroll settings
+    (setq mac-redisplay-dont-reset-vscroll t
+          mac-mouse-wheel-smooth-scroll nil))
+  )
+
 
 
 ;; ============ auto-indent ==============
@@ -173,16 +182,17 @@
   )
 
 
-
 ;; only change case when region active
 ;; ===================================================
-(defun ensure-region-active (func &rest args)
-  (when (region-active-p)
-    (apply func args)))
+(use-package emacs
+  :config
+  (defun ensure-region-active (func &rest args)
+    (when (region-active-p)
+      (apply func args)))
 
-(advice-add 'upcase-region :around 'ensure-region-active)
-(advice-add 'downcase-region :around 'ensure-region-active)
-
+  (advice-add 'upcase-region :around 'ensure-region-active)
+  (advice-add 'downcase-region :around 'ensure-region-active)
+  )
 
 
 (use-package goto-last-change

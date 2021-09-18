@@ -5,15 +5,21 @@
 ;; nivaca-xps: portátil dell xps 13
 ;; nivaca-tp: portátil Thinkpad X240
 
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+
 
 (use-package menu-bar
-  :straight
+  :straight nil
   :bind
   ([S-f10] . menu-bar-mode)
   :config
   (menu-bar-mode -1)
+  )
+
+
+(use-package emacs ;; tool bars etc.
+  :config
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
   )
 
 
@@ -35,68 +41,79 @@
   )
 
 
-(setq visible-bell nil
-      ring-bell-function 'ignore
-      font-lock-maximum-decoration t
-      truncate-partial-width-windows nil
-      minibuffer-message-timeout 10
-      column-number-mode t
-      ;; pop-up-frames nil
-      )
 
-;; Don't resize emacs in steps, it looks weird.
-(setq window-resize-pixelwise t
-      frame-resize-pixelwise t)
+(use-package emacs  ;; various settings
+  :config
+  (setq visible-bell nil
+        ring-bell-function 'ignore
+        font-lock-maximum-decoration t
+        truncate-partial-width-windows nil
+        minibuffer-message-timeout 10
+        column-number-mode t
+        ;; pop-up-frames nil
+        )
 
-;; show trailing spaces
-(setq show-trailing-whitespace nil)
+  ;; Don't resize emacs in steps, it looks weird.
+  (setq window-resize-pixelwise t
+        frame-resize-pixelwise t)
 
-;; highlight current line
-(setq global-hl-line-mode -1)
+  ;; show trailing spaces
+  (setq show-trailing-whitespace nil)
 
-;; Show me empty lines after buffer end
-(set-default 'indicate-empty-lines t)
+  ;; highlight current line
+  (setq global-hl-line-mode -1)
 
-(global-display-line-numbers-mode t)
+  ;; Show me empty lines after buffer end
+  (set-default 'indicate-empty-lines t)
 
-;; increase line space for better readability
-(setq-default line-spacing 3)
+  (global-display-line-numbers-mode t)
 
-;; 1/4 of the total height
-;; (setq max-mini-window-height 0.25)
+  ;; increase line space for better readability
+  (setq-default line-spacing 3)
 
-(when window-system
-  (setq frame-title-format '(buffer-file-name "%f" ("%b")))
-  (tooltip-mode -1)
-  (blink-cursor-mode -1))
+  ;; 1/4 of the total height
+  ;; (setq max-mini-window-height 0.25)
+
+  (when window-system
+    (setq frame-title-format '(buffer-file-name "%f" ("%b")))
+    (tooltip-mode -1)
+    (blink-cursor-mode -1))
+
+  )
+
 
 
 
 ;; ----------------------------------------------------------------------
 ;;                                Fonts
 ;; ----------------------------------------------------------------------
-(setq nv-frame-font "Fantasque Sans Mono")
+(use-package emacs  ;; fonts
+  :config
+  
+  (setq nv-frame-font "Fantasque Sans Mono")
 
-(when window-system
-  (pcase (system-name)
-    ;; PC escritorio casa
-    ;; ("nivaca-pc" (set-frame-font "JetBrains Mono NL 13" nil t))
-    ("nivaca-pc" (set-frame-font
-                  (concat nv-frame-font " 14")
-                  nil t))
-    ;; XPS 13
-    ("nivaca-xps" (set-frame-font
-                  (concat nv-frame-font " 14")
-                  nil t))
-    ;; TP
-    ("nivaca-tp" (set-frame-font
-                  (concat nv-frame-font " 14")
-                  nil t))
+  (when window-system
+    (pcase (system-name)
+      ;; PC escritorio casa
+      ;; ("nivaca-pc" (set-frame-font "JetBrains Mono NL 13" nil t))
+      ("nivaca-pc" (set-frame-font
+                    (concat nv-frame-font " 14")
+                    nil t))
+      ;; XPS 13
+      ("nivaca-xps" (set-frame-font
+                     (concat nv-frame-font " 14")
+                     nil t))
+      ;; TP
+      ("nivaca-tp" (set-frame-font
+                    (concat nv-frame-font " 14")
+                    nil t))
+      )
     )
+  ;; Mac
+  (when IS-MAC
+    (set-frame-font (concat nv-frame-font " 18")))
+
   )
-;; Mac
-(when IS-MAC
-  (set-frame-font (concat nv-frame-font " 18")))
 
 
 ;; -----------------------------------------------------------------
@@ -115,57 +132,63 @@
                      )))
 
 
+
+
 ;; ----------------------------------------------------------------------
 ;;                             cursor type
 ;; ----------------------------------------------------------------------
 ;; valid values are t, nil, box, hollow, bar, (bar . WIDTH), hbar,
 ;; (hbar. HEIGHT); see the docs for set-cursor-type
-(defun nv-set-cursor-according-to-mode ()
-  "change cursor color and type according to some minor modes."
-  (cond
-   (buffer-read-only
-    (setq cursor-type 'hbar))
-   (overwrite-mode
-    (setq cursor-type 'hollow))
-   (t
-    (setq cursor-type '(bar . 2)))))
-(add-hook 'post-command-hook 'nv-set-cursor-according-to-mode)
+(use-package emacs  ;; cursors
+  :config 
+  (defun nv-set-cursor-according-to-mode ()
+    "change cursor color and type according to some minor modes."
+    (cond
+     (buffer-read-only
+      (setq cursor-type 'hbar))
+     (overwrite-mode
+      (setq cursor-type 'hollow))
+     (t
+      (setq cursor-type '(bar . 2)))))
+  (add-hook 'post-command-hook 'nv-set-cursor-according-to-mode)
 
 
 
-;; --------------------------------------------
-;; This is an optical wrap at the right margin
-(global-visual-line-mode t)
-(setq visual-line-fringe-indicators
-      '(left-curly-arrow right-curly-arrow))
+  ;; --------------------------------------------
+  ;; This is an optical wrap at the right margin
+  (global-visual-line-mode t)
+  (setq visual-line-fringe-indicators
+        '(left-curly-arrow right-curly-arrow))
 
-(toggle-word-wrap)
+  (toggle-word-wrap)
 
-;; --------------------------------------------
-(setq global-font-lock-mode 1) ; everything should use fonts
-(setq font-lock-maximum-decoration t)
+  ;; --------------------------------------------
+  (setq global-font-lock-mode 1) ; everything should use fonts
+  (setq font-lock-maximum-decoration t)
 
-;; Set frame title to file name
-(setq frame-title-format
-      '((:eval (if (buffer-file-name)
-                   (abbreviate-file-name (buffer-file-name))
-                 "%b"))))
+  ;; Set frame title to file name
+  (setq frame-title-format
+        '((:eval (if (buffer-file-name)
+                     (abbreviate-file-name (buffer-file-name))
+                   "%b"))))
 
-;; don't let the cursor go into minibuffer prompt
-(setq minibuffer-prompt-properties (quote (read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt)))
+  ;; don't let the cursor go into minibuffer prompt
+  (setq minibuffer-prompt-properties (quote (read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt)))
 
-;; ----------------------------------------------------------------------
-;;                          distinguish dashes
-;; ----------------------------------------------------------------------
-;; https://emacs.stackexchange.com/questions/9623/tell-a-dash-an-en-dash-and-an-emdash-apart
-;;
-(let* (
-       (glyph-en-dash (make-glyph-code ?\u002D 'font-lock-keyword-face))
-       (glyph-em-dash (make-glyph-code ?\u002D 'font-lock-function-name-face)) )
-  (when (not buffer-display-table)
-    (setq buffer-display-table (make-display-table)))
-  (aset buffer-display-table 8211 `[,glyph-en-dash ,glyph-en-dash])
-  (aset buffer-display-table 8212 `[,glyph-em-dash ,glyph-em-dash ,glyph-em-dash]))
+  ;; ----------------------------------------------------------------------
+  ;;                          distinguish dashes
+  ;; ----------------------------------------------------------------------
+  ;; https://emacs.stackexchange.com/questions/9623/tell-a-dash-an-en-dash-and-an-emdash-apart
+  ;;
+  (let* (
+         (glyph-en-dash (make-glyph-code ?\u002D 'font-lock-keyword-face))
+         (glyph-em-dash (make-glyph-code ?\u002D 'font-lock-function-name-face)) )
+    (when (not buffer-display-table)
+      (setq buffer-display-table (make-display-table)))
+    (aset buffer-display-table 8211 `[,glyph-en-dash ,glyph-en-dash])
+    (aset buffer-display-table 8212 `[,glyph-em-dash ,glyph-em-dash ,glyph-em-dash]))
+
+  )
 
 
 ;; ----------------------------------------------------------------------
@@ -207,8 +230,7 @@
 
 
 ;; ====================================================
-(use-package "window"
-  :straight nil
+(use-package emacs  ;; frame splits
   :config
   (defun nv-split-and-follow-horizontally ()
     "Split window below."
@@ -303,18 +325,20 @@
 
 
 ;; -----------------------------------------------
+(use-package emacs  ;; buffers
+  :config
+  (defun nv-select-buffer-in-side-window (buffer alist)
+    "Display buffer in a side window and select it"
+    (let ((window (display-buffer-in-side-window buffer alist)))
+      (select-window window)))
 
-(defun nv-select-buffer-in-side-window (buffer alist)
-  "Display buffer in a side window and select it"
-  (let ((window (display-buffer-in-side-window buffer alist)))
-    (select-window window)))
-
-(add-to-list 'display-buffer-alist '("\\*\\(?:Warnings\\|Compile-Log\\|Messages\\)\\*"
-                                     (nv-select-buffer-in-side-window)
-                                     (window-height . 0.20)
-                                     (side . bottom)
-                                     (slot . -5)
-                                     (preserve-size . (nil . t))))
+  (add-to-list 'display-buffer-alist '("\\*\\(?:Warnings\\|Compile-Log\\|Messages\\)\\*"
+                                       (nv-select-buffer-in-side-window)
+                                       (window-height . 0.20)
+                                       (side . bottom)
+                                       (slot . -5)
+                                       (preserve-size . (nil . t))))
+  )
 
 
 ;; ----------------------------------------------------------------------
@@ -380,7 +404,7 @@
           "^\\*TeX Help\\*"
           "\\*Shell Command Output\\*"
           "\\*Completions\\*"
-          ;; "\\*scratch\\*"
+          "\\*scratch\\*"
           "[Oo]utput\\*"))
   (popper-mode +1)
   )
@@ -388,35 +412,42 @@
 
 
 
+(use-package emacs  ;; popups
+  :config
+  ;; --------------------------------------------------------------------
+  (setq display-buffer-base-action
+        '(display-buffer-reuse-mode-window
+          display-buffer-reuse-window
+          display-buffer-same-window))
 
-;; --------------------------------------------------------------------
-(setq display-buffer-base-action
-      '(display-buffer-reuse-mode-window
-        display-buffer-reuse-window
-        display-buffer-same-window))
-
-;; If a popup does happen, don't resize windows to be equal-sized
-(setq even-window-sizes nil)
+  ;; If a popup does happen, don't resize windows to be equal-sized
+  (setq even-window-sizes nil)
+  )
 
 
-(defun nv-set-frame-position ()
-  (interactive)
-  (when window-system  ;; not in console
-    (setq frame-resize-pixelwise t)
-    (set-frame-position (selected-frame) 0 0)
-    (pcase (system-name)
-      ;; PC escritorio casa
-      ("nivaca-pc" (set-frame-size (selected-frame) (/ 1920 2) 1080 t))
-      ;; XPS 13
-      ("nivaca-xps" (set-frame-size (selected-frame) (/ 1920 2) 1200 t))
-      ;; TP
-      ("nivaca-tp" (set-frame-size (selected-frame) (/ 1366 2) 768 t))
-      ) ;; end: pcase
-    ;; Mac
-    (when IS-MAC
-      (set-frame-size (selected-frame) 1024 600 t))
-    ) ;; end: when window-system
-  ) ;; end: defun nv-set-frame-position
+;; -------------------------------------------------------------------
+;; Initial positions
+(use-package emacs
+  :config
+  (defun nv-set-frame-position ()
+    (interactive)
+    (when window-system  ;; not in console
+      (setq frame-resize-pixelwise t)
+      (set-frame-position (selected-frame) 0 0)
+      (pcase (system-name)
+        ;; PC escritorio casa
+        ("nivaca-pc" (set-frame-size (selected-frame) (/ 1920 2) 1080 t))
+        ;; XPS 13
+        ("nivaca-xps" (set-frame-size (selected-frame) (/ 1920 2) 1200 t))
+        ;; TP
+        ("nivaca-tp" (set-frame-size (selected-frame) (/ 1366 2) 768 t))
+        ) ;; end: pcase
+      ;; Mac
+      (when IS-MAC
+        (set-frame-size (selected-frame) 1024 600 t))
+      ) ;; end: when window-system
+    ) ;; end: defun nv-set-frame-position
+  )
 
 
 

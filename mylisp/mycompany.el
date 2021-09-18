@@ -32,8 +32,6 @@
   )
 
 
-
-
 ;; prescient
 (use-package company-prescient
   :straight t
