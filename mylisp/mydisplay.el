@@ -16,7 +16,8 @@
   )
 
 
-(use-package emacs ;; tool bars etc.
+(use-package scroll-bar ;; tool bars etc.
+  :straight nil
   :config
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
@@ -74,14 +75,12 @@
   ;; 1/4 of the total height
   ;; (setq max-mini-window-height 0.25)
 
-  (when window-system
+  (when (display-graphic-p)
     (setq frame-title-format '(buffer-file-name "%f" ("%b")))
     (tooltip-mode -1)
     (blink-cursor-mode -1))
 
-  )
-
-
+  )  ;; end: use-package emacs
 
 
 ;; ----------------------------------------------------------------------
@@ -90,22 +89,22 @@
 (use-package emacs  ;; fonts
   :config
   
-  (setq nv-frame-font "Fantasque Sans Mono")
+  ;; (setq nv-frame-font "Hack ")  ;; mind the space
+  (setq nv-frame-font "JetBrains Mono NL ")  ;; mind the space
 
   (when window-system
     (pcase (system-name)
       ;; PC escritorio casa
-      ;; ("nivaca-pc" (set-frame-font "JetBrains Mono NL 13" nil t))
       ("nivaca-pc" (set-frame-font
-                    (concat nv-frame-font " 14")
+                    (concat nv-frame-font "13")
                     nil t))
       ;; XPS 13
       ("nivaca-xps" (set-frame-font
-                     (concat nv-frame-font " 14")
+                     (concat nv-frame-font "12")
                      nil t))
       ;; TP
       ("nivaca-tp" (set-frame-font
-                    (concat nv-frame-font " 14")
+                    (concat nv-frame-font "12")
                     nil t))
       )
     )

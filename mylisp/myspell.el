@@ -34,9 +34,7 @@
     (overlay-put overlay 'keymap nil)
     (overlay-put overlay 'mouse-face nil))
   (advice-add 'make-flyspell-overlay :filter-return #'make-flyspell-overlay-return-mouse-stuff)
-  
   )
-
 
 
 (use-package flyspell-correct-ivy

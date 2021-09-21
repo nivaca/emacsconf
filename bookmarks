@@ -3,10 +3,10 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
- (filename . "~/roamnotes/20210916195909-xslt_document_variables.org")
+ (filename . "~/roamnotes/20210919110110-run_command_whenever_file_changes.org")
  (front-context-string . "#+filetags: :com")
- (rear-context-string . "ument variables\n")
- (position . 101))
+ (rear-context-string . "r file changes \n")
+ (position . 112))
 ("myinit.el"
  (filename . "~/emacs/myinit.el")
  (front-context-string . ";;; myedit.el -*")

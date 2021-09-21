@@ -29,10 +29,12 @@
   :custom
   (doom-nord-brighter-comments t)
   (doom-one-brighter-comments t)
-  (doom-one-brighter-modeline t)
+  (doom-dracula-brighter-comments t)
+  (doom-oceanic-next-comment-bg nil)
+  (doom-oceanic-next-brighter-comments nil)
   :init
   (doom-themes-visual-bell-config)
-  (load-theme 'doom-palenight t)
+  (load-theme 'doom-oceanic-next t)
   )
 
 

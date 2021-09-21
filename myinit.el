@@ -276,13 +276,14 @@
 
 ;; (add-hook 'emacs-startup-hook #'nv-display-startup-time)
 
+
+;; (setq enable-local-variables t)
+
 (unless noninteractive
   (persp-state-load persp-state-default-file))
 
-
+;; Locate the frame correctly
 (nv-set-frame-position)
-
-
 
 
 ;; -------------------------------------------------------------------
