@@ -3,7 +3,7 @@
 (use-package markdown-mode
   :straight t
   :mode ("\\.\\(m\\(ark\\)?down\\|md\\)$" . markdown-mode)
-  :blackout  (markdown-mode . " MD"))
+  :blackout  (markdown-mode . " MD")
 :defer t
 :config
 )

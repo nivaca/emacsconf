@@ -299,17 +299,15 @@ undo."
 
 
 ;; ============== bookmarks ==============
-(straight-use-package
- '(bookmark+
-   :type git
-   :host github
-   :repo "emacsmirror/bookmark-plus"
-   :custom
-   (bookmark-version-control t)
-   (auto-save-bookmarks t)
-   (bookmark-save-flag 1)
-   )
- )
+(use-package bookmark+
+  :straight nil
+  :load-path "otherlisp/bmkp"
+  :custom
+  (bookmark-version-control t)
+  (auto-save-bookmarks t)
+  (bookmark-save-flag 1)
+  )
+
 
 ;; =========================================
 ;; Smart delete backward (à la oXygen XML)

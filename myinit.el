@@ -184,7 +184,7 @@
 ;; ================= markdown ===================
 (use-package mymarkdown
   :straight
-  :disabled
+  ;; :disabled
   :load-path user-lisp-directory
   )
 

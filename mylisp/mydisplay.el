@@ -110,7 +110,8 @@
     )
   ;; Mac
   (when IS-MAC
-    (set-frame-font (concat nv-frame-font " 18")))
+    (set-frame-font (concat nv-frame-font "18")
+      nil t))
 
   )
 
@@ -321,25 +322,6 @@
   )
 
 
-
-
-;; -----------------------------------------------
-(use-package emacs  ;; buffers
-  :config
-  (defun nv-select-buffer-in-side-window (buffer alist)
-    "Display buffer in a side window and select it"
-    (let ((window (display-buffer-in-side-window buffer alist)))
-      (select-window window)))
-
-  (add-to-list 'display-buffer-alist '("\\*\\(?:Warnings\\|Compile-Log\\|Messages\\)\\*"
-                                       (nv-select-buffer-in-side-window)
-                                       (window-height . 0.20)
-                                       (side . bottom)
-                                       (slot . -5)
-                                       (preserve-size . (nil . t))))
-  )
-
-
 ;; ----------------------------------------------------------------------
 (use-package prog-mode
   :straight
@@ -357,95 +339,74 @@
                     'outline-minor-faces-add-font-lock-keywords))
 
 
-;; ====================================================================
-(use-package popper
+;; ------------------------------------------------------------------
+(use-package pdf-tools
   :straight t
-  :init
-  (when window-system
-    (pcase (system-name)
-      ;; PC escritorio casa
-      ("nivaca-pc" (bind-keys*
-                    ("C-|"   . popper-toggle-latest)
-                    ("M-|"   . popper-cycle)
-                    ("C-M-|" . popper-toggle-type)))
-      ;; XPS 13
-      ("nivaca-xps" (bind-keys*
-                     ("C-`"   . popper-toggle-latest)
-                     ("M-`"   . popper-cycle)
-                     ("C-M-`" . popper-toggle-type)))
-      ;; TP
-      ("nivaca-tp" (bind-keys*
-                    ("C-|"   . popper-toggle-latest)
-                    ("M-|"   . popper-cycle)
-                    ("C-M-|" . popper-toggle-type))))
-    ;; Mac
-    (when IS-MAC (bind-keys*
-                  ("C-|"   . popper-toggle-latest)
-                  ("M-|"   . popper-cycle)
-                  ("C-M-|" . popper-toggle-type))))
-  ;;
-  ;; (setq popper-group-function #'popper-group-by-project)
-  (setq popper-reference-buffers
-        '(Custom-mode
-          (compilation-mode . hide)
-          messages-buffer-mode
-          "^\\*Warnings\\*$"
-          "^\\*straight-process\\*$"
-          "^\\*Compile-Log\\*$"
-          "^\\*Matlab Help\\*"
-          "^\\*Messages\\*$"
-          "^\\*Backtrace\\*"
-          "^\\*evil-registers\\*"
-          "^\\*Apropos"
-          "^Calc:"
-          "^\\*TeX errors\\*"
-          "^\\*ielm\\*"
-          "^\\*TeX Help\\*"
-          "\\*Shell Command Output\\*"
-          "\\*Completions\\*"
-          "\\*scratch\\*"
-          "[Oo]utput\\*"))
-  (popper-mode +1)
-  )
-;; --------------------------------------------------------------------
-
-
-
-(use-package emacs  ;; popups
+  :defer t
+  :mode  ("\\.pdf\\'" . pdf-view-mode)
+  :commands (pdf-view-mode)
   :config
-  ;; --------------------------------------------------------------------
-  (setq display-buffer-base-action
-        '(display-buffer-reuse-mode-window
-          display-buffer-reuse-window
-          display-buffer-same-window))
-
-  ;; If a popup does happen, don't resize windows to be equal-sized
-  (setq even-window-sizes nil)
+  (pdf-loader-install)
+  (setq-default pdf-view-display-size 'fit-width)
+  (setq-default pdf-view-continuous nil)
+  (setq-default pdf-annot-activate-created-annotations t)
+  ;; (require 'pdf-occur)
   )
 
 
 ;; -------------------------------------------------------------------
-;; Initial positions
+;; Initial position of main frame
 (use-package emacs
   :config
   (defun nv-set-frame-position ()
     (interactive)
     (when window-system  ;; not in console
-      (setq frame-resize-pixelwise t)
       (set-frame-position (selected-frame) 0 0)
       (pcase (system-name)
         ;; PC escritorio casa
-        ("nivaca-pc" (set-frame-size (selected-frame) (/ 1920 2) 1080 t))
+        ("nivaca-pc"
+         (defcustom nv-screen-size '(1920 1080)
+           "Screen size in pixels"))
         ;; XPS 13
-        ("nivaca-xps" (set-frame-size (selected-frame) (/ 1920 2) 1200 t))
+        ("nivaca-xps"
+         (defcustom nv-screen-size '(1920 1200)
+           "Screen size in pixels"))
         ;; TP
-        ("nivaca-tp" (set-frame-size (selected-frame) (/ 1366 2) 768 t))
+        ("nivaca-tp"
+         (defcustom nv-screen-size '(1920 1200)
+           "Screen size in pixels"))
         ) ;; end: pcase
-      ;; Mac
-      (when IS-MAC
-        (set-frame-size (selected-frame) 1024 600 t))
-      ) ;; end: when window-system
-    ) ;; end: defun nv-set-frame-position
+        ;; Mac
+        (when IS-MAC
+          (defcustom nv-screen-size '(1920 1200)
+            "Screen size in pixels"
+            )
+          )
+        (setq frame-resize-pixelwise t)
+        (set-frame-position (selected-frame) 0 0)
+        (let ((dx -2)  ;; added to adjust width
+              (dy +2)) ;; added to adjust height
+          (set-frame-width
+           (selected-frame) 
+           (+
+            (/
+             (/ (nth 0 nv-screen-size) 2)  ;; half of screen width
+             (frame-char-width))
+            dx)
+           nil)
+          (set-frame-height
+           (selected-frame)
+           (+
+            (/
+             (nth 1 nv-screen-size)
+             (frame-char-height))
+            dy)
+           nil)
+          ) ; let
+      ) ; when
+    ) ; defun
+  ;; call the function now:
+  (nv-set-frame-position)
   )
 
 

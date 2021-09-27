@@ -7,7 +7,9 @@
         TeX-font
         TeX-insert-backslash
         TeX-insert-macro
+        counsel-M-x
         end-of-visual-line
+        markdown-outdent-or-delete
         ))
 
 (setq mc/cmds-to-run-once

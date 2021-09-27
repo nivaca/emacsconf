@@ -1,10 +1,7 @@
 ;;; -*- coding: utf-8 -*-
 (("/home/nivaca/emacs/recentf" . 198)
  ("/home/nivaca/emacs/straight/build/marginalia/marginalia-autoloads.el" . 1141)
- ("/home/nivaca/emacs/straight/build/counsel/counsel-autoloads.el" . 17021)
  ("/home/nivaca/emacs/straight/build/swiper/swiper-autoloads.el" . 1279)
- ("/home/nivaca/emacs/straight/build/treemacs/treemacs-autoloads.el" . 22315)
- ("/home/nivaca/emacs/straight/build/magit/magit-autoloads.el" . 89856)
  ("/home/nivaca/emacs/straight/build/magit-section/magit-section-autoloads.el" . 349)
  ("/home/nivaca/emacs/straight/build/git-commit/git-commit-autoloads.el" . 566)
  ("/home/nivaca/emacs/straight/build/with-editor/with-editor-autoloads.el" . 3467)

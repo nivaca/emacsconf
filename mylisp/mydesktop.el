@@ -196,30 +196,4 @@
 (setq make-backup-files t)    ; don't make backup files
 
 
-
-
-
-;; -------------------------------------------
-;; persistent scratch
-(use-package persistent-scratch
-  :straight t
-  :config
-  (pcase (system-name)
-    ;; PC escritorio casa
-    ("nivaca-pc" (setq persistent-scratch-backup-directory (concat user-emacs-directory "tmp/pc/scratch")))
-    ;; XPS 13
-    ("nivaca-xps" (setq persistent-scratch-backup-directory (concat user-emacs-directory "tmp/xps/scratch")))
-    ;; TP
-    ("nivaca-tp" (setq persistent-scratch-backup-directory (concat user-emacs-directory "tmp/tp/scratch")))
-    )
-  ;; Mac oficina
-  (when IS-MAC
-    (setq persistent-scratch-backup-directory (concat user-emacs-directory "tmp/mac/scratch"))
-    )
-  ;;
-  (persistent-scratch-setup-default)
-)
-
-
-
 (provide 'mydesktop)

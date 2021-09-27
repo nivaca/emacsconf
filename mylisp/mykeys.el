@@ -164,7 +164,7 @@ some custom behavior added."
 
   ;; multiple-cursors
   (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
-
+  
   )
 
 

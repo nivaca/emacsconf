@@ -2,14 +2,22 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("org-capture-last-stored"
- (filename . "~/roamnotes/20210919110110-run_command_whenever_file_changes.org")
- (front-context-string . "#+filetags: :com")
- (rear-context-string . "r file changes \n")
- (position . 112))
-("myinit.el"
- (filename . "~/emacs/myinit.el")
- (front-context-string . ";;; myedit.el -*")
- (rear-context-string)
- (position . 1))
+(#1=(#("mylisp directory" 0 16
+      (bmkp-full-record #1#))
+    (buffer-name . "mylisp")
+    (front-context-string . #2="")
+    (rear-context-string . #2#)
+    (front-context-region-string)
+    (rear-context-region-string)
+    (visits . 4)
+    (time 24913 10026 183654 338000)
+    (created 24913 9657 923328 96000)
+    (position . 1)
+    (filename . "/home/nivaca/emacs/mylisp/")
+    (dired-directory . "~/emacs/mylisp/")
+    (dired-marked)
+    (dired-switches . "-al")
+    (dired-subdirs)
+    (dired-hidden-dirs)
+    (handler . bmkp-jump-dired))
 )
