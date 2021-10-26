@@ -4,16 +4,18 @@
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (#1=(#("org-capture-last-stored" 0 23
       (bmkp-full-record #1#))
-    (filename . "~/roamnotes/20211025194010-xslt_whitespace.org")
-    (buffer-name . "20211025194010-xslt_whitespace.org")
+    (annotation)
+    (tags)
+    (filename . "~/roamnotes/20211026143436-find_out_where_package_is_being_loaded.org")
+    (buffer-name . "20211026143436-find_out_where_package_is_being_loaded.org")
     (front-context-string . "#+filetags: :com")
-    (rear-context-string . "xslt whitespace\n")
+    (rear-context-string . "is being loaded\n")
     (front-context-region-string)
     (rear-context-region-string)
     (visits . 0)
-    (time . #2=(24951 20653 645215 77000))
+    (time . #2=(24952 22921 383809 103000))
     (created . #2#)
-    (position . 93))
+    (position . 116))
 #1=(#("mylisp directory" 0 16
       (bmkp-full-record #1#))
     (buffer-name . "mylisp")

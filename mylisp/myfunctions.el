@@ -246,22 +246,22 @@ selects backward.)"
 
 
 
-;; =============================================
-(defun nv-ivy-yank-whole-word ()
-  "Pull nextnext word from buffer into search string."
-  (interactive)
-  (let (amend)
-    (with-ivy-window
-      ;;move to last word boundary
-      (re-search-backward "\\b")
-      (let ((pt (point))
-            (le (line-end-position)))
-        (forward-word 1)
-        (if (> (point) le)
-            (goto-char pt)
-          (setq amend (buffer-substring-no-properties pt (point))))))
-    (when amend
-      (insert (replace-regexp-in-string "  +" " " amend)))))
+;; ;; =============================================
+;; (defun nv-ivy-yank-whole-word ()
+;;   "Pull nextnext word from buffer into search string."
+;;   (interactive)
+;;   (let (amend)
+;;     (with-ivy-window
+;;       ;;move to last word boundary
+;;       (re-search-backward "\\b")
+;;       (let ((pt (point))
+;;             (le (line-end-position)))
+;;         (forward-word 1)
+;;         (if (> (point) le)
+;;             (goto-char pt)
+;;           (setq amend (buffer-substring-no-properties pt (point))))))
+;;     (when amend
+;;       (insert (replace-regexp-in-string "  +" " " amend)))))
 
 
 

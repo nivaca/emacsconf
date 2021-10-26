@@ -305,11 +305,11 @@
   :straight t
   :defer)
 
-(use-package all-the-icons-ivy
-  :straight t
-  :config
-  (all-the-icons-ivy-setup)
-  )
+;; (use-package all-the-icons-ivy
+;;   :straight t
+;;   :config
+;;   (all-the-icons-ivy-setup)
+;;   )
 
 (use-package all-the-icons-dired
   :straight t

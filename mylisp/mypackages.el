@@ -30,30 +30,10 @@
 (require 'straight-x)
 
 
-
-
-;; ===================================================================
-
-
+;; ------------------------------------------------------------
+;; Blackout: the easy way to clean up your Emacs mode lighters
 (use-package blackout
-  :straight t
-  :config
-  (blackout 'company)
-  (blackout 'flycheck-mode)
-  (blackout 'ivy)
-  (blackout 'hungry-delete)
-  (blackout 'gcmh-mode)
-  (blackout 'outline-minor-mode)
-  (blackout 'aggressive-indent-mode)
-  (blackout 'eldoc-mode)
-  (blackout 'hs-minor-mode)
-  (blackout 'subword-mode)
-  (blackout 'visual-line-mode)
-  (blackout 'gcmh-mode)
-  (blackout 'GCMH-mode)
-  (blackout 'outline-mode)
-  (blackout 'org-indent-mode)
-  )
+  :straight t)
 
 
 (provide 'mypackages)

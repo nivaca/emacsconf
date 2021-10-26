@@ -216,7 +216,7 @@
 
 
 ;; ============== My minibuffer completion ===============
-(use-package myivy
+(use-package myselect
   :straight
   :load-path user-lisp-directory
   )
@@ -267,6 +267,27 @@
 (setq ivy-initial-inputs-alist ())
 
 
+
+;; ===================================================================
+
+
+(use-package emacs
+  :config
+  (blackout 'aggressive-indent-mode)
+  ; (blackout 'company)
+  (blackout 'eldoc-mode)
+  (blackout 'flycheck-mode)
+  (blackout 'gcmh-mode)
+  (blackout 'GCMH-mode)
+  (blackout 'hs-minor-mode)
+  (blackout 'hungry-delete)
+  ; (blackout 'ivy)
+  (blackout 'org-indent-mode)
+  (blackout 'outline-minor-mode)
+  (blackout 'outline-mode)
+  (blackout 'subword-mode)
+  (blackout 'visual-line-mode)
+)
 
 ;; =========================================
 ;; Startup time
