@@ -1,0 +1,3 @@
+[submodule "otherlisp/bmkp"]
+	path = otherlisp/bmkp
+	url = ttps://github.com/emacsmirror/bookmark-plus.git

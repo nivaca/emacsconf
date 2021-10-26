@@ -1,4 +1,6 @@
-;;; myedit.el -*- lexical-binding: t; -*-
+;;; myinit.el -*- lexical-binding: t; -*-
+
+;;; Code:
 
 (defconst IS-MAC     (eq system-type 'darwin))
 (defconst IS-LINUX   (eq system-type 'gnu/linux))
@@ -15,7 +17,7 @@
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
 
-
+(setq byte-compile-warnings '(cl-functions))
 
 ;; ================== Initialization ==================
 (load-file (expand-file-name "initialsetup.el" user-lisp-directory))
@@ -30,10 +32,15 @@
   )
 
 
-
-
 ;; =============== Package Management ===============
 (load-file (expand-file-name "mypackages.el" user-lisp-directory))
+
+
+;; =================== ORG-mode ====================
+(use-package myorg
+  :straight
+  :load-path user-lisp-directory
+  )
 
 
 ;; ================= My editor settings ===================
@@ -42,6 +49,11 @@
   :load-path user-lisp-directory
   )
 
+;; ============== Avy ===============
+(use-package myavy
+  :straight
+  :load-path user-lisp-directory
+  )
 
 ;; =================== desktop etc. ====================
 (use-package mydesktop
@@ -95,13 +107,6 @@
 
 ;; ================ magit ===============
 (use-package mymagit
-  :straight
-  :load-path user-lisp-directory
-  )
-
-
-;; =================== ORG-mode ====================
-(use-package myorg
   :straight
   :load-path user-lisp-directory
   )
@@ -237,11 +242,10 @@
   )
 
 ;; ================= server ==================
-(use-package server 
+(use-package server
   :config
   (unless (server-running-p)
     (server-start)))
-
 
 
 ;; ============= My themes configuration ==========
@@ -259,7 +263,7 @@
 
 
 ;; -----------------------------------------
-;; needed for ivy; goes at the end 
+;; needed for ivy; goes at the end
 (setq ivy-initial-inputs-alist ())
 
 

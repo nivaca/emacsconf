@@ -247,16 +247,6 @@ undo."
   )
 
 
-;; ================= avy ========================
-(use-package avy
-  :defer t
-  :straight
-  :bind
-  ("M-s" . avy-goto-char)
-  ("M-g g" . avy-goto-line)
-  )
-
-
 ;; Indicate minibuffer depth
 (use-package mb-depth
   :config

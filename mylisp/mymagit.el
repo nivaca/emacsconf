@@ -3,9 +3,11 @@
 (use-package magit
   :straight t
   :defer t
+  :commands (magit-status)
   :bind ("C-c g" . magit-status)
   :config
-  (define-key magit-status-mode-map (kbd "q") 'magit-quit-session))
+  (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
+  )
 
 
 (use-package emacs

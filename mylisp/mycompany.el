@@ -6,7 +6,7 @@
   :config
   (global-company-mode)
   :custom
-  (company-idle-delay 0.3)
+  (company-idle-delay 0.2)
   (company-tooltip-limit 0)
   (company-begin-commands '(self-insert-command))
   (company-transformers '(company-sort-by-occurrence))

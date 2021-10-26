@@ -1,5 +1,14 @@
 ;;; mylisp/mythemes.el -*- lexical-binding: t; -*-
 
+;; (load-theme 'leuven t)
+
+(use-package kaolin-themes
+  :disabled
+  :straight t
+  :config
+  (load-theme 'kaolin-mono-light t)
+  )
+
 (use-package tron-legacy-theme
   :disabled
   :straight t
@@ -10,7 +19,7 @@
 
 
 (use-package vscode-dark-plus-theme
-  ;; :disabled
+  :disabled
   :straight t
   :config
   (load-theme 'vscode-dark-plus t))
@@ -24,7 +33,7 @@
 
 
 (use-package doom-themes
-  :disabled
+  ;; :disabled
   :straight t
   :custom
   (doom-nord-brighter-comments t)
@@ -34,7 +43,7 @@
   (doom-oceanic-next-brighter-comments nil)
   :init
   (doom-themes-visual-bell-config)
-  (load-theme 'doom-oceanic-next t)
+  (load-theme 'doom-monokai-octagon t)
   )
 
 

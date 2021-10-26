@@ -51,6 +51,8 @@
         truncate-partial-width-windows nil
         minibuffer-message-timeout 10
         column-number-mode t
+        fit-window-to-buffer-horizontally t
+        fit-frame-to-buffer t
         ;; pop-up-frames nil
         )
 
@@ -140,7 +142,7 @@
 ;; valid values are t, nil, box, hollow, bar, (bar . WIDTH), hbar,
 ;; (hbar. HEIGHT); see the docs for set-cursor-type
 (use-package emacs  ;; cursors
-  :config 
+  :config
   (defun nv-set-cursor-according-to-mode ()
     "change cursor color and type according to some minor modes."
     (cond

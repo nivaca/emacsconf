@@ -2,15 +2,27 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(#1=(#("mylisp directory" 0 16
+(#1=(#("org-capture-last-stored" 0 23
+      (bmkp-full-record #1#))
+    (filename . "~/roamnotes/20211025194010-xslt_whitespace.org")
+    (buffer-name . "20211025194010-xslt_whitespace.org")
+    (front-context-string . "#+filetags: :com")
+    (rear-context-string . "xslt whitespace\n")
+    (front-context-region-string)
+    (rear-context-region-string)
+    (visits . 0)
+    (time . #2=(24951 20653 645215 77000))
+    (created . #2#)
+    (position . 93))
+#1=(#("mylisp directory" 0 16
       (bmkp-full-record #1#))
     (buffer-name . "mylisp")
     (front-context-string . #2="")
     (rear-context-string . #2#)
     (front-context-region-string)
     (rear-context-region-string)
-    (visits . 4)
-    (time 24913 10026 183654 338000)
+    (visits . 6)
+    (time 24913 14970 749857 581000)
     (created 24913 9657 923328 96000)
     (position . 1)
     (filename . "/home/nivaca/emacs/mylisp/")

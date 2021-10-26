@@ -70,17 +70,8 @@
                   (org-level-8 . 1.0)))
     (set-face-attribute (car face) nil
                         :font nv-frame-font :weight 'medium :height (cdr face)))
-  
   ;; (unbind-key "<tab>" org-mode-map)
   )
-
-
-;; ======================================================================
-(use-package ox-slimhtml
-  :straight t
-  :after org
-  )
-
 
 ;; ======================================================================
 (use-package org-roam
@@ -131,14 +122,6 @@
          ("C-c n a" . org-roam-alias-add)
          ("C-c n l" . org-roam-buffer-toggle)))
   )
-
-
-(defun org-roam-node-insert-immediate (arg &rest args)
-  (interactive "P")
-  (let ((args (push arg args))
-        (org-roam-capture-templates (list (append (car org-roam-capture-templates)
-                                                  '(:immediate-finish t)))))
-    (apply #'org-roam-node-insert args)))
 
 ;; ======================================================================
 ;; Deft
