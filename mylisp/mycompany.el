@@ -31,13 +31,5 @@
   (add-hook 'lisp-mode-hook 'company-mode)
   )
 
-
-;; prescient
-(use-package company-prescient
-  :straight t
-  :config
-  (company-prescient-mode 1)
-  )
-
 (provide 'mycompany)
 ;;; mycompany.el ends here

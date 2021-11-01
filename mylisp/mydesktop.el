@@ -9,32 +9,6 @@
 
 
 ;; ======================================================================
-;;                          perspective.el
-;; ======================================================================
-
-(use-package perspective
-  :straight t
-  :config
-  (pcase (system-name)
-    ;; PC escritorio casa
-    ("nivaca-pc" (setq persp-state-default-file (concat user-emacs-directory "tmp/pc/persp-auto-save")))
-    ;; XPS 13
-    ("nivaca-xps" (setq persp-state-default-file (concat user-emacs-directory "tmp/xps/persp-auto-save")))
-    ;; TP
-    ("nivaca-tp" (setq persp-state-default-file (concat user-emacs-directory "tmp/tp/persp-auto-save")))
-    )
-  ;; Mac oficina
-  (when IS-MAC
-    (setq persp-state-default-file (concat user-emacs-directory "tmp/mac/persp-auto-save")))
-  (add-hook 'kill-emacs-hook #'persp-state-save)
-  ;; (add-hook 'emacs-startup-hook #'persp-state-load)
-  (persp-mode)
-  )
-
-
-
-
-;; ======================================================================
 ;;                             dogears
 ;; ======================================================================
 (straight-use-package

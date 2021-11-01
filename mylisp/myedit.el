@@ -35,46 +35,6 @@
   )
 
 
-;; winner mode
-;; (use-package winner
-;;   :if (not noninteractive)
-;;   :straight t
-;;   ;;:defer 5
-;;   :bind (("s-r" . winner-redo)
-;;          ("s-u" . winner-undo))
-;;   :custom
-;;   (winner-boring-buffers
-;;    '("*Completions*"
-;;      "*Compile-Log*"
-;;      "*inferior-lisp*"
-;;      "*Fuzzy Completions*"
-;;      "*Apropos*"
-;;      "*Help*"
-;;      "*cvs*"
-;;      "*Buffer List*"
-;;      "*Ibuffer*"
-;;      "*esh command on file*"))
-;;   :config
-;;   (winner-mode 1))
-
-
-
-;; ;; ============ aggressive indent ==============
-;; (use-package aggressive-indent
-;;   :straight t
-;;   :init
-;;   (defun
-;;       aggressive-indent-mode-on ()
-;;     (interactive)
-;;     (aggressive-indent-mode 1))
-;;   :hook
-;;   ((prog-mode) . aggressive-indent-mode-on)
-;;   ;; turn it off for python
-;;   ((python-mode) . aggressive-indent-mode)
-;;   )
-
-
-
 ;; =============== Scrolling ==================
 ;; Vertical Scroll
 (use-package emacs
@@ -378,7 +338,5 @@ undo."
   :bind
   ("C-," . embrace-commander)
   )
-
-
 
 (provide 'myedit)

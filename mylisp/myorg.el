@@ -5,6 +5,7 @@
   :ensure
   :hook (org-mode . nv-org-mode-setup)
   :bind (:map org-mode-map
+              ;; ("<RET>" . nv-org-return-dwim)
               ("<C-S-left>" . nil)
               ("<C-down>" . nil)
               ("<C-up>" . nil)
@@ -52,9 +53,10 @@
   (org-indent-mode -1)
   (auto-fill-mode 0)
   (visual-line-mode 1)
-  (setq org-adapt-indentation nil
-        org-hide-leading-stars nil
-        org-odd-levels-only nil)
+  (setq
+   org-adapt-indentation nil
+   org-hide-leading-stars nil
+   org-odd-levels-only nil)
   ;; -----------------------------------------------------------------
   ;; org faces
   (setq nv-frame-font "Fantasque Sans Mono")
@@ -79,7 +81,9 @@
   :init
   (setq org-roam-v2-ack t)
   :config
+  (setq org-roam-db-gc-threshold most-positive-fixnum)
   (setq org-roam-directory (expand-file-name "~/roamnotes"))
+  (setq org-roam-db-location (expand-file-name "~/.emacs.d/org-roam.db"))
   (setq org-roam-completion-system 'ivy)
   (setq org-roam-db-update-method 'immediate)
   (setq org-roam-completion-everywhere t)

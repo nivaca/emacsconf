@@ -4,9 +4,10 @@
 (use-package consult
   :straight t
   :demand t
-  :bind (
-         ;; ("C-s" . consult-line)
-         ("C-M-j" . persp-switch-to-buffer*)
+  :bind (("C-s" . consult-line)
+         ("C-x b" . consult-buffer)
+         ("C-x m" . consult-bookmark)
+         ("M-y" . consult-yank-from-kill-ring)
          :map minibuffer-local-map
          ("C-r" . consult-history))
   :custom
@@ -27,7 +28,6 @@
 
 
 (use-package selectrum
-  ;; :disabled
   :straight t
   :bind (("C-M-r" . selectrum-repeat)
          :map selectrum-minibuffer-map
@@ -45,15 +45,18 @@
   (selectrum-current-candidate ((t (:background "#3a3f5a"))))
   :init
   (selectrum-mode 1)
-  )
-
-
-(use-package prescient
-  :straight t
-  :after selectrum
   :config
-  (prescient-persist-mode)
+  (setq selectrum-refine-candidates-function #'orderless-filter)
+  (setq selectrum-highlight-candidates-function #'orderless-highlight-matches)
   )
+
+
+;; (use-package prescient
+;;   :straight t
+;;   :after selectrum
+;;   :config
+;;   (prescient-persist-mode)
+;;   )
 
 
 (use-package marginalia
@@ -67,8 +70,38 @@
 
 
 (use-package orderless
-  :ensure t
-  :custom (completion-styles '(orderless))
-  )
+    :init
+    (setq completion-styles '(orderless)
+          completion-category-defaults nil
+          completion-category-overrides '((file (styles partial-completion)))))
+
+
+
+(use-package embark
+  :straight t
+  :bind
+  (("C-." . embark-act)         ;; pick some comfortable binding
+   ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+  :init
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+  :config
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+;; Consult users will also want the embark-consult package.
+(use-package embark-consult
+  :straight t
+  :after (embark consult)
+  :demand t ; only necessary if you have the hook below
+  ;; if you want to have consult previews as you move around an
+  ;; auto-updating embark collect buffer
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
 
 (provide 'myselect)

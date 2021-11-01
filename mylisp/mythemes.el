@@ -43,7 +43,7 @@
   (doom-oceanic-next-brighter-comments nil)
   :init
   (doom-themes-visual-bell-config)
-  (load-theme 'doom-monokai-octagon t)
+  (load-theme 'doom-one t)
   )
 
 

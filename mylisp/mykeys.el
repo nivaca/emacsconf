@@ -12,6 +12,8 @@
   ;; (global-set-key (quote [f3]) 'kmacro-start-macro-or-insert-counter)
   ;; (global-set-key (quote [S-f3]) 'kmacro-end-and-call-macro)
 
+  (global-set-key (quote [f4]) 'consult-line)
+  
   ;; (global-set-key (quote [f5]) 'org-mode)
   ;; (global-set-key (quote [f6]) 'lisp-mode)
   ;; (global-set-key (quote [f7]) 'latex-mode)
@@ -22,7 +24,6 @@
 
   ;; (global-set-key (quote [f8]) 'counsel-dired)
   (global-set-key (quote [f8]) 'dired)
-  ;; (global-set-key (quote [f9]) 'ivy-switch-buffer)
   (global-unset-key (quote [f9]))
   (global-set-key (quote [f10]) 'nv-terminal-here)
   (global-set-key (quote [S-f10]) 'vterm)
@@ -36,10 +37,6 @@
     (global-set-key (quote [s-f12]) 'nv-load-config))
 
   (bind-key* "\C-x\C-m" 'execute-extended-command)
-
-  (global-set-key (kbd "C-/") 0)
-
-  (global-set-key (kbd "C-x m") 'hydra-transpose/body)
 
   (global-set-key (kbd "M-w") 'nv-select-word)
 

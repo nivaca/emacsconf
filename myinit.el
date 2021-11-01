@@ -43,17 +43,28 @@
   )
 
 
+;; ;; ============= unpackaged (collection of useful functions) ==============
+;; (straight-use-package
+;;  '(unpackaged
+;;    :type git
+;;    :host github
+;;    :repo "alphapapa/unpackaged.el")
+;;  )
+
+
 ;; ================= My editor settings ===================
 (use-package myedit
   :straight
   :load-path user-lisp-directory
   )
 
+
 ;; ============== Avy ===============
 (use-package myavy
   :straight
   :load-path user-lisp-directory
   )
+
 
 ;; =================== desktop etc. ====================
 (use-package mydesktop
@@ -302,10 +313,6 @@
 ;; (add-hook 'emacs-startup-hook #'nv-display-startup-time)
 
 
-;; (setq enable-local-variables t)
-
-(unless noninteractive
-  (persp-state-load persp-state-default-file))
 
 ;; Locate the frame correctly
 (nv-set-frame-position)
