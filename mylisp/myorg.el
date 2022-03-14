@@ -28,13 +28,14 @@
   :config
   (require 'org-protocol)
   (setq org-ellipsis " ▾"
-        org-adapt-indentation nil
         org-confirm-babel-evaluate nil
         org-cycle-separator-lines 2
+        org-descriptive-links nil
         org-edit-src-content-indentation 2
         org-export-with-smart-quotes t
         org-fontify-quote-and-verse-blocks t
         org-hide-block-startup nil
+        org-hide-emphasis-markers nil
         org-hide-emphasis-markers t
         org-indent-indentation-per-level 2
         org-indent-mode-turns-on-hiding-stars nil
@@ -44,13 +45,14 @@
         org-src-window-setup 'current-window
         org-startup-folded nil
         org-support-shift-select t
-        org-hide-emphasis-markers nil
+        org-adapt-indentation nil
         )
   )
 
 
 (defun nv-org-mode-setup ()
   (org-indent-mode -1)
+  (org-modern-mode 1)
   (auto-fill-mode 0)
   (visual-line-mode 1)
   (setq
@@ -59,7 +61,7 @@
    org-odd-levels-only nil)
   ;; -----------------------------------------------------------------
   ;; org faces
-  (setq nv-frame-font "Fantasque Sans Mono")
+  (setq nv-frame-font "JetBrains Mono NL")
   (set-face-attribute 'org-document-title nil
                       :font nv-frame-font :weight 'bold :height 1.3)
   (dolist (face '((org-level-1 . 1.3)
@@ -74,6 +76,8 @@
                         :font nv-frame-font :weight 'medium :height (cdr face)))
   ;; (unbind-key "<tab>" org-mode-map)
   )
+
+
 
 ;; ======================================================================
 (use-package org-roam
@@ -91,16 +95,6 @@
         '(("d" "default" plain "%?"
            :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")
            :unnarrowed t)
-          ;;
-          ("f" "fleeting note" plain "#+filetags: :fleeting:\n\n%?"
-           :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")
-           :unnarrowed t)
-          ;;
-          ("l" "literature note" plain
-           (file "~/roamnotes/templates/booktemplate.org")
-           :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-           :unnarrowed t)
-          ;;
           ("c" "computing note" plain
            (file "~/roamnotes/templates/comptemplate.org")
            :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
@@ -116,8 +110,15 @@
                                                     '(:immediate-finish t)))))
       (apply #'org-roam-node-insert args)))
   ;;
+  (defun org-roam-rg-search ()
+  "Search org-roam directory using consult-ripgrep. With live-preview."
+  (interactive)
+  (let ((consult-ripgrep-command "rg --null --ignore-case --type org --line-buffered --color=always --max-columns=500 --no-heading --line-number . -e ARG OPTS"))
+    (consult-ripgrep org-roam-directory)))
+  ;;
   :bind
   (("<f7>" . org-roam-node-find)
+   ("S-<f7>" . org-roam-rg-search)
    (:map org-mode-map
          ("C-c n i" . org-roam-node-insert)
          ("C-c n I" . org-roam-node-insert-immediate)
@@ -126,6 +127,9 @@
          ("C-c n a" . org-roam-alias-add)
          ("C-c n l" . org-roam-buffer-toggle)))
   )
+
+
+
 
 ;; ======================================================================
 ;; Deft
@@ -141,6 +145,18 @@
   (deft-use-filename-as-title t)
   )
 
+
+
+
+;; ======================================================================
+;; org-modern
+
+(straight-use-package
+ '(org-modern
+   :type git
+   :host github
+   :repo "minad/org-modern")
+ )
 
 
 (provide 'myorg)

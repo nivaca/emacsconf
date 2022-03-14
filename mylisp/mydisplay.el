@@ -12,7 +12,7 @@
   :bind
   ([S-f10] . menu-bar-mode)
   :config
-  (menu-bar-mode -1)
+  (menu-bar-mode 1)
   )
 
 
@@ -91,7 +91,7 @@
 (use-package emacs  ;; fonts
   :config
   
-  ;; (setq nv-frame-font "Hack ")  ;; mind the space
+  ;; (setq nv-frame-font "Iosevka Fixed ")  ;; mind the space
   (setq nv-frame-font "JetBrains Mono NL ")  ;; mind the space
 
   (when window-system
@@ -103,19 +103,19 @@
       ;; XPS 13
       ("nivaca-xps" (set-frame-font
                      (concat nv-frame-font "12")
-                     nil t))
-      ;; TP
-      ("nivaca-tp" (set-frame-font
-                    (concat nv-frame-font "12")
-                    nil t))
-      )
+                     nil t))      )
     )
   ;; Mac
   (when IS-MAC
     (set-frame-font (concat nv-frame-font "18")
       nil t))
 
+  ;; Mono and Variable
+  (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono NL" :weight 'regular :height 1.0)
+  ;; (set-face-attribute 'fixed-pitch nil :font "Iosevka Fixed" :weight 'regular :height 1.0)
+  ;; (set-face-attribute 'variable-pitch nil :family "Times New Roman" :height 160)
   )
+
 
 
 ;; -----------------------------------------------------------------
@@ -213,20 +213,64 @@
 
 
 ;; ----------------------------------------------------------------------
-;;                                beacon
+;;                                pulsar
 ;; ----------------------------------------------------------------------
-(use-package beacon
-  ;; Highlight cursor position in buffer
-  :straight t
+(use-package pulsar
+  :straight (pulsar :type git :host gitlab :repo "protesilaos/pulsar")
   :custom
-  (beacon-push-mark 10)
-  (beacon-color "#cc342b")
-  (beacon-blink-delay 0.3)
-  (beacon-blink-duration 0.3)
-  :init (beacon-mode 1)
-  :blackout beacon-mode
+  (pulsar-pulse-functions ; Read the doc string for why not `setq'
+   '(recenter-top-bottom
+     move-to-window-line-top-bottom
+     reposition-window
+     bookmark-jump
+     other-window
+     delete-window
+     delete-other-windows
+     forward-page
+     backward-page
+     scroll-up-command
+     scroll-down-command
+     windmove-right
+     windmove-left
+     windmove-up
+     windmove-down
+     windmove-swap-states-right
+     windmove-swap-states-left
+     windmove-swap-states-up
+     windmove-swap-states-down
+     tab-new
+     tab-close
+     tab-next
+     org-next-visible-heading
+     org-previous-visible-heading
+     org-forward-heading-same-level
+     org-backward-heading-same-level
+     outline-backward-same-level
+     outline-forward-same-level
+     outline-next-visible-heading
+     outline-previous-visible-heading
+     outline-up-heading))
+  :config
+  (setq pulsar-face 'pulsar-magenta)
+  (setq pulsar-delay 0.1)
   )
 
+;; ----------------------------------------------------------------------
+;;                                Googles
+;; ----------------------------------------------------------------------
+;; Goggles highlights the modified region using pulse.
+;; Currently the commands undo, yank, kill and delete are supported.
+(use-package goggles
+  :straight (goggles :type git :host github :repo "minad/goggles")
+  :init
+  (add-hook 'prog-mode-hook #'goggles-mode)
+  (add-hook 'latex-mode-hook #'goggles-mode)
+  (add-hook 'LaTeX-mode-hook #'goggles-mode)
+  (add-hook 'org-mode-hook #'goggles-mode)
+  :config
+  (setq-default goggles-pulse nil)
+  (blackout 'goggles-mode " GG")
+  )
 
 
 
@@ -249,33 +293,6 @@
 
 
 
-;; ----------------------------------------------------------------------
-;;                  smart delete backward and forward
-;; ----------------------------------------------------------------------
-(straight-use-package
- '(nv-delete-forward
-   :type git
-   :host github
-   :repo "nivaca/nv-delete-forward"
-   :bind
-   (("C-<delete>" . nv-delete-forward-all)
-    ("M-<delete>" . nv-delete-forward))
-   )
- )
-
-
-(straight-use-package
- '(nv-delete-back
-   :type git
-   :host github
-   :repo "nivaca/nv-delete-back"
-   :bind
-   (("C-<backspace>" . nv-delete-back-all)
-    ("M-<backspace>" . nv-delete-back))
-   )
- )
-
-
 
 ;; ----------------------------------------------------------------------
 ;;                             Centaur Tabs
@@ -286,7 +303,7 @@
   :config
   (setq centaur-tabs-set-icons t
 	centaur-tabs-gray-out-icons 'buffer
-	centaur-tabs-style "wave"
+	centaur-tabs-style "alternate"
 	centaur-tabs-cycle-scope 'tabs
 	centaur-tabs-set-modified-marker t
         centaur-tabs-close-button "✕"
@@ -304,12 +321,6 @@
 (use-package all-the-icons
   :straight t
   :defer)
-
-;; (use-package all-the-icons-ivy
-;;   :straight t
-;;   :config
-;;   (all-the-icons-ivy-setup)
-;;   )
 
 (use-package all-the-icons-dired
   :straight t
@@ -410,8 +421,5 @@
   ;; call the function now:
   (nv-set-frame-position)
   )
-
-
-
 
 (provide 'mydisplay)

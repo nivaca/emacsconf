@@ -19,7 +19,7 @@
 
 
 (use-package vscode-dark-plus-theme
-  :disabled
+  ;; :disabled
   :straight t
   :config
   (load-theme 'vscode-dark-plus t))
@@ -33,7 +33,7 @@
 
 
 (use-package doom-themes
-  ;; :disabled
+  :disabled
   :straight t
   :custom
   (doom-nord-brighter-comments t)

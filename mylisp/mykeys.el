@@ -18,7 +18,10 @@
   ;; (global-set-key (quote [f6]) 'lisp-mode)
   ;; (global-set-key (quote [f7]) 'latex-mode)
 
-  (global-unset-key (quote [f5]))
+  ;; (global-unset-key (quote [f5]))
+
+  (global-set-key [f5] 'neotree-toggle)
+  
   (global-unset-key (quote [f6]))
   ;; (global-unset-key (quote [f7]))
 
@@ -49,7 +52,7 @@
 
   ;; kill buffer
   (global-set-key (kbd "C-x k")
-                  '(lambda () (interactive)
+                  #'(lambda () (interactive)
                      (let (kill-buffer-query-functions) (kill-buffer))))
 
   (global-unset-key "\C-v")

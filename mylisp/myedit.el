@@ -261,13 +261,8 @@ undo."
 
 ;; =========================================
 ;; Smart delete backward (à la oXygen XML)
-(straight-use-package
- '(nv-delete-back
-   :type git
-   :host github
-   :repo "nivaca/nv-delete-back")
- )
 (use-package nv-delete-back
+  :straight (nv-delete-back :type git :host github :repo "nivaca/nv-delete-back")
   :bind
   (("C-<backspace>" . nv-delete-back-all)
    ("M-<backspace>" . nv-delete-back))
@@ -276,13 +271,8 @@ undo."
 
 ;; =========================================
 ;; Smart delete forward (à la oXygen XML)
-(straight-use-package
- '(nv-delete-forward
-   :type git
-   :host github
-   :repo "nivaca/nv-delete-forward")
- )
 (use-package nv-delete-forward
+  :straight (nv-delete-forward :type git :host github :repo "nivaca/nv-delete-forward")
   :bind
   (("C-<delete>" . nv-delete-forward-all)
    ("M-<delete>" . nv-delete-forward))
@@ -317,9 +307,21 @@ undo."
 ;; (global-set-key (quote [C-f5]) 'revert-buffer-no-confirm)
 
 
-(use-package rg
-  :straight t
+;; ==================== AVY ====================
+(use-package avy
   :defer t
+  :straight
+  :bind
+  ("M-s" . avy-goto-char)
+  ("M-j" . avy-goto-char-timer)
+  ("M-g g" . avy-goto-line)
+  )
+
+
+
+;; ======================================================================
+(use-package olivetti
+  :straight t
   )
 
 
@@ -332,11 +334,5 @@ undo."
   )
 
 
-;; ======================================================================
-(use-package embrace
-  :straight t
-  :bind
-  ("C-," . embrace-commander)
-  )
 
 (provide 'myedit)

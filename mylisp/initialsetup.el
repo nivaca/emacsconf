@@ -16,18 +16,22 @@
 
 ;; ==========================================================
 ;;; Turn off the annoying crap immediately
-(setq backup-inhibited t
-      auto-save-default t
+(setq auto-save-default t
       dabbrev-case-distinction nil
       dabbrev-case-fold-search nil
-      vc-follow-symlinks t ;; Follow symbolic links
-      echo-keystrokes 0.1
       disabled-command-function nil
-      global-auto-revert-mode t ;;auto load changed files
-      large-file-warning-threshold 536870911)
+      echo-keystrokes 0.1
+      global-auto-revert-mode t ;; auto load changed files
+      global-auto-revert-non-file-buffers t ;; revert dired and other buffers
+      large-file-warning-threshold 536870911
+      use-dialog-box nil ;; don't pop up UI dialogs when prompting
+      vc-follow-symlinks t ;; Follow symbolic links
+      backup-inhibited t
+      )
 
 
 
+;; ==========================================================
 ;;; Emacs core configuration
 
 ;; lo', longer logs ahoy
@@ -42,9 +46,9 @@
 ;; Contrary to what many Emacs users have in their configs, you really don't
 ;; need more than this to make UTF-8 the default coding system:
 (when (fboundp 'set-charset-priority)
-  (set-charset-priority 'unicode))       ; pretty
-(prefer-coding-system 'utf-8)            ; pretty
-(setq locale-coding-system 'utf-8)       ; please
+  (set-charset-priority 'unicode))
+(prefer-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
 (setq selection-coding-system 'utf-8)
 
 

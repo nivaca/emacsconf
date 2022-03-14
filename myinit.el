@@ -43,24 +43,8 @@
   )
 
 
-;; ;; ============= unpackaged (collection of useful functions) ==============
-;; (straight-use-package
-;;  '(unpackaged
-;;    :type git
-;;    :host github
-;;    :repo "alphapapa/unpackaged.el")
-;;  )
-
-
 ;; ================= My editor settings ===================
 (use-package myedit
-  :straight
-  :load-path user-lisp-directory
-  )
-
-
-;; ============== Avy ===============
-(use-package myavy
   :straight
   :load-path user-lisp-directory
   )
@@ -101,20 +85,12 @@
   )
 
 
-
 ;; =================  Parentheses ================
 (use-package myparent
   :straight
   :load-path user-lisp-directory
   )
 
-
-;; ;; ===================== ansi-term =======================
-;; (use-package vterm
-;;   :straight t
-;;   :custom
-;;   (vterm-shell "fish")
-;;   )
 
 ;; ================ magit ===============
 (use-package mymagit
@@ -128,48 +104,12 @@
   :config (setq ediff-split-window-function 'split-window-horizontally))
 
 
-;; ================= company ==================
-(use-package mycompany
+
+;; ================= completions ==================
+(use-package mycompletions
   :straight
   :if window-system
   :load-path user-lisp-directory
-  )
-
-
-;; ================= dired ==================
-(use-package dired
-  :straight
-  :defer t
-  :bind ([S-f8] . dired)
-  :init
-  (add-hook 'dired-mode-hook #'all-the-icons-dired-mode)
-  )
-
-(use-package dired-narrow
-  :straight t
-  :defer t
-  )
-
-(use-package dired-subtree
-  :straight t
-  :after dired
-  :config
-  (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
-  (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map)
-  )
-
-;; no extra buffers when entering different dirs
-(use-package dired-single
-  :straight t
-  :config
-  (add-hook 'dired-mode-hook
-            (lambda ()
-              (define-key dired-mode-map (kbd "RET") 'dired-single-buffer)
-              (define-key dired-mode-map (kbd "<mouse-1>") 'dired-single-buffer-mouse)
-              (define-key dired-mode-map (kbd "^")
-                (lambda ()
-                  (interactive)
-                  (dired-single-buffer "..")))))
   )
 
 
@@ -197,17 +137,17 @@
 
 
 
-;; ================= markdown ===================
-(use-package mymarkdown
+;; ================= dired etc. ===================
+(use-package mydired
   :straight
-  ;; :disabled
   :load-path user-lisp-directory
   )
 
 
-;; ================= treemacs ===================
-(use-package mytreemacs
+;; ================= markdown ===================
+(use-package mymarkdown
   :straight
+  ;; :disabled
   :load-path user-lisp-directory
   )
 
@@ -259,6 +199,12 @@
     (server-start)))
 
 
+;; ============= My projectile ==========
+(use-package myprojectile
+  :straight
+  :load-path user-lisp-directory
+  )
+
 ;; ============= My themes configuration ==========
 (use-package mythemes
   :straight
@@ -271,6 +217,51 @@
   :straight
   :load-path user-lisp-directory
   )
+
+
+;; =============== Dashboard ===============
+(use-package dashboard
+  :init
+  (add-hook 'after-init-hook 'dashboard-refresh-buffer)
+  :config
+  (setq dashboard-items '(
+                          (bookmarks  . 5)
+                          (recents . 15)
+                          ;; (registers . 14)
+                          ))
+
+  ;; Header, footer, messages
+  (setq dashboard-banner-logo-title "Welcome to Emacs!")
+  (setq dashboard-footer-messages '(""))
+  (setq dashboard-footer-icon
+        (all-the-icons-octicon "zap"
+                               :height 0.00001
+                               :v-adjust -0.05
+                               :face 'font-lock-keyword-face))
+  (setq dashboard-startup-banner 'logo)
+  ;; General config
+  (setq dashboard-items-default-length 30
+        dashboard-page-separator "\n\n"
+        dashboard-set-file-icons nil
+        dashboard-set-heading-icons nil
+        dashboard-set-init-info nil
+        dashboard-set-navigator t
+        dashboard-week-agenda nil
+        dashboard-center-content nil
+        )
+  (setq dashboard-path-style 'truncate-beginning
+        dashboard-path-max-length 60
+        dashboard-bookmarks-show-base 'nil
+        dashboard-projects-show-base 'nil
+        dashboard-recentf-show-base 'nil
+        dashboard-recentf-item-format "%s  %s"
+        dashboard-projects-item-format "%s  %s")
+  (dashboard-setup-startup-hook)
+  ;; :general
+  ;; (general-define-key :keymaps 'dashboard-mode-map "e" nil)
+  )
+
+
 
 
 ;; -----------------------------------------

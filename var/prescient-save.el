@@ -1,2 +1,0 @@
-
-(funcall prescient-cache-callback :version '5 :history '#s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("execute-extended-command" 3 ":config" 0 ":disabled" 2 "consult-line" 1)) :frequency '#s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8125 data ("execute-extended-command" 0.985089730404757 ":config" 1.985053892081 ":disabled" 0.991026973 "consult-line" 0.994009)) :serial-number '5)

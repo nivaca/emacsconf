@@ -3,8 +3,14 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        LaTeX-insert-left-brace
+        TeX-insert-backslash
         end-of-visual-line
+        markdown-outdent-or-delete
+        org-end-of-line
+        org-force-self-insert
         org-self-insert-command
+        undo-only
         ))
 
 (setq mc/cmds-to-run-once

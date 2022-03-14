@@ -5,13 +5,16 @@
 ;; Highlight brackets according to their depth
 (use-package rainbow-delimiters
   :straight t
-  :config
-  (rainbow-delimiters-mode)
-)
+  :commands rainbow-delimiters-mode
+  :hook(
+        (prog-mode . rainbow-delimiters-mode)
+        (latex-mode . rainbow-delimiters-mode)
+        )
+  )
 
 
-(use-package smartparens
-  :straight t
+
+(use-package smartparens :straight t
   :config
   (require 'smartparens-config)
   (add-hook 'minibuffer-setup-hook 'turn-on-smartparens-strict-mode)
@@ -35,5 +38,8 @@
                      sp-point-after-word-p))
   )
 
+
+
+(show-paren-mode 1)
 
 (provide 'myparent)

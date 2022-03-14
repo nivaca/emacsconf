@@ -37,11 +37,11 @@
   )
 
 
-(use-package flyspell-correct-ivy
-  :straight t
-  :after flyspell
-  :bind (:map flyspell-mode-map
-              ("C-c $" . flyspell-correct-word-generic)))
+;; (use-package flyspell-correct-ivy
+;;   :straight t
+;;   :after flyspell
+;;   :bind (:map flyspell-mode-map
+;;               ("C-c $" . flyspell-correct-word-generic)))
 
 
 

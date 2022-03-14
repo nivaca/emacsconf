@@ -10,18 +10,18 @@
   (latex-mode
    LaTeX-mode
    TeX-mode)
-  ;; :hook
-  ;; ((Tex-latex-mode . LaTeX-preview-setup)
-  ;;  (Tex-latex-mode . flyspell-mode)      
-  ;;  (Tex-latex-mode . turn-on-reftex))
+  :hook (LaTeX-mode .
+                    (lambda ()
+                        (turn-on-reftex)
+                        (LaTeX-preview-setup)
+                        (flyspell-mode)
+                        (outline-minor-mode)
+                        (hs-minor-mode)
+                      )
+                    )
   :init
   (setq-default TeX-master nil)
-  :config
-  (add-hook 'Tex-latex-hook 'LaTeX-preview-setup)
-  (add-hook 'Tex-latex-hook 'flyspell-mode)
-  (add-hook 'Tex-latex-hook 'turn-on-reftex)
-  (add-hook 'Tex-latex-hook 'outline-minor-mode)
-  (add-hook 'Tex-latex-hook 'hs-minor-mode)
+  ;; :config
   :custom
   (TeX-auto-save t)
   (TeX-parse-self t)
@@ -38,14 +38,14 @@
 
 ;; --------------------------------------------------------------------
 (use-package reftex
-  :after auctex
-  :blackout reftex-mode)
+  :commands turn-on-reftex
+  :config (setq reftex-plug-into-AUCTeX t)
+  :blackout reftex-mode
+  )
 
 
 
-
-
-;; other auctex settings ---------------------------------------------
+;; Other auctex settings ---------------------------------------------
 (use-package emacs
   :config
   (add-hook 'LaTeX-mode-hook
@@ -63,9 +63,7 @@
   (defun TeX-insert-quote ()
     " "
     )
-
-
-
+  
   (defun LaTeX-indent-item ()
     "Provide proper indentation for LaTeX \"itemize\",\"enumerate\", and
 \"description\" environments.

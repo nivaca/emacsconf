@@ -3,11 +3,22 @@
 ;; ============== projectile ==============
 (use-package projectile
   :straight t
-  :defer t
+  :config
+  (setq projectile-indexing-method 'alien)
+  :init
+  (projectile-mode +1)
+  :bind (:map projectile-mode-map
+              ("s-p" . projectile-command-map)
+              ("C-c p" . projectile-command-map))
+  :blackout (projectile-mode . " ¶")
+
   )
 
-(use-package counsel-projectile
-  :straight t
-  :defer t
-  )
+
+
+
+;; ripgrep support
+(use-package rg
+  :straight t)
+
 (provide 'myprojectile)
