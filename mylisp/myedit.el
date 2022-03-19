@@ -32,6 +32,11 @@
 
   ;; give keyboard focus to help window
   (setq-default help-window-select t)
+
+  ;; context-menu-mode
+  (when (not (version< emacs-version "28"))
+    (context-menu-mode))
+  
   )
 
 
@@ -332,7 +337,6 @@ undo."
   (:map mode-specific-map
         ("C-g" . minibuffer-keyboard-quit))
   )
-
 
 
 (provide 'myedit)

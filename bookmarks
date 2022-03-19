@@ -1,4 +1,4 @@
-;;;; Emacs Bookmark Format Version 1 ;;;; -*- coding: utf-8-emacs -*-
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
@@ -24,16 +24,16 @@
       (bmkp-full-record #1#))
     (annotation)
     (tags)
-    (filename . "~/roamnotes/20220314135221-curso_literatura_medieval.org")
-    (buffer-name . "20220314135221-curso_literatura_medieval.org")
-    (front-context-string)
-    (rear-context-string . "3-14 Mon 13:52]\n")
+    (filename . "~/roamnotes/20220318173648-hide_desktop_files.org")
+    (buffer-name . "20220318173648-hide_desktop_files.org")
+    (front-context-string . "#+filetags: :com")
+    (rear-context-string . "e desktop files\n")
     (front-context-region-string)
     (rear-context-region-string)
     (visits . 0)
-    (time . #2=(25135 36584 921904 471000))
+    (time . #2=(25141 2449 375477 601000))
     (created . #2#)
-    (position . 134))
+    (position . 96))
 #1=(#("mylisp directory" 0 16
       (bmkp-full-record #1#))
     (buffer-name . "mylisp")
@@ -41,8 +41,8 @@
     (rear-context-string . #2#)
     (front-context-region-string)
     (rear-context-region-string)
-    (visits . 8)
-    (time 24952 41481 94562 191000)
+    (visits . 9)
+    (time 25140 64617 788458 974000)
     (created 24913 9657 923328 96000)
     (position . 1)
     (filename . "/home/nivaca/emacs/mylisp/")

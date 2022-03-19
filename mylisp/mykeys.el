@@ -66,6 +66,7 @@
   (global-unset-key (kbd "<C-down-mouse-1>"))  ;; disable "buffer menu"
   (global-unset-key (kbd "<C-down-mouse-2>"))  ;; disable "buffer menu"
   (global-unset-key (kbd "<C-down-mouse-3>"))  ;; disable "buffer menu"
+  ;; (global-unset-key (kbd "<mouse-3>")) ;; disable right click?
   (global-unset-key (kbd "<S-down-mouse-1>"))
 
   ;; extend region with mouse

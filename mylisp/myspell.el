@@ -5,7 +5,9 @@
 
   :hook ((LaTeX-mode . flyspell-mode)
          (latex-mode . flyspell-mode)
-         (markdown-mode . flyspell-mode))
+         (markdown-mode . flyspell-mode)
+         (org-mode . flyspell-mode)
+         )
   
   :config
   (define-key flyspell-mode-map [down-mouse-3] 'flyspell-correct-word)

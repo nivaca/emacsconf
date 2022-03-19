@@ -354,6 +354,7 @@
 
 ;; ------------------------------------------------------------------
 (use-package pdf-tools
+  :disabled t
   :straight t
   :defer t
   :mode  ("\\.pdf\\'" . pdf-view-mode)

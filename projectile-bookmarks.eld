@@ -1,1 +1,1 @@
-("/mydata/Dropbox/dotfiles/emacs/" "/mydata/Dropbox/Varios/roamnotes/" "/mydata/Dropbox/docs/editions/PH/ph-submissions/")
+("/mydata/Dropbox/dotfiles/emacs/" "/mydata/Dropbox/Varios/roamnotes/" "~/Dropbox/dotfiles/emacs/" "~/Dropbox/Varios/roamnotes/")

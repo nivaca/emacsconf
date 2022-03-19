@@ -159,4 +159,14 @@
  )
 
 
+
+;; ======================================================================
+;; org-remark
+(use-package org-remark
+  :config
+  (org-remark-create "green"
+                     '(:background "green" :foreground "blue")
+                     '(CATEGORY "important"))
+  )
+
 (provide 'myorg)
