@@ -1,4 +1,4 @@
-;;; early-init.el -*- lexical-binding: t; -*-
+;;; early-init.el --- early bird  -*- no-byte-compile: t -*-
 
 ;; Emacs HEAD (27+) introduces early-init.el, which is run before init.el,
 ;; before package and UI initialization happens.
@@ -26,3 +26,6 @@
 ;; in this file and can conflict with later config (particularly where the
 ;; cursor color is concerned).
 (advice-add #'x-apply-session-resources :override #'ignore)
+
+
+(setq load-prefer-newer t)

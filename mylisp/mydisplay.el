@@ -108,7 +108,7 @@
   ;; Mac
   (when IS-MAC
     (set-frame-font (concat nv-frame-font "18")
-      nil t))
+                    nil t))
 
   ;; Mono and Variable
   (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono NL" :weight 'regular :height 1.0)
@@ -154,8 +154,6 @@
       (setq cursor-type '(bar . 2)))))
   (add-hook 'post-command-hook 'nv-set-cursor-according-to-mode)
 
-
-
   ;; --------------------------------------------
   ;; This is an optical wrap at the right margin
   (global-visual-line-mode t)
@@ -177,9 +175,9 @@
   ;; don't let the cursor go into minibuffer prompt
   (setq minibuffer-prompt-properties (quote (read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt)))
 
-  ;; ----------------------------------------------------------------------
+  ;; -----------------------------------------------------------
   ;;                          distinguish dashes
-  ;; ----------------------------------------------------------------------
+  ;; -----------------------------------------------------------
   ;; https://emacs.stackexchange.com/questions/9623/tell-a-dash-an-en-dash-and-an-emdash-apart
   ;;
   (let* (
@@ -191,6 +189,8 @@
     (aset buffer-display-table 8212 `[,glyph-em-dash ,glyph-em-dash ,glyph-em-dash]))
 
   )
+
+
 
 
 ;; ----------------------------------------------------------------------
@@ -293,10 +293,9 @@
 
 
 
-
-;; ----------------------------------------------------------------------
-;;                             Centaur Tabs
-;; ----------------------------------------------------------------------
+;; ;; ----------------------------------------------------------------------
+;; ;;                             Centaur Tabs
+;; ;; ----------------------------------------------------------------------
 (use-package centaur-tabs
   :straight t
   :hook (window-setup . centaur-tabs-mode)
@@ -310,7 +309,7 @@
         centaur-tabs-modified-marker "•")
   (centaur-tabs-headline-match)
   (centaur-tabs-group-by-projectile-project)
-  ;; (centaur-tabs-mode t)
+  (centaur-tabs-mode t)
   )
 
 
@@ -390,33 +389,33 @@
          (defcustom nv-screen-size '(1920 1200)
            "Screen size in pixels"))
         ) ;; end: pcase
-        ;; Mac
-        (when IS-MAC
-          (defcustom nv-screen-size '(1920 1200)
-            "Screen size in pixels"
-            )
+      ;; Mac
+      (when IS-MAC
+        (defcustom nv-screen-size '(1920 1200)
+          "Screen size in pixels"
           )
-        (setq frame-resize-pixelwise t)
-        (set-frame-position (selected-frame) 0 0)
-        (let ((dx -2)  ;; added to adjust width
-              (dy +2)) ;; added to adjust height
-          (set-frame-width
-           (selected-frame) 
-           (+
-            (/
-             (/ (nth 0 nv-screen-size) 2)  ;; half of screen width
-             (frame-char-width))
-            dx)
-           nil)
-          (set-frame-height
-           (selected-frame)
-           (+
-            (/
-             (nth 1 nv-screen-size)
-             (frame-char-height))
-            dy)
-           nil)
-          ) ; let
+        )
+      (setq frame-resize-pixelwise t)
+      (set-frame-position (selected-frame) 0 0)
+      (let ((dx -2)  ;; added to adjust width
+            (dy +2)) ;; added to adjust height
+        (set-frame-width
+         (selected-frame) 
+         (+
+          (/
+           (/ (nth 0 nv-screen-size) 2)  ;; half of screen width
+           (frame-char-width))
+          dx)
+         nil)
+        (set-frame-height
+         (selected-frame)
+         (+
+          (/
+           (nth 1 nv-screen-size)
+           (frame-char-height))
+          dy)
+         nil)
+        ) ; let
       ) ; when
     ) ; defun
   ;; call the function now:

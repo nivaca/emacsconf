@@ -94,6 +94,7 @@
 
 ;; ================ magit ===============
 (use-package mymagit
+  :disabled t
   :straight
   :load-path user-lisp-directory
   )
@@ -201,6 +202,7 @@
 
 ;; ============= My projectile ==========
 (use-package myprojectile
+  :disabled to
   :straight
   :load-path user-lisp-directory
   )
