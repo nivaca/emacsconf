@@ -73,17 +73,17 @@
   ;; https://superuser.com/questions/521223/shift-click-to-extend-marked-region
   (define-key global-map (kbd "<S-down-mouse-1>") 'mouse-save-then-kill)
 
-  (bind-key* "C--" 'comment-line) ;; defined in myfunctions.el
+  (bind-key* "C-/" 'comment-line) ;; defined in myfunctions.el
 
-  ;; comments
-  (if (or
-       (string= (system-name) "nivaca-xps")
-       (string= (system-name) "nivaca-dell")
-       (string= (system-name) "nivaca-tp")
-       )
-      ;; Comment line
-      (bind-key* "C-/" 'comment-line) ;; defined in myfunctions.el
-    )
+  ;; ;; comments
+  ;; (if (or
+  ;;      (string= (system-name) "nivaca-xps")
+  ;;      (string= (system-name) "nivaca-dell")
+  ;;      (string= (system-name) "nivaca-tp")
+  ;;      )
+  ;;     ;; Comment line
+  ;;     (bind-key* "C-/" 'comment-line) ;; defined in myfunctions.el
+  ;;   )
 
   
   (global-unset-key (kbd "<S-return>"))

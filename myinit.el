@@ -94,7 +94,6 @@
 
 ;; ================ magit ===============
 (use-package mymagit
-  :disabled t
   :straight
   :load-path user-lisp-directory
   )
@@ -215,10 +214,11 @@
 
 
 ;; ============= My display configuration ==========
-(use-package mydisplay
-  :straight
-  :load-path user-lisp-directory
-  )
+;; (use-package mydisplay
+;;   :straight
+;;   :load-path user-lisp-directory
+;;   )
+(load-file (concat user-emacs-directory "mylisp/mydisplay.el"))
 
 
 ;; =============== Dashboard ===============

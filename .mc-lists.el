@@ -7,9 +7,11 @@
         TeX-insert-backslash
         end-of-visual-line
         markdown-outdent-or-delete
+        nv-delete-back-all
         org-end-of-line
         org-force-self-insert
         org-self-insert-command
+        toggle-frame-fullscreen
         undo-only
         ))
 

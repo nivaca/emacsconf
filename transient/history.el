@@ -1,4 +1,6 @@
 ((magit-commit nil)
- (magit-push
-  ("--force-with-lease")
-  nil))
+ (magit-log
+  ("-n256" "--graph" "--decorate"))
+ (magit-pull nil)
+ (magit-push nil
+             ("--force-with-lease")))

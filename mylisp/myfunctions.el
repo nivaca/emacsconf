@@ -1,6 +1,11 @@
 ;;; mylisp/myfunctions.el -*- lexical-binding: t; -*-
 
 
+(defun nv-display-configuration-reload ()
+  (interactive)
+  (load-file (concat user-emacs-directory "mylisp/mydisplay.el")))
+
+
 (defun nv-emacs-configuration-reload ()
   (interactive)
   (load-file (concat user-emacs-directory "myinit.el")))
