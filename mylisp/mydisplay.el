@@ -419,7 +419,7 @@
       ) ; when
     ) ; defun
   ;; call the function now:
-  (nv-set-frame-position)
+  ;; (nv-set-frame-position)
   )
 
 (provide 'mydisplay)

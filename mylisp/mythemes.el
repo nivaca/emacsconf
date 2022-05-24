@@ -19,7 +19,7 @@
 
 
 (use-package vscode-dark-plus-theme
-  ;; :disabled
+  :disabled
   :straight t
   :config
   (load-theme 'vscode-dark-plus t))
@@ -33,7 +33,7 @@
 
 
 (use-package doom-themes
-  :disabled
+  ;; :disabled
   :straight t
   :custom
   (doom-nord-brighter-comments t)
@@ -44,14 +44,6 @@
   :init
   (doom-themes-visual-bell-config)
   (load-theme 'doom-one t)
-  )
-
-
-(use-package color-theme-sanityinc-tomorrow
-  :disabled
-  :straight t
-  :init
-  (load-theme 'sanityinc-tomorrow-night t)
   )
 
 

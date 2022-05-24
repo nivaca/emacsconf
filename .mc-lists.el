@@ -11,6 +11,7 @@
         org-end-of-line
         org-force-self-insert
         org-self-insert-command
+        org-shiftcontrolright
         toggle-frame-fullscreen
         undo-only
         ))
