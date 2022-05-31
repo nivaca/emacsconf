@@ -1,6 +1,0 @@
-# name: \begin{cita} ... \end{cita}
-# key: cita
-# --
-\begin{cita}
-  $0
-\end{cita}

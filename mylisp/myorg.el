@@ -47,12 +47,17 @@
         org-support-shift-select t
         org-adapt-indentation nil
         )
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (emacs-lisp . t)
+     (python . t)
+     ))
   )
 
 
 (defun nv-org-mode-setup ()
   (org-indent-mode -1)
-  (org-modern-mode 1)
   (auto-fill-mode 0)
   (visual-line-mode 1)
   (setq
@@ -144,19 +149,6 @@
   (deft-strip-summary-regexp ":PROPERTIES:\n\\(.+\n\\)+:END:\n")
   (deft-use-filename-as-title t)
   )
-
-
-
-
-;; ======================================================================
-;; org-modern
-
-(straight-use-package
- '(org-modern
-   :type git
-   :host github
-   :repo "minad/org-modern")
- )
 
 
 

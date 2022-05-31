@@ -10,7 +10,16 @@
   (interactive)
   (load-file (concat user-emacs-directory "myinit.el")))
 
-  
+
+;; define function to shutdown emacs server instance
+(defun nv-server-shutdown ()
+  "Save buffers, Quit, and Shutdown (kill) server"
+  (interactive)
+  (save-some-buffers)
+  (kill-emacs)
+  )
+
+
 (defun nv-latex-remove-command ()
   "Unwrap the command that point is in.  By command we understand
 a symbol starting with \\ and followed by a block of text
