@@ -54,24 +54,18 @@
 ;; Provides an orderless completion style that divides the pattern into
 ;; space-separated components, and matches candidates that match all of
 ;; the components in any order.
-;; (use-package orderless
-;;   :init
-;;   (setq completion-styles '(orderless)
-;;         completion-category-defaults nil
-;;         completion-category-overrides '((file (styles partial-completion))))
-;;   (defun affe-orderless-regexp-compiler (input _type _ignorecase)
-;;     :config
-;;   (setq input (orderless-pattern-compiler input))
-;;   (cons input (lambda (str) (orderless--highlight input str))))
-;;   (setq affe-regexp-compiler #'affe-orderless-regexp-compiler)
-;;   )
-
 (use-package orderless
-  :straight t
-  :commands (orderless-filter)
-  :config
-  (setq fussy-filter-fn 'fussy-filter-orderless)
+  :init
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion))))
+  (defun affe-orderless-regexp-compiler (input _type _ignorecase)
+    :config
+  (setq input (orderless-pattern-compiler input))
+  (cons input (lambda (str) (orderless--highlight input str))))
+  (setq affe-regexp-compiler #'affe-orderless-regexp-compiler)
   )
+
 
 ;; -------------------------- Embark ------------------------------
 ;; Emacs Mini-Buffer Actions Rooted in Keymaps.
@@ -121,14 +115,14 @@
 
 ;; Provides a completion-style to Emacs
 ;;
-(use-package fussy
-  :straight t
-  :config
-  (push 'fussy completion-styles)
-  (setq
-   completion-category-defaults nil
-   completion-category-overrides nil)
-  )
+;; (use-package fussy
+;;   :straight t
+;;   :config
+;;   (push 'fussy completion-styles)
+;;   (setq
+;;    completion-category-defaults nil
+;;    completion-category-overrides nil)
+;;   )
 
 
 (provide 'myselect)

@@ -108,7 +108,6 @@
 ;; ================= completions ==================
 (use-package mycompletions
   :straight
-  :if window-system
   :load-path user-lisp-directory
   )
 

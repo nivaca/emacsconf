@@ -139,6 +139,7 @@
 ;; ======================================================================
 ;; Deft
 (use-package deft
+  :disabled t
   :straight t
   :commands (deft)
   :custom
