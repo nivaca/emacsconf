@@ -293,24 +293,11 @@
 
 
 
-;; ;; ----------------------------------------------------------------------
-;; ;;                             Centaur Tabs
-;; ;; ----------------------------------------------------------------------
-(use-package centaur-tabs
-  :straight t
-  :hook (window-setup . centaur-tabs-mode)
-  :config
-  (setq centaur-tabs-set-icons t
-	centaur-tabs-gray-out-icons 'buffer
-	centaur-tabs-style "alternate"
-	centaur-tabs-cycle-scope 'tabs
-	centaur-tabs-set-modified-marker t
-        centaur-tabs-close-button "✕"
-        centaur-tabs-modified-marker "•")
-  (centaur-tabs-headline-match)
-  (centaur-tabs-group-by-projectile-project)
-  (centaur-tabs-mode t)
-  )
+;; ---------------------------------------------------------------
+;;                             Tabs
+;; ---------------------------------------------------------------
+(global-tab-line-mode)
+;; (tab-bar-mode)
 
 
 

@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         LaTeX-insert-left-brace
+        TeX-font
         TeX-insert-backslash
         end-of-visual-line
         markdown-outdent-or-delete
@@ -18,4 +19,5 @@
 
 (setq mc/cmds-to-run-once
       '(
+        handle-switch-frame
         ))
