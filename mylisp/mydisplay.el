@@ -296,8 +296,13 @@
 ;; ---------------------------------------------------------------
 ;;                             Tabs
 ;; ---------------------------------------------------------------
-(global-tab-line-mode)
-;; (tab-bar-mode)
+(use-package emacs
+  :custom
+  (tab-bar-show t)
+  :config
+  (tab-bar-mode t)
+  )
+
 
 
 

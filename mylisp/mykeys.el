@@ -39,7 +39,7 @@
   (when (eq system-type 'gnu/linux)
     (global-set-key (quote [s-f12]) 'nv-load-config))
 
-  (bind-key* "\C-x\C-m" 'execute-extended-command)
+  (bind-key "\C-x\C-m" 'execute-extended-command)
 
   (global-set-key (kbd "M-w") 'nv-select-word)
 
@@ -73,7 +73,7 @@
   ;; https://superuser.com/questions/521223/shift-click-to-extend-marked-region
   (define-key global-map (kbd "<S-down-mouse-1>") 'mouse-save-then-kill)
 
-  (bind-key* "C-/" 'comment-line) ;; defined in myfunctions.el
+  (bind-key "C-/" 'comment-line) ;; defined in myfunctions.el
 
   ;; ;; comments
   ;; (if (or
@@ -82,13 +82,13 @@
   ;;      (string= (system-name) "nivaca-tp")
   ;;      )
   ;;     ;; Comment line
-  ;;     (bind-key* "C-/" 'comment-line) ;; defined in myfunctions.el
+  ;;     (bind-key "C-/" 'comment-line) ;; defined in myfunctions.el
   ;;   )
 
   
   (global-unset-key (kbd "<S-return>"))
 
-  (bind-key* "C-k" 'kill-region)  ; Cut
+  (bind-key "C-k" 'kill-region)  ; Cut
 
   ;; ============ previous and next buffer with mouse wheel ============
   (global-set-key (kbd "<s-mouse-5>") 'previous-buffer);
@@ -187,6 +187,8 @@ some custom behavior added."
       (setq mouse-wheel-progressive-speed nil)
       ;; Kill all buffers
       (bind-key "<M-escape>" 'nv-kill-all-buffers)
+      (bind-key "C--" 'comment-line) ;; defined in myfunctions.el
+
       (setq
        mac-command-modifier 'control
        mac-control-modifier 'meta

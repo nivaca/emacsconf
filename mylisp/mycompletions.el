@@ -9,7 +9,7 @@
   ;; TAB-and-Go customizations
   :custom
   (corfu-cycle t)             ;; Enable cycling for `corfu-next/previous'
-  (corfu-preselect-first nil) ;; Disable candidate preselection
+  (corfu-preselect-first 1)   ;; Candidate preselection
   (corfu-auto t)
   (corfu-auto-prefix 0)
   (corfu-auto-delay 0.5)
