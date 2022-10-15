@@ -5,24 +5,23 @@
 ;; nivaca-pc: desktop casa
 ;; nivaca-dell: portátil dell
 ;; nivaca-xps: portátil dell xps 13
-;; nivaca-tp: portátil Thinkpad X240
 
 
 ;; ======================================================================
 ;;                             dogears
 ;; ======================================================================
-(straight-use-package
-  '(dogears
-    :type git
-    :host github
-    :repo "alphapapa/dogears.el"
-    )
-)
+;; (straight-use-package
+;;   '(dogears
+;;     :type git
+;;     :host github
+;;     :repo "alphapapa/dogears.el"
+;;     )
+;; )
 
-(use-package dogears
-  :config
-    (dogears-mode)
-  )
+;; (use-package dogears
+;;   :config
+;;     (dogears-mode)
+;;   )
 
 
 ;; ============== Custom edit file ================
@@ -34,9 +33,7 @@
     ("nivaca-pc" (setq custom-file (concat user-emacs-directory "tmp/pc/custom.el")))
     ;; XPS 13
     ("nivaca-xps" (setq custom-file (concat user-emacs-directory "tmp/xps/custom.el")))
-    ;; TP
-    ("nivaca-tp" (setq custom-file (concat user-emacs-directory "tmp/tp/custom.el")))
-    )
+   )
   ;; Mac oficina
   (when IS-MAC
     (setq custom-file (concat user-emacs-directory "tmp/mac/custom.el")))
@@ -62,8 +59,6 @@
     ("nivaca-pc" (setq savehist-file (concat user-emacs-directory "tmp/pc/savehist")))
     ;; XPS 13
     ("nivaca-xps" (setq savehist-file (concat user-emacs-directory "tmp/xps/savehist")))
-    ;; TP
-    ("nivaca-tp" (setq savehist-file (concat user-emacs-directory "tmp/tp/savehist")))
     )
   ;; Mac oficina
   (when IS-MAC
@@ -86,8 +81,6 @@
     ("nivaca-pc" (setq save-place-file (concat user-emacs-directory "tmp/pc/saved-places")))
     ;; XPS 13
     ("nivaca-xps" (setq save-place-file (concat user-emacs-directory "tmp/xps/saved-places")))
-    ;; TP
-    ("nivaca-tp" (setq save-place-file (concat user-emacs-directory "tmp/tp/saved-places")))
     )
   ;; Mac oficina
   (when IS-MAC
@@ -106,8 +99,6 @@
     ("nivaca-pc" (setq recentf-save-file (concat user-emacs-directory "tmp/pc/recentf")))
     ;; XPS 13
     ("nivaca-xps" (setq recentf-save-file (concat user-emacs-directory "tmp/xps/recentf")))
-    ;; TP
-    ("nivaca-tp" (setq recentf-save-file (concat user-emacs-directory "tmp/tp/recentf")))
     )
   ;; Mac oficina
   (when IS-MAC

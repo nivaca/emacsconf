@@ -33,7 +33,7 @@
 
 
 (use-package doom-themes
-  ;; :disabled
+  :disabled
   :straight t
   :custom
   (doom-nord-brighter-comments t)
@@ -46,5 +46,11 @@
   (load-theme 'doom-one t)
   )
 
+
+(use-package ef-themes
+  :straight (ef-themes :type git :host github :repo "protesilaos/ef-themes")
+  :config
+  (load-theme 'ef-winter t)
+  )
 
 (provide 'mythemes)

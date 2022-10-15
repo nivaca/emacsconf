@@ -3,8 +3,6 @@
 ;; nivaca-pc: desktop casa
 ;; nivaca-dell: portátil dell
 ;; nivaca-xps: portátil dell xps 13
-;; nivaca-tp: portátil Thinkpad X240
-
 
 
 (use-package menu-bar
@@ -53,7 +51,7 @@
         column-number-mode t
         fit-window-to-buffer-horizontally t
         fit-frame-to-buffer t
-        ;; pop-up-frames nil
+        switch-to-buffer-obey-display-actions t
         )
 
   ;; Don't resize emacs in steps, it looks weird.
@@ -88,32 +86,38 @@
 ;; ----------------------------------------------------------------------
 ;;                                Fonts
 ;; ----------------------------------------------------------------------
-(use-package emacs  ;; fonts
-  :config
-  
-  ;; (setq nv-frame-font "Iosevka Fixed ")  ;; mind the space
-  (setq nv-frame-font "JetBrains Mono NL ")  ;; mind the space
 
+;; fontaine ------------------------
+(use-package fontaine
+  :config
+  (setq fontaine-presets
+        '((regular
+           :default-height 130
+           :line-spacing 0.1)
+          (mac
+           :default-height 150)
+          (t                        ; our shared fallback properties
+           :default-family "JetBrains Mono NL"
+           ;; :default-family "Pragmata Pro Mono"
+           :default-weight normal)))
+  ;; select preset depending on system
+  ;;
   (when window-system
     (pcase (system-name)
       ;; PC escritorio casa
-      ("nivaca-pc" (set-frame-font
-                    (concat nv-frame-font "13")
-                    nil t))
+      ("nivaca-pc"
+       (fontaine-set-preset 'regular))
       ;; XPS 13
-      ("nivaca-xps" (set-frame-font
-                     (concat nv-frame-font "12")
-                     nil t))      )
+      ("nivaca-xps" (fontaine-set-preset 'regular)
+       )
+      )
+    ;; Mac
+    (when IS-MAC
+      (fontaine-set-preset 'mac)
+      )
     )
-  ;; Mac
-  (when IS-MAC
-    (set-frame-font (concat nv-frame-font "18")
-                    nil t))
-
-  ;; Mono and Variable
-  (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono NL" :weight 'regular :height 1.0)
-  ;; (set-face-attribute 'fixed-pitch nil :font "Iosevka Fixed" :weight 'regular :height 1.0)
-  ;; (set-face-attribute 'variable-pitch nil :family "Times New Roman" :height 160)
+  ;; reset to default scaling
+  (text-scale-adjust 0)
   )
 
 
@@ -260,17 +264,17 @@
 ;; ----------------------------------------------------------------------
 ;; Goggles highlights the modified region using pulse.
 ;; Currently the commands undo, yank, kill and delete are supported.
-(use-package goggles
-  :straight (goggles :type git :host github :repo "minad/goggles")
-  :init
-  (add-hook 'prog-mode-hook #'goggles-mode)
-  (add-hook 'latex-mode-hook #'goggles-mode)
-  (add-hook 'LaTeX-mode-hook #'goggles-mode)
-  (add-hook 'org-mode-hook #'goggles-mode)
-  :config
-  (setq-default goggles-pulse nil)
-  (blackout 'goggles-mode " GG")
-  )
+;; (use-package goggles
+;;   :straight (goggles :type git :host github :repo "minad/goggles")
+;;   :init
+;;   (add-hook 'prog-mode-hook #'goggles-mode)
+;;   (add-hook 'latex-mode-hook #'goggles-mode)
+;;   (add-hook 'LaTeX-mode-hook #'goggles-mode)
+;;   (add-hook 'org-mode-hook #'goggles-mode)
+;;   :config
+;;   (setq-default goggles-pulse nil)
+;;   (blackout 'goggles-mode " GG")
+;;   )
 
 
 

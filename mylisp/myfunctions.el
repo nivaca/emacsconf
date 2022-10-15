@@ -1,5 +1,11 @@
 ;;; mylisp/myfunctions.el -*- lexical-binding: t; -*-
 
+(defun nv-org-toggle-emphasis ()
+  "Toggle hiding/showing of org emphasize markers."
+  (interactive)
+  (if org-hide-emphasis-markers
+      (set-variable 'org-hide-emphasis-markers nil)
+    (set-variable 'org-hide-emphasis-markers t)))
 
 (defun nv-shutdown-emacs-server () (interactive)
        (when (not (eq window-system 'x))

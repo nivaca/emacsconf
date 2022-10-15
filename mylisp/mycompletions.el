@@ -10,22 +10,27 @@
   :custom
   (corfu-cycle t)             ;; Enable cycling for `corfu-next/previous'
   (corfu-preselect-first 1)   ;; Candidate preselection
-  (corfu-auto t)
-  (corfu-auto-prefix 0)
-  (corfu-auto-delay 0.5)
+  (corfu-auto t)              ;; Enable auto completion
+  (corfu-auto-prefix 2)       ;; Enable auto completion
+  (corfu-auto-delay 0.0)      ;; Enable auto completion
   (corfu-commit-predicate nil)
-  (corfu-preview-current nil)
-  (corfu-quit-at-boundary t)
+  ;; (corfu-preview-current nil)
+  (corfu-preview-current 'insert)
+  (corfu-quit-at-boundary 'separator)
+  ;; (corfu-quit-at-boundary t)
   (corfu-quit-no-match t)
   (corfu-echo-documentation nil)
   (completion-cycle-threshold 3)
+  
   ;; Use TAB for cycling, default is `corfu-complete'.
   :bind
   (:map corfu-map
         ("TAB" . corfu-next)
         ([tab] . corfu-next)
         ("S-TAB" . corfu-previous)
-        ([backtab] . corfu-previous))
+        ([backtab] . corfu-previous)
+        ("M-SPC" . corfu-insert-separator)
+        ("RET"     . corfu-insert))
   :init
   (global-corfu-mode))
 
