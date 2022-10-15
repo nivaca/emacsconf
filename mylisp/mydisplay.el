@@ -86,35 +86,31 @@
 ;; ----------------------------------------------------------------------
 ;;                                Fonts
 ;; ----------------------------------------------------------------------
-
-;; fontaine ------------------------
+;; fontaine -------------------------------------------------------------
 (use-package fontaine
   :config
   (setq fontaine-presets
         '((regular
-           :default-height 130
+           :default-height 150
            :line-spacing 0.1)
           (mac
-           :default-height 150)
-          (t                        ; our shared fallback properties
-           :default-family "JetBrains Mono NL"
-           ;; :default-family "Pragmata Pro Mono"
+           :default-height 180)
+          (t                           ;; shared
+           ;; :default-family "JetBrains Mono NL"
+           :default-family "Iosevka Comfy"
            :default-weight normal)))
-  ;; select preset depending on system
-  ;;
-  (when window-system
-    (pcase (system-name)
-      ;; PC escritorio casa
-      ("nivaca-pc"
-       (fontaine-set-preset 'regular))
-      ;; XPS 13
-      ("nivaca-xps" (fontaine-set-preset 'regular)
-       )
-      )
-    ;; Mac
-    (when IS-MAC
-      (fontaine-set-preset 'mac)
-      )
+  ;; select preset depending on system -------------------------------
+  (pcase (system-name)
+    ;; PC escritorio casa
+    ("nivaca-pc"
+     (fontaine-set-preset 'regular))
+    ;; XPS 13
+    ("nivaca-xps"
+     (fontaine-set-preset 'regular))
+    )
+  ;; Mac
+  (when IS-MAC
+    (fontaine-set-preset 'mac)
     )
   ;; reset to default scaling
   (text-scale-adjust 0)
