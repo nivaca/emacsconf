@@ -211,6 +211,12 @@
   :load-path user-lisp-directory
   )
 
+;; ============= My note-taking configuration ==========
+(use-package mynotes
+  :straight
+  :load-path user-lisp-directory
+  )
+
 
 ;; ============= My display configuration ==========
 ;; (use-package mydisplay
@@ -261,14 +267,6 @@
   ;; :general
   ;; (general-define-key :keymaps 'dashboard-mode-map "e" nil)
   )
-
-
-
-
-;; -----------------------------------------
-;; needed for ivy; goes at the end
-(setq ivy-initial-inputs-alist ())
-
 
 
 ;; ===================================================================
