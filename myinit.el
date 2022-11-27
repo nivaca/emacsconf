@@ -211,13 +211,6 @@
   :load-path user-lisp-directory
   )
 
-;; ============= My note-taking configuration ==========
-(use-package mynotes
-  :straight
-  :load-path user-lisp-directory
-  )
-
-
 ;; ============= My display configuration ==========
 ;; (use-package mydisplay
 ;;   :straight
@@ -301,12 +294,6 @@
 ;;            gcs-done))
 
 ;; (add-hook 'emacs-startup-hook #'nv-display-startup-time)
-
-
-
-;; Locate the frame correctly
-(nv-set-frame-position)
-
 
 ;; -------------------------------------------------------------------
 (provide 'myinit)

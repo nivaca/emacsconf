@@ -162,4 +162,16 @@
                      '(CATEGORY "important"))
   )
 
+
+;; ======================================================================
+;; org-modern (minad)
+(use-package org-modern
+  :config
+ (global-org-modern-mode)
+  )
+
+
+
+
+
 (provide 'myorg)

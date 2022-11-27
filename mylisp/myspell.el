@@ -45,6 +45,4 @@
 ;;   :bind (:map flyspell-mode-map
 ;;               ("C-c $" . flyspell-correct-word-generic)))
 
-
-
 (provide 'myspell)

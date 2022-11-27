@@ -52,6 +52,7 @@
         fit-window-to-buffer-horizontally t
         fit-frame-to-buffer t
         switch-to-buffer-obey-display-actions t
+        frame-inhibit-implied-resize  t
         )
 
   ;; Don't resize emacs in steps, it looks weird.
@@ -90,23 +91,26 @@
 (use-package fontaine
   :config
   (setq fontaine-presets
-        '((regular
-           :default-height 150
+        '((pc
+           :default-height 130
+           :line-spacing 0.1)
+          (xps
+           :default-height 130
            :line-spacing 0.1)
           (mac
+            :default-family "JetBrains Mono NL"
            :default-height 180)
-          (t                           ;; shared
-           ;; :default-family "JetBrains Mono NL"
-           :default-family "Iosevka Comfy"
-           :default-weight normal)))
-  ;; select preset depending on system -------------------------------
+          (t
+           :default-family "JetBrains Mono"
+           :default-weight Medium)))
+  ;; select preset depending on system -----==>------------------
   (pcase (system-name)
     ;; PC escritorio casa
     ("nivaca-pc"
-     (fontaine-set-preset 'regular))
+     (fontaine-set-preset 'pc))
     ;; XPS 13
     ("nivaca-xps"
-     (fontaine-set-preset 'regular))
+     (fontaine-set-preset 'xps))
     )
   ;; Mac
   (when IS-MAC
@@ -344,18 +348,18 @@
 
 
 ;; ------------------------------------------------------------------
-(use-package pdf-tools
-  :disabled t
-  :straight t
-  :defer t
-  :mode  ("\\.pdf\\'" . pdf-view-mode)
-  :commands (pdf-view-mode)
-  :config
-  (pdf-loader-install)
-  (setq-default pdf-view-display-size 'fit-width)
-  (setq-default pdf-view-continuous nil)
-  (setq-default pdf-annot-activate-created-annotations t)
-  ;; (require 'pdf-occur)
-  )
+;; (use-package pdf-tools
+;;   :disabled t
+;;   :straight t
+;;   :defer t
+;;   :mode  ("\\.pdf\\'" . pdf-view-mode)
+;;   :commands (pdf-view-mode)
+;;   :config
+;;   (pdf-loader-install)
+;;   (setq-default pdf-view-display-size 'fit-width)
+;;   (setq-default pdf-view-continuous nil)
+;;   (setq-default pdf-annot-activate-created-annotations t)
+;;   ;; (require 'pdf-occur)
+;;   )
 
 (provide 'mydisplay)

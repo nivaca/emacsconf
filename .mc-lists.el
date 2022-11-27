@@ -8,11 +8,13 @@
         TeX-insert-backslash
         end-of-visual-line
         markdown-outdent-or-delete
+        mouse-save-then-kill
         nv-delete-back-all
         org-end-of-line
         org-force-self-insert
         org-self-insert-command
         org-shiftcontrolright
+        rectangle-mark-mode
         toggle-frame-fullscreen
         undo-only
         ))

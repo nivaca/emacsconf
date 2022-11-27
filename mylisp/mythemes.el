@@ -1,35 +1,11 @@
 ;;; mylisp/mythemes.el -*- lexical-binding: t; -*-
 
-;; (load-theme 'leuven t)
-
-(use-package kaolin-themes
-  :disabled
-  :straight t
-  :config
-  (load-theme 'kaolin-mono-light t)
-  )
-
-(use-package tron-legacy-theme
-  :disabled
-  :straight t
-  :config
-  (setq tron-legacy-theme-softer-bg t)
-  (setq tron-legacy-theme-dark-fg-bright-comments nil)
-  (load-theme 'tron-legacy t))
-
 
 (use-package vscode-dark-plus-theme
   :disabled
   :straight t
   :config
   (load-theme 'vscode-dark-plus t))
-
-
-(use-package base16-theme
-  :disabled
-  :straight t
-  :config
-  (load-theme 'base16-flat t))
 
 
 (use-package doom-themes

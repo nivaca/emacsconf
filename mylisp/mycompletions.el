@@ -12,7 +12,7 @@
   (corfu-preselect-first 1)   ;; Candidate preselection
   (corfu-auto t)              ;; Enable auto completion
   (corfu-auto-prefix 2)       ;; Enable auto completion
-  (corfu-auto-delay 0.0)      ;; Enable auto completion
+  (corfu-auto-delay 1)      ;; Enable auto completion
   (corfu-commit-predicate nil)
   ;; (corfu-preview-current nil)
   (corfu-preview-current 'insert)
@@ -22,15 +22,15 @@
   (corfu-echo-documentation nil)
   (completion-cycle-threshold 3)
   
-  ;; Use TAB for cycling, default is `corfu-complete'.
   :bind
   (:map corfu-map
-        ("TAB" . corfu-next)
-        ([tab] . corfu-next)
+        ("TAB" . corfu-insert)
+        ([tab] . corfu-insert)
         ("S-TAB" . corfu-previous)
         ([backtab] . corfu-previous)
         ("M-SPC" . corfu-insert-separator)
-        ("RET"     . corfu-insert))
+        ("RET"     . nil)  ;; leave my enter alone!
+        )
   :init
   (global-corfu-mode))
 
