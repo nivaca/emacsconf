@@ -6,6 +6,7 @@
         LaTeX-insert-left-brace
         TeX-font
         TeX-insert-backslash
+        TeX-insert-macro
         end-of-visual-line
         markdown-outdent-or-delete
         mouse-save-then-kill

@@ -32,6 +32,7 @@
   (TeX-quote-after-quote nil)
   (TeX-open-quote "\"")
   (TeX-close-quote "\"")
+  (TeX-insert-macro-default-style 'mandatory-args-only)
   )
 
 

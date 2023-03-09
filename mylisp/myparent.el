@@ -14,42 +14,30 @@
 
 
 
-;; (use-package smartparens
-;;   :straight t
-;;   :config
-;;   (require 'smartparens-config)
-;;   (add-hook 'minibuffer-setup-hook 'turn-on-smartparens-strict-mode)
-;;   (show-smartparens-global-mode t) ;; show pairs by blinking one
-;;   (smartparens-global-mode t)
-;;   (sp-pair "\"" "\""
-;;            :trigger "\""
-;;            :unless '(sp-point-before-word-p
-;;                      sp-point-after-word-p))
-;;   (sp-pair "(" ")"
-;;            :trigger "("
-;;            :unless '(sp-point-before-word-p
-;;                      sp-point-after-word-p))
-;;   (sp-pair "[" "]"
-;;            :trigger "["
-;;            :unless '(sp-point-before-word-p
-;;                      sp-point-after-word-p))
-;;   (sp-pair "{" "}"
-;;            :trigger "{"
-;;            :unless '(sp-point-before-word-p
-;;                      sp-point-after-word-p))
-;;   )
-
-
-;; ------------------ puni -------------------
-;; Use puni-mode globally and disable it for term-mode.
-(use-package puni
+(use-package smartparens
   :straight t
   :config
-  (puni-global-mode t)
-  (electric-pair-mode t)
-  (add-hook 'term-mode-hook #'puni-disable-puni-mode)
+  (require 'smartparens-config)
+  (add-hook 'minibuffer-setup-hook 'turn-on-smartparens-strict-mode)
+  (show-smartparens-global-mode t) ;; show pairs by blinking one
+  (smartparens-global-mode t)
+  (sp-pair "\"" "\""
+           :trigger "\""
+           :unless '(sp-point-before-word-p
+                     sp-point-after-word-p))
+  (sp-pair "(" ")"
+           :trigger "("
+           :unless '(sp-point-before-word-p
+                     sp-point-after-word-p))
+  (sp-pair "[" "]"
+           :trigger "["
+           :unless '(sp-point-before-word-p
+                     sp-point-after-word-p))
+  (sp-pair "{" "}"
+           :trigger "{"
+           :unless '(sp-point-before-word-p
+                     sp-point-after-word-p))
   )
-
 
 ;; important: 
 (show-paren-mode 1)

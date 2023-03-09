@@ -53,77 +53,64 @@
 
 
 
-
-
-;; Add extensions
-(use-package cape
-  ;; Bind dedicated completion commands
-  ;; Alternative prefix keys: C-c p, M-p, M-+, ...
-  :bind (("C-c p p" . completion-at-point) ;; capf
-         ("C-c p t" . complete-tag)        ;; etags
-         ("C-c p d" . cape-dabbrev)        ;; or dabbrev-completion
-         ("C-c p h" . cape-history)
-         ("C-c p f" . cape-file)
-         ("C-c p k" . cape-keyword)
-         ("C-c p s" . cape-symbol)
-         ("C-c p a" . cape-abbrev)
-         ("C-c p i" . cape-ispell)
-         ("C-c p l" . cape-line)
-         ("C-c p w" . cape-dict)
-         ("C-c p \\" . cape-tex)
-         ("C-c p _" . cape-tex)
-         ("C-c p ^" . cape-tex)
-         ("C-c p &" . cape-sgml)
-         ("C-c p r" . cape-rfc1345))
-  :init
-  ;; Add `completion-at-point-functions', used by `completion-at-point'.
-  (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  ;;(add-to-list 'completion-at-point-functions #'cape-history)
-  ;;(add-to-list 'completion-at-point-functions #'cape-keyword)
-  (add-to-list 'completion-at-point-functions #'cape-tex)
-  ;;(add-to-list 'completion-at-point-functions #'cape-sgml)
-  ;;(add-to-list 'completion-at-point-functions #'cape-rfc1345)
-  ;;(add-to-list 'completion-at-point-functions #'cape-abbrev)
-  ;;(add-to-list 'completion-at-point-functions #'cape-ispell)
-  ;;(add-to-list 'completion-at-point-functions #'cape-dict)
-  ;;(add-to-list 'completion-at-point-functions #'cape-symbol)
-  ;;(add-to-list 'completion-at-point-functions #'cape-line)
-)
+;; ---------------------- cape ------------------------
+;; Cape provides Completion At Point Extensions
+;; (use-package cape
+;;   ;; Bind dedicated completion commands
+;;   ;; Alternative prefix keys: C-c p, M-p, M-+, ...
+;;   :bind (("C-c p p" . completion-at-point) ;; capf
+;;          ("C-c p t" . complete-tag)        ;; etags
+;;          ("C-c p d" . cape-dabbrev)        ;; or dabbrev-completion
+;;          ("C-c p h" . cape-history)
+;;          ("C-c p f" . cape-file)
+;;          ("C-c p k" . cape-keyword)
+;;          ("C-c p s" . cape-symbol)
+;;          ("C-c p a" . cape-abbrev)
+;;          ("C-c p i" . cape-ispell)
+;;          ("C-c p l" . cape-line)
+;;          ("C-c p w" . cape-dict)
+;;          ("C-c p \\" . cape-tex)
+;;          ("C-c p _" . cape-tex)
+;;          ("C-c p ^" . cape-tex)
+;;          ("C-c p &" . cape-sgml)
+;;          ("C-c p r" . cape-rfc1345))
+;;   :init
+;;   ;; Add `completion-at-point-functions', used by `completion-at-point'.
+;;   (add-to-list 'completion-at-point-functions #'cape-file)
+;;   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+;;   ;;(add-to-list 'completion-at-point-functions #'cape-history)
+;;   ;;(add-to-list 'completion-at-point-functions #'cape-keyword)
+;;   (add-to-list 'completion-at-point-functions #'cape-tex)
+;;   ;;(add-to-list 'completion-at-point-functions #'cape-sgml)
+;;   ;;(add-to-list 'completion-at-point-functions #'cape-rfc1345)
+;;   ;;(add-to-list 'completion-at-point-functions #'cape-abbrev)
+;;   ;;(add-to-list 'completion-at-point-functions #'cape-ispell)
+;;   ;;(add-to-list 'completion-at-point-functions #'cape-dict)
+;;   ;;(add-to-list 'completion-at-point-functions #'cape-symbol)
+;;   ;;(add-to-list 'completion-at-point-functions #'cape-line)
+;; )
 
 
 
 ;; --------------- Temple templating engine -------------
 (use-package tempel
-  ;; Require trigger prefix before template name when completing.
-  ;; :custom
-  ;; (tempel-trigger-prefix "<")
-
+  ;; templates are stored in ~/emacs/templates
+  ;;
   :bind (("M-+" . tempel-complete) ;; Alternative tempel-expand
          ("M-*" . tempel-insert))
-
   :init
   ;; Setup completion at point
   (defun tempel-setup-capf ()
-    ;; Add the Tempel Capf to `completion-at-point-functions'.
-    ;; `tempel-expand' only triggers on exact matches. Alternatively use
-    ;; `tempel-complete' if you want to see all matches, but then you
-    ;; should also configure `tempel-trigger-prefix', such that Tempel
-    ;; does not trigger too often when you don't expect it. NOTE: We add
-    ;; `tempel-expand' *before* the main programming mode Capf, such
-    ;; that it will be tried first.
     (setq-local completion-at-point-functions
                 (cons #'tempel-expand
                       completion-at-point-functions)))
-
   (add-hook 'prog-mode-hook 'tempel-setup-capf)
   (add-hook 'text-mode-hook 'tempel-setup-capf)
-
   ;; Optionally make the Tempel templates available to Abbrev,
   ;; either locally or globally. `expand-abbrev' is bound to C-x '.
   (add-hook 'prog-mode-hook #'tempel-abbrev-mode)
   (global-tempel-abbrev-mode)
-)
+  )
 
 
 

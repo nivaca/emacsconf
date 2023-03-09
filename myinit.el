@@ -127,12 +127,16 @@
 ;; help that provides much more contextual information.
 (use-package helpful
   :straight t
+  :bind
+  (("C-h f" . helpful-callable)
+  ("C-h v" . helpful-variable)
+  ("C-h k" . helpful-key))  
   :config
   (defalias #'describe-key #'helpful-key)
   (defalias #'describe-function #'helpful-callable)
   (defalias #'describe-variable #'helpful-variable)
   (defalias #'describe-symbol #'helpful-symbol)
-  )
+)
 
 
 
@@ -184,12 +188,6 @@
   :load-path user-lisp-directory
   )
 
-
-;; ================= KEY remap ===============
-(use-package mykeys
-  :straight
-  :load-path user-lisp-directory
-  )
 
 ;; ================= server ==================
 (use-package server
@@ -294,6 +292,14 @@
 ;;            gcs-done))
 
 ;; (add-hook 'emacs-startup-hook #'nv-display-startup-time)
+
+
+
+;; ================= KEY remap ===============
+(use-package mykeys
+  :straight
+  :load-path user-lisp-directory
+  )
 
 ;; -------------------------------------------------------------------
 (provide 'myinit)

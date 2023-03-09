@@ -112,17 +112,4 @@
   )
 
 
-
-;; Provides a completion-style to Emacs
-;;
-;; (use-package fussy
-;;   :straight t
-;;   :config
-;;   (push 'fussy completion-styles)
-;;   (setq
-;;    completion-category-defaults nil
-;;    completion-category-overrides nil)
-;;   )
-
-
 (provide 'myselect)
