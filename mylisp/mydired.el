@@ -5,14 +5,22 @@
   :straight
   :defer t
   :bind ([S-f8] . dired)
+  :custom
+  (dired-kill-when-opening-new-dired-buffer t)
+  ;; (mouse-1-click-follows-link 1.1)
   :init
   (add-hook 'dired-mode-hook #'all-the-icons-dired-mode)
+  ;; (define-key dired-mode-map [mouse-2] #'ignore)
+  ;; (define-key dired-mode-map (kbd "<mouse-1>") nil)
+  ;; (define-key dired-mode-map (kbd "<mouse-2>") nil)
   )
+
 
 (use-package dired-narrow
   :straight t
   :defer t
   )
+
 
 (use-package dired-subtree
   :straight t
@@ -21,6 +29,7 @@
   (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
   (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map)
   )
+
 
 ;; no extra buffers when entering different dirs
 (use-package dired-single
@@ -35,6 +44,7 @@
                   (interactive)
                   (dired-single-buffer "..")))))
   )
+
 
 ;; =====================================================================
 ;;                                 Neotree

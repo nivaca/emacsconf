@@ -155,13 +155,20 @@
 
 ;; ======================================================================
 ;; org-remark
+;; (use-package org-remark
+;;   :config
+;;   (org-remark-create "green"
+;;                      '(:background "green" :foreground "blue")
+;;                      '(CATEGORY "important"))
+;;   )
+
 (use-package org-remark
+  :straight (org-remark :type git :host github :repo "nobiot/org-remark")
   :config
   (org-remark-create "green"
                      '(:background "green" :foreground "blue")
                      '(CATEGORY "important"))
-  )
-
+     )
 
 ;; ======================================================================
 ;; org-modern (minad)

@@ -209,13 +209,6 @@
   :load-path user-lisp-directory
   )
 
-;; ============= My display configuration ==========
-;; (use-package mydisplay
-;;   :straight
-;;   :load-path user-lisp-directory
-;;   )
-(load-file (concat user-emacs-directory "mylisp/mydisplay.el"))
-
 
 ;; =============== Dashboard ===============
 (use-package dashboard
@@ -294,6 +287,13 @@
 ;; (add-hook 'emacs-startup-hook #'nv-display-startup-time)
 
 
+
+;; ============= My display configuration ==========
+(load-file (concat user-emacs-directory "mylisp/mydisplay.el"))
+
+
+;; ============= My display configuration ==========
+(load-file (concat user-emacs-directory "mylisp/mythemes.el"))
 
 ;; ================= KEY remap ===============
 (use-package mykeys

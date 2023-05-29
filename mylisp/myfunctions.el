@@ -1,5 +1,7 @@
 ;;; mylisp/myfunctions.el -*- lexical-binding: t; -*-
 
+;; =============================================
+
 (defun nv-org-toggle-emphasis ()
   "Toggle hiding/showing of org emphasize markers."
   (interactive)
@@ -17,17 +19,19 @@
        (let ((last-nonmenu-event nil)(window-system "x"))(save-buffers-kill-emacs))
        )
 
+;; =============================================
 
+;; (defun nv-display-configuration-reload ()
+;;   (interactive)
+;;   (load-file (concat user-emacs-directory "mylisp/mydisplay.el")))
 
-(defun nv-display-configuration-reload ()
-  (interactive)
-  (load-file (concat user-emacs-directory "mylisp/mydisplay.el")))
-
+;; =============================================
 
 (defun nv-emacs-configuration-reload ()
   (interactive)
   (load-file (concat user-emacs-directory "myinit.el")))
 
+;; =============================================
 
 ;; define function to shutdown emacs server instance
 (defun nv-server-shutdown ()
@@ -37,6 +41,7 @@
   (kill-emacs)
   )
 
+;; =============================================
 
 (defun nv-latex-remove-command ()
   "Unwrap the command that point is in.  By command we understand
@@ -50,6 +55,8 @@ enclosed in {}."
         (zap-to-char -1 ?\\ ))
       (sp-splice-sexp))))              ;; remove the enclosing {}
 
+
+;; =============================================
 
 (defun nv-eliminatemacron ()
   ""
@@ -89,6 +96,7 @@ enclosed in {}."
   )
 )
 
+;; =============================================
 
 (defun nv-replace-in-buffer ()
   "Replace text in whole buffer. The suggested OLD text is either the current region, or the next word (as mark-word would select it). The suggested text for the replacement is the same as the OLD text."
@@ -101,6 +109,9 @@ enclosed in {}."
     (query-replace old-string new-string nil (point-min) (point-max))
     )
   )
+
+
+;; =============================================
 
 
 (defun nv-query-replace (from-string to-string &optional delimited start end)
@@ -121,6 +132,8 @@ enclosed in {}."
          (buffer-end 1)))))
   (perform-replace from-string to-string t nil delimited nil nil start end))
 
+
+;; =============================================
 
 (defun nv-query-replace-regexp (regexp to-string &optional delimited start end)
   "Replace some things after point matching REGEXP with TO-STRING.  As each
@@ -147,6 +160,7 @@ buffer. For more information, see the documentation of `query-replace-regexp'"
   (perform-replace regexp to-string t t delimited nil nil start end))
 
 
+;; =============================================
 
 (defun nv-highlight ()
   "Highlights add and del tags."
@@ -164,12 +178,16 @@ the given regular expression."
     (align-regexp start end
                   (concat "\\(\\s-*\\)" regexp) 1 1 t))
 
+;; =============================================
+
 
 (defun nv-unfill-paragraph ()
  "Takes a multi-line paragraph and makes it into a single line of text."
  (interactive)
  (let ((fill-column (point-max)))
    (fill-paragraph nil)))
+
+;; =============================================
 
 
 (defun nv-remove-newlines-in-region ()
@@ -192,8 +210,8 @@ the given regular expression."
 
 
 
-;; ================ move=text ================
-;; http://stackoverflow.com/questions/3156450/shift-a-region-or-line-in-emacs
+;; ================ move-text ================
+;; https://stackoverflow.com/a/3156642
 ;;
 (defun nv-shift-text (distance)
   (if (use-region-p)
@@ -215,8 +233,6 @@ the given regular expression."
 (defun nv-shift-left (count)
   (interactive "p")
   (nv-shift-text (- count)))
-;; =============================================
-
 
 
 ;; =============================================
@@ -276,25 +292,7 @@ selects backward.)"
         (right-word)))
     (mark-word arg allow-extend)))
 
-
-
-;; ;; =============================================
-;; (defun nv-ivy-yank-whole-word ()
-;;   "Pull nextnext word from buffer into search string."
-;;   (interactive)
-;;   (let (amend)
-;;     (with-ivy-window
-;;       ;;move to last word boundary
-;;       (re-search-backward "\\b")
-;;       (let ((pt (point))
-;;             (le (line-end-position)))
-;;         (forward-word 1)
-;;         (if (> (point) le)
-;;             (goto-char pt)
-;;           (setq amend (buffer-substring-no-properties pt (point))))))
-;;     (when amend
-;;       (insert (replace-regexp-in-string "  +" " " amend)))))
-
+;; =============================================
 
 
 (defun nv-byte-recompile-my-files ()
@@ -304,12 +302,46 @@ selects backward.)"
   )
 
 
+;; =============================================
+
+;; org-table-transform-in-place ()
+;; https://stackoverflow.com/a/38277039
+
+(defun org-table-transform-in-place ()
+  "Just like `ORG-TABLE-EXPORT', but instead of exporting to a
+  file, replace table with data formatted according to user's
+  choice, where the format choices are the same as
+  org-table-export."
+  (interactive)
+  (unless (org-at-table-p) (user-error "No table at point"))
+  (org-table-align)
+  (let* ((format
+      (completing-read "Transform table function: "
+               '("orgtbl-to-tsv" "orgtbl-to-csv" "orgtbl-to-latex"
+                 "orgtbl-to-html" "orgtbl-to-generic"
+                 "orgtbl-to-texinfo" "orgtbl-to-orgtbl"
+                 "orgtbl-to-unicode")))
+     (curr-point (point)))
+    (if (string-match "\\([^ \t\r\n]+\\)\\( +.*\\)?" format)
+    (let ((transform (intern (match-string 1 format)))
+          (params (and (match-end 2)
+               (read (concat "(" (match-string 2 format) ")"))))
+          (table (org-table-to-lisp
+              (buffer-substring-no-properties
+               (org-table-begin) (org-table-end)))))
+      (unless (fboundp transform)
+        (user-error "No such transformation function %s" transform))
+      (save-restriction
+        (with-output-to-string
+          (delete-region (org-table-begin) (org-table-end))
+          (insert (funcall transform table params) "\n")))
+      (goto-char curr-point)
+      (beginning-of-line)
+      (message "Tranformation done."))
+      (user-error "Table export format invalid"))))
 
 
-
-
-
-
+;; =============================================
 
 
 

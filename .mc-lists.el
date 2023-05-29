@@ -4,23 +4,14 @@
 (setq mc/cmds-to-run-for-all
       '(
         LaTeX-insert-left-brace
-        TeX-font
         TeX-insert-backslash
-        TeX-insert-macro
+        dired-toggle-read-only
         end-of-visual-line
-        markdown-outdent-or-delete
-        mouse-save-then-kill
-        nv-delete-back-all
-        org-end-of-line
-        org-force-self-insert
+        multiple-cursors-mode
         org-self-insert-command
-        org-shiftcontrolright
-        rectangle-mark-mode
-        toggle-frame-fullscreen
-        undo-only
         ))
 
 (setq mc/cmds-to-run-once
       '(
-        handle-switch-frame
+        wdired--self-insert
         ))

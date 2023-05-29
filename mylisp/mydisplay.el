@@ -101,7 +101,7 @@
             :default-family "JetBrains Mono NL"
            :default-height 180)
           (t
-           :default-family "JetBrains Mono"
+           :default-family "JetBrains Mono NL"
            :default-weight Medium)))
   ;; select preset depending on system -----==>------------------
   (pcase (system-name)
@@ -293,7 +293,9 @@
     (split-window-right)
     (other-window 1))
   (global-set-key (kbd "C-x 2") 'nv-split-and-follow-horizontally)
-  (global-set-key (kbd "C-x 3") 'nv-split-and-follow-vertically))
+  (global-set-key (kbd "C-x 3") 'nv-split-and-follow-vertically)
+)
+
 
 
 
@@ -330,7 +332,16 @@
   )
 
 
-;; ----------------------------------------------------------------------
+;; prism disperses code into a spectrum of color by depth. 
+;; --------------------------------------------------------
+(use-package prism
+  :straight (prism :fetcher github :repo "alphapapa/prism.el")
+  :config
+  (prism-mode t)
+  )
+
+
+;; ----------------------------------------------------------------
 (use-package prog-mode
   :straight
   :config
