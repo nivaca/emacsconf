@@ -14,7 +14,7 @@
                     (lambda ()
                         (turn-on-reftex)
                         (LaTeX-preview-setup)
-                        (flyspell-mode)
+                        ;; (flyspell-mode)
                         (outline-minor-mode)
                         (hs-minor-mode)
                       )
