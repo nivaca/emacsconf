@@ -59,23 +59,22 @@
   )
 
 
-;; =============== Flyspell ==================
+;; =============== Spell Checking ==================
 (use-package myspell
   :straight
   :load-path user-lisp-directory
   )
 
 
-;; =============== Flycheck ==================
-(use-package flycheck
-  :straight t
-  :defer y
-  :diminish flycheck-mode
-  :config
-  (setq flycheck-global-modes nil)
-  ;; (add-hook 'latex-mode-hook 'flycheck-mode)
-  ;;(global-flycheck-mode)
-  )
+;; ;; =============== Flycheck ==================
+;; (use-package flycheck
+;;   :straight t
+;;   :diminish flycheck-mode
+;;   :config
+;;   (setq flycheck-global-modes nil)
+;;   ;; (add-hook 'latex-mode-hook 'flycheck-mode)
+;;   ;;(global-flycheck-mode)
+;;   )
 
 
 ;; ================= AUCTEX =====================
