@@ -6,6 +6,9 @@
 /elpa/**/*
 /cache/**/*
 /cache/
+/eln-cache/**/*
+/eln-cache/
+/nov-places
 *.elc
 .DS_Store
 .yas-compiled-snippets.el
@@ -14,4 +17,3 @@
 org-roam.db
 .mc-lists.el
 .org-id-locations
-/nov-places
