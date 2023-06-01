@@ -3,15 +3,13 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        LaTeX-insert-item
         LaTeX-insert-left-brace
         TeX-insert-backslash
+        TeX-insert-macro
         dired-toggle-read-only
         end-of-visual-line
         multiple-cursors-mode
         org-self-insert-command
-        ))
-
-(setq mc/cmds-to-run-once
-      '(
-        wdired--self-insert
+        yank
         ))
