@@ -50,6 +50,7 @@
 ;;                                 Neotree
 ;; =====================================================================
 (use-package neotree
+  :disabled t
   :straight (neotree :type git :host github :repo "jaypei/emacs-neotree")
   :bind ("<f5>" . 'neotree-toggle)
   :init

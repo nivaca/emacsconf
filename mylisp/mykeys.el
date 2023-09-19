@@ -19,8 +19,7 @@
   ;; (global-set-key (quote [f7]) 'latex-mode)
 
   ;; (global-unset-key (quote [f5]))
-
-  (global-set-key [f5] 'neotree-toggle)
+  ;; (global-set-key [f5] 'neotree-toggle)
   
   (global-unset-key (quote [f6]))
   ;; (global-unset-key (quote [f7]))
@@ -53,7 +52,7 @@
   ;; kill buffer
   (global-set-key (kbd "C-x k")
                   #'(lambda () (interactive)
-                     (let (kill-buffer-query-functions) (kill-buffer))))
+                      (let (kill-buffer-query-functions) (kill-buffer))))
 
   (global-unset-key "\C-v")
 
@@ -84,17 +83,22 @@
   ;;     ;; Comment line
   ;;     (bind-key "C-/" 'comment-line) ;; defined in myfunctions.el
   ;;   )
-
   
   (global-unset-key (kbd "<S-return>"))
 
+
   (bind-key "C-k" 'kill-region)  ; Cut
+  
+  ;; Unset stardard Emacs copy, cut, paste keys
+  ;; (global-unset-key "\C-k") ; cut
+  ;; (global-unset-key "\C-y") ; yank
+  ;; (global-unset-key "\C-w") ; kill-ring-save
 
   ;; ============ previous and next buffer with mouse wheel ============
   (global-set-key (kbd "<s-mouse-5>") 'previous-buffer);
   (global-set-key (kbd "<s-mouse-4>") 'next-buffer);
 
-)
+  )
 
 
 
@@ -116,10 +120,10 @@ some custom behavior added."
           (current-prefix-arg
            nil)
           (defining-kbd-macro
-            (message
-             (substitute-command-keys
-              "Quit is ignored during macro defintion, use \\[kmacro-end-macro] if you want to stop macro definition"))
-            (cancel-kbd-macro-events))
+           (message
+            (substitute-command-keys
+             "Quit is ignored during macro defintion, use \\[kmacro-end-macro] if you want to stop macro definition"))
+           (cancel-kbd-macro-events))
           ((active-minibuffer-window)
            (when (get-buffer-window "*Completions*")
              ;; hide completions first so point stays in active window when
@@ -177,7 +181,7 @@ some custom behavior added."
   (global-set-key (kbd "C-h v") #'helpful-variable)
   (global-set-key (kbd "C-h k") #'helpful-key)
 
-)
+  )
 
 
 ;; ================================================
@@ -186,24 +190,28 @@ some custom behavior added."
   :config
   (when (eq system-type 'darwin)
     (progn
-      (setq mac-right-option-modifier 'none)
-      (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil)))
-      (setq mouse-wheel-progressive-speed nil)
+      (setq mac-right-option-modifier 'none
+            mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil))
+            mouse-wheel-progressive-speed nil
+            mac-command-modifier 'control
+            mac-control-modifier 'meta
+            mac-pass-command-to-system nil
+            )
       ;; Kill all buffers
       (bind-key "<M-escape>" 'nv-kill-all-buffers)
       (bind-key "C--" 'comment-line) ;; defined in myfunctions.el
-
-      (setq
-       mac-command-modifier 'control
-       mac-control-modifier 'meta
-       mac-pass-command-to-system nil)
+      (bind-key "S-<down-mouse-1>" 'mouse-set-mark)
+      (bind-key "S-<mouse-1>" 'mouse-set-mark)    
       )
+
     )
-
-  ;; defined in myedit.el
-  (global-set-key (quote [C-f5]) 'revert-buffer-no-confirm)
-
   )
+
+
+
+(global-set-key (kbd "<f5>") 'revert-buffer-quick)
+
+
 
 
 (provide 'mykeys)

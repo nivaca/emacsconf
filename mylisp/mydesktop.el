@@ -3,26 +3,7 @@
 ;; perspective, savaplace, recentf
 
 ;; nivaca-pc: desktop casa
-;; nivaca-dell: portátil dell
 ;; nivaca-xps: portátil dell xps 13
-
-
-;; ======================================================================
-;;                             dogears
-;; ======================================================================
-;; (straight-use-package
-;;   '(dogears
-;;     :type git
-;;     :host github
-;;     :repo "alphapapa/dogears.el"
-;;     )
-;; )
-
-;; (use-package dogears
-;;   :config
-;;     (dogears-mode)
-;;   )
-
 
 ;; ============== Custom edit file ================
 (use-package cus-edit

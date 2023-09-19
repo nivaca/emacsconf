@@ -76,11 +76,11 @@
   ;; 1/4 of the total height
   ;; (setq max-mini-window-height 0.25)
 
-  (when (display-graphic-p)
-    (setq frame-title-format '(buffer-file-name "%f" ("%b")))
-    (tooltip-mode -1)
-    (blink-cursor-mode -1))
-
+  (setq frame-title-format '(buffer-file-name "%f" ("%b")))
+  (tooltip-mode -1)
+  (blink-cursor-mode -1)
+  ;; transparency
+  ;; (add-to-list 'default-frame-alist '(alpha-background . 90))
   )  ;; end: use-package emacs
 
 
@@ -98,7 +98,7 @@
            :default-height 130
            :line-spacing 0.1)
           (mac
-            :default-family "JetBrains Mono NL"
+           :default-family "JetBrains Mono NL"
            :default-height 180)
           (t
            :default-family "JetBrains Mono NL"
@@ -259,24 +259,6 @@
   (setq pulsar-delay 0.1)
   )
 
-;; ----------------------------------------------------------------------
-;;                                Googles
-;; ----------------------------------------------------------------------
-;; Goggles highlights the modified region using pulse.
-;; Currently the commands undo, yank, kill and delete are supported.
-;; (use-package goggles
-;;   :straight (goggles :type git :host github :repo "minad/goggles")
-;;   :init
-;;   (add-hook 'prog-mode-hook #'goggles-mode)
-;;   (add-hook 'latex-mode-hook #'goggles-mode)
-;;   (add-hook 'LaTeX-mode-hook #'goggles-mode)
-;;   (add-hook 'org-mode-hook #'goggles-mode)
-;;   :config
-;;   (setq-default goggles-pulse nil)
-;;   (blackout 'goggles-mode " GG")
-;;   )
-
-
 
 
 ;; ====================================================
@@ -294,7 +276,7 @@
     (other-window 1))
   (global-set-key (kbd "C-x 2") 'nv-split-and-follow-horizontally)
   (global-set-key (kbd "C-x 3") 'nv-split-and-follow-vertically)
-)
+  )
 
 
 
@@ -335,6 +317,7 @@
 ;; prism disperses code into a spectrum of color by depth. 
 ;; --------------------------------------------------------
 (use-package prism
+  :disabled t
   :straight (prism :fetcher github :repo "alphapapa/prism.el")
   :config
   (prism-mode t)

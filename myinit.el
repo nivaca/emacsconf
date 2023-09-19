@@ -20,53 +20,32 @@
 (setq byte-compile-warnings '(cl-functions))
 
 ;; ================== Initialization ==================
-(load-file (expand-file-name "initialsetup.el" user-lisp-directory))
-
+(require 'initialsetup)
 
 
 ;; =============== Native compilation ===============
-(when (not (version< emacs-version "28"))
-  (message "Running Emacs 28+")
-  (setq native-comp-deferred-compilation t)
-  (setq native-comp-async-report-warnings-errors nil)
-  )
+(setq native-comp-deferred-compilation t
+      native-comp-async-report-warnings-errors nil
+      native-comp-async-jobs-number 7
+      )
 
 
 ;; =============== Package Management ===============
-(load-file (expand-file-name "mypackages.el" user-lisp-directory))
-
+(require 'mypackages)
 
 ;; =================== ORG-mode ====================
-(use-package myorg
-  :straight
-  :load-path user-lisp-directory
-  )
-
+(require 'myorg)
 
 ;; ================= My editor settings ===================
-(use-package myedit
-  :straight
-  :load-path user-lisp-directory
-  )
-
+(require 'myedit)
 
 ;; =================== desktop etc. ====================
-(use-package mydesktop
-  :straight
-  :load-path user-lisp-directory
-  :config
-  (recentf-cleanup)
-  )
-
+(require 'mydesktop)
 
 ;; =============== Spell Checking ==================
-(use-package myspell
-  :straight
-  :load-path user-lisp-directory
-  )
+(require 'myspell)
 
-
-;; ;; =============== Flycheck ==================
+;; =============== Flycheck ==================
 ;; (use-package flycheck
 ;;   :straight t
 ;;   :diminish flycheck-mode
@@ -78,38 +57,23 @@
 
 
 ;; ================= AUCTEX =====================
-(use-package myauctex
-  :straight
-  :load-path user-lisp-directory
-  )
-
+(require 'myauctex)
 
 ;; =================  Parentheses ================
-(use-package myparent
-  :straight
-  :load-path user-lisp-directory
-  )
-
+(require 'myparent)
 
 ;; ================ magit ===============
-(use-package mymagit
-  :straight
-  :load-path user-lisp-directory
-  )
+(require 'mymagit)
 
 ;; ===================== ediff ==========================
-(use-package ediff
-  :straight nil
-  :config (setq ediff-split-window-function 'split-window-horizontally))
-
+(setq ediff-split-window-function 'split-window-horizontally)
 
 
 ;; ================= completions ==================
-(use-package mycompletions
-  :straight
-  :load-path user-lisp-directory
-  )
+(require 'mycompletions)
 
+;; ============== My minibuffer completion ===============
+(require 'myselect)
 
 ;; =================== minions ===================
 ;; mode manager
@@ -119,7 +83,6 @@
   :config
   (minions-mode 1)
   )
-
 
 ;; =================== helpful ===================
 ;; Helpful is an alternative to the built-in Emacs
@@ -137,22 +100,11 @@
   (defalias #'describe-symbol #'helpful-symbol)
 )
 
-
-
 ;; ================= dired etc. ===================
-(use-package mydired
-  :straight
-  :load-path user-lisp-directory
-  )
-
+(require 'mydired)
 
 ;; ================= markdown ===================
-(use-package mymarkdown
-  :straight
-  ;; :disabled
-  :load-path user-lisp-directory
-  )
-
+(require 'mymarkdown)
 
 ;; ===== Garbage Collector Magic Hack ====
 (use-package gcmh
@@ -168,25 +120,11 @@
   (gcmh-mode 1))
 
 
-;; ============== My minibuffer completion ===============
-(use-package myselect
-  :straight
-  :load-path user-lisp-directory
-  )
-
-
 ;; ================= My functions ===================
-(use-package myfunctions
-  :straight
-  :load-path user-lisp-directory
-  )
+(require 'myfunctions)
 
 ;; ================= My aliases ===================
-(use-package myaliases
-  :straight
-  :load-path user-lisp-directory
-  )
-
+(require 'myaliases)
 
 ;; ================= server ==================
 (use-package server
@@ -194,41 +132,21 @@
   (unless (server-running-p)
     (server-start)))
 
-
-;; ============= My projectile ==========
-(use-package myprojectile
-  :disabled to
-  :straight
-  :load-path user-lisp-directory
-  )
-
-;; ============= My themes configuration ==========
-(use-package mythemes
-  :straight
-  :load-path user-lisp-directory
-  )
-
-
 ;; =============== Dashboard ===============
 (use-package dashboard
   :init
   (add-hook 'after-init-hook 'dashboard-refresh-buffer)
   :config
-  (setq dashboard-items '(
-                          (bookmarks  . 5)
+  (setq dashboard-items '((bookmarks  . 5)
                           (recents . 15)
                           ;; (registers . 14)
                           ))
 
   ;; Header, footer, messages
-  (setq dashboard-banner-logo-title "Welcome to Emacs!")
-  (setq dashboard-footer-messages '(""))
-  (setq dashboard-footer-icon
-        (all-the-icons-octicon "zap"
-                               :height 0.00001
-                               :v-adjust -0.05
-                               :face 'font-lock-keyword-face))
-  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-banner-logo-title "Welcome to Emacs!"
+        dashboard-footer-messages '("")
+        dashboard-startup-banner 'logo
+        )
   ;; General config
   (setq dashboard-items-default-length 30
         dashboard-page-separator "\n\n"
@@ -251,6 +169,8 @@
   ;; (general-define-key :keymaps 'dashboard-mode-map "e" nil)
   )
 
+(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+
 
 ;; ===================================================================
 
@@ -258,14 +178,12 @@
 (use-package emacs
   :config
   (blackout 'aggressive-indent-mode)
-  ; (blackout 'company)
   (blackout 'eldoc-mode)
   (blackout 'flycheck-mode)
   (blackout 'gcmh-mode)
   (blackout 'GCMH-mode)
   (blackout 'hs-minor-mode)
   (blackout 'hungry-delete)
-  ; (blackout 'ivy)
   (blackout 'org-indent-mode)
   (blackout 'outline-minor-mode)
   (blackout 'outline-mode)
@@ -288,17 +206,13 @@
 
 
 ;; ============= My display configuration ==========
-(load-file (concat user-emacs-directory "mylisp/mydisplay.el"))
+(require 'mydisplay)
 
-
-;; ============= My display configuration ==========
-(load-file (concat user-emacs-directory "mylisp/mythemes.el"))
+;; ============= My themes configuration ==========
+(require 'mythemes)
 
 ;; ================= KEY remap ===============
-(use-package mykeys
-  :straight
-  :load-path user-lisp-directory
-  )
+(require 'mykeys)
 
 ;; -------------------------------------------------------------------
 (provide 'myinit)

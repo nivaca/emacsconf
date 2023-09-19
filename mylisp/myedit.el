@@ -204,6 +204,35 @@ undo."
   )
 
 
+;; ============== simpleclip ==============
+;; (use-package simpleclip
+;;   :config
+;;   (simpleclip-mode 1)
+;;   (defun nv-paste-in-minibuffer ()
+;;     (local-set-key (kbd "M-v") 'simpleclip-paste))
+;;   (add-hook 'minibuffer-setup-hook 'nv-paste-in-minibuffer)
+;;   :bind
+;;   (("C-k" . simpleclip-cut)
+;;    ("C-w" . simpleclip-copy)
+;;    ("C-y" . simpleclip-paste))
+;; )
+
+
+;; ============== unfill ==============
+;; Functions providing the inverse of
+;; Emacs' fill-paragraph and fill-region
+(use-package unfill
+  :straight t
+  :defer t)
+
+;; ======== whole-line-or-region =========
+(use-package whole-line-or-region
+  :straight t
+  :config
+  (whole-line-or-region-global-mode t)
+  )
+
+
 
 ;; ============== iedit ==============
 (use-package iedit
@@ -282,14 +311,6 @@ undo."
   (add-hook 'latex-mode-hook #'ws-butler-mode)
   )
 
-;; Source: http://www.emacswiki.org/emacs-en/download/misc-cmds.el
-(defun revert-buffer-no-confirm ()
-  "Revert buffer without confirmation."
-  (interactive)
-  (revert-buffer t (not (buffer-modified-p)) t)
-  )
-;; (global-set-key (quote [C-f5]) 'revert-buffer-no-confirm)
-
 
 ;; ==================== AVY ====================
 (use-package avy
@@ -302,13 +323,27 @@ undo."
   )
 
 
-;; ======================================================================
+;; ==============================================================
 (use-package delsel
   :straight t
   :bind
   (:map mode-specific-map
         ("C-g" . minibuffer-keyboard-quit))
   )
+
+
+;; ==============================================================
+(use-package centered-cursor-mode
+  :disabled t
+  :straight t
+  :config
+  (global-centered-cursor-mode)
+  :blackout
+  )
+
+
+;; ===================== ediff ==========================
+(setq ediff-split-window-function 'split-window-horizontally)
 
 
 (provide 'myedit)

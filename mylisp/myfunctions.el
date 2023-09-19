@@ -1,5 +1,14 @@
 ;;; mylisp/myfunctions.el -*- lexical-binding: t; -*-
 
+
+
+;; =============================================
+;; Source: https://www.emacswiki.org/emacs/misc-cmds.el
+(defun nv-revert-buffer-no-confirm ()
+    "Revert buffer without confirmation."
+    (interactive)
+    (revert-buffer :ignore-auto :noconfirm))
+
 ;; =============================================
 
 (defun nv-org-toggle-emphasis ()
@@ -19,17 +28,15 @@
        (let ((last-nonmenu-event nil)(window-system "x"))(save-buffers-kill-emacs))
        )
 
-;; =============================================
-
-;; (defun nv-display-configuration-reload ()
-;;   (interactive)
-;;   (load-file (concat user-emacs-directory "mylisp/mydisplay.el")))
 
 ;; =============================================
 
-(defun nv-emacs-configuration-reload ()
+(defun nv-reload-emacs-configuration ()
   (interactive)
-  (load-file (concat user-emacs-directory "myinit.el")))
+  ;; (load-file (concat user-emacs-directory "myinit.el"))
+  (load-file user-init-file)
+  (load-file user-init-file)
+  )
 
 ;; =============================================
 
@@ -178,14 +185,6 @@ the given regular expression."
     (align-regexp start end
                   (concat "\\(\\s-*\\)" regexp) 1 1 t))
 
-;; =============================================
-
-
-(defun nv-unfill-paragraph ()
- "Takes a multi-line paragraph and makes it into a single line of text."
- (interactive)
- (let ((fill-column (point-max)))
-   (fill-paragraph nil)))
 
 ;; =============================================
 
@@ -342,6 +341,49 @@ selects backward.)"
 
 
 ;; =============================================
+
+;; titlecase.el
+;; https://github.com/ap/titlecase
+
+(defvar titlecase-command "titlecase")
+
+(defconst titlecase-buffer "*titlecase output*")
+
+(defun titlecase-string (str)
+  "Convert string STR to title case and return the resulting string."
+  (with-temp-buffer
+    (insert str)
+    (call-process-region (point-min) (point-max) titlecase-command t t nil)
+    ;; Skip trailing newline omitted by titlecase
+    (buffer-substring (point-min) (1- (point-max)))))
+
+(defun titlecase-region (begin end)
+  "Convert text in region from BEGIN to END to title case."
+  (interactive "*r")
+  (let ((pt (point)))
+    (insert (titlecase-string (delete-and-extract-region begin end)))
+    (goto-char pt)))
+
+(defun titlecase-dwim ()
+  "Convert the region or current line to title case.
+If Transient Mark Mode is on and there is an active region, convert
+the region to title case.  Otherwise, work on the current line."
+  (interactive)
+  (if (and transient-mark-mode mark-active)
+      (titlecase-region (region-beginning) (region-end))
+    (titlecase-region (point-at-bol) (point-at-eol))))
+
+
+;; ====================================================
+;; https://www.emacswiki.org/emacs/SortWords
+(defun nv-sort-symbols (reverse beg end)
+  "Sort symbols in region alphabetically, in REVERSE if negative.
+    See `sort-words'."
+  (interactive "*P\nr")
+  (sort-regexp-fields reverse "\\(\\sw\\|\\s_\\)+" "\\&" beg end))
+
+
+;; ====================================================
 
 
 

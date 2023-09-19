@@ -1,4 +1,3 @@
-
 ;;; mylisp/myselect.el -*- lexical-binding: t; -*-
 
 ;; ==================== Consult ====================
@@ -12,6 +11,7 @@
          ("C-x b" . consult-buffer)
          ("C-x m" . consult-bookmark)
          ("M-y" . consult-yank-from-kill-ring)
+         ("M-g i" . consult-imenu)
          :map minibuffer-local-map
          ("C-r" . consult-history))
   :custom

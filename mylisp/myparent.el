@@ -37,6 +37,7 @@
            :trigger "{"
            :unless '(sp-point-before-word-p
                      sp-point-after-word-p))
+  :blackout
   )
 
 ;; important: 

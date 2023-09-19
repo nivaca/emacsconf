@@ -7,9 +7,18 @@
         LaTeX-insert-left-brace
         TeX-insert-backslash
         TeX-insert-macro
+        comment-line
         dired-toggle-read-only
         end-of-visual-line
+        markdown-outdent-or-delete
         multiple-cursors-mode
+        org-end-of-line
         org-self-insert-command
+        org-yank
+        wdired--self-insert
         yank
+        ))
+
+(setq mc/cmds-to-run-once
+      '(
         ))

@@ -27,25 +27,31 @@
   :mode ("\\.org\\'" . org-mode)
   :config
   (require 'org-protocol)
-  (setq org-ellipsis " ▾"
-        org-confirm-babel-evaluate nil
+  (setq org-adapt-indentation nil
+        org-babel-default-header-args '((:eval . "never-export"))
+        org-confirm-babel-evaluate t ;; nil
         org-cycle-separator-lines 2
         org-descriptive-links nil
         org-edit-src-content-indentation 2
         org-export-with-smart-quotes t
         org-fontify-quote-and-verse-blocks t
+        org-fontify-whole-heading-line t
         org-hide-block-startup nil
         org-hide-emphasis-markers nil
         org-hide-emphasis-markers t
+        org-image-actual-width 300
         org-indent-indentation-per-level 2
         org-indent-mode-turns-on-hiding-stars nil
+        org-pretty-entities t
         org-src-fontify-natively t
         org-src-preserve-indentation nil
         org-src-tab-acts-natively t
         org-src-window-setup 'current-window
-        org-startup-folded nil
+        org-startup-folded 'showeverything
         org-support-shift-select t
-        org-adapt-indentation nil
+        org-ellipsis " ⤵" ;; … ⤵ ▼ ⬎
+        org-cycle-separator-lines 1
+        org-catch-invisible-edits 'smart ;; 'show-and-error 
         )
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -84,7 +90,7 @@
 
 
 
-;; ======================================================================
+;; ===============================================================
 (use-package org-roam
   :straight t
   :init
@@ -116,10 +122,10 @@
       (apply #'org-roam-node-insert args)))
   ;;
   (defun org-roam-rg-search ()
-  "Search org-roam directory using consult-ripgrep. With live-preview."
-  (interactive)
-  (let ((consult-ripgrep-command "rg --null --ignore-case --type org --line-buffered --color=always --max-columns=500 --no-heading --line-number . -e ARG OPTS"))
-    (consult-ripgrep org-roam-directory)))
+    "Search org-roam directory using consult-ripgrep. With live-preview."
+    (interactive)
+    (let ((consult-ripgrep-command "rg --null --ignore-case --type org --line-buffered --color=always --max-columns=500 --no-heading --line-number . -e ARG OPTS"))
+      (consult-ripgrep org-roam-directory)))
   ;;
   :bind
   (("<f7>" . org-roam-node-find)
@@ -136,48 +142,36 @@
 
 
 
-;; ======================================================================
-;; Deft
-(use-package deft
-  :disabled t
-  :straight t
-  :commands (deft)
-  :custom
-  (deft-directory "~/roamnotes")
-  (deft-recursive t)
-  (deft-extensions '("md" "org"))
-  (deft-ignore-file-regexp ".+template.+")
-  (deft-strip-summary-regexp ":PROPERTIES:\n\\(.+\n\\)+:END:\n")
-  (deft-use-filename-as-title t)
-  )
 
-
-
-;; ======================================================================
+;; =================================================================
 ;; org-remark
-;; (use-package org-remark
-;;   :config
-;;   (org-remark-create "green"
-;;                      '(:background "green" :foreground "blue")
-;;                      '(CATEGORY "important"))
-;;   )
-
 (use-package org-remark
   :straight (org-remark :type git :host github :repo "nobiot/org-remark")
   :config
   (org-remark-create "green"
                      '(:background "green" :foreground "blue")
                      '(CATEGORY "important"))
-     )
+  )
 
-;; ======================================================================
+;; ============================================================
 ;; org-modern (minad)
 (use-package org-modern
+  :disabled t
   :config
- (global-org-modern-mode)
+  (global-org-modern-mode)
   )
 
 
+;; ============================================================
+;; org-super-star
+(use-package org-superstar
+  :disabled t
+  :straight t
+  :config
+  ;; Removes gap when you add a new heading
+  (setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
+  :hook (org-mode . org-superstar-mode)
+  )
 
 
 
