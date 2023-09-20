@@ -3,8 +3,8 @@
 ;; package manager settings
 ;; ========================
 
-;; (setq straight-build-dir "~/.emacs.d/")
-;; (setq straight-build-dir (expand-file-name "~/.emacs.d")) ;; mía!!!
+;; (setq straight-base-dir (expand-file-name "~/.emacs.d"))
+;; (setq straight-build-dir (expand-file-name "~/.emacs.d"))
 
 ;; Bootstrap straight.el ----------------------------
 (defvar bootstrap-version)
