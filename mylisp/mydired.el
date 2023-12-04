@@ -1,5 +1,6 @@
 ;;; mylisp/mydired.el -*- lexical-binding: t; -*-
 
+
 ;; ================= dired ==================
 (use-package dired
   :straight
@@ -16,22 +17,27 @@
   )
 
 
-(use-package dired-narrow
-  :straight t
-  :defer t
-  )
+;; (use-package dired-narrow
+;;   :straight t
+;;   :defer t
+;;   )
+
+;; (use-package dired-quick-sort
+;;   :straight t
+;;   :defer t
+;;   )
 
 
-(use-package dired-subtree
-  :straight t
-  :after dired
-  :config
-  (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
-  (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map)
-  )
+;; (use-package dired-subtree
+;;   :straight t
+;;   :after dired
+;;   :config
+;;   (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
+;;   (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map)
+;;   )
 
 
-;; no extra buffers when entering different dirs
+;; ;; no extra buffers when entering different dirs
 (use-package dired-single
   :straight t
   :config
@@ -40,30 +46,32 @@
               (define-key dired-mode-map (kbd "RET") 'dired-single-buffer)
               (define-key dired-mode-map (kbd "<mouse-1>") 'dired-single-buffer-mouse)
               (define-key dired-mode-map (kbd "^")
-                (lambda ()
-                  (interactive)
-                  (dired-single-buffer "..")))))
+                          (lambda ()
+                            (interactive)
+                            (dired-single-buffer "..")))))
   )
 
 
-;; =====================================================================
-;;                                 Neotree
-;; =====================================================================
-(use-package neotree
-  :disabled t
-  :straight (neotree :type git :host github :repo "jaypei/emacs-neotree")
-  :bind ("<f5>" . 'neotree-toggle)
-  :init
-  ;; slow rendering
-  (setq inhibit-compacting-font-caches t)
+;; ;; =====================================================================
+;; ;;                                 Neotree
+;; ;; =====================================================================
+;; (use-package neotree
+;;   :disabled t
+;;   :straight (neotree :type git :host github :repo "jaypei/emacs-neotree")
+;;   :bind ("<f5>" . 'neotree-toggle)
+;;   :init
+;;   ;; slow rendering
+;;   (setq inhibit-compacting-font-caches t)
 
-  ;; set icons theme
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+;;   ;; set icons theme
+;;   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
-  ;; Every time when the neotree window is opened, let it find current file and jump to node
-  (setq neo-smart-open t)
+;;   ;; Every time when the neotree window is opened, let it find current file and jump to node
+;;   (setq neo-smart-open t)
 
-  ;; show hidden files
-  (setq-default neo-show-hidden-files t)
-)
+;;   ;; show hidden files
+;;   (setq-default neo-show-hidden-files t)
+;; )
+
+
 (provide 'mydired)

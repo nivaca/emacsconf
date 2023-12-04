@@ -27,6 +27,7 @@
   :mode ("\\.org\\'" . org-mode)
   :config
   (require 'org-protocol)
+  (setq org-directory (expand-file-name "~/roamnotes"))
   (setq org-adapt-indentation nil
         org-babel-default-header-args '((:eval . "never-export"))
         org-confirm-babel-evaluate t ;; nil
@@ -173,6 +174,10 @@
   :hook (org-mode . org-superstar-mode)
   )
 
-
+;; ============================================================
+;; org-ql
+(use-package org-ql
+  :straight (org-ql :host github :repo "alphapapa/org-ql")
+  )
 
 (provide 'myorg)

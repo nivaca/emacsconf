@@ -24,14 +24,12 @@
   (global-unset-key (quote [f6]))
   ;; (global-unset-key (quote [f7]))
 
-  ;; (global-set-key (quote [f8]) 'counsel-dired)
   (global-set-key (quote [f8]) 'dired)
   (global-unset-key (quote [f9]))
   (global-set-key (quote [f10]) 'nv-terminal-here)
   (global-set-key (quote [S-f10]) 'vterm)
 
   (global-set-key (quote [f12]) 'execute-extended-command)
-  ;; (global-set-key (quote [f12]) 'counsel-M-x)
   (global-set-key (quote [S-f12]) 'eval-expression)
   (global-set-key (quote [C-f12]) 'repeat-complex-command)
 

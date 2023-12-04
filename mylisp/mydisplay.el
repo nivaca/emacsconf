@@ -92,7 +92,7 @@
   :config
   (setq fontaine-presets
         '((pc
-           :default-height 130
+           :default-height 131
            :line-spacing 0.1)
           (xps
            :default-height 130
@@ -101,8 +101,8 @@
            :default-family "JetBrains Mono NL"
            :default-height 180)
           (t
-           :default-family "JetBrains Mono NL"
-           :default-weight Medium)))
+           :default-family "Cascadia Mono"
+           :default-weight Regular)))
   ;; select preset depending on system -----==>------------------
   (pcase (system-name)
     ;; PC escritorio casa
@@ -317,16 +317,16 @@
 ;; prism disperses code into a spectrum of color by depth. 
 ;; --------------------------------------------------------
 (use-package prism
-  :disabled t
+  ;; :disabled t
   :straight (prism :fetcher github :repo "alphapapa/prism.el")
-  :config
-  (prism-mode t)
+  ;; :config
+  ;; (prism-mode t)
   )
 
 
 ;; ----------------------------------------------------------------
 (use-package prog-mode
-  :straight
+  :straight ;; sic
   :config
   (add-hook 'prog-mode-hook 'outline-minor-mode)
   (add-hook 'prog-mode-hook 'hs-minor-mode))

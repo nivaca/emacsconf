@@ -331,6 +331,15 @@ undo."
         ("C-g" . minibuffer-keyboard-quit))
   )
 
+;; ==============================================================
+;; Read ePub files
+(use-package nov
+  :straight t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+  )
+
+
 
 ;; ==============================================================
 (use-package centered-cursor-mode
