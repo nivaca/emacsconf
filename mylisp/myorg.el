@@ -71,7 +71,7 @@
    org-adapt-indentation nil
    org-hide-leading-stars nil
    org-odd-levels-only nil)
-  ;; -----------------------------------------------------------------
+  ;; ----------------------------------------------------------
   ;; org faces
   (setq nv-frame-font "JetBrains Mono NL")
   (set-face-attribute 'org-document-title nil
@@ -91,7 +91,7 @@
 
 
 
-;; ===============================================================
+;; ===========================================================
 (use-package org-roam
   :straight t
   :init
@@ -141,10 +141,11 @@
   )
 
 
+(use-package ob-tangle
+  :straight
+)
 
-
-
-;; =================================================================
+;; =========================================================
 ;; org-remark
 (use-package org-remark
   :straight (org-remark :type git :host github :repo "nobiot/org-remark")
@@ -179,5 +180,13 @@
 (use-package org-ql
   :straight (org-ql :host github :repo "alphapapa/org-ql")
   )
+
+;; ============================================================
+;; toc-org
+(use-package toc-org
+  :straight t
+  :commands toc-org-enable
+  :init (add-hook 'org-mode-hook 'toc-org-enable))
+
 
 (provide 'myorg)

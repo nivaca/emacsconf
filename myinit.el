@@ -4,7 +4,6 @@
 
 (defconst IS-MAC     (eq system-type 'darwin))
 (defconst IS-LINUX   (eq system-type 'gnu/linux))
-(defconst IS-WINDOWS (memq system-type '(cygwin windows-nt ms-dos)))
 
 ;; for all computers
 (setq user-emacs-directory "~/emacs/")
@@ -17,13 +16,13 @@
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
 
-(setq byte-compile-warnings '(cl-functions))
 
 ;; ================== Initialization ==================
 (require 'initialsetup)
 
 
 ;; =============== Native compilation ===============
+(setq byte-compile-warnings '(cl-functions))
 (setq native-comp-deferred-compilation t
       native-comp-async-report-warnings-errors nil
       native-comp-async-jobs-number 7
