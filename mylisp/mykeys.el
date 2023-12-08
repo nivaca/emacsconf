@@ -72,15 +72,10 @@
 
   (bind-key "C-/" 'comment-line) ;; defined in myfunctions.el
 
-  ;; ;; comments
-  ;; (if (or
-  ;;      (string= (system-name) "nivaca-xps")
-  ;;      (string= (system-name) "nivaca-dell")
-  ;;      (string= (system-name) "nivaca-tp")
-  ;;      )
-  ;;     ;; Comment line
-  ;;     (bind-key "C-/" 'comment-line) ;; defined in myfunctions.el
-  ;;   )
+
+  ;; Undo & redo
+  (bind-key "C-z" 'undo-only)
+  (bind-key "C-S-z" 'undo-redo)
   
   (global-unset-key (kbd "<S-return>"))
 

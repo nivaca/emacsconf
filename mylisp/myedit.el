@@ -146,51 +146,6 @@
   )
 
 
-
-
-;; myundo -------------------------------------
-;; code taken from emacs 28
-(use-package myundo
-  :straight
-  :init
-  (when (version< emacs-version "28.0")
-    (defun undo-only (&optional arg)
-      "Undo some previous changes.
-Repeat this command to undo more changes. A numeric ARG serves as
-a repeat count. Contrary to `undo', this will not redo a previous
-undo."
-      (interactive "*p")
-      (let ((undo-no-redo t)) (undo arg)))
-
-    (defun undo--last-change-was-undo-p (undo-list)
-      (while (and (consp undo-list) (eq (car undo-list) nil))
-        (setq undo-list (cdr undo-list)))
-      (gethash undo-list undo-equiv-table))
-
-    (defun undo-redo (&optional arg)
-      "Undo the last ARG undos."
-      (interactive "*p")
-      (cond
-       ((not (undo--last-change-was-undo-p buffer-undo-list))
-        (user-error "No undo to undo"))
-       (t
-        (let* ((ul buffer-undo-list)
-               (new-ul
-                (let ((undo-in-progress t))
-                  (while (and (consp ul) (eq (car ul) nil))
-                    (setq ul (cdr ul)))
-                  (primitive-undo arg ul)))
-               (new-pul (undo--last-change-was-undo-p new-ul)))
-          (message "Redo%s" (if undo-in-region " in region" ""))
-          (setq this-command 'undo)
-          (setq pending-undo-list new-pul)
-          (setq buffer-undo-list new-ul))))))
-  :bind
-  ("C-z" . undo-only)
-  ("C-S-z" . undo-redo)
-  )
-
-
 ;; Indicate minibuffer depth
 (use-package mb-depth
   :config
@@ -202,21 +157,6 @@ undo."
   (selection-coding-system 'utf-8)
   (select-enable-clipboard t "Use the clipboard")
   )
-
-
-;; ============== simpleclip ==============
-;; (use-package simpleclip
-;;   :config
-;;   (simpleclip-mode 1)
-;;   (defun nv-paste-in-minibuffer ()
-;;     (local-set-key (kbd "M-v") 'simpleclip-paste))
-;;   (add-hook 'minibuffer-setup-hook 'nv-paste-in-minibuffer)
-;;   :bind
-;;   (("C-k" . simpleclip-cut)
-;;    ("C-w" . simpleclip-copy)
-;;    ("C-y" . simpleclip-paste))
-;; )
-
 
 ;; ============== unfill ==============
 ;; Functions providing the inverse of
