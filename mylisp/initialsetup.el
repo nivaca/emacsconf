@@ -1,46 +1,27 @@
 ;;; mylisp/initialsetup.el -*- lexical-binding: t; -*-
 
-(eval-when-compile (require 'cl-lib)) ;; Require Common Lisp (for "case" etc.)
-
-;; A big contributor to startup times is garbage collection. We up the gc
-;; threshold to temporarily prevent it from running, then reset it later by
-;; enabling `gcmh-mode'. Not resetting it will cause stuttering/freezes.
-(setq gc-cons-threshold most-positive-fixnum)
-
-;; Needs:
-;;   git checkout -b native-comp origin/feature/native-comp
-;;.  /configure --with-nativecomp 
-(setq comp-deferred-compilation t)
-
-
-
 ;; ==========================================================
 ;;; Turn off the annoying crap immediately
-(setq auto-save-default t
-      dabbrev-case-distinction nil
-      dabbrev-case-fold-search nil
-      disabled-command-function nil
-      echo-keystrokes 0.1
-      global-auto-revert-mode t ;; auto load changed files
-      global-auto-revert-non-file-buffers t ;; revert dired and other buffers
-      large-file-warning-threshold 536870911
-      use-dialog-box nil ;; don't pop up UI dialogs when prompting
-      vc-follow-symlinks t ;; Follow symbolic links
-      backup-inhibited t
-      )
+(setopt auto-save-default t
+        backup-inhibited t
+        dabbrev-case-distinction nil
+        dabbrev-case-fold-search nil
+        disabled-command-function nil
+        echo-keystrokes 0.1
+        global-auto-revert-mode t  ;; auto load changed files
+        global-auto-revert-non-file-buffers t  ;; revert dired and other buffers
+        large-file-warning-threshold 536870911
+        load-prefer-newer t
+        use-dialog-box nil  ;; don't pop up UI dialogs when prompting
+        vc-follow-symlinks t  ;; Follow symbolic links
+        )
 
-
-
-;; ==========================================================
-;;; Emacs core configuration
-
-;; lo', longer logs ahoy
-(setq message-log-max 8192)
+;; Maximum number of lines to keep in the message log buffer.
+(setopt message-log-max 8192)
 
 ;; Reduce debug output, well, unless we've asked for it.
-(setq debug-on-error nil
-      jka-compr-verbose nil)
-
+(setopt debug-on-error nil
+        jka-compr-verbose nil)
 
 ;; ==================== UTF-8 =======================
 ;; Contrary to what many Emacs users have in their configs, you really don't
@@ -48,31 +29,31 @@
 (when (fboundp 'set-charset-priority)
   (set-charset-priority 'unicode))
 (prefer-coding-system 'utf-8)
-(setq locale-coding-system 'utf-8)
-(setq selection-coding-system 'utf-8)
+(setopt locale-coding-system 'utf-8)
+(setopt selection-coding-system 'utf-8)
 
 
 ;; Disable warnings from legacy advice system. They aren't useful, and what can
 ;; we do about them, besides changing packages upstream?
-(setq ad-redefinition-action 'accept)
+(setopt ad-redefinition-action 'accept)
 
 
 ;; Make apropos omnipotent. It's more useful this way.
-(setq apropos-do-all t)
+(setopt apropos-do-all t)
 
 
 ;; A second, case-insensitive pass over `auto-mode-alist' is time wasted, and
 ;; indicates misconfiguration (or that the user needs to stop relying on case
 ;; insensitivity).
-(setq auto-mode-case-fold nil)
+(setopt auto-mode-case-fold nil)
 
 
 ;; Less noise at startup. The dashboard/empty scratch buffer is good enough.
-(setq inhibit-startup-message t
-      inhibit-startup-echo-area-message user-login-name
-      inhibit-default-init t
-      initial-major-mode 'lisp-mode
-      initial-scratch-message nil)
+(setopt inhibit-startup-message t
+        inhibit-startup-echo-area-message user-login-name
+        inhibit-default-init t
+        initial-major-mode 'fundamental-mode
+        initial-scratch-message nil)
 
 (setq-default major-mode 'lisp-mode)
 
@@ -82,33 +63,31 @@
 (unless (daemonp)
   (advice-add #'display-startup-echo-area-message :override #'ignore))
 
-;;
+
 ;; Emacs "updates" its ui more often than it needs to, so we slow it down
 ;; slightly from 0.5s:
-(setq idle-update-delay 1.0)
+(setopt idle-update-delay 1.0)
 
 
-
-;; 
-;;; Minibuffer
+;;; Minibuffer -----------------------------------------------------------------
 
 ;; Allow for minibuffer-ception. Sometimes we need another minibuffer command
 ;; _while_ we're in the minibuffer.
-(setq enable-recursive-minibuffers t)
+(setopt enable-recursive-minibuffers t)
 
 ;; Show current key-sequence in minibuffer, like vim does. Any feedback after
 ;; typing is better UX than no feedback at all.
-(setq echo-keystrokes 0.02)
+(setopt echo-keystrokes 0.02)
 
 ;; Expand the minibuffer to fit multi-line text displayed in the echo-area. This
 ;; doesn't look too great with direnv, however...
-(setq resize-mini-windows 'grow-only
+(setopt resize-mini-windows 'grow-only
       ;; But don't let the minibuffer grow beyond this size
       max-mini-window-height 0.15)
 
 ;; Disable help mouse-overs for mode-line segments (i.e. :help-echo text).
 ;; They're generally unhelpful and only add confusing visual clutter.
-(setq mode-line-default-help-echo nil
+(setopt mode-line-default-help-echo nil
       show-help-function nil)
 
 ;; Typing yes/no is obnoxious when y/n will do
@@ -116,7 +95,8 @@
 
 ;; Try really hard to keep the cursor from getting stuck in the read-only prompt
 ;; portion of the minibuffer.
-(setq minibuffer-prompt-properties '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
+(setopt minibuffer-prompt-properties
+        '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
 (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 
 ;; Don't display messages in the minibuffer when using the minibuffer
@@ -130,16 +110,19 @@
 (nv-silence-motion-key backward-delete-char "<backspace>")
 (nv-silence-motion-key delete-char "<delete>")
 
-(setq message-log-max t)
+(setopt message-log-max t)
+
+
+;; ---------------------------------------------------------------------------------
 
 ;; Share clipboard with system
-(setq select-enable-clipboard t)
+(setopt select-enable-clipboard t)
 
 
 ;; Remove command line options that aren't relevant to our current OS; that
 ;; means less to process at startup.
-(unless IS-MAC   (setq command-line-ns-option-alist nil))
-(unless IS-LINUX (setq command-line-x-option-alist nil))
+(unless IS-MAC   (setopt command-line-ns-option-alist nil))
+(unless IS-LINUX (setopt command-line-x-option-alist nil))
 
 
 
@@ -156,23 +139,23 @@
 ;; Reduce rendering/line scan work for Emacs by not rendering cursors or regions
 ;; in non-focused windows.
 (setq-default cursor-in-non-selected-windows nil)
-(setq highlight-nonselected-windows nil)
+(setopt highlight-nonselected-windows nil)
 
 
 ;; More performant rapid scrolling over unfontified regions. May cause brief
 ;; spells of inaccurate syntax highlighting right after scrolling, which should
 ;; quickly self-correct.
-(setq fast-but-imprecise-scrolling t)
+(setopt fast-but-imprecise-scrolling t)
 
 
 ;; Resizing the Emacs frame can be a terribly expensive part of changing the
 ;; font. By inhibiting this, we halve startup times, particularly when we use
 ;; fonts that are larger than the system default (which would resize the frame).
-(setq frame-inhibit-implied-resize t)
+(setopt frame-inhibit-implied-resize t)
 
 
 ;; Don't ping things that look like domain names.
-(setq ffap-machine-p-known 'reject)
+(setopt ffap-machine-p-known 'reject)
 
 
 ;; Font compacting can be terribly expensive, especially for rendering icon
@@ -183,13 +166,13 @@
 
 ;; Remove command line options that aren't relevant to our current OS; means
 ;; slightly less to process at startup.
-(unless IS-MAC   (setq command-line-ns-option-alist nil))
-(unless IS-LINUX (setq command-line-x-option-alist nil))
+(unless IS-MAC   (setopt command-line-ns-option-alist nil))
+(unless IS-LINUX (setopt command-line-x-option-alist nil))
 
 
 ;; Delete files to trash on macOS, as an extra layer of precaution against
 ;; accidentally deleting wanted files.
-(setq delete-by-moving-to-trash IS-MAC)
+(setopt delete-by-moving-to-trash IS-MAC)
 
 
 ;; HACK `tty-run-terminal-initialization' is *tremendously* slow for some
@@ -203,28 +186,13 @@
               (tty-run-terminal-initialization (selected-frame) nil t))))
 
 
-
-;; ==================== UTF-8 =======================
-(setenv "LC_CTYPE" "UTF-8")
-(setenv "LC_ALL" "en_US.UTF-8")
-(setenv "LANG" "en_US.UTF-8")
-(setq locale-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
-(prefer-coding-system 'utf-8)
-(setq buffer-file-coding-system 'utf-8)
-;; From Emacs wiki
-(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
-
-
 ;; Save whatever’s in the current (system) clipboard before
 ;; replacing it with the Emacs’ text.
 ;; https://github.com/dakrone/eos/blob/master/eos.org
-(setq save-interprogram-paste-before-kill t)
+(setopt save-interprogram-paste-before-kill t)
 
 ;; Save clipboard contents into kill-ring before replacing them
-(setq save-interprogram-paste-before-kill t)
+(setopt save-interprogram-paste-before-kill t)
 
 
 
@@ -232,7 +200,8 @@
 ;; Garbage collection
 (defvar better-gc-cons-threshold 67108864 ; 64mb
   "The default value to use for `gc-cons-threshold'.
-If you experience freezing, decrease this. If you experience stuttering, increase this.")
+  If you experience freezing, decrease this.
+  If you experience stuttering, increase this.")
 
 (add-hook 'emacs-startup-hook
           (lambda ()
@@ -252,8 +221,8 @@ If you experience freezing, decrease this. If you experience stuttering, increas
 
             (add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
             (add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)))
-
 ;; -----------------------------------------------------------------
+
 
 ;; Modes and mode groupings
 (defmacro hook-into-modes (func modes)

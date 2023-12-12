@@ -43,17 +43,20 @@
 
 (use-package emacs  ;; various settings
   :config
-  (setq visible-bell nil
-        ring-bell-function 'ignore
-        font-lock-maximum-decoration t
-        truncate-partial-width-windows nil
-        minibuffer-message-timeout 10
-        column-number-mode t
-        fit-window-to-buffer-horizontally t
-        fit-frame-to-buffer t
-        switch-to-buffer-obey-display-actions t
-        frame-inhibit-implied-resize  t
-        )
+  (setq
+   column-number-mode t
+   fit-frame-to-buffer t
+   fit-window-to-buffer-horizontally t
+   font-lock-maximum-decoration t
+   frame-inhibit-implied-resize t
+   display-line-numbers-type 'relative
+   minibuffer-message-timeout 10
+   ring-bell-function 'ignore
+   switch-to-buffer-obey-display-actions t
+   truncate-partial-width-windows nil
+   visible-bell nil
+   x-underline-at-descent-line nil
+   )
 
   ;; Don't resize emacs in steps, it looks weird.
   (setq window-resize-pixelwise t
@@ -84,10 +87,10 @@
   )  ;; end: use-package emacs
 
 
-;; ----------------------------------------------------------------------
-;;                                Fonts
-;; ----------------------------------------------------------------------
-;; fontaine -------------------------------------------------------------
+;; ------------------------------------------------------
+;;                         Fonts
+;; ------------------------------------------------------
+;; fontaine ---------------------------------------------
 (use-package fontaine
   :config
   (setq fontaine-presets
@@ -101,7 +104,7 @@
            :default-family "JetBrains Mono NL"
            :default-height 180)
           (t
-           :default-family "Cascadia Mono"
+           :default-family "IBM Plex Mono"
            :default-weight Regular)))
   ;; select preset depending on system -----==>------------------
   (pcase (system-name)
@@ -280,7 +283,6 @@
 
 
 
-
 ;; ---------------------------------------------------------------
 ;;                             Tabs
 ;; ---------------------------------------------------------------
@@ -293,10 +295,9 @@
 
 
 
-
-;; ----------------------------------------------------------------------
-;;                            All the icons
-;; ---------------------------------------------------------------------
+;; --------------------------------------------------------------
+;;                        All the icons
+;; --------------------------------------------------------------
 (use-package all-the-icons
   :straight t
   :defer)

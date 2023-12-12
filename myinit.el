@@ -14,7 +14,7 @@
   )
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-(setq exec-path (append exec-path '("/usr/local/bin")))
+(setopt exec-path (append exec-path '("/usr/local/bin")))
 
 
 ;; ================== Initialization ==================
@@ -65,7 +65,7 @@
 (require 'mymagit)
 
 ;; ===================== ediff ==========================
-(setq ediff-split-window-function 'split-window-horizontally)
+(setopt ediff-split-window-function 'split-window-horizontally)
 
 
 ;; ================= completions ==================
@@ -110,8 +110,9 @@
   :diminish
   :straight t
   :custom
-  ;; Adopt a sneaky garbage collection strategy of waiting until idle time to
-  ;; collect; staving off the collector while the user is working.
+  ;; Adopt a sneaky garbage collection strategy of waiting
+  ;; until idle time to collect; staving off the collector
+  ;; while the user is working.
   (gcmh-idle-delay 5)
   (gcmh-high-cons-threshold (* 16 1024 1024)) ; 16mb
   (gcmh-verbose nil)
@@ -125,11 +126,13 @@
 ;; ================= My aliases ===================
 (require 'myaliases)
 
+
 ;; ================= server ==================
 (use-package server
   :config
   (unless (server-running-p)
     (server-start)))
+
 
 ;; =============== Dashboard ===============
 (use-package dashboard

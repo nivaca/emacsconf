@@ -12,6 +12,7 @@
          ("C-x m" . consult-bookmark)
          ("M-y" . consult-yank-from-kill-ring)
          ("M-g i" . consult-imenu)
+         ("C-x C-r" . consult-recent-file)
          :map minibuffer-local-map
          ("C-r" . consult-history))
   :custom

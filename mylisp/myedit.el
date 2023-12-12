@@ -90,19 +90,40 @@
   :bind ("M-y" . popup-kill-ring))
 
 
-;; ===================== drag-stuff ====================
-(use-package drag-stuff
+;; ;; ===================== drag-stuff ====================
+;; ;; use instead move-text (below)
+;; (use-package drag-stuff
+;;   :disabled
+;;   :straight t
+;;   :config
+;;   (drag-stuff-global-mode 1)
+;;   (drag-stuff-define-keys)
+;;   ;; this is needed to forcefully diminish the mode
+;;   (define-minor-mode drag-stuff-mode
+;;     "Drag stuff around."
+;;     :init-value nil
+;;     :lighter ""
+;;     :keymap drag-stuff-mode-map)
+;;   )
+
+
+;; ===================== move-text ====================
+(use-package move-text
   :straight t
+  :bind
+  (("M-<up>"   . move-text-up)
+   ("M-<down>" . move-text-down))
   :config
-  (drag-stuff-global-mode 1)
-  (drag-stuff-define-keys)
-  ;; this is needed to forcefully diminish the mode
-  (define-minor-mode drag-stuff-mode
-    "Drag stuff around."
-    :init-value nil
-    :lighter ""
-    :keymap drag-stuff-mode-map)
-  )
+  (defun indent-region-advice (&rest ignored)
+    (let ((deactivate deactivate-mark))
+      (if (region-active-p)
+          (indent-region (region-beginning) (region-end))
+        (indent-region (line-beginning-position) (line-end-position)))
+      (setq deactivate-mark deactivate)))
+
+  (advice-add 'move-text-up :after 'indent-region-advice)
+  (advice-add 'move-text-down :after 'indent-region-advice)
+)
 
 
 ;; ===================== crux ====================
