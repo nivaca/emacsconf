@@ -2,7 +2,25 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(#1=(#("roamnotes" 0 9
+(#1=(#("Marcolfo" 0 8
+      (bmkp-full-record #1#))
+    (buffer-name . "Marcolfo")
+    (front-context-string . "salmarc_es_c02.x")
+    (rear-context-string . "05 Jun 14  2022 ")
+    (front-context-region-string)
+    (rear-context-region-string)
+    (visits . 0)
+    (time . #2=(25985 49546 87914 812000))
+    (created . #2#)
+    (position . 1300)
+    (filename . "/home/nivaca/docs/editions/Marcolfo/")
+    (dired-directory . "~/docs/editions/Marcolfo/")
+    (dired-marked)
+    (dired-switches . "-al")
+    (dired-subdirs)
+    (dired-hidden-dirs)
+    (handler . bmkp-jump-dired))
+#1=(#("roamnotes" 0 9
       (bmkp-full-record #1#))
     (buffer-name . "roamnotes")
     (front-context-string . "20210829182649-m")

@@ -143,12 +143,12 @@
 
 
 
-;; ----------------------------------------------------------------------
+;; ------------------------------------------------------------
 ;;                             cursor type
-;; ----------------------------------------------------------------------
+;; ------------------------------------------------------------
 ;; valid values are t, nil, box, hollow, bar, (bar . WIDTH), hbar,
 ;; (hbar. HEIGHT); see the docs for set-cursor-type
-(use-package emacs  ;; cursors
+(use-package emacs  ;; cursors etc.
   :config
   (defun nv-set-cursor-according-to-mode ()
     "change cursor color and type according to some minor modes."
@@ -182,6 +182,7 @@
   ;; don't let the cursor go into minibuffer prompt
   (setq minibuffer-prompt-properties (quote (read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt)))
 
+  
   ;; -----------------------------------------------------------
   ;;                          distinguish dashes
   ;; -----------------------------------------------------------
@@ -195,14 +196,14 @@
     (aset buffer-display-table 8211 `[,glyph-en-dash ,glyph-en-dash])
     (aset buffer-display-table 8212 `[,glyph-em-dash ,glyph-em-dash ,glyph-em-dash]))
 
-  )
+  ) ;; end of use-package
 
 
 
 
-;; ----------------------------------------------------------------------
+;; -------------------------------------------------------------
 ;;                              whitespace
-;; ----------------------------------------------------------------------
+;; -------------------------------------------------------------
 (use-package whitespace
   :disabled
   :straight t
@@ -219,9 +220,9 @@
   :blackout whitespace-mode)
 
 
-;; ----------------------------------------------------------------------
+;; -------------------------------------------------------------
 ;;                                pulsar
-;; ----------------------------------------------------------------------
+;; -------------------------------------------------------------
 (use-package pulsar
   :straight (pulsar :type git :host gitlab :repo "protesilaos/pulsar")
   :custom
@@ -342,7 +343,7 @@
                     'outline-minor-faces-add-font-lock-keywords))
 
 
-;; ------------------------------------------------------------------
+;; ----------------------------------------------------------
 ;; (use-package pdf-tools
 ;;   :disabled t
 ;;   :straight t
@@ -356,5 +357,12 @@
 ;;   (setq-default pdf-annot-activate-created-annotations t)
 ;;   ;; (require 'pdf-occur)
 ;;   )
+
+
+;; doom-modeline
+(use-package doom-modeline
+  :straight t
+  :init (doom-modeline-mode 1))
+
 
 (provide 'mydisplay)

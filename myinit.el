@@ -105,6 +105,21 @@
 ;; ================= markdown ===================
 (require 'mymarkdown)
 
+
+;; ================= pdf-tools ===================
+(use-package pdf-tools
+  :straight t
+  :defer t
+  :commands (pdf-loader-install)
+  :mode "\\.pdf\\'"
+  :init
+  (pdf-loader-install)
+  :config
+  (add-to-list 'revert-without-query ".pdf")
+  (add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
+  )
+
+
 ;; ===== Garbage Collector Magic Hack ====
 (use-package gcmh
   :diminish
@@ -174,7 +189,7 @@
 (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
 
-;; ===================================================================
+;; =====================================================
 
 
 (use-package emacs

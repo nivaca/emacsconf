@@ -12,7 +12,7 @@
 
 
 (use-package vscode-dark-plus-theme
-  ;; :disabled
+  :disabled
   :config
   (load-theme 'vscode-dark-plus t)
   )
@@ -20,21 +20,19 @@
 
 
 (use-package doom-themes
-  :disabled
+  ;; :disabled
   :straight t
   :custom
   (doom-nord-brighter-comments t)
   (doom-one-brighter-comments t)
   (doom-dracula-brighter-comments t)
-  (doom-oceanic-next-comment-bg nil)
-  (doom-oceanic-next-brighter-comments nil)
-  (doom-feather-light-brighter-modeline t)
-  (doom-feather-light-brighter-comments t)
-  (doom-feather-light-padded-modeline t)
+  (doom-city-lights-brighter-comments nil)
+  (doom-tokyo-night-brighter-comments nil)
   :init
   (doom-themes-visual-bell-config)
   ;; (load-theme 'doom-one t)
-  (load-theme 'doom-feather-light t)
+  ;; (load-theme 'doom-city-lights t)
+  (load-theme 'doom-tokyo-night t)
   )
 
 (use-package ef-themes

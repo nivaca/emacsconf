@@ -52,7 +52,7 @@
 (setopt inhibit-startup-message t
         inhibit-startup-echo-area-message user-login-name
         inhibit-default-init t
-        initial-major-mode 'fundamental-mode
+        initial-major-mode 'lisp-mode
         initial-scratch-message nil)
 
 (setq-default major-mode 'lisp-mode)

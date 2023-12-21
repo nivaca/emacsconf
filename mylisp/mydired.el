@@ -10,7 +10,11 @@
   (dired-kill-when-opening-new-dired-buffer t)
   ;; (mouse-1-click-follows-link 1.1)
   :init
-  (add-hook 'dired-mode-hook #'all-the-icons-dired-mode)
+  ;; (add-hook 'dired-mode-hook #'all-the-icons-dired-mode)
+  (add-hook 'dired-mode-hook
+      (lambda ()
+        (dired-hide-details-mode)
+        (all-the-icons-dired-mode)))
   ;; (define-key dired-mode-map [mouse-2] #'ignore)
   ;; (define-key dired-mode-map (kbd "<mouse-1>") nil)
   ;; (define-key dired-mode-map (kbd "<mouse-2>") nil)
