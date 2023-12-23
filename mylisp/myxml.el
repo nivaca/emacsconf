@@ -2,8 +2,14 @@
 
 
 (use-package nxml-mode
-  :mode (("\\.xml$" . nxml-mode)
-         ("\\.zcml$" . nxml-mode))
+  :straight 
+  :mode ("\\.xml$" . nxml-mode)
+  :custom
+  (indent-tabs-mode nil)
+  (nxml-child-indent 2)
+  (nxml-attribute-indent 2)
+  ;; Optional settings
+  (nxml-slash-auto-complete-flag t)
   )
 
 

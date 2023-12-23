@@ -83,6 +83,19 @@
   (minions-mode 1)
   )
 
+
+;; =================== bufler ===================
+(use-package bufler
+  :defer t
+  :straight (bufler
+             :host github
+             :repo "alphapapa/bufler.el"
+             :files (:defaults (:exclude "helm-bufler.el"))
+             )
+  :hook (after-init . bufler-workspace-mode)
+  )
+
+
 ;; =================== helpful ===================
 ;; Helpful is an alternative to the built-in Emacs
 ;; help that provides much more contextual information.
@@ -105,19 +118,27 @@
 ;; ================= markdown ===================
 (require 'mymarkdown)
 
+;; ================= XML ===================
+(require 'myxml)
+
 
 ;; ================= pdf-tools ===================
-(use-package pdf-tools
-  :straight t
-  :defer t
-  :commands (pdf-loader-install)
-  :mode "\\.pdf\\'"
-  :init
-  (pdf-loader-install)
-  :config
-  (add-to-list 'revert-without-query ".pdf")
-  (add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
-  )
+;; (use-package pdf-tools
+;;   :straight t
+;;   :defer t
+;;   :commands (pdf-loader-install)
+;;   :mode "\\.pdf\\'"
+;;   :init
+;;   (pdf-loader-install)
+;;   :custom
+;;   (pdf-annot-activate-created-annotations t)
+;;   (pdf-view-continuous t)
+;;   (pdf-view-display-size 'fit-width)
+;;   (pdf-view-resize-factor 1.1)
+;;   :config
+;;   (add-to-list 'revert-without-query ".pdf")
+;;   (add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
+;;   )
 
 
 ;; ===== Garbage Collector Magic Hack ====
@@ -190,8 +211,7 @@
 
 
 ;; =====================================================
-
-
+;; remove from mode line
 (use-package emacs
   :config
   (blackout 'aggressive-indent-mode)

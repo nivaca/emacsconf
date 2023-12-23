@@ -22,14 +22,15 @@
   (corfu-echo-documentation nil)
   (completion-cycle-threshold 3)
   
+  
   :bind
   (:map corfu-map
-        ("TAB" . corfu-insert)
-        ([tab] . corfu-insert)
+        ("RET" . corfu-insert)
+        ([ret] . corfu-insert)
         ("S-TAB" . corfu-previous)
         ([backtab] . corfu-previous)
         ("M-SPC" . corfu-insert-separator)
-        ("RET"     . nil)  ;; leave my enter alone!
+        ("TAB"     . nil)  ;; leave my enter alone!
         )
   :init
   (global-corfu-mode))

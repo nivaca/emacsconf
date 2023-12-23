@@ -15,6 +15,8 @@
         org-end-of-line
         org-self-insert-command
         org-yank
+        r-o-m
+        undo-only
         wdired--self-insert
         yank
         ))
