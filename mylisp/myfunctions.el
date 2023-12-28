@@ -384,7 +384,16 @@ the region to title case.  Otherwise, work on the current line."
 
 
 ;; ====================================================
+(defun p-u-p ()
+  "Straight update all: pulls and builds if necessary."
+  (interactive)
+  (progn
+    (straight-pull-all)
+    (straight-check-all)
+    )
+  )
 
+;; ====================================================
 
 
 (provide 'myfunctions)

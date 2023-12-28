@@ -85,15 +85,15 @@
 
 
 ;; =================== bufler ===================
-(use-package bufler
-  :defer t
-  :straight (bufler
-             :host github
-             :repo "alphapapa/bufler.el"
-             :files (:defaults (:exclude "helm-bufler.el"))
-             )
-  :hook (after-init . bufler-workspace-mode)
-  )
+;; (use-package bufler
+;;   :defer t
+;;   :straight (bufler
+;;              :host github
+;;              :repo "alphapapa/bufler.el"
+;;              :files (:defaults (:exclude "helm-bufler.el"))
+;;              )
+;;   :hook (after-init . bufler-workspace-mode)
+;;   )
 
 
 ;; =================== helpful ===================

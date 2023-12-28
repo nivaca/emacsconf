@@ -40,10 +40,10 @@
   )
 
 
-
-(use-package emacs  ;; various settings
+;; ====================================================
+(use-package emacs  ;; various settings ---------------
   :config
-  (setq
+  (setopt
    column-number-mode t
    fit-frame-to-buffer t
    fit-window-to-buffer-horizontally t
@@ -59,17 +59,17 @@
    )
 
   ;; Don't resize emacs in steps, it looks weird.
-  (setq window-resize-pixelwise t
+  (setopt window-resize-pixelwise t
         frame-resize-pixelwise t)
 
   ;; show trailing spaces
-  (setq show-trailing-whitespace nil)
+  (setopt show-trailing-whitespace nil)
 
   ;; highlight current line
-  (setq global-hl-line-mode -1)
+  (setopt global-hl-line-mode nil)
 
   ;; Show me empty lines after buffer end
-  (set-default 'indicate-empty-lines t)
+  (setopt indicate-empty-lines t)
 
   (global-display-line-numbers-mode t)
 
@@ -84,7 +84,18 @@
   (blink-cursor-mode -1)
   ;; transparency
   ;; (add-to-list 'default-frame-alist '(alpha-background . 90))
-  )  ;; end: use-package emacs
+
+  (setq display-buffer-base-action
+        '(display-buffer-reuse-mode-window
+          display-buffer-reuse-window
+          display-buffer-same-window))
+
+  ;; If a popup does happen,
+  ;; don't resize windows to be equal-sized
+  (setopt even-window-sizes nil)
+  
+  )  ;; end: use-package emacs --------------------------
+
 
 
 ;; ------------------------------------------------------
@@ -104,9 +115,9 @@
            :default-family "JetBrains Mono NL"
            :default-height 180)
           (t
-           :default-family "IBM Plex Mono"
+           :default-family "JetBrains Mono NL"
            :default-weight Regular)))
-  ;; select preset depending on system -----==>------------------
+  ;; select preset depending on system ------------------
   (pcase (system-name)
     ;; PC escritorio casa
     ("nivaca-pc"
@@ -359,10 +370,12 @@
 ;;   )
 
 
-;; doom-modeline
+;; doom-modeline ---------------------------------
 (use-package doom-modeline
   :straight t
-  :init (doom-modeline-mode 1))
+  :init
+  (doom-modeline-mode 1)
+  )
 
 
 (provide 'mydisplay)

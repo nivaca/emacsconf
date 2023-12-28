@@ -2,37 +2,46 @@
 
 
 (use-package nxml-mode
-  :straight 
+  :straight
+  :defer t
   :mode ("\\.xml$" . nxml-mode)
   :custom
   (indent-tabs-mode nil)
   (nxml-child-indent 2)
   (nxml-attribute-indent 2)
-  ;; Optional settings
+  (rng-validate-chunk-size 4000)
+  (rng-validate-quick-delay 1)
+  (rng-validate-delay 2)
   (nxml-slash-auto-complete-flag t)
-  )
-
-
-
-(defun nv-nxml-where ()
-  "Display the hierarchy of XML elements the point is on as a path."
-  (interactive)
-  (let ((path nil))
+  :config
+  (defun nv-surround-region-with-tag (tag-name beg end)
+    "Place TAG-NAME around region from BEG to END."
+    (interactive "sTag name: \nr")
     (save-excursion
-      (save-restriction
-        (widen)
-        (while (and (< (point-min) (point)) ;; Doesn't error if point is at beginning of buffer
-                  (condition-case nil
-                      (progn
-                        (nxml-backward-up-element) ; always returns nil
-                        t)
-                    (error nil)))
-          (setq path (cons (xmltok-start-tag-local-name) path)))
-        (if (called-interactively-p t)
-            (message "/%s" (mapconcat 'identity path "/"))
-          (format "/%s" (mapconcat 'identity path "/")))))))
+      (goto-char beg)
+      (insert "<" tag-name ">")
+      (goto-char (+ end 2 (length tag-name)))
+      (insert "</" tag-name ">")))
 
+  (defun nv-nxml-where ()
+    "Display the hierarchy of XML elements the point is on as a path."
+    (interactive)
+    (let ((path nil))
+      (save-excursion
+        (save-restriction
+          (widen)
+          (while (and (< (point-min) (point)) ;; Doesn't error if point is at beginning of buffer
+                      (condition-case nil
+                          (progn
+                            (nxml-backward-up-element) ; always returns nil
+                            t)
+                        (error nil)))
+            (setq path (cons (xmltok-start-tag-local-name) path)))
+          (if (called-interactively-p t)
+              (message "/%s" (mapconcat 'identity path "/"))
+            (format "/%s" (mapconcat 'identity path "/")))))))
 
+  ) ;; end use-package
 
 
 (provide 'myxml)
