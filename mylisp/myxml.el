@@ -13,16 +13,18 @@
   (rng-validate-quick-delay 1)
   (rng-validate-delay 2)
   (nxml-slash-auto-complete-flag t)
+  ;;
   :config
-  (defun nv-surround-region-with-tag (tag-name beg end)
+  (defun nv-nxml-surround-region-with-tag (tag-name beg end)
     "Place TAG-NAME around region from BEG to END."
     (interactive "sTag name: \nr")
     (save-excursion
       (goto-char beg)
       (insert "<" tag-name ">")
       (goto-char (+ end 2 (length tag-name)))
-      (insert "</" tag-name ">")))
-
+      (insert "</" tag-name ">"))
+    )
+  ;;
   (defun nv-nxml-where ()
     "Display the hierarchy of XML elements the point is on as a path."
     (interactive)
@@ -40,7 +42,11 @@
           (if (called-interactively-p t)
               (message "/%s" (mapconcat 'identity path "/"))
             (format "/%s" (mapconcat 'identity path "/")))))))
-
+  ;;
+  :bind (:map nxml-mode-map
+              ("C-c e" . nv-nxml-surround-region-with-tag)
+              ("C-c w" . nv-nxml-where)
+              )
   ) ;; end use-package
 
 
