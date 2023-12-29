@@ -2,16 +2,28 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(#1=(#("Marcolfo" 0 8
+(#1=(#("org-capture-last-stored" 0 23
+      (bmkp-full-record #1#))
+    (filename . "~/roamnotes/20231229162818-unload_function_elisp.org")
+    (buffer-name . "20231229162818-unload_function_elisp.org")
+    (front-context-string . "#+filetags: :com")
+    (rear-context-string . "unload function\n")
+    (front-context-region-string)
+    (rear-context-region-string)
+    (visits . 0)
+    (time . #2=(25999 14931 91569 245000))
+    (created . #2#)
+    (position . 93))
+#1=(#("Marcolfo" 0 8
       (bmkp-full-record #1#))
     (buffer-name . "Marcolfo")
     (front-context-string . "salmarc_es_c02.x")
     (rear-context-string . "05 Jun 14  2022 ")
     (front-context-region-string)
     (rear-context-region-string)
-    (visits . 0)
-    (time . #2=(25985 49546 87914 812000))
-    (created . #2#)
+    (visits . 1)
+    (time 25998 51455 537110 999000)
+    (created 25985 49546 87914 812000)
     (position . 1300)
     (filename . "/home/nivaca/docs/editions/Marcolfo/")
     (dired-directory . "~/docs/editions/Marcolfo/")
@@ -63,8 +75,8 @@
     (rear-context-string . #2#)
     (front-context-region-string)
     (rear-context-region-string)
-    (visits . 10)
-    (time 25974 30520 970591 960000)
+    (visits . 11)
+    (time 25997 35390 102802 670000)
     (created 24913 9657 923328 96000)
     (position . 1)
     (filename . "/home/nivaca/emacs/mylisp/")
