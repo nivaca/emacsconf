@@ -20,7 +20,7 @@
 
 
 (use-package doom-themes
-  ;; :disabled
+  :disabled
   :straight t
   :custom
   (doom-nord-brighter-comments t)
@@ -35,12 +35,15 @@
   (load-theme 'doom-tokyo-night t)
   )
 
+
 (use-package ef-themes
-  :disabled
-  :straight (ef-themes :type git :host github :repo "protesilaos/ef-themes")
+  ;; :disabled
+  :straight
+  (ef-themes :type git :host github :repo "protesilaos/ef-themes")
   :config
-  (load-theme 'ef-winter t)
+  (load-theme 'ef-maris-dark t)
   )
+
 
 (use-package color-theme-sanityinc-tomorrow
   :disabled

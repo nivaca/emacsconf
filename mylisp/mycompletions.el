@@ -8,21 +8,22 @@
 (use-package corfu
   ;; TAB-and-Go customizations
   :custom
-  (corfu-cycle t)             ;; Enable cycling for `corfu-next/previous'
-  (corfu-preselect-first 1)   ;; Candidate preselection
+  (completion-cycle-threshold 3)
+  (completion-cycle-threshold 3)
   (corfu-auto t)              ;; Enable auto completion
-  (corfu-auto-prefix 2)       ;; Enable auto completion
   (corfu-auto-delay 1)      ;; Enable auto completion
+  (corfu-auto-prefix 2)       ;; Enable auto completion
   (corfu-commit-predicate nil)
-  ;; (corfu-preview-current nil)
+  (corfu-cycle t)             ;; Enable cycling for `corfu-next/previous'
+  (corfu-echo-documentation nil)
+  (corfu-preselect-first 1)   ;; Candidate preselection
   (corfu-preview-current 'insert)
   (corfu-quit-at-boundary 'separator)
-  ;; (corfu-quit-at-boundary t)
   (corfu-quit-no-match t)
-  (corfu-echo-documentation nil)
-  (completion-cycle-threshold 3)
-  
-  
+  (tab-always-indent 'complete)
+  ;; (corfu-preview-current nil)
+  ;; (corfu-quit-at-boundary t)
+  ;;
   :bind
   (:map corfu-map
         ("RET" . corfu-insert)
@@ -33,26 +34,8 @@
         ("TAB"     . nil)  ;; leave my enter alone!
         )
   :init
-  (global-corfu-mode))
-
-
-
-;; A few more useful configurations...
-(use-package emacs
-  :init
-  ;; TAB cycle if there are only few candidates
-  (setq completion-cycle-threshold 3)
-
-  ;; Emacs 28: Hide commands in M-x which do not apply to the current mode.
-  ;; Corfu commands are hidden, since they are not supposed to be used via M-x.
-  ;; (setq read-extended-command-predicate
-  ;;       #'command-completion-default-include-p)
-
-  ;; Enable indentation+completion using the TAB key.
-  ;; `completion-at-point' is often bound to M-TAB.
-  (setq tab-always-indent 'complete))
-
-
+  (global-corfu-mode)
+  )
 
 
 ;; --------------- Temple templating engine -------------

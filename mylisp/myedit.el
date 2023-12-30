@@ -224,8 +224,8 @@
 
 ;; ============== bookmarks ==============
 (use-package bookmark+
-  :straight nil
-  :load-path "otherlisp/bmkp"
+  :straight
+  (bookmark+ type: git :host github :repo "emacsmirror/bookmark-plus")
   :custom
   (bookmark-version-control t)
   (auto-save-bookmarks t)
