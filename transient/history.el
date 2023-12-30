@@ -5,6 +5,7 @@
  (magit-push nil
              ("--force-with-lease"))
  (nv-test nil)
+ (nv-tr-test nil)
  (transient:tsc-layout-dynamic-descriptions:switch= "dfd")
  (tsc-hello nil)
  (tsc-layout-descriptions nil)
