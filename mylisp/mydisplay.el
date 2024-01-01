@@ -116,7 +116,7 @@
            :default-height 180)
           (t
            :default-family "JetBrains Mono NL"
-           :default-weight Regular)))
+           :default-weight Medium)))
   ;; select preset depending on system ------------------
   (pcase (system-name)
     ;; PC escritorio casa
@@ -330,7 +330,7 @@
 ;; prism disperses code into a spectrum of color by depth. 
 ;; --------------------------------------------------------
 (use-package prism
-  ;; :disabled t
+  :disabled t
   :straight (prism :fetcher github :repo "alphapapa/prism.el")
   ;; :config
   ;; (prism-mode t)

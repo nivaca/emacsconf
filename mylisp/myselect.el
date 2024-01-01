@@ -21,6 +21,14 @@
   ;; (consult-preview-mode)
   )
 
+(use-package consult-lsp
+  :straight t
+  )
+
+
+
+
+
 ;; -------------------- Vertico --------------------
 ;; Vertico provides a performant and minimalistic vertical completion
 ;; UI based on the default completion system.

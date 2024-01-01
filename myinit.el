@@ -115,6 +115,10 @@
 ;; ================= dired etc. ===================
 (require 'mydired)
 
+;; ================= Projectile ===================
+;; (require 'myprojectile)
+
+
 ;; ================= markdown ===================
 (require 'mymarkdown)
 

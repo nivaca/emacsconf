@@ -2,7 +2,6 @@
 
 (use-package org
   :straight t
-  :ensure
   :hook (org-mode . nv-org-mode-setup)
   :bind (:map org-mode-map
               ;; ("<RET>" . nv-org-return-dwim)
