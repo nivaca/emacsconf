@@ -8,10 +8,13 @@
         TeX-insert-backslash
         TeX-insert-macro
         comment-line
+        crux-move-beginning-of-line
         dired-toggle-read-only
         end-of-visual-line
         markdown-outdent-or-delete
+        mouse-set-region
         multiple-cursors-mode
+        nv-delete-back-all
         org-end-of-line
         org-self-insert-command
         org-yank

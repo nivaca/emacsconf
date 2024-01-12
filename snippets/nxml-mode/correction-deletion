@@ -1,0 +1,4 @@
+#name : correction-deletion
+#key: c-d
+# --
+wit="#$1" type="correction-deletion"

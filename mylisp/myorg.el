@@ -174,11 +174,13 @@
   :hook (org-mode . org-superstar-mode)
   )
 
+
 ;; ============================================================
 ;; org-ql
 (use-package org-ql
   :straight (org-ql :host github :repo "alphapapa/org-ql")
   )
+
 
 ;; ============================================================
 ;; toc-org
@@ -186,6 +188,7 @@
   :straight t
   :commands toc-org-enable
   :init (add-hook 'org-mode-hook 'toc-org-enable))
+
 
 
 (provide 'myorg)

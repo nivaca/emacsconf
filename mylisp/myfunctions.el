@@ -396,4 +396,15 @@ the region to title case.  Otherwise, work on the current line."
 ;; ====================================================
 
 
+(defvar nv-diacritics-to-non-diacritics-map
+  (cl-map 'list (lambda (a b) (cons a b))
+          "ÀÁÂÃÄĀĂàáâãäāăÒÓÔÕÖŌŎòóôõöōŏÈÉÊẼËĒĔèéêẽëēĕÌÍÎĨÏĪĬìíîĩïīĭÙÚÛŨÜŪŬùúûũüūŭÑñ"
+          "AAAAAAAaaaaaaaOOOOOOOoooooooEEEEEEEeeeeeeeIIIIIIIiiiiiiiUUUUUUUuuuuuuuNn")
+  )
+
+(defun nv-remove-diacritics-from (string)
+  "Remove the diacritics from STRING."
+  (cl-map 'string (lambda (c) (or (cdr (assoc c nv-diacritics-to-non-diacritics-map)) c)) string))
+
+
 (provide 'myfunctions)

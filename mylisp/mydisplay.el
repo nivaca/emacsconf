@@ -49,7 +49,7 @@
    fit-window-to-buffer-horizontally t
    font-lock-maximum-decoration t
    frame-inhibit-implied-resize t
-   display-line-numbers-type 'relative
+   display-line-numbers-type t  ;; también: 'relative
    minibuffer-message-timeout 10
    ring-bell-function 'ignore
    switch-to-buffer-obey-display-actions t
@@ -116,7 +116,7 @@
            :default-height 180)
           (t
            :default-family "JetBrains Mono NL"
-           :default-weight Medium)))
+           :default-weight Regular)))
   ;; select preset depending on system ------------------
   (pcase (system-name)
     ;; PC escritorio casa
@@ -354,27 +354,24 @@
                     'outline-minor-faces-add-font-lock-keywords))
 
 
-;; ----------------------------------------------------------
-;; (use-package pdf-tools
-;;   :disabled t
-;;   :straight t
-;;   :defer t
-;;   :mode  ("\\.pdf\\'" . pdf-view-mode)
-;;   :commands (pdf-view-mode)
-;;   :config
-;;   (pdf-loader-install)
-;;   (setq-default pdf-view-display-size 'fit-width)
-;;   (setq-default pdf-view-continuous nil)
-;;   (setq-default pdf-annot-activate-created-annotations t)
-;;   ;; (require 'pdf-occur)
-;;   )
-
 
 ;; doom-modeline ---------------------------------
 (use-package doom-modeline
+  :disabled
   :straight t
   :init
   (doom-modeline-mode 1)
+  )
+
+
+;; scroll in modeline ----------------------------
+(use-package mlscroll
+  :straight t
+  :config
+  (setopt mlscroll-shortfun-min-width nil)
+  (mlscroll-mode 1)
+  :hook
+  (server-after-make-frame . mlscroll-mode)
   )
 
 

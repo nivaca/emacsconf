@@ -37,7 +37,13 @@
 ;; ------------------------------------------------------------
 ;; Blackout: the easy way to clean up your Emacs mode lighters
 (use-package blackout
-  :straight t)
+  :straight t
+  :config
+  (blackout 'whole-line-or-region-local-mode)
+  (blackout 'hs-minor-mode)
+  (with-eval-after-load 'whole-line-or-region
+    (blackout 'whole-line-or-region-local-mode))
+  )
 
 
 (provide 'mypackages)

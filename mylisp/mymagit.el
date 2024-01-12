@@ -5,6 +5,13 @@
   :defer t
   :commands (magit-status)
   :bind ("C-c g" . magit-status)
+  :init
+  ;; Close popup when commiting - this stops the commit window
+  ;; hanging around
+  (defadvice git-commit-commit (after delete-window activate)
+    (delete-window))
+  (defadvice git-commit-abort (after delete-window activate)
+    (delete-window))
   :config
   (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
   )

@@ -1,13 +1,13 @@
 ;;; mylisp/mythemes.el -*- lexical-binding: t; -*-
 
-(use-package nordic-night-theme
+(use-package nimbus-theme
   :disabled
-  :straight (:type git :repo "https://git.sr.ht/~ashton314/nordic-night" :branch "main")
-  :init (load-theme 'nordic-night t)
+  :straight t
+  :init (load-theme 'nimbus t)
   )
 
 (use-package vscode-dark-plus-theme
-  ;; :disabled
+  :disabled
   :config
   (load-theme 'vscode-dark-plus t)
   )
@@ -23,14 +23,14 @@
   (doom-tokyo-night-brighter-comments nil)
   :init
   (doom-themes-visual-bell-config)
+  ;; (load-theme 'doom-one t)
   ;; (load-theme 'doom-city-lights t)
-  ;; (load-theme 'doom-tokyo-night t)
-  (load-theme 'doom-one t)
+  (load-theme 'doom-tokyo-night t)
   )
 
 
 (use-package ef-themes
-  :disabled
+  ;; :disabled
   :straight
   (ef-themes :type git :host github :repo "protesilaos/ef-themes")
   :config

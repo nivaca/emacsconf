@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: qt
+# key: qt
+# --
+\enquote{$0}

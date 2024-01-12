@@ -58,6 +58,9 @@
 ;; ================= AUCTEX =====================
 (require 'myauctex)
 
+;; =================  terminal ================
+(require 'myterm)
+
 ;; =================  Parentheses ================
 (require 'myparent)
 
@@ -74,6 +77,7 @@
 ;; ============== My minibuffer completion ===============
 (require 'myselect)
 
+
 ;; =================== minions ===================
 ;; mode manager
 (use-package minions
@@ -82,18 +86,6 @@
   :config
   (minions-mode 1)
   )
-
-
-;; =================== bufler ===================
-;; (use-package bufler
-;;   :defer t
-;;   :straight (bufler
-;;              :host github
-;;              :repo "alphapapa/bufler.el"
-;;              :files (:defaults (:exclude "helm-bufler.el"))
-;;              )
-;;   :hook (after-init . bufler-workspace-mode)
-;;   )
 
 
 ;; =================== helpful ===================
@@ -111,6 +103,9 @@
   (defalias #'describe-variable #'helpful-variable)
   (defalias #'describe-symbol #'helpful-symbol)
 )
+
+;; ================= hyperbole ===================
+(require 'myhyp)
 
 ;; ================= dired etc. ===================
 (require 'mydired)
@@ -170,19 +165,16 @@
 
 
 ;; ================= server ==================
-(use-package server
-  :config
-  (unless (server-running-p)
-    (server-start)))
-
+(unless (server-running-p)
+  (server-start))
 
 ;; =============== Dashboard ===============
 (use-package dashboard
   :init
   (add-hook 'after-init-hook 'dashboard-refresh-buffer)
   :config
-  (setq dashboard-items '((bookmarks  . 5)
-                          (recents . 15)
+  (setq dashboard-items '((bookmarks  . 10)
+                          (recents . 5)
                           ;; (registers . 14)
                           ))
 
@@ -245,7 +237,6 @@
 ;;            gcs-done))
 
 ;; (add-hook 'emacs-startup-hook #'nv-display-startup-time)
-
 
 
 ;; ============= My display configuration ==========

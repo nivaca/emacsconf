@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: edtext
+# key: edt
+# binding: C-c C-c C-e
+# --
+\edtext{`yas-selected-text`}
+{
+  \footnote{}
+}

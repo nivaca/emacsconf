@@ -21,7 +21,8 @@
                     )
   :init
   (setq-default TeX-master nil)
-  ;; :config
+  :config
+  (flymake-mode) ;; <- This line makes the trick of disabling flymake in python mode!
   :custom
   (TeX-auto-save t)
   (TeX-parse-self t)

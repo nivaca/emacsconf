@@ -1,0 +1,4 @@
+#name : correction-substitution
+#key: c-s
+# --
+wit="#$1" type="correction-substitution"

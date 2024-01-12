@@ -55,7 +55,7 @@
         initial-major-mode 'lisp-mode
         initial-scratch-message nil)
 
-(setq-default major-mode 'lisp-mode)
+(setq-default initial-major-mode 'emacs-lisp-mode)
 
 ;; Get rid of "For information about GNU Emacs..." message at startup, unless
 ;; we're in a daemon session, where it'll say "Starting Emacs daemon." instead,

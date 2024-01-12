@@ -13,6 +13,7 @@
   ;; (global-set-key (quote [S-f3]) 'kmacro-end-and-call-macro)
 
   (global-set-key (quote [f4]) 'consult-line)
+  (global-set-key (quote [S-f4]) 'occur)
   
   ;; (global-set-key (quote [f5]) 'org-mode)
   ;; (global-set-key (quote [f6]) 'lisp-mode)
@@ -27,7 +28,7 @@
   (global-set-key (quote [f8]) 'dired)
   (global-unset-key (quote [f9]))
   (global-set-key (quote [f10]) 'nv-terminal-here)
-  (global-set-key (quote [S-f10]) 'vterm)
+  (global-set-key (quote [S-f10]) 'eat)
 
   (global-set-key (quote [f12]) 'execute-extended-command)
   (global-set-key (quote [S-f12]) 'eval-expression)

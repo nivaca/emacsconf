@@ -1,46 +1,24 @@
 ;;; mylisp/mylsp.el -*- lexical-binding: t; -*-
 
-(use-package lsp-mode
+(use-package eglot
   :straight t
-  :commands lsp
-  :hook ((LaTeX-mode . lsp)
-         (latex-mode . lsp))
-  :custom
-  (lsp-enable-snippet nil)
-  :config
-  (yas-global-mode nil)
+  :defer t
+  :hook ((latex-mode . eglot-ensure)
+         (LaTeX-mode . eglot-ensure))
+  :bind (:map eglot-mode-map
+              ("C-c C-d" . eldoc)
+              ("C-c C-e" . eglot-rename)
+              ("C-c C-f" . eglot-format-buffer))
   )
 
-
-(use-package lsp-snippet-tempel
-  :straight (lsp-snippet-tempel :type git
-                                :host github
-                                :repo "svaante/lsp-snippet")
-  :config
-  (when (featurep 'lsp-mode)
-    ;; Initialize lsp-snippet -> tempel in lsp-mode
-    (lsp-snippet-tempel-lsp-mode-init))
-  (when (featurep 'eglot)
-    ;; Initialize lsp-snippet -> tempel in eglot
-    (lsp-snippet-tempel-eglot-init)))
+(use-package consult-eglot
+  :straight t)
 
 
-;; yasnippet
-(use-package yasnippet
-  :disabled
-  :straight t
-  :config
-  (yas-global-mode -1)
-  )
+;; (use-package eglot-tempel
+;;   :disabled
+;;   :straight t
+;;   :after eglot
+;;   )
 
-
-;; treesit
-(use-package treesit-auto
-  :disabled
-  :straight t 
-  :custom
-  (treesit-auto-install 'prompt)
-  :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode))
 (provide 'mylsp)

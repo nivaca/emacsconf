@@ -43,13 +43,16 @@
 ;; Required in Fedora: enchant2-devel, pkgconf
 (use-package jinx
   :straight t
-  ;; :hook ((LaTeX-mode . jinx-mode)
-  ;;        (latex-mode . jinx-mode)
-  ;;        (markdown-mode . jinx-mode)
-  ;;        (org-mode . jinx-mode)
-  ;;        )
+  :hook ((LaTeX-mode . jinx-mode)
+         (latex-mode . jinx-mode)
+         ;; (markdown-mode . jinx-mode)
+         ;; (org-mode . jinx-mode)
+         )
   ;; :hook (emacs-startup . global-jinx-mode)
-  :bind ([remap ispell-word] . jinx-correct)
+  :config
+  (blackout 'jinx-mode)
+  :bind
+  ([remap ispell-word] . jinx-correct)
 )
 
 

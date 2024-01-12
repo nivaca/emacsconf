@@ -1,0 +1,4 @@
+#name : variation-inversion
+#key: v-i
+# --
+wit="#$1" type="variation-inversion"
