@@ -105,7 +105,7 @@
 )
 
 ;; ================= hyperbole ===================
-(require 'myhyp)
+;; (require 'myhyp)
 
 ;; ================= dired etc. ===================
 (require 'mydired)

@@ -7,6 +7,7 @@
              ("--force-with-lease"))
  (nv-test nil)
  (nv-tr-test nil)
+ (nv-xml-snippets nil)
  (transient:tsc-layout-dynamic-descriptions:switch= "dfd")
  (tsc-hello nil)
  (tsc-layout-descriptions nil)

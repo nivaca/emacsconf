@@ -63,10 +63,12 @@
 ;; ===============  Yasnippet  ===============
 (use-package yasnippet
   :straight t
-  :blackout t
   :functions yas-global-mode
   :config
+  (require 'warnings)
+  (add-to-list 'warning-suppress-types '(yasnippet backquote-change))
   (setq
+   yas-use-menu nil
    yas-verbosity 3
    yas-indent-line nil
    yas-wrap-around-region t
@@ -74,8 +76,10 @@
                             '("~/emacs/snippets"))
    )
   (yas-global-mode t)
+  (blackout 'yas-minor-mode)
   (yas-reload-all)
   )
+
 
 
 

@@ -7,8 +7,11 @@
   :mode ("\\.xml$" . nxml-mode)
   :custom
   (indent-tabs-mode nil)
+  (tab-width 2)
+  (indent-line-function 'insert-tab)
   (nxml-child-indent 2)
   (nxml-attribute-indent 2)
+  (nxml-in )
   (rng-validate-chunk-size 4000)
   (rng-validate-quick-delay 1)
   (rng-validate-delay 2)

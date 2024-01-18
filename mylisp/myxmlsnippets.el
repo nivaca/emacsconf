@@ -1,0 +1,70 @@
+;;; mylisp/myxmlsnippets.el -*- lexical-binding: t; -*-
+
+(transient-define-prefix nv-xml-snippets ()
+  "Main XML Prefix Menu"
+  ["Insert:"
+    ("a"
+     "appartus entry"
+     nv-xml-apparatus-prefixes)
+
+    ("s"
+     "search snippet"
+     (lambda () (interactive)
+       (yas-insert-snippet))
+     :transient nil)
+    
+    ]
+  )
+
+(transient-define-prefix nv-xml-apparatus-prefixes ()
+  "XML entries for critical apparatus."
+  [
+   ["Insert apparatus:"
+    ("a"
+     "normal apparatus"
+     (lambda () (interactive)
+       (yas-expand-snippet (yas-lookup-snippet "app-entry"))
+       )
+     :transient nil)
+    
+    ("e"
+     "empty lemma"
+     (lambda () (interactive)
+       (yas-expand-snippet (yas-lookup-snippet "app-empty-lem"))
+       )
+     :transient nil)
+    
+    ("r"
+     "empty reading"
+     (lambda () (interactive)
+       (yas-expand-snippet (yas-lookup-snippet "app-empty-rdg"))
+       )
+     :transient nil)]
+
+
+   [("i"
+     "variation-inversion"
+     (lambda () (interactive)
+       (yas-expand-snippet (yas-lookup-snippet "app-inversion"))
+       )
+     :transient nil)
+    
+    ("o"
+     "variation-orthography"
+     (lambda () (interactive)
+       (yas-expand-snippet (yas-lookup-snippet "app-var-ort"))
+       )
+     :transient nil)
+
+    ("t"
+     "variation-orthography: t/c"
+     (lambda () (interactive)
+       (yas-expand-snippet (yas-lookup-snippet "app-var-ort-t/c"))
+       )
+     :transient nil)]
+   
+    ]
+)
+
+
+(provide 'myxmlsnippets)

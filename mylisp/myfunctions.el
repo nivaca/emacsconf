@@ -407,4 +407,37 @@ the region to title case.  Otherwise, work on the current line."
   (cl-map 'string (lambda (c) (or (cdr (assoc c nv-diacritics-to-non-diacritics-map)) c)) string))
 
 
+; =========================================================
+;; (defun nv-random-id ()
+;;   "Generates a random alphanumerical XML id: aaa_bbb_ccc."
+;;   (mapconcat
+;;    (lambda (_)
+;;      (mapconcat
+;;       (lambda (_)
+;;         (let* ((alnum "abcdefghijklmnopqrstuvwxyz0123456789")
+;;                (i (% (abs (random)) (length alnum))))
+;;           (substring alnum i (1+ i))))
+;;       (number-sequence 1 3) ""))
+;;    (number-sequence 1 3) "_")
+;;   )
+(defun nv-random-id ()
+  "Generates a random alphanumerical XML id: aaa_bbb_ccc."
+  (mapconcat
+   (lambda (_)
+     (mapconcat
+      (lambda (_)
+        (let* ((alnum "abcdefghijklmnopqrstuvwxyz0123456789")
+               (random-char (elt alnum (random (length alnum))))
+               (result (char-to-string random-char)))
+          result))
+      (number-sequence 1 3) ""))
+   (number-sequence 1 3) "_"))
+
+
+(defun nv-insert-random-id ()
+  (interactive)
+  (insert (nv-random-id))
+  )
+
+  
 (provide 'myfunctions)

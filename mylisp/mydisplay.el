@@ -44,18 +44,19 @@
 (use-package emacs  ;; various settings ---------------
   :config
   (setopt
-   column-number-mode t
+   display-line-numbers-type t  ;; también: 'relative
    fit-frame-to-buffer t
    fit-window-to-buffer-horizontally t
    font-lock-maximum-decoration t
    frame-inhibit-implied-resize t
-   display-line-numbers-type t  ;; también: 'relative
    minibuffer-message-timeout 10
    ring-bell-function 'ignore
+   pixel-scroll-precision-mode 1
    switch-to-buffer-obey-display-actions t
    truncate-partial-width-windows nil
    visible-bell nil
    x-underline-at-descent-line nil
+   column-number-mode t
    )
 
   ;; Don't resize emacs in steps, it looks weird.
@@ -116,6 +117,8 @@
            :default-height 180)
           (t
            :default-family "JetBrains Mono NL"
+           :fixed-pitch-serif-family "JetBrains Mono NL"
+           :variable-pitch-family "Ubuntu"
            :default-weight Regular)))
   ;; select preset depending on system ------------------
   (pcase (system-name)

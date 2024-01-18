@@ -1,12 +1,10 @@
 # -*- mode: snippet -*-
-# name : app-entry
-# key: app-entry
+# name : app-empty-rdg
+# key: app-empty-rdg
 # --
 <app xml:id="`(nv-insert-random-id)`">
   <lem wit="#$1">
     `yas-selected-text`
   </lem>
-  <rdg wit="#$2">
-    
-  </rdg>
+  <rdg wit="#$2" type="variation-absent"/>
 </app>

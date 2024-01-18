@@ -1,12 +1,14 @@
 # -*- mode: snippet -*-
-# name : app-entry
-# key: app-entry
+# name : app-var-ort-t/c
+# key: app-var-ort-t/c
 # --
 <app xml:id="`(nv-insert-random-id)`">
   <lem wit="#$1">
     `yas-selected-text`
   </lem>
-  <rdg wit="#$2">
-    
+  <rdg wit="#$2"
+    type="variation-orthography"
+    ana="t/c">
+    $3
   </rdg>
 </app>

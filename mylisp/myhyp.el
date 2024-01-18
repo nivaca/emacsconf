@@ -5,8 +5,8 @@
   (hyperbole
    :host nil
    :repo "https://git.savannah.gnu.org/git/hyperbole.git")
-  ;; :config
-  ;; (hyperbole-mode 1)
+  :config
+  (hyperbole-mode nil)
   `:bind
   ("C-=" . hui-select-thing)
   )
