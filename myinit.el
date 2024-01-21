@@ -6,8 +6,8 @@
 (defconst IS-LINUX   (eq system-type 'gnu/linux))
 
 ;; for all computers
-(setq user-emacs-directory "~/emacs/")
-(setq user-lisp-directory "~/emacs/mylisp/")
+(setq user-emacs-directory (expand-file-name "~/emacs/"))
+(setq user-lisp-directory (expand-file-name "mylisp/" user-emacs-directory))
 
 (let ((default-directory user-emacs-directory))
   (normal-top-level-add-subdirs-to-load-path)
@@ -70,7 +70,6 @@
 ;; ===================== ediff ==========================
 (setopt ediff-split-window-function 'split-window-horizontally)
 
-
 ;; ================= completions ==================
 (require 'mycompletions)
 
@@ -112,7 +111,6 @@
 
 ;; ================= Projectile ===================
 ;; (require 'myprojectile)
-
 
 ;; ================= markdown ===================
 (require 'mymarkdown)

@@ -13,7 +13,7 @@
   )
 
 (use-package doom-themes
-  :disabled
+  ;; :disabled
   :straight t
   :custom
   (doom-nord-brighter-comments t)
@@ -25,12 +25,13 @@
   (doom-themes-visual-bell-config)
   ;; (load-theme 'doom-one t)
   ;; (load-theme 'doom-city-lights t)
-  (load-theme 'doom-tokyo-night t)
+  ;; (load-theme 'doom-tokyo-night t)
+  (load-theme 'doom-dracula t)
   )
 
 
 (use-package ef-themes
-  ;; :disabled
+  :disabled
   :straight
   (ef-themes :type git :host github :repo "protesilaos/ef-themes")
   :config

@@ -52,5 +52,6 @@
               )
   ) ;; end use-package
 
+(require 'myxmlsnippets)
 
 (provide 'myxml)

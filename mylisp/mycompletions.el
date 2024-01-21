@@ -65,16 +65,22 @@
   :straight t
   :functions yas-global-mode
   :config
+  (add-to-list 'yas-snippet-dirs
+               (convert-standard-filename
+                (expand-file-name
+                 "etc/yasnippet/snippets/"
+                 user-emacs-directory))
+               )
+  
   (require 'warnings)
   (add-to-list 'warning-suppress-types '(yasnippet backquote-change))
   (setq
    yas-use-menu nil
    yas-verbosity 3
    yas-indent-line nil
-   yas-wrap-around-region t
-   yas-snippet-dirs (append yas-snippet-dirs
-                            '("~/emacs/snippets"))
-   )
+   yas-wrap-around-region t)
+   yas-snippet-dirs (append yas-snippet-dirs '("~/emacs/snippets")
+    )
   (yas-global-mode t)
   (blackout 'yas-minor-mode)
   (yas-reload-all)

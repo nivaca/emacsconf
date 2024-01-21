@@ -41,8 +41,11 @@
        )
      :transient nil)]
 
+   
 
-   [("i"
+   [[""] ;;empty line
+
+    ("i"
      "variation-inversion"
      (lambda () (interactive)
        (yas-expand-snippet (yas-lookup-snippet "app-inversion"))
