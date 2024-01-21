@@ -46,7 +46,7 @@
 
 ;; =============== Flycheck ==================
 ;; (use-package flycheck
-;;   :straight t
+;;   ;; :straight t
 ;;   :diminish flycheck-mode
 ;;   :config
 ;;   (setq flycheck-global-modes nil)
@@ -80,7 +80,7 @@
 ;; =================== minions ===================
 ;; mode manager
 (use-package minions
-  :straight t
+  ;; :straight t
   :defer t
   :config
   (minions-mode 1)
@@ -91,7 +91,7 @@
 ;; Helpful is an alternative to the built-in Emacs
 ;; help that provides much more contextual information.
 (use-package helpful
-  :straight t
+  ;; :straight t
   :bind
   (("C-h f" . helpful-callable)
   ("C-h v" . helpful-variable)
@@ -123,7 +123,7 @@
 
 ;; ================= pdf-tools ===================
 ;; (use-package pdf-tools
-;;   :straight t
+;;   ;; :straight t
 ;;   :defer t
 ;;   :commands (pdf-loader-install)
 ;;   :mode "\\.pdf\\'"
@@ -143,7 +143,7 @@
 ;; ===== Garbage Collector Magic Hack ====
 (use-package gcmh
   :diminish
-  :straight t
+  ;; :straight t
   :custom
   ;; Adopt a sneaky garbage collection strategy of waiting
   ;; until idle time to collect; staving off the collector
