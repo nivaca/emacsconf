@@ -7,14 +7,16 @@
 (use-package consult
   :straight t
   :demand t
-  :bind (("C-s" . consult-line)
-         ("C-x b" . consult-buffer)
-         ("C-x m" . consult-bookmark)
-         ("M-y" . consult-yank-from-kill-ring)
-         ("M-g i" . consult-imenu)
-         ("C-x C-r" . consult-recent-file)
-         :map minibuffer-local-map
-         ("C-r" . consult-history))
+  :bind
+  (("C-s" . consult-line)
+   ("C-x b" . consult-buffer)
+   ("C-x m" . consult-bookmark)
+   ("M-y" . consult-yank-from-kill-ring)
+   ("M-o" . consult-imenu)
+   ("C-o" . consult-outline)
+   ("C-x C-r" . consult-recent-file)
+   :map minibuffer-local-map
+   ("C-r" . consult-history))
   :custom
   (completion-in-region-function #'consult-completion-in-region)
   ;; :config
@@ -54,6 +56,8 @@
   (marginalia-annotators
    '(marginalia-annotators-heavy
      marginalia-annotators-light nil))
+  (marginalia-max-relative-age 0)
+  (marginalia-align 'right)
   :init
   (marginalia-mode)
   )
@@ -76,7 +80,7 @@
   )
 
 
-;; -------------------------- Embark ------------------------------
+;; ---------------------- Embark -------------------------
 ;; Emacs Mini-Buffer Actions Rooted in Keymaps.
 ;; This package provides a sort of right-click contextual menu for Emacs,
 ;; accessed through the embark-act command (which you should bind to a

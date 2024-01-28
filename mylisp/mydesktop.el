@@ -76,64 +76,34 @@
   :straight t
   :config
   (pcase (system-name)
-    ;; PC escritorio casa
+    ;;
+    ;;; PC escritorio casa
     ("nivaca-pc" (setq recentf-save-file (concat user-emacs-directory "tmp/pc/recentf")))
-    ;; XPS 13
+    ;;
+    ;;; XPS 13
     ("nivaca-xps" (setq recentf-save-file (concat user-emacs-directory "tmp/xps/recentf")))
     )
-  ;; Mac oficina
+  ;;
+  ;;; Mac oficina
   (when IS-MAC
     (setq recentf-save-file (concat user-emacs-directory "tmp/mac/recentf")))
   ;;
-  (setq recentf-max-saved-items 300
-        recentf-exclude '("/auto-install/" ".recentf" "/repos/" "/elpa/"
-                          "\\.mime-example" "\\.ido.last" "COMMIT_EDITMSG"
-                          ".gz"
-                          "~$" "/tmp/pc/" "/tmp/xps/" "/tmp/dell/" "/tmp/mac/" "/ssh:" "/sudo:" "/scp:")
-        ;;recentf-auto-cleanup 600
-        )
-  (when (not noninteractive) (recentf-mode 1))
+  ;;
+  (setopt recentf-max-menu-items 200
+          recentf-max-saved-items 200
+          recentf-exclude
+          '("/auto-install/" ".recentf" "/repos/" "/elpa/"
+            ".gz" "~$" "/tmp/pc/" "/tmp/xps/" "/tmp/dell/"
+            "/tmp/mac/" "/ssh:" "/sudo:" "/scp:")
+          )
+  ;;
+  (recentf-mode t)
+  ;;
+  :bind ("C-x m" . consult-recent-file)
+)
 
-  (defun recentf-save-list ()
-    "Save the recent list.
-    Load the list from the file specified by `recentf-save-file',
-    merge the changes of your current session, and save it back to
-    the file."
-    (interactive)
-    (let ((instance-list (copy-sequence recentf-list)))
-      (recentf-load-list)
-      (recentf-merge-with-default-list instance-list)
-      (recentf-write-list-to-file)))
 
-  (defun recentf-merge-with-default-list (other-list)
-    "Add all items from `other-list' to `recentf-list'."
-    (dolist (oitem other-list)
-      ;; add-to-list already checks for equal'ity
-      (add-to-list 'recentf-list oitem)))
 
-  (defun recentf-write-list-to-file ()
-    "Write the recent files list to file.
-    Uses `recentf-list' as the list and `recentf-save-file' as the
-    file to write to."
-    (condition-case error
-        (with-temp-buffer
-          (erase-buffer)
-          (set-buffer-file-coding-system recentf-save-file-coding-system)
-          (insert (format recentf-save-file-header (current-time-string)))
-          (recentf-dump-variable 'recentf-list recentf-max-saved-items)
-          (recentf-dump-variable 'recentf-filter-changer-current)
-          (insert "\n \n;;; Local Variables:\n"
-                  (format ";;; coding: %s\n" recentf-save-file-coding-system)
-                  ";;; End:\n")
-          (write-file (expand-file-name recentf-save-file))
-          (when recentf-save-file-modes
-            (set-file-modes recentf-save-file recentf-save-file-modes))
-          nil)
-      (error
-       (warn "recentf mode: %s" (error-message-string error)))))
-  )
-
-(recentf-mode t)
 
 
 

@@ -88,7 +88,7 @@
   ;; (global-unset-key "\C-y") ; yank
   ;; (global-unset-key "\C-w") ; kill-ring-save
 
-  ;; ============ previous and next buffer with mouse wheel ============
+  ;; ====== previous and next buffer with mouse wheel =======
   (global-set-key (kbd "<s-mouse-5>") 'previous-buffer);
   (global-set-key (kbd "<s-mouse-4>") 'next-buffer);
 

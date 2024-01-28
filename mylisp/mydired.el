@@ -56,26 +56,9 @@
   )
 
 
-;; ;; =====================================================================
-;; ;;                                 Neotree
-;; ;; =====================================================================
-;; (use-package neotree
-;;   :disabled t
-;;   :straight (neotree :type git :host github :repo "jaypei/emacs-neotree")
-;;   :bind ("<f5>" . 'neotree-toggle)
-;;   :init
-;;   ;; slow rendering
-;;   (setq inhibit-compacting-font-caches t)
-
-;;   ;; set icons theme
-;;   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-
-;;   ;; Every time when the neotree window is opened, let it find current file and jump to node
-;;   (setq neo-smart-open t)
-
-;;   ;; show hidden files
-;;   (setq-default neo-show-hidden-files t)
-;; )
+;; ===================== dired+ =============================
+(use-package dired+
+      :straight t)
 
 
 (provide 'mydired)
