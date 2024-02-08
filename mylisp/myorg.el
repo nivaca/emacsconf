@@ -140,9 +140,6 @@
   )
 
 
-(use-package ob-tangle
-  :straight
-)
 
 ;; =========================================================
 ;; org-remark
@@ -152,26 +149,16 @@
   (org-remark-create "green"
                      '(:background "green" :foreground "blue")
                      '(CATEGORY "important"))
+  :after org
   )
 
 ;; ============================================================
 ;; org-modern (minad)
 (use-package org-modern
   :disabled t
+  :after org
   :config
   (global-org-modern-mode)
-  )
-
-
-;; ============================================================
-;; org-super-star
-(use-package org-superstar
-  :disabled t
-  :straight t
-  :config
-  ;; Removes gap when you add a new heading
-  (setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
-  :hook (org-mode . org-superstar-mode)
   )
 
 
@@ -179,6 +166,7 @@
 ;; org-ql
 (use-package org-ql
   :straight (org-ql :host github :repo "alphapapa/org-ql")
+  :after org
   )
 
 
@@ -186,9 +174,18 @@
 ;; toc-org
 (use-package toc-org
   :straight t
+  :after org
   :commands toc-org-enable
   :init (add-hook 'org-mode-hook 'toc-org-enable))
 
 
+;; =============================================================
+;; org-tree-side
+(use-package org-side-tree
+  :straight (org-side-tree
+  :host github
+  :repo "localauthor/org-side-tree")
+  :after org
+  ) 
 
 (provide 'myorg)

@@ -162,9 +162,14 @@
 (require 'myaliases)
 
 
+;; ================= epubs ==================
+(require 'myepub)
+
 ;; ================= server ==================
+(require 'server)
 (unless (server-running-p)
-  (server-start))
+    (server-start))
+
 
 ;; =============== Dashboard ===============
 (use-package dashboard
@@ -199,6 +204,8 @@
         dashboard-recentf-item-format "%s  %s"
         dashboard-projects-item-format "%s  %s")
   (dashboard-setup-startup-hook)
+  :bind
+  ("s-d" . dashboard-open)
   ;; :general
   ;; (general-define-key :keymaps 'dashboard-mode-map "e" nil)
   )

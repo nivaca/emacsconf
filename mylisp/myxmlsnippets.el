@@ -1,20 +1,37 @@
 ;;; mylisp/myxmlsnippets.el -*- lexical-binding: t; -*-
 
+(defvar allwits "#C #A #B #D #E #F #G #H #I")
+
 (transient-define-prefix nv-xml-snippets ()
   "Main XML Prefix Menu"
   ["Insert:"
-    ("a"
-     "appartus entry"
-     nv-xml-apparatus-prefixes)
+   ("a"
+    "appartus entry"
+    nv-xml-apparatus-prefixes)
 
-    ("s"
-     "search snippet"
-     (lambda () (interactive)
-       (yas-insert-snippet))
-     :transient nil)
-    
-    ]
+   ("s"
+    "search snippet"
+    (lambda () (interactive)
+      (yas-insert-snippet))
+    :transient nil)
+
+   ("w"
+    "insert all other witnesses"
+    (lambda () (interactive)
+      (insert allwits)
+      )
+    :transient nil)
+
+   ("t"
+    "wrap element in tags"
+    (lambda () (interactive)
+      (nv-wrap-element-with-tag ())
+      )
+    :transient nil)
+
+   ]
   )
+
 
 (transient-define-prefix nv-xml-apparatus-prefixes ()
   "XML entries for critical apparatus."
@@ -39,7 +56,8 @@
      (lambda () (interactive)
        (yas-expand-snippet (yas-lookup-snippet "app-empty-rdg"))
        )
-     :transient nil)]
+     :transient nil)
+    ]
 
    
 
@@ -66,8 +84,8 @@
        )
      :transient nil)]
    
-    ]
-)
+   ]
+  )
 
 
 (provide 'myxmlsnippets)

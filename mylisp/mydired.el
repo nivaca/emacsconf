@@ -12,9 +12,9 @@
   :init
   ;; (add-hook 'dired-mode-hook #'all-the-icons-dired-mode)
   (add-hook 'dired-mode-hook
-      (lambda ()
-        (dired-hide-details-mode)
-        (all-the-icons-dired-mode)))
+            (lambda ()
+              (dired-hide-details-mode)
+              (all-the-icons-dired-mode)))
   ;; (define-key dired-mode-map [mouse-2] #'ignore)
   ;; (define-key dired-mode-map (kbd "<mouse-1>") nil)
   ;; (define-key dired-mode-map (kbd "<mouse-2>") nil)
@@ -26,10 +26,10 @@
 ;;   :defer t
 ;;   )
 
-;; (use-package dired-quick-sort
-;;   :straight t
-;;   :defer t
-;;   )
+(use-package dired-quick-sort
+  :straight t
+  :after dired
+  )
 
 
 ;; (use-package dired-subtree
@@ -58,7 +58,7 @@
 
 ;; ===================== dired+ =============================
 (use-package dired+
-      :straight t)
+  :straight t)
 
 
 (provide 'mydired)

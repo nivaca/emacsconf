@@ -26,8 +26,8 @@
 
 
 
-
-;; Remember mini-buffer history --------------------------
+;; =============== savehist ===============
+;; Remember mini-buffer history 
 (use-package savehist
   :straight
   :custom
@@ -104,12 +104,8 @@
 
 
 
-
-
-
 ;; ============== Disable autosave ===============
-(setq auto-save-default nil)
-(setq make-backup-files t)    ; don't make backup files
-
+(setq auto-save-default t)
+(setq make-backup-files t)  
 
 (provide 'mydesktop)

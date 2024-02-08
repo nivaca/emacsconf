@@ -21,12 +21,14 @@
   (doom-dracula-brighter-comments t)
   (doom-city-lights-brighter-comments nil)
   (doom-tokyo-night-brighter-comments nil)
-  :init
+  (doom-dark+-blue-modeline t)
+  (doom-dark+-padded-modeline nil)
+  :config
   (doom-themes-visual-bell-config)
   ;; (load-theme 'doom-one t)
   ;; (load-theme 'doom-city-lights t)
-  ;; (load-theme 'doom-tokyo-night t)
-  (load-theme 'doom-dracula t)
+  (load-theme 'doom-tokyo-night t)
+  ;; (load-theme 'doom-dark+ t)
   )
 
 

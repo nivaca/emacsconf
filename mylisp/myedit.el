@@ -42,26 +42,26 @@
 
 ;; =============== Scrolling ==================
 ;; Vertical Scroll
-(use-package emacs
-  :config
-  (setq scroll-step 1)
-  (setq scroll-margin 1)
-  (setq scroll-conservatively 101)
-  (setq scroll-up-aggressively 0.01)
-  (setq scroll-down-aggressively 0.01)
-  (setq auto-window-vscroll nil)
-  (setq fast-but-imprecise-scrolling nil)
-  (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
-  (setq mouse-wheel-progressive-speed t)
-  ;; Horizontal Scroll
-  (setq hscroll-step 1)
-  (setq hscroll-margin 1)
+;; (use-package emacs
+;;   :config
+;;   (setq scroll-step 1)
+;;   (setq scroll-margin 1)
+;;   (setq scroll-conservatively 101)
+;;   (setq scroll-up-aggressively 0.01)
+;;   (setq scroll-down-aggressively 0.01)
+;;   (setq auto-window-vscroll nil)
+;;   (setq fast-but-imprecise-scrolling nil)
+;;   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+;;   (setq mouse-wheel-progressive-speed t)
+;;   ;; Horizontal Scroll
+;;   (setq hscroll-step 1)
+;;   (setq hscroll-margin 1)
 
-  (when IS-MAC
-    ;; sane trackpad/mouse scroll settings
-    (setq mac-redisplay-dont-reset-vscroll t
-          mac-mouse-wheel-smooth-scroll nil))
-  )
+;;   (when IS-MAC
+;;     ;; sane trackpad/mouse scroll settings
+;;     (setq mac-redisplay-dont-reset-vscroll t
+;;           mac-mouse-wheel-smooth-scroll nil))
+;;   )
 
 
 
@@ -130,14 +130,12 @@
 (use-package crux
   :straight t
   :bind
-  (
-   ("C-a" . crux-move-beginning-of-line)
+  (("C-a" . crux-move-beginning-of-line)
    ("C-e" . move-end-of-line)
    ("<home>" . crux-move-beginning-of-line)
    ("<end>" . move-end-of-line)
    ("C-c d" . crux-duplicate-current-line-or-region)
-   )
-  )
+   ("s-s" . crux-create-scratch-buffer)))
 
 
 ;; =============== expand-region ==============
@@ -296,20 +294,10 @@
 ;; ==============================================================
 ;; Read ePub files
 (use-package nov
+  :disabled t
   :straight t
   :init
   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
-  )
-
-
-
-;; ==============================================================
-(use-package centered-cursor-mode
-  :disabled t
-  :straight t
-  :config
-  (global-centered-cursor-mode)
-  :blackout
   )
 
 

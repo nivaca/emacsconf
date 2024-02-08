@@ -18,7 +18,8 @@
   (nxml-slash-auto-complete-flag t)
   ;;
   :config
-  (defun nv-nxml-surround-region-with-tag (tag-name beg end)
+  ;; (nv-xml-snippets)
+  (defun nv-wrap-element-with-tag (tag-name beg end)
     "Place TAG-NAME around region from BEG to END."
     (interactive "sTag name: \nr")
     (save-excursion
@@ -35,10 +36,12 @@
       (save-excursion
         (save-restriction
           (widen)
-          (while (and (< (point-min) (point)) ;; Doesn't error if point is at beginning of buffer
+          (while (and (< (point-min) (point))
+                      ;; Doesn't error if point is at beginning of buffer
                       (condition-case nil
                           (progn
-                            (nxml-backward-up-element) ; always returns nil
+                            (nxml-backward-up-element)
+                            ;; always returns nil
                             t)
                         (error nil)))
             (setq path (cons (xmltok-start-tag-local-name) path)))
@@ -47,8 +50,10 @@
             (format "/%s" (mapconcat 'identity path "/")))))))
   ;;
   :bind (:map nxml-mode-map
-              ("C-c e" . nv-nxml-surround-region-with-tag)
-              ("C-c w" . nv-nxml-where)
+              ;; ("C-c e" . nv-wrap-element-with-tag)
+              ;; ("C-c w" . nv-nxml-where)
+              ("s-e" . nv-xml-snippets)
+              ("s-w" . nv-xml-snippets)
               )
   ) ;; end use-package
 

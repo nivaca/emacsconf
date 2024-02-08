@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name : straight GH template
+# key: straight
+# --
+
+(use-package `yas-selected-text`
+  :straight ($0
+  :host github
+  :repo "$1")
+    ) 
