@@ -1,0 +1,4 @@
+;;;; -*- mode: lisp-data -*-
+(
+ (:id "sha1:7c3d86377e4938fd2dded2e462c202747baf5c98" :fingerprints ("sha1:08:3f:dc:ba:96:36:3b:43:6f:0a:ac:f4:77:ad:dd:5e:84:55:53:9c") :host "secure.travis-ci.org:443" :conditions (:expired :invalid :verify-cert))
+)

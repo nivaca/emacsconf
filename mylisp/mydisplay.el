@@ -119,7 +119,7 @@
            :default-height 131
            :line-spacing 0.1)
           (xps
-           :default-height 130
+           :default-height 140
            :line-spacing 0.1)
           (mac
            :default-family "JetBrains Mono NL"
@@ -314,13 +314,13 @@
 ;; ---------------------------------------------------------------
 ;;                             Tabs
 ;; ---------------------------------------------------------------
-(use-package emacs
-  :custom
-  (tab-line-new-button-show nil)  ;; do not show add-new button
-  (tab-line-close-button-show nil)  ;; do not show close button
-  (tab-line-separator " | ")  ;; delimitation between tabs
-  :config
-  (global-tab-line-mode t))
+;; (use-package emacs
+;;   :custom
+;;   (tab-line-new-button-show nil)  ;; do not show add-new button
+;;   (tab-line-close-button-show nil)  ;; do not show close button
+;;   (tab-line-separator " | ")  ;; delimitation between tabs
+;;   :config
+;;   (global-tab-line-mode t))
 
 
 

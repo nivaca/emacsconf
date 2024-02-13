@@ -1,5 +1,6 @@
 ;;; mylisp/mydisplay.el -*- lexical-binding: t; -*-
 
+;; ==================== Jinx ====================
 ;; Required in Fedora: enchant2-devel, pkgconf
 (use-package jinx
   :straight t
@@ -7,8 +8,8 @@
          (latex-mode . jinx-mode)
          ;; (markdown-mode . jinx-mode)
          ;; (org-mode . jinx-mode)
+         ;; (emacs-startup . global-jinx-mode)
          )
-  ;; :hook (emacs-startup . global-jinx-mode)
   :config
   (blackout 'jinx-mode)
   :bind

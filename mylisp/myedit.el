@@ -40,7 +40,15 @@
   )
 
 
+
 ;; =============== Scrolling ==================
+(use-package smooth-scroll
+  :straight t
+  :config
+  (smooth-scroll-mode t)
+  :blackout
+  )
+
 ;; Vertical Scroll
 ;; (use-package emacs
 ;;   :config

@@ -38,40 +38,11 @@
   )
 
 
-;; ;; --------------- Temple templating engine -------------
-;; (use-package tempel
-;;   :disabled
-;;   ;; templates are stored in ~/emacs/templates
-;;   ;;
-;;   :bind (("M-+" . tempel-complete) ;; Alternative tempel-expand
-;;          ("M-*" . tempel-insert))
-;;   :init
-;;   ;; Setup completion at point
-;;   (defun tempel-setup-capf ()
-;;     (setq-local completion-at-point-functions
-;;                 (cons #'tempel-expand
-;;                       completion-at-point-functions)))
-;;   (add-hook 'prog-mode-hook 'tempel-setup-capf)
-;;   (add-hook 'text-mode-hook 'tempel-setup-capf)
-;;   ;; Optionally make the Tempel templates available to Abbrev,
-;;   ;; either locally or globally. `expand-abbrev' is bound to C-x '.
-;;   (add-hook 'prog-mode-hook #'tempel-abbrev-mode)
-;;   (global-tempel-abbrev-mode)
-;;   )
-
-
 ;; ===============  Yasnippet  ===============
 (use-package yasnippet
   :straight t
   :functions yas-global-mode
   :config
-  (add-to-list 'yas-snippet-dirs
-               (convert-standard-filename
-                (expand-file-name
-                 "etc/yasnippet/snippets/"
-                 user-emacs-directory))
-               )
-  
   (require 'warnings)
   (add-to-list 'warning-suppress-types '(yasnippet backquote-change))
   (setq

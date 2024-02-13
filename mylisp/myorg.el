@@ -31,14 +31,13 @@
         org-babel-default-header-args '((:eval . "never-export"))
         org-confirm-babel-evaluate t ;; nil
         org-cycle-separator-lines 2
-        org-descriptive-links nil
+        ;; org-link-descriptive t 
         org-edit-src-content-indentation 2
         org-export-with-smart-quotes t
         org-fontify-quote-and-verse-blocks t
         org-fontify-whole-heading-line t
         org-hide-block-startup nil
         org-hide-emphasis-markers nil
-        org-hide-emphasis-markers t
         org-image-actual-width 300
         org-indent-indentation-per-level 2
         org-indent-mode-turns-on-hiding-stars nil
@@ -53,6 +52,7 @@
         org-cycle-separator-lines 1
         org-catch-invisible-edits 'smart ;; 'show-and-error 
         )
+    (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
   (org-babel-do-load-languages
    'org-babel-load-languages
    '(
@@ -185,7 +185,37 @@
   :straight (org-side-tree
   :host github
   :repo "localauthor/org-side-tree")
+  :after org) 
+
+;; ============================================================
+;; org-appear
+(use-package org-appear
+  :straight (org-appear
+             :type git
+             :host github
+             :repo "awth13/org-appear")
   :after org
-  ) 
+  :config
+  (setopt
+   org-hide-emphasis-markers t
+   org-appear-autoemphasis t
+   org-pretty-entities t
+   org-appear-autoentities t
+   org-appear-autokeywords t
+   org-link-descriptive t ;; = org-descriptive-link (obsolete)
+   org-appear-autolinks t
+   org-appear-autosubmarkers t
+   org-appear-delay 0
+   org-appear-inside-latex nil
+   org-appear-trigger 'always
+   ;; org-hidden-keywords
+   )
+  :hook
+  (org-mode . org-appear-mode)
+  )
+
+
+
 
 (provide 'myorg)
+;; myorg.el ends here

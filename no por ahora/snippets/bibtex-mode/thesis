@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: thesis
+# key: @th
+# --
+@thesis{,
+  Title = {},
+  Author = {},
+  Type = {},
+  Institution = {},
+  Year = {},
+}

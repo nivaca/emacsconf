@@ -18,6 +18,8 @@
   ;; (define-key dired-mode-map [mouse-2] #'ignore)
   ;; (define-key dired-mode-map (kbd "<mouse-1>") nil)
   ;; (define-key dired-mode-map (kbd "<mouse-2>") nil)
+  :bind
+  ("s-d" . dired)
   )
 
 

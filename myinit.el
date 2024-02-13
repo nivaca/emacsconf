@@ -70,11 +70,11 @@
 ;; ===================== ediff ==========================
 (setopt ediff-split-window-function 'split-window-horizontally)
 
-;; ================= completions ==================
+;; ================= yasnippet ==================
 (require 'mycompletions)
 
 ;; ============== My minibuffer completion ===============
-(require 'myselect)
+(require 'myconsult)
 
 
 ;; =================== minions ===================
@@ -104,13 +104,16 @@
 )
 
 ;; ================= hyperbole ===================
-;; (require 'myhyp)
+;; (require 'myhyp) ;; no por ahora...
 
 ;; ================= dired etc. ===================
 (require 'mydired)
 
 ;; ================= Projectile ===================
-;; (require 'myprojectile)
+;; (require 'myprojectile) ;; no por ahora...
+
+;; ================= lsp-mode ===================
+;; (require 'mylsp)  ;; no por ahora..
 
 ;; ================= markdown ===================
 (require 'mymarkdown)
@@ -118,8 +121,8 @@
 ;; ================= XML ===================
 (require 'myxml)
 
-;; ================= lsp-mode ===================
-(require 'mylsp)
+;; ================= Python ===================
+(require 'mypython)
 
 ;; ================= pdf-tools ===================
 ;; (use-package pdf-tools
@@ -173,11 +176,12 @@
 
 ;; =============== Dashboard ===============
 (use-package dashboard
+  ;; :disabled
   :init
-  (add-hook 'after-init-hook 'dashboard-refresh-buffer)
+  (add-hook 'after-init-hook 'dashboard-open)
   :config
   (setq dashboard-items '((bookmarks  . 10)
-                          (recents . 5)
+                          (recents . 7)
                           ;; (registers . 14)
                           ))
 

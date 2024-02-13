@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: latin
+# key: lat
+# --
+\latin{$0}
