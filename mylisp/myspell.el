@@ -11,6 +11,7 @@
          ;; (emacs-startup . global-jinx-mode)
          )
   :config
+  (cl-pushnew 'font-lock-comment-face (alist-get 'tex-mode jinx-exclude-faces))
   (blackout 'jinx-mode)
   :bind
   ([remap ispell-word] . jinx-correct))

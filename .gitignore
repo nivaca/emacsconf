@@ -4,6 +4,7 @@
 /tmp/**/*
 /eshell/**/*
 /elpa/**/*
+/url/**/*
 /cache/**/*
 /cache/
 /eln-cache/**/*
@@ -17,4 +18,3 @@
 org-roam.db
 .mc-lists.el
 .org-id-locations
-/url/**/*

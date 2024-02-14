@@ -1,5 +1,23 @@
 ;;; mylisp/mythemes.el -*- lexical-binding: t; -*-
 
+(use-package circadian
+  :straight t
+  :config
+  (setq circadian-themes
+        '(("7:00" . ef-spring)
+          ("19:00" . ef-maris-dark)))
+  (circadian-setup))
+
+
+(use-package ef-themes
+  ;; :disabled
+  :straight
+  (ef-themes :type git :host github :repo "protesilaos/ef-themes")
+  ;; :config
+  ;; (load-theme 'ef-maris-dark t)
+  ;; (load-theme 'ef-spring t)
+  )
+
 (use-package nimbus-theme
   :disabled
   :straight t
@@ -13,7 +31,7 @@
   )
 
 (use-package doom-themes
-  ;; :disabled
+  :disabled
   :straight t
   :custom
   (doom-nord-brighter-comments t)
@@ -29,15 +47,6 @@
   ;; (load-theme 'doom-city-lights t)
   (load-theme 'doom-tokyo-night t)
   ;; (load-theme 'doom-dark+ t)
-  )
-
-
-(use-package ef-themes
-  :disabled
-  :straight
-  (ef-themes :type git :host github :repo "protesilaos/ef-themes")
-  :config
-  (load-theme 'ef-maris-dark t)
   )
 
 

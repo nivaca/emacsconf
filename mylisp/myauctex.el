@@ -1,30 +1,26 @@
 ;;; mylisp/myauctex.el -*- lexical-binding: t; -*-
 
-(defun nv-setup-auctex ()
-  "Sets AUCTeX up."
-  (interactive)
-  (message "Setting up AUCTeX...")
-  (reftex-plug-into-AUCTeX)
-  (LaTeX-preview-setup)
-  (jinx-mode)
-  (outline-minor-mode)
-  (hs-minor-mode)
-  )
-
 (use-package tex
   :straight auctex
+  :ensure auctex
   :mode
   ("\\.tex\\'" . latex-mode)
-  ("\\.ltx\\'" . latex-mode)
+  ;; ("\\.ltx\\'" . latex-mode)
   :commands
-  (latex-mode
-   LaTeX-mode
-   ;; TeX-mode
-   )
-  :hook
-  (LaTeX-mode . nv-setup-auctex)
+  (latex-mode LaTeX-mode TeX-mode)
   :init
   (setq-default TeX-master nil)
+  (defun nv-setup-auctex ()
+    "Sets AUCTeX up."
+    (interactive)
+    (message "Setting up AUCTeX...")
+    ;; (LaTeX-preview-setup)
+    (jinx-mode)
+    (outline-minor-mode)
+    (hs-minor-mode)
+    )
+  :hook
+  (LaTeX-mode . nv-setup-auctex)
   :custom
   (TeX-auto-save t)
   (TeX-parse-self t)
@@ -36,23 +32,30 @@
   (TeX-open-quote "\"")
   (TeX-close-quote "\"")
   (TeX-insert-macro-default-style 'mandatory-args-only)
-  )
-
-
-
-;; --------------------------------------------
-(use-package reftex
-  :straight t
-  :commands turn-on-reftex
+  ;;
   :config
-  (reftex-plug-into-AUCTeX)
-  :blackout reftex-mode)
+  (use-package reftex
+    :straight t
+    :commands turn-on-reftex
+    :config
+    (reftex-plug-into-AUCTeX)
+    :blackout reftex-mode)
+  ;;
+  (use-package auctex-latexmk
+    :straight t
+    :after tex
+    :custom
+    (auctex-latexmk-inherit-TeX-PDF-mode t)
+    :config
+    (auctex-latexmk-setup))
+  )
 
 
 
 ;; Other auctex settings ---------------------------------------------
 (use-package emacs
   :straight
+  :after tex
   :config
   (with-eval-after-load "tex"
     (add-to-list 'TeX-view-program-list '("okular" "/usr/bin/okular %o"))
@@ -110,17 +113,6 @@ environments."
                     ("description" LaTeX-indent-item))
                   LaTeX-indent-environment-list)))
   )
-
-
-
-
-(use-package auctex-latexmk
-  :straight t
-  :after tex
-  :custom
-  (auctex-latexmk-inherit-TeX-PDF-mode t)
-  :config
-  (auctex-latexmk-setup))
 
 
 (provide 'myauctex)

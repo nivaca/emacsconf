@@ -1,7 +1,5 @@
 ;;; mylisp/myfunctions.el -*- lexical-binding: t; -*-
 
-
-
 ;; =============================================
 ;; Source: https://www.emacswiki.org/emacs/misc-cmds.el
 (defun nv-revert-buffer-no-confirm ()
