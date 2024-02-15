@@ -5,20 +5,13 @@
 ;; nivaca-pc: desktop casa
 ;; nivaca-xps: portátil dell xps 13
 
-;; create tmp dir if it doesn't exist
-(when (not (file-exists-p nv-tmp-dir))
-  (make-directory nv-tmp-dir t))
+
+(setq backup-directory-alist
+      '((".*" . "/var/temp/emacs")))
 
 (setopt
  auto-save-default nil
- backup-inhibited nil
- delete-old-versions t
- kept-new-versions 6
- kept-old-versions 2
- version-control t)
-
-(defvar nv-tmp-dir "/var/tmp/emacs")
-(setopt backup-directory-alist `((".*" . ,nv-tmp-dir)))  ;; mind the comma!
+ backup-inhibited nil)
 
 
 ;; ============== Custom edit file ================
@@ -117,5 +110,11 @@
   ;;
   :bind ("C-x m" . consult-recent-file)
 )
+
+
+
+;; ============== Disable autosave ===============
+(setq auto-save-default t)
+(setq make-backup-files t)  
 
 (provide 'mydesktop)

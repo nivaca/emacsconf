@@ -9,10 +9,10 @@
     (setq visual-fill-column-center-text t
           mode-line-format nil
 		      nov-header-line-format ""
-		      cursor-type nil)
-    (fontaine-set-preset 'epub)
+		      cursor-type nil
+          fontaine-set-preset 'epub
+          display-line-numbers-mode nil)
     (buffer-face-mode)
-    (display-line-numbers-mode nil)
     )
   ;;
   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))

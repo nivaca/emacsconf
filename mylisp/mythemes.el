@@ -13,9 +13,9 @@
   ;; :disabled
   :straight
   (ef-themes :type git :host github :repo "protesilaos/ef-themes")
-  ;; :config
+  :config
   ;; (load-theme 'ef-maris-dark t)
-  ;; (load-theme 'ef-spring t)
+  (load-theme 'ef-spring t)
   )
 
 (use-package nimbus-theme

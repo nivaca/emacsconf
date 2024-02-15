@@ -2,9 +2,7 @@
 
 ;; ==========================================================
 ;;; Turn off the annoying crap immediately
-(setopt auto-save-default t
-        backup-inhibited t
-        dabbrev-case-distinction nil
+(setopt dabbrev-case-distinction nil
         dabbrev-case-fold-search nil
         disabled-command-function nil
         echo-keystrokes 0.1

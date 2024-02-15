@@ -15,6 +15,7 @@
         mouse-set-region
         multiple-cursors-mode
         nv-delete-back-all
+        org-cycle
         org-end-of-line
         org-self-insert-command
         org-yank
