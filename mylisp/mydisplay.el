@@ -126,7 +126,7 @@
            :default-height 180)
           (epub
            :default-family "JetBrains Mono NL"
-           :variable-pitch-family "Libertinus Serif"
+           :variable-pitch-family "Times New Roman"
            :default-height 160)
           (t
            :default-family "JetBrains Mono NL"

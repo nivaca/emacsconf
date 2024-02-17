@@ -24,6 +24,9 @@
   ;; Remove text in active region if inserting text
   (delete-selection-mode +1)
 
+  ;; Indicate MB depth
+  (minibuffer-depth-indicate-mode 1)
+
   ;; Never insert tabs
   (set-default 'indent-tabs-mode nil)
 
@@ -36,7 +39,10 @@
   ;; context-menu-mode
   (when (not (version< emacs-version "28"))
     (context-menu-mode))
-  
+
+  ;; cliboard management
+  (selection-coding-system 'utf-8)
+  (select-enable-clipboard t "Use the clipboard")
   )
 
 
@@ -49,46 +55,13 @@
   :blackout
   )
 
-;; Vertical Scroll
-;; (use-package emacs
-;;   :config
-;;   (setq scroll-step 1)
-;;   (setq scroll-margin 1)
-;;   (setq scroll-conservatively 101)
-;;   (setq scroll-up-aggressively 0.01)
-;;   (setq scroll-down-aggressively 0.01)
-;;   (setq auto-window-vscroll nil)
-;;   (setq fast-but-imprecise-scrolling nil)
-;;   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
-;;   (setq mouse-wheel-progressive-speed t)
-;;   ;; Horizontal Scroll
-;;   (setq hscroll-step 1)
-;;   (setq hscroll-margin 1)
 
-;;   (when IS-MAC
-;;     ;; sane trackpad/mouse scroll settings
-;;     (setq mac-redisplay-dont-reset-vscroll t
-;;           mac-mouse-wheel-smooth-scroll nil))
-;;   )
-
-
-
-;; ============ auto-indent ==============
-(use-package auto-indent-mode
+;; ================= snap-indent =================
+(use-package snap-indent
   :straight t
-  :defer t
-  :init
-  :custom
-  (auto-indent-on-save-file t)
-  (auto-indent-delete-trailing-whitespace-on-save-file t)
-  (auto-indent-untabify-on-save-file t)
-  (auto-indent-indent-style 'aggressive)
-  (auto-indent-key-for-end-of-line-then-newline "<M-return>")
-  (auto-indent-key-for-end-of-line-insert-char-then-newline "<M-S-return>")
-  :config
-  (auto-indent-global-mode)
-  :blackout auto-indent-mode
-  )
+  :hook (prog-mode . snap-indent-mode)
+  :custom ((snap-indent-format 'untabify)
+           (snap-indent-on-save t)))
 
 
 
@@ -97,22 +70,6 @@
   :straight t
   :bind ("M-y" . popup-kill-ring))
 
-
-;; ;; ===================== drag-stuff ====================
-;; ;; use instead move-text (below)
-;; (use-package drag-stuff
-;;   :disabled
-;;   :straight t
-;;   :config
-;;   (drag-stuff-global-mode 1)
-;;   (drag-stuff-define-keys)
-;;   ;; this is needed to forcefully diminish the mode
-;;   (define-minor-mode drag-stuff-mode
-;;     "Drag stuff around."
-;;     :init-value nil
-;;     :lighter ""
-;;     :keymap drag-stuff-mode-map)
-;;   )
 
 
 ;; ===================== move-text ====================
@@ -131,7 +88,7 @@
 
   (advice-add 'move-text-up :after 'indent-region-advice)
   (advice-add 'move-text-down :after 'indent-region-advice)
-)
+  )
 
 
 ;; ===================== crux ====================
@@ -170,21 +127,9 @@
 (use-package goto-last-change
   :straight t
   :commands goto-last-change
-  ;; S-f1
+  ;; C-f1
   )
 
-
-;; Indicate minibuffer depth
-(use-package mb-depth
-  :config
-  (minibuffer-depth-indicate-mode 1))
-
-
-(use-package select
-  :custom
-  (selection-coding-system 'utf-8)
-  (select-enable-clipboard t "Use the clipboard")
-  )
 
 ;; ============== unfill ==============
 ;; Functions providing the inverse of
@@ -200,13 +145,6 @@
   (whole-line-or-region-global-mode t)
   )
 
-
-
-;; ============== iedit ==============
-(use-package iedit
-  :straight t
-  :defer t
-  )
 
 
 ;; ============== multiple-cursors ==============
@@ -225,8 +163,7 @@
    ("C-c m s" . mc/mark-sgml-tag-pair)
    ("C-c m d" . mc/mark-all-like-this-in-defun)
    ;; ("M-C-<mouse-1>" . mc/add-cursor-on-click)
-   )
-  )
+   ))
 
 
 ;; ============== bookmarks ==============
@@ -253,7 +190,7 @@
 ;; =========================================
 ;; Smart delete forward (à la oXygen XML)
 (use-package nv-delete-forward
-  :straight (nv-delete-forward :type git :host github :repo "nivaca/nv-delete-forward")
+  :straight (nv-delete-forward :host github :repo "nivaca/nv-delete-forward")
   :bind
   (("C-<delete>" . nv-delete-forward-all)
    ("M-<delete>" . nv-delete-forward))

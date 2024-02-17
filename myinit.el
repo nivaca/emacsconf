@@ -5,13 +5,13 @@
 (defconst IS-MAC     (eq system-type 'darwin))
 (defconst IS-LINUX   (eq system-type 'gnu/linux))
 
-;; for all computers
+;; Set some paths
 (setq user-emacs-directory (expand-file-name "~/emacs/"))
 (setq user-lisp-directory (expand-file-name "mylisp/" user-emacs-directory))
 
-(let ((default-directory user-emacs-directory))
-  (normal-top-level-add-subdirs-to-load-path)
-  )
+(add-to-list 'load-path user-lisp-directory)
+
+
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setopt exec-path (append exec-path '("/usr/local/bin")))

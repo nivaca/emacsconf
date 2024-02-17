@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: make-read-only-buffer
-# key: rom
-# --
-
-%%% Local Variables:
-%%% buffer-read-only: t
-%%% End:

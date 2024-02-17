@@ -6,6 +6,7 @@
 ;; Corfu enhances completion at point with a small completion popup.
 ;; The current candidates are shown in a popup below or above the point.
 (use-package corfu
+  :straight t
   ;; TAB-and-Go customizations
   :custom
   (completion-cycle-threshold 3)
@@ -34,14 +35,12 @@
         ("TAB"     . nil)  ;; leave my enter alone!
         )
   :init
-  (global-corfu-mode)
-  )
+  (global-corfu-mode))
 
 
 ;; ===============  Yasnippet  ===============
 (use-package yasnippet
   :straight t
-  :functions yas-global-mode
   :config
   (require 'warnings)
   (add-to-list 'warning-suppress-types '(yasnippet backquote-change))
@@ -49,13 +48,11 @@
    yas-use-menu nil
    yas-verbosity 3
    yas-indent-line nil
-   yas-wrap-around-region t)
-   yas-snippet-dirs (append yas-snippet-dirs '("~/emacs/snippets")
-    )
+   yas-wrap-around-region t
+   yas-snippet-dirs (append yas-snippet-dirs '("~/emacs/snippets")))
   (yas-global-mode t)
   (blackout 'yas-minor-mode)
-  (yas-reload-all)
-  )
+  (yas-reload-all))
 
 
 

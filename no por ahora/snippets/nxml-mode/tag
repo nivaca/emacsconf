@@ -1,4 +1,0 @@
-#name : tag
-#binding: C-c C-y t
-# --
-<${1:tag}>`yas-selected-text`</$1>

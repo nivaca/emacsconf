@@ -5,6 +5,8 @@
 ;; nivaca-pc: desktop casa
 ;; nivaca-xps: portátil dell xps 13
 
+(defvar nv-tmp-dir "/var/tmp/emacs")
+
 ;; create tmp dir if it doesn't exist
 (when (not (file-exists-p nv-tmp-dir))
   (make-directory nv-tmp-dir t))
@@ -17,7 +19,6 @@
  kept-old-versions 2
  version-control t)
 
-(defvar nv-tmp-dir "/var/tmp/emacs")
 (setopt backup-directory-alist `((".*" . ,nv-tmp-dir)))  ;; mind the comma!
 
 
