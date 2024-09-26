@@ -94,14 +94,14 @@
   ;; :straight t
   :bind
   (("C-h f" . helpful-callable)
-  ("C-h v" . helpful-variable)
-  ("C-h k" . helpful-key))  
+   ("C-h v" . helpful-variable)
+   ("C-h k" . helpful-key))  
   :config
   (defalias #'describe-key #'helpful-key)
   (defalias #'describe-function #'helpful-callable)
   (defalias #'describe-variable #'helpful-variable)
   (defalias #'describe-symbol #'helpful-symbol)
-)
+  )
 
 ;; ================= hyperbole ===================
 ;; (require 'myhyp) ;; no por ahora...
@@ -171,7 +171,7 @@
 ;; ================= server ==================
 (require 'server)
 (unless (server-running-p)
-    (server-start))
+  (server-start))
 
 
 ;; =============== Dashboard ===============
@@ -233,7 +233,7 @@
   (blackout 'outline-mode)
   (blackout 'subword-mode)
   (blackout 'visual-line-mode)
-)
+  )
 
 ;; =========================================
 ;; Startup time
@@ -256,6 +256,11 @@
 
 ;; ================= KEY remap ===============
 (require 'mykeys)
+
+
+
+;; overwrite selected text
+(delete-selection-mode 1)
 
 ;; -------------------------------------------------------------------
 (provide 'myinit)

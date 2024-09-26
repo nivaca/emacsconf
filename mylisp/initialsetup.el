@@ -80,13 +80,13 @@
 ;; Expand the minibuffer to fit multi-line text displayed in the echo-area. This
 ;; doesn't look too great with direnv, however...
 (setopt resize-mini-windows 'grow-only
-      ;; But don't let the minibuffer grow beyond this size
-      max-mini-window-height 0.15)
+        ;; But don't let the minibuffer grow beyond this size
+        max-mini-window-height 0.15)
 
 ;; Disable help mouse-overs for mode-line segments (i.e. :help-echo text).
 ;; They're generally unhelpful and only add confusing visual clutter.
 (setopt mode-line-default-help-echo nil
-      show-help-function nil)
+        show-help-function nil)
 
 ;; Typing yes/no is obnoxious when y/n will do
 (fset #'yes-or-no-p #'y-or-n-p)

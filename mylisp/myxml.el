@@ -1,5 +1,6 @@
 ;;; mylisp/myxml.el -*- lexical-binding: t; -*-
 
+(message "Loading %s..." (buffer-file-name))
 
 (use-package nxml-mode
   :straight

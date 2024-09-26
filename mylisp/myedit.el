@@ -1,6 +1,7 @@
 ;;; mylisp/myedit.el -*- lexical-binding: t; -*-
 
 (use-package emacs
+  :straight
   :config
   ;; Don't highlight matches with jump-char - it's distracting
   (setq jump-char-lazy-highlight-face nil)
@@ -21,9 +22,6 @@
   ;; Standard indent
   (setq standard-indent 2)
 
-  ;; Remove text in active region if inserting text
-  (delete-selection-mode +1)
-
   ;; Indicate MB depth
   (minibuffer-depth-indicate-mode 1)
 
@@ -40,11 +38,13 @@
   (when (not (version< emacs-version "28"))
     (context-menu-mode))
 
-  ;; cliboard management
-  (selection-coding-system 'utf-8)
-  (select-enable-clipboard t "Use the clipboard")
-  )
+  ;; overwrite selected text
+  (delete-selection-mode 1)
 
+  ;; cliboard management
+  ;; (selection-coding-system 'utf-8)
+  ;; (select-enable-clipboard t "Use the clipboard")
+  )
 
 
 ;; =============== Scrolling ==================
@@ -225,6 +225,13 @@
   ("M-s" . avy-goto-char)
   ("M-j" . avy-goto-char-timer)
   ("M-g g" . avy-goto-line)
+  )
+
+
+;; ==============================================================
+(use-package wgrep
+  :disabled t
+  :straight t
   )
 
 

@@ -1,6 +1,5 @@
 ;;; mylisp/mydired.el -*- lexical-binding: t; -*-
 
-
 ;; ================= dired ==================
 (use-package dired
   :straight
@@ -21,7 +20,6 @@
   :bind
   ("s-d" . dired)
   )
-
 
 ;; (use-package dired-narrow
 ;;   :straight t
@@ -46,6 +44,7 @@
 ;; ;; no extra buffers when entering different dirs
 (use-package dired-single
   :straight t
+  :after dired
   :config
   (add-hook 'dired-mode-hook
             (lambda ()
@@ -60,7 +59,20 @@
 
 ;; ===================== dired+ =============================
 (use-package dired+
-  :straight t)
+  :disabled
+  :straight t
+  :after dired)
+
+
+;; ===================== casual-dired =====================
+(use-package casual-dired
+  :straight
+  (causal-dired
+   :host github
+   :repo "kickingvegas/casual-dired")
+  :bind (:map dired-mode-map ("C-o" . 'casual-dired-tmenu)))
+
+
 
 
 (provide 'mydired)

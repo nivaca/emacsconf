@@ -12,6 +12,8 @@
            ("integration" "integration/*")
            (:exclude ".dir-locals.el" "*-tests.el"))
    )
+  :config
+  (setq process-adaptive-read-buffering nil)
   )
 
 (provide 'myterm)

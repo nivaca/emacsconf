@@ -1,3 +1,5 @@
+;;; mylisp/mypython.el -*- lexical-binding: t; -*-
+
 ;;; ============== mypython.el ==============
 
 (use-package elpy
@@ -8,7 +10,7 @@
                        elpy-module-eldoc
                        ;;elpy-module-pyvenv)
                        ))
-  (setq py-python-command "/usr/local/bin/python3")
+  (setq py-python-command "/usr/bin/python3")
   (blackout 'elpy-mode "☕")
   (elpy-enable)
   )

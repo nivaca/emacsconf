@@ -4,7 +4,6 @@
 ;; nivaca-dell: portátil dell
 ;; nivaca-xps: portátil dell xps 13
 
-
 (use-package menu-bar
   :straight nil
   :bind
@@ -43,6 +42,8 @@
 ;; ====================================================
 (use-package emacs
   :config
+  (if IS-LINUX
+      (setenv "QT_QPA_PLATFORM" "wayland"))
   (setopt
    column-number-mode t
    display-line-numbers-type t  ;; también: 'relative
@@ -116,10 +117,10 @@
   :config
   (setq fontaine-presets
         '((pc
-           :default-height 131
+           :default-height 140
            :line-spacing 0.1)
           (xps
-           :default-height 140
+           :default-height 150
            :line-spacing 0.1)
           (mac
            :default-family "JetBrains Mono NL"
@@ -152,7 +153,7 @@
 
 
 
-;; -----------------------------------------------------------------
+;; -------------------------------------------------------
 ;; pretty-mode
 (use-package pretty-mode
   :straight t
@@ -379,6 +380,22 @@
   :init
   (doom-modeline-mode 1)
   )
+
+
+;; indent-bars ------------------------------------
+;; fast, configurable indentation guide-bars
+(use-package indent-bars
+  :straight (indent-bars :type git :host github :repo "jdtsmith/indent-bars")
+  ;; :hook ((python-mode yaml-mode) . indent-bars-mode)
+  :config
+  (setq
+   indent-bars-prefer-character t
+   ;; indent-bars-color '(highlight :face-bg t :blend 0.75)
+   ;; indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 1)
+   ;; indent-bars-unspecified-fg-color "white"
+   ;; indent-bars-unspecified-bg-color "black"
+   ))
+
 
 
 

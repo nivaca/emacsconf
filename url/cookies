@@ -6,16 +6,11 @@
   [url-cookie "NID" "511=Sq9Fk0PyitXFOhxlaWqeE81C4hH1dukBv7csC-ZrjvwTiBnu8nwP3bevRZjMbsbeVCiYIYFZrkSyibLH3B6ZdSkQpPtBC_nnCDipD8Z2ehxq9z8fVviomxTLKqGvFHQbPnqJpuNp4BofLeLTSatbm5q5Xh8oBjlIxF1OdFZ33s0" "Sat, 10-Aug-2024 00:23:15 GMT" "/" ".google.com" nil]))
 )
 (setq url-cookie-secure-storage
- '(("wikipedia.org"
-  [url-cookie "WMF-Last-Access" "08-Feb-2024" "Mon, 11 Mar 2024 12:00:00 GMT" "/" "wikipedia.org" t])
+ '(("github.com"
+  [url-cookie "logged_in" "no" "Sun, 09 Feb 2025 00:23:52 GMT" "/" "github.com" t]
+  [url-cookie "_octo" "GH1.1.1192743689.1707438232" "Sun, 09 Feb 2025 00:23:52 GMT" "/" "github.com" t])
  (".google.com"
-  [url-cookie "1P_JAR" "2024-02-09-00" "Sun, 10-Mar-2024 00:23:26 GMT" "/" ".google.com" t]
-  [url-cookie "AEC" "Ae3NU9O1Fq6fQN5QYzyfTqgq_NdymCdQ_KuS4DoDb1NbbiDWlWn9VGjGSys" "Wed, 07-Aug-2024 00:23:15 GMT" "/" ".google.com" t])
- ("github.com"
-  [url-cookie "_octo" "GH1.1.1192743689.1707438232" "Sun, 09 Feb 2025 00:23:52 GMT" "/" "github.com" t]
-  [url-cookie "logged_in" "no" "Sun, 09 Feb 2025 00:23:52 GMT" "/" "github.com" t])
- (".wikipedia.org"
-  [url-cookie "WMF-Last-Access-Global" "08-Feb-2024" "Mon, 11 Mar 2024 12:00:00 GMT" "/" ".wikipedia.org" t]))
+  [url-cookie "AEC" "Ae3NU9O1Fq6fQN5QYzyfTqgq_NdymCdQ_KuS4DoDb1NbbiDWlWn9VGjGSys" "Wed, 07-Aug-2024 00:23:15 GMT" "/" ".google.com" t]))
 )
 
 ;; Local Variables:

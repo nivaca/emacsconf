@@ -1,5 +1,7 @@
 ;;; mylisp/myxmlsnippets.el -*- lexical-binding: t; -*-
 
+(message "Loading %s..." (buffer-file-name))
+
 (defvar allwits "#C #A #B #D #E #F #G #H #I")
 
 (transient-define-prefix nv-xml-snippets ()

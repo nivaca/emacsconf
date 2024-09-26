@@ -1,7 +1,5 @@
 ;;; mylisp/myparent.el -*- lexical-binding: t; -*-
 
-
-
 ;; Highlight brackets according to their depth
 (use-package rainbow-delimiters
   :straight t

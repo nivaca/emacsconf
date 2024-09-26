@@ -52,7 +52,7 @@
         org-cycle-separator-lines 1
         org-catch-invisible-edits 'smart ;; 'show-and-error 
         )
-    (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
   (org-babel-do-load-languages
    'org-babel-load-languages
    '(
@@ -103,9 +103,9 @@
   (setq org-roam-db-update-method 'immediate)
   (setq org-roam-completion-everywhere t)
   (setq org-roam-capture-templates
-        '(("d" "default" plain "%?"
+        '(("d" "default" plain
+           (file "~/roamnotes/templates/defaulttemplate.org")
            :target (file+head "%<%Y-%m-%d-%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")
-           ;; :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")
            :unnarrowed t)
           ("c" "computing note" plain
            (file "~/roamnotes/templates/comptemplate.org")
@@ -188,8 +188,8 @@
 ;; org-tree-side
 (use-package org-side-tree
   :straight (org-side-tree
-  :host github
-  :repo "localauthor/org-side-tree")
+             :host github
+             :repo "localauthor/org-side-tree")
   :after org) 
 
 ;; ============================================================
@@ -220,6 +220,14 @@
   )
 
 
+;; quickroam
+;; https://github.com/meedstrom/quickroam
+(use-package quickroam
+  :straight (quickroam :type git :host github :repo "meedstrom/quickroam")
+  :after org-roam
+  :config
+  (add-hook 'org-mode-hook #'quickroam-enable)
+  )
 
 
 (provide 'myorg)

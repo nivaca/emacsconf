@@ -1,31 +1,27 @@
-;;; mylisp/mythemes.el -*- lexical-binding: t; -*-
+;;; mythemes.el -*- lexical-binding: t; -*-
 
-(use-package circadian
-  :straight t
-  :config
-  (setq circadian-themes
-        '(("7:00" . ef-spring)
-          ("19:00" . ef-maris-dark)))
-  (circadian-setup))
+;; (use-package circadian
+;;   :disabled
+;;   :straight t
+;;   :config
+;;   (setq circadian-themes
+;;         '(("7:00" . ef-duo-light)
+;;           ("19:00" . ef-elea-dark)))
+;;   (circadian-setup))
 
 
 (use-package ef-themes
-  ;; :disabled
+  :disabled
   :straight
   (ef-themes :type git :host github :repo "protesilaos/ef-themes")
   :config
-  ;; (load-theme 'ef-maris-dark t)
-  (load-theme 'ef-spring t)
+  ;; (load-theme 'ef-kassio t)
+  (load-theme 'ef-elea-dark t)
   )
 
-(use-package nimbus-theme
-  :disabled
-  :straight t
-  :init (load-theme 'nimbus t)
-  )
 
 (use-package vscode-dark-plus-theme
-  :disabled
+  ;; :disabled
   :config
   (load-theme 'vscode-dark-plus t)
   )

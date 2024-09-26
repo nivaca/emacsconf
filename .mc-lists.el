@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        LaTeX-babel-insert-hyphen
         LaTeX-insert-item
         LaTeX-insert-left-brace
         TeX-insert-backslash
@@ -15,6 +16,7 @@
         mouse-set-region
         multiple-cursors-mode
         nv-delete-back-all
+        nv-switch-to-minibuffer
         org-cycle
         org-end-of-line
         org-self-insert-command

@@ -3,9 +3,9 @@
 ;; =============================================
 ;; Source: https://www.emacswiki.org/emacs/misc-cmds.el
 (defun nv-revert-buffer-no-confirm ()
-    "Revert buffer without confirmation."
-    (interactive)
-    (revert-buffer :ignore-auto :noconfirm))
+  "Revert buffer without confirmation."
+  (interactive)
+  (revert-buffer :ignore-auto :noconfirm))
 
 ;; =============================================
 
@@ -98,8 +98,8 @@ enclosed in {}."
     (while (search-forward "Ū" nil t)
       (replace-match "U"))
 
+    )
   )
-)
 
 ;; =============================================
 
@@ -123,18 +123,18 @@ enclosed in {}."
   "Replace some occurrences of FROM-STRING with TO-STRING.  As each match is found, the user must type a character saying what to do with it. This is a modified version of the standard `query-replace' function in `replace.el', This modified version defaults to operating on the entire buffer instead of working only from POINT to the end of the buffer. For more information, see the documentation of `query-replace'"
   (interactive
    (let ((common
-      (query-replace-read-args
-       (concat "Query replace"
-           (if current-prefix-arg " word" "")
-           (if (and transient-mark-mode mark-active) " in region" ""))
-       nil)))
+          (query-replace-read-args
+           (concat "Query replace"
+                   (if current-prefix-arg " word" "")
+                   (if (and transient-mark-mode mark-active) " in region" ""))
+           nil)))
      (list (nth 0 common) (nth 1 common) (nth 2 common)
-       (if (and transient-mark-mode mark-active)
-           (region-beginning)
-         (buffer-end -1))
-       (if (and transient-mark-mode mark-active)
-           (region-end)
-         (buffer-end 1)))))
+           (if (and transient-mark-mode mark-active)
+               (region-beginning)
+             (buffer-end -1))
+           (if (and transient-mark-mode mark-active)
+               (region-end)
+             (buffer-end 1)))))
   (perform-replace from-string to-string t nil delimited nil nil start end))
 
 
@@ -149,19 +149,19 @@ entire buffer instead of working only from POINT to the end of the
 buffer. For more information, see the documentation of `query-replace-regexp'"
   (interactive
    (let ((common
-      (query-replace-read-args
-       (concat "Query replace"
-           (if current-prefix-arg " word" "")
-           " regexp"
-           (if (and transient-mark-mode mark-active) " in region" ""))
-       t)))
+          (query-replace-read-args
+           (concat "Query replace"
+                   (if current-prefix-arg " word" "")
+                   " regexp"
+                   (if (and transient-mark-mode mark-active) " in region" ""))
+           t)))
      (list (nth 0 common) (nth 1 common) (nth 2 common)
-       (if (and transient-mark-mode mark-active)
-           (region-beginning)
-         (buffer-end -1))
-       (if (and transient-mark-mode mark-active)
-           (region-end)
-         (buffer-end 1)))))
+           (if (and transient-mark-mode mark-active)
+               (region-beginning)
+             (buffer-end -1))
+           (if (and transient-mark-mode mark-active)
+               (region-end)
+             (buffer-end 1)))))
   (perform-replace regexp to-string t t delimited nil nil start end))
 
 
@@ -177,11 +177,11 @@ buffer. For more information, see the documentation of `query-replace-regexp'"
   )
 
 (defun nv-align-repeat (start end regexp)
-    "Repeat alignment with respect to
+  "Repeat alignment with respect to
 the given regular expression."
-    (interactive "r\nsAlign regexp: ")
-    (align-regexp start end
-                  (concat "\\(\\s-*\\)" regexp) 1 1 t))
+  (interactive "r\nsAlign regexp: ")
+  (align-regexp start end
+                (concat "\\(\\s-*\\)" regexp) 1 1 t))
 
 
 ;; =============================================
@@ -247,7 +247,7 @@ the given regular expression."
   (interactive)
   (cond ((eq system-type 'gnu/linux)
          ;; Linux
-         (call-process "konsole" nil 0 nil "--workdir" default-directory)
+         (call-process "/usr/bin/konsole" nil 0 nil "--workdir" default-directory)
          )
         ((eq system-type 'darwin)
          ;; Mac
@@ -313,28 +313,28 @@ selects backward.)"
   (unless (org-at-table-p) (user-error "No table at point"))
   (org-table-align)
   (let* ((format
-      (completing-read "Transform table function: "
-               '("orgtbl-to-tsv" "orgtbl-to-csv" "orgtbl-to-latex"
-                 "orgtbl-to-html" "orgtbl-to-generic"
-                 "orgtbl-to-texinfo" "orgtbl-to-orgtbl"
-                 "orgtbl-to-unicode")))
-     (curr-point (point)))
+          (completing-read "Transform table function: "
+                           '("orgtbl-to-tsv" "orgtbl-to-csv" "orgtbl-to-latex"
+                             "orgtbl-to-html" "orgtbl-to-generic"
+                             "orgtbl-to-texinfo" "orgtbl-to-orgtbl"
+                             "orgtbl-to-unicode")))
+         (curr-point (point)))
     (if (string-match "\\([^ \t\r\n]+\\)\\( +.*\\)?" format)
-    (let ((transform (intern (match-string 1 format)))
-          (params (and (match-end 2)
-               (read (concat "(" (match-string 2 format) ")"))))
-          (table (org-table-to-lisp
-              (buffer-substring-no-properties
-               (org-table-begin) (org-table-end)))))
-      (unless (fboundp transform)
-        (user-error "No such transformation function %s" transform))
-      (save-restriction
-        (with-output-to-string
-          (delete-region (org-table-begin) (org-table-end))
-          (insert (funcall transform table params) "\n")))
-      (goto-char curr-point)
-      (beginning-of-line)
-      (message "Tranformation done."))
+        (let ((transform (intern (match-string 1 format)))
+              (params (and (match-end 2)
+                           (read (concat "(" (match-string 2 format) ")"))))
+              (table (org-table-to-lisp
+                      (buffer-substring-no-properties
+                       (org-table-begin) (org-table-end)))))
+          (unless (fboundp transform)
+            (user-error "No such transformation function %s" transform))
+          (save-restriction
+            (with-output-to-string
+              (delete-region (org-table-begin) (org-table-end))
+              (insert (funcall transform table params) "\n")))
+          (goto-char curr-point)
+          (beginning-of-line)
+          (message "Tranformation done."))
       (user-error "Table export format invalid"))))
 
 
@@ -405,7 +405,7 @@ the region to title case.  Otherwise, work on the current line."
   (cl-map 'string (lambda (c) (or (cdr (assoc c nv-diacritics-to-non-diacritics-map)) c)) string))
 
 
-; =========================================================
+                                        ; =========================================================
 ;; (defun nv-random-id ()
 ;;   "Generates a random alphanumerical XML id: aaa_bbb_ccc."
 ;;   (mapconcat
@@ -437,5 +437,5 @@ the region to title case.  Otherwise, work on the current line."
   (insert (nv-random-id))
   )
 
-  
+
 (provide 'myfunctions)

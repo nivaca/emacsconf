@@ -31,7 +31,7 @@
     ("nivaca-pc" (setq custom-file (concat user-emacs-directory "tmp/pc/custom.el")))
     ;; XPS 13
     ("nivaca-xps" (setq custom-file (concat user-emacs-directory "tmp/xps/custom.el")))
-   )
+    )
   ;; Mac oficina
   (when IS-MAC
     (setq custom-file (concat user-emacs-directory "tmp/mac/custom.el")))
@@ -117,6 +117,6 @@
   (recentf-mode t)
   ;;
   :bind ("C-x m" . consult-recent-file)
-)
+  )
 
 (provide 'mydesktop)

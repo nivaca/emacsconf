@@ -1,6 +1,5 @@
 ;;; mylisp/mykeys.el -*- lexical-binding: t; -*-
 
-
 (use-package emacs
   :config
   (global-set-key (quote [f1]) 'nv-switch-to-minibuffer)
@@ -27,7 +26,7 @@
 
   (global-set-key (quote [f8]) 'dired)
   (global-unset-key (quote [f9]))
-  (global-set-key (quote [f10]) 'eat)
+  (global-set-key (quote [M-f10]) 'eat)
   (global-set-key (quote [S-f10]) 'nv-terminal-here)
 
   (global-set-key (quote [f12]) 'execute-extended-command)

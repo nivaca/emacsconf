@@ -1,0 +1,10 @@
+;;; -*- coding: utf-8; mode: lisp-data -*-
+(("/home/nivaca/Scripts/Fedora/03_fed_install-myapps.sh" . 115)
+ ("/home/nivaca/emacs/mylisp/"
+  (dired-filename . "/home/nivaca/emacs/mylisp/mydesktop.el"))
+ ("/home/nivaca/emacs/myinit.el" . 1020)
+ ("/home/nivaca/emacs/mylisp/mydesktop.el" . 2869)
+ ("/home/nivaca/emacs/mylisp/mydisplay.el" . 2849)
+ ("/home/nivaca/emacs/"
+  (dired-filename . "/home/nivaca/emacs/bak"))
+ ("/home/nivaca/emacs/mylisp/myedit.el" . 1428))
