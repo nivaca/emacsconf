@@ -48,7 +48,22 @@
 
 
 ;; =============== Scrolling ==================
+;; only for nivaca-xps
+(use-package ultra-scroll
+  :if (string= system-name "nivaca-xps")
+  :straight (ultra-scroll
+             :host github
+             :repo "jdtsmith/ultra-scroll")
+  :init
+  (setq scroll-conservatively 101 ; important!
+        scroll-margin 0) 
+  :config
+  (ultra-scroll-mode 1)
+  )
+
+;; only for nivaca-pc or on MacOS
 (use-package smooth-scroll
+  :if (or (string= system-name "nivaca-pc") IS-MAC)
   :straight t
   :config
   (smooth-scroll-mode t)
@@ -255,6 +270,17 @@
 
 ;; ===================== ediff ==========================
 (setq ediff-split-window-function 'split-window-horizontally)
+
+
+;; ==================== speedrect ====================
+;; Quick key bindings and other tools
+;; for rectangle-mark-mode.
+(use-package speedrect
+  :straight (speedrect
+             :type git
+             :host github
+             :repo "jdtsmith/speedrect"))
+
 
 
 (provide 'myedit)

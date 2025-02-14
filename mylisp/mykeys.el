@@ -6,7 +6,9 @@
   (global-set-key (quote [C-f1]) 'goto-last-change)
   ;; (global-set-key (quote [S-f1]) 'clone-indirect-buffer)
 
-  (global-set-key (quote [f2]) 'save-buffer)
+  (global-unset-key (quote [f2]))
+  ;; (global-set-key (quote [f2]) 'save-buffer)
+  (global-set-key (kbd "C-x s") 'save-buffer)
 
   ;; (global-set-key (quote [f3]) 'kmacro-start-macro-or-insert-counter)
   ;; (global-set-key (quote [S-f3]) 'kmacro-end-and-call-macro)
@@ -26,15 +28,17 @@
 
   (global-set-key (quote [f8]) 'dired)
   (global-unset-key (quote [f9]))
-  (global-set-key (quote [M-f10]) 'eat)
+  (global-unset-key (quote [f10]))
+  (global-set-key (quote [f10]) 'nv-terminal-here)
   (global-set-key (quote [S-f10]) 'nv-terminal-here)
+  (global-set-key (quote [M-f10]) 'eat)
 
   (global-set-key (quote [f12]) 'execute-extended-command)
   (global-set-key (quote [S-f12]) 'eval-expression)
   (global-set-key (quote [C-f12]) 'repeat-complex-command)
 
-  (when (eq system-type 'gnu/linux)
-    (global-set-key (quote [s-f12]) 'nv-load-config))
+  (if IS-LINUX
+      (global-set-key (quote [s-f12]) 'nv-load-config))
 
   (bind-key "\C-x\C-m" 'execute-extended-command)
 
@@ -164,7 +168,8 @@ some custom behavior added."
   (global-set-key (kbd "C-x C-b") nil)
 
   ;; multiple-cursors
-  (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
+  (when IS-LINUX
+    (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click))
 
   ;; hippie expand: M-/
   (global-set-key [remap dabbrev-expand] 'hippie-expand)
@@ -180,25 +185,29 @@ some custom behavior added."
 ;; ================================================
 ;; Mac settings
 (use-package emacs
+  :if IS-MAC
   :config
-  (when (eq system-type 'darwin)
-    (progn
-      (setq mac-right-option-modifier 'none
-            mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil))
-            mouse-wheel-progressive-speed nil
-            mac-command-modifier 'control
-            mac-control-modifier 'meta
-            mac-pass-command-to-system nil
-            )
-      ;; Kill all buffers
-      (bind-key "<M-escape>" 'nv-kill-all-buffers)
-      (bind-key "C--" 'comment-line) ;; defined in myfunctions.el
-      (bind-key "S-<down-mouse-1>" 'mouse-set-mark)
-      (bind-key "S-<mouse-1>" 'mouse-set-mark)    
-      )
-
-    )
+  (setq mac-right-option-modifier 'none
+        mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control) . nil))
+        mouse-wheel-progressive-speed nil
+        mac-command-modifier 'control
+        mac-control-modifier 'meta
+        mac-pass-command-to-system nil
+        )
+  ;; Kill all buffers
+  (bind-key "<M-escape>" 'nv-kill-all-buffers)
+  (bind-key "C--" 'comment-line) ;; defined in myfunctions.el
+  (bind-key "S-<down-mouse-1>" 'mouse-set-mark)
+  (bind-key "S-<mouse-1>" 'mouse-set-mark)
+  ;;
+  ;; disable context menu
+  (context-menu-mode -1)
+  ;; multiple-cursors
+  (global-set-key (kbd "<C-mouse-1>") 'mc/add-cursor-on-click)
+  ;; help
+  (global-set-key (kbd "C-h") 'help-command)
   )
+
 
 
 

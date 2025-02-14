@@ -1,13 +1,8 @@
 ;;; mythemes.el -*- lexical-binding: t; -*-
 
-;; (use-package circadian
-;;   :disabled
-;;   :straight t
-;;   :config
-;;   (setq circadian-themes
-;;         '(("7:00" . ef-duo-light)
-;;           ("19:00" . ef-elea-dark)))
-;;   (circadian-setup))
+
+(load-theme 'adwaita t)
+
 
 
 (use-package ef-themes
@@ -15,13 +10,13 @@
   :straight
   (ef-themes :type git :host github :repo "protesilaos/ef-themes")
   :config
-  ;; (load-theme 'ef-kassio t)
-  (load-theme 'ef-elea-dark t)
+  (load-theme 'ef-maris-light t)
+  ;; (load-theme 'ef-elea-dark t)
   )
 
 
 (use-package vscode-dark-plus-theme
-  ;; :disabled
+  :disabled
   :config
   (load-theme 'vscode-dark-plus t)
   )
@@ -41,7 +36,7 @@
   (doom-themes-visual-bell-config)
   ;; (load-theme 'doom-one t)
   ;; (load-theme 'doom-city-lights t)
-  (load-theme 'doom-tokyo-night t)
+  ;; (load-theme 'doom-tokyo-night t)
   ;; (load-theme 'doom-dark+ t)
   )
 

@@ -124,6 +124,7 @@
            :line-spacing 0.1)
           (mac
            :default-family "JetBrains Mono NL"
+           :variable-pitch-family "Aptos"
            :default-height 180)
           (epub
            :default-family "JetBrains Mono NL"
@@ -132,7 +133,7 @@
           (t
            :default-family "JetBrains Mono NL"
            :fixed-pitch-serif-family "JetBrains Mono NL"
-           :variable-pitch-family "Ubuntu"
+           :variable-pitch-family "Aptos Display"
            :default-weight Regular)))
   ;; select preset depending on system ------------------
   (pcase (system-name)
@@ -191,7 +192,11 @@
 
   ;; --------------------------------------------
   ;; This is an optical wrap at the right margin
+  (when (version<= "30" emacs-version)
+    (global-visual-wrap-prefix-mode t))
+  
   (global-visual-line-mode t)
+
   (setq visual-line-fringe-indicators
         '(left-curly-arrow right-curly-arrow))
 
@@ -210,7 +215,7 @@
   ;; don't let the cursor go into minibuffer prompt
   (setq minibuffer-prompt-properties (quote (read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt)))
 
-  
+
   ;; -----------------------------------------------------------
   ;;                          distinguish dashes
   ;; -----------------------------------------------------------

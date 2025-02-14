@@ -12,7 +12,6 @@
 (add-to-list 'load-path user-lisp-directory)
 
 
-
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setopt exec-path (append exec-path '("/usr/local/bin")))
 

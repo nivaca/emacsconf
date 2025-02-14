@@ -5,7 +5,6 @@
  (magit-diff
   ("--no-ext-diff" "--stat"))
  (magit-gitignore nil)
- (magit-merge nil)
  (magit-push nil)
  (reverso nil)
  (reverso-grammar-buffer

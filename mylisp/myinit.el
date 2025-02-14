@@ -170,8 +170,8 @@
   :init
   (add-hook 'after-init-hook 'dashboard-open)
   :config
-  (setq dashboard-items '((bookmarks  . 10)
-                          (recents . 7)
+  (setq dashboard-items '((bookmarks  . 5)
+                          (recents . 15)
                           ;; (registers . 14)
                           ))
 

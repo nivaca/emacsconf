@@ -66,6 +66,7 @@
 
 ;; ===================== casual-dired =====================
 (use-package casual-dired
+  :disabled
   :straight
   (causal-dired
    :host github
