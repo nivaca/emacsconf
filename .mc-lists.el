@@ -17,10 +17,12 @@
         multiple-cursors-mode
         nv-delete-back-all
         nv-switch-to-minibuffer
+        nxml-electric-slash
         org-cycle
         org-end-of-line
         org-self-insert-command
         org-yank
+        pixel-scroll-precision
         r-o-m
         undo-only
         wdired--self-insert
