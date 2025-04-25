@@ -6,12 +6,14 @@
         LaTeX-babel-insert-hyphen
         LaTeX-insert-item
         LaTeX-insert-left-brace
+        TeX-font
         TeX-insert-backslash
         TeX-insert-macro
         comment-line
         crux-move-beginning-of-line
         dired-toggle-read-only
         end-of-visual-line
+        indent-for-tab-command
         markdown-outdent-or-delete
         mouse-set-region
         multiple-cursors-mode
@@ -27,8 +29,10 @@
         undo-only
         wdired--self-insert
         yank
+        yas-expand
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        TeX-insert-dollar
         ))

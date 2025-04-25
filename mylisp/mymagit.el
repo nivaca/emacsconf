@@ -1,5 +1,8 @@
 ;;; mylisp/mymagit.el -*- lexical-binding: t; -*-
 
+;; (message "»»»»»»»»»»»» Loading mymagit.el ««««««««««««« ")
+
+
 (use-package magit
   :straight t
   :defer t
@@ -8,9 +11,9 @@
   :init
   ;; Close popup when commiting - this stops the commit window
   ;; hanging around
-  (defadvice git-commit-commit (after delete-window activate)
+  (define-advice git-commit-commit (:after (&rest _))
     (delete-window))
-  (defadvice git-commit-abort (after delete-window activate)
+  (define-advice git-commit-abort (:after (&rest _))
     (delete-window))
   :config
   (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
@@ -21,11 +24,10 @@
   :config
   ;; http://whattheemacsd.com/setup-magit.el-01.html
   ;; full screen magit-status
-  (defadvice magit-status (around magit-fullscreen activate)
+  (define-advice magit-status (:around (orig-fun &rest args))
     (window-configuration-to-register :magit-fullscreen)
-    ad-do-it
+    (apply orig-fun args)
     (delete-other-windows))
-
   (defun magit-quit-session ()
     "Restores the previous window configuration and kills the magit buffer"
     (interactive)

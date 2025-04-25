@@ -58,6 +58,9 @@
               )
   ) ;; end use-package
 
-(require 'myxmlsnippets)
+;; (require 'myxmlsnippets)
+(use-package myxmlsnippets
+  :straight nil)
+
 
 (provide 'myxml)

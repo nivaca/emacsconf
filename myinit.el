@@ -11,6 +11,14 @@
 
 (add-to-list 'load-path user-lisp-directory)
 
+;; Set eln-cache location
+(when (featurep 'native-compile)
+  (let ((eln-cache-dir (expand-file-name "~/.emacs/eln-cache")))
+    ;; Only create or set if we have native compilation
+    (setq native-comp-eln-load-path 
+          (list eln-cache-dir 
+                (car (last native-comp-eln-load-path))))))
+
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setopt exec-path (append exec-path '("/usr/local/bin")))
@@ -30,18 +38,60 @@
 
 ;; =============== Package Management ===============
 (require 'mypackages)
+                                        ; (use-package mypackages
+                                        ; :straight nil)
+
+
+;; =============== disable treesit ===============
+(use-package treesit-auto
+  :disabled t)
+
+(with-eval-after-load 'treesit-auto
+  (treesit-auto-mode -1)
+  (setq treesit-auto-install nil))
+
+(remove-hook 'after-init-hook #'global-treesit-auto-mode)
+
+(with-eval-after-load 'treesit-auto
+  (treesit-auto-mode -1)
+  (setq treesit-auto-install nil))
+
+;; Comprehensive treesit disabling
+(setq treesit-extra-load-path nil)
+(setq treesit-font-lock-level 0)
+(setq treesit-load-name-override-list nil)
+(setq major-mode-remap-alist nil)
+
+;; Prevent automatic grammar installations
+(advice-add 'treesit--install-language-grammar :around
+            (lambda (orig-fun &rest args) nil))
+
+;; Prevent treesit modes from being used (without cl-lib)
+(setq major-mode-remap-alist
+      (seq-filter (lambda (pair)
+                    (not (string-match-p "treesit" (symbol-name (cdr pair)))))
+                  (default-value 'major-mode-remap-alist)))
 
 ;; =================== ORG-mode ====================
-(require 'myorg)
+                                        ; (require 'myorg)
+(use-package myorg
+  :straight nil)
 
 ;; ================= My editor settings ===================
-(require 'myedit)
+                                        ; (require 'myedit)
+(use-package myedit
+  :straight nil)
 
 ;; =================== desktop etc. ====================
-(require 'mydesktop)
+                                        ; (require 'mydesktop)
+(use-package mydesktop
+  :straight nil)
 
 ;; =============== Spell Checking ==================
-(require 'myspell)
+                                        ; (require 'myspell)
+(use-package myspell
+  :straight nil)
+
 
 ;; =============== Flycheck ==================
 ;; (use-package flycheck
@@ -55,26 +105,37 @@
 
 
 ;; ================= AUCTEX =====================
-(require 'myauctex)
+                                        ; (require 'myauctex)
+(use-package myauctex
+  :straight nil)
 
 ;; =================  terminal ================
-(require 'myterm)
+                                        ; (require 'myterm)
+(use-package myterm
+  :straight nil)
 
 ;; =================  Parentheses ================
-(require 'myparent)
+                                        ; (require 'myparent)
+(use-package myparent
+  :straight nil)
 
 ;; ================ magit ===============
-(require 'mymagit)
+                                        ; (require 'mymagit)
+(use-package mymagit
+  :straight nil)
 
 ;; ===================== ediff ==========================
 (setopt ediff-split-window-function 'split-window-horizontally)
 
 ;; ================= yasnippet ==================
-(require 'mycompletions)
+                                        ; (require 'mycompletions)
+(use-package mycompletions
+  :straight nil)
 
 ;; ============== My minibuffer completion ===============
-(require 'myconsult)
-
+                                        ; (require 'myconsult)
+(use-package myconsult
+  :straight nil)
 
 ;; =================== minions ===================
 ;; mode manager
@@ -106,7 +167,9 @@
 ;; (require 'myhyp) ;; no por ahora...
 
 ;; ================= dired etc. ===================
-(require 'mydired)
+                                        ; (require 'mydired)
+(use-package mydired
+  :straight nil)
 
 ;; ================= Projectile ===================
 ;; (require 'myprojectile) ;; no por ahora...
@@ -115,13 +178,20 @@
 ;; (require 'mylsp)  ;; no por ahora..
 
 ;; ================= markdown ===================
-(require 'mymarkdown)
+                                        ; (require 'mymarkdown)
+(use-package mymarkdown
+  :straight nil)
+
 
 ;; ================= XML ===================
 (require 'myxml)
+(use-package myxml
+  :straight nil)
 
 ;; ================= Python ===================
-(require 'mypython)
+                                        ; (require 'mypython)
+(use-package mypython
+  :straight nil)
 
 ;; ================= pdf-tools ===================
 ;; (use-package pdf-tools
@@ -158,14 +228,19 @@
 
 
 ;; ================= My functions ===================
-(require 'myfunctions)
+                                        ; (require 'myfunctions)
+(use-package myfunctions
+  :straight nil)
 
 ;; ================= My aliases ===================
-(require 'myaliases)
-
+                                        ; (require 'myaliases)
+(use-package myaliases
+  :straight nil)
 
 ;; ================= epubs ==================
-(require 'myepub)
+                                        ; (require 'myepub)
+(use-package myepub
+  :straight nil)
 
 ;; ================= server ==================
 (require 'server)
@@ -175,6 +250,7 @@
 
 ;; =============== Dashboard ===============
 (use-package dashboard
+  ;; :if IS-LINUX
   ;; :disabled
   :init
   (add-hook 'after-init-hook 'dashboard-open)
@@ -187,8 +263,7 @@
   ;; Header, footer, messages
   (setq dashboard-banner-logo-title "Welcome to Emacs!"
         dashboard-footer-messages '("")
-        dashboard-startup-banner 'logo
-        )
+        dashboard-startup-banner 1)
   ;; General config
   (setq dashboard-items-default-length 30
         dashboard-page-separator "\n\n"
@@ -248,19 +323,23 @@
 
 
 ;; ============= My display configuration ==========
-(require 'mydisplay)
+                                        ; (require 'mydisplay)
+(use-package mydisplay
+  :straight nil)
 
 ;; ============= My themes configuration ==========
-(require 'mythemes)
+                                        ; (require 'mythemes)
+(use-package mythemes
+  :straight nil)
 
 ;; ================= KEY remap ===============
-(require 'mykeys)
-
-
+                                        ; (require 'mykeys)
+(use-package mykeys
+  :straight nil)
 
 ;; overwrite selected text
 (delete-selection-mode 1)
 
-;; -------------------------------------------------------------------
+;; ------------------------------------------------------------
 (provide 'myinit)
 ;;; myinit.el ends here

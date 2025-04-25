@@ -38,7 +38,7 @@
   (when (not (version< emacs-version "28"))
     (context-menu-mode))
 
-  ;; overwrite selected text
+  ;; overwrite text
   (delete-selection-mode 1)
 
   ;; cliboard management
@@ -222,10 +222,11 @@
 ;;    )
 ;;   )
 
+
 ;; trim extraenus white-space
 (use-package ws-butler
-  :straight t
-  :defer t
+  :disabled
+  :straight (ws-butler :host github :repo "lewang/ws-butler")
   :config
   (add-hook 'emacs-lisp-mode-hook #'ws-butler-mode)
   (add-hook 'latex-mode-hook #'ws-butler-mode)
@@ -280,7 +281,6 @@
              :type git
              :host github
              :repo "jdtsmith/speedrect"))
-
 
 
 (provide 'myedit)

@@ -1,17 +1,17 @@
-;;; mythemes.el -*- lexical-binding: t; -*-
+;;; mythemes.el -*- lexical-binding: t; -*
+
+;; (message "»»»»»»»»»»»» Loading mythemes.el ««««««««««««« ")
 
 
 (load-theme 'adwaita t)
-
-
 
 (use-package ef-themes
   :disabled
   :straight
   (ef-themes :type git :host github :repo "protesilaos/ef-themes")
   :config
-  (load-theme 'ef-maris-light t)
-  ;; (load-theme 'ef-elea-dark t)
+  ;; (load-theme 'ef-maris-light t)
+  (load-theme 'ef-elea-dark t)
   )
 
 
@@ -36,19 +36,22 @@
   (doom-themes-visual-bell-config)
   ;; (load-theme 'doom-one t)
   ;; (load-theme 'doom-city-lights t)
+  ;; (load-theme 'doom-spacegray t)
   ;; (load-theme 'doom-tokyo-night t)
-  ;; (load-theme 'doom-dark+ t)
+  (load-theme 'doom-dark+ t)
   )
 
 
 (use-package color-theme-sanityinc-tomorrow
   :disabled
+  :straight t
   :config
   (load-theme 'color-theme-sanityinc-tomorrow-day t)
   )
 
 (use-package base16-theme
   :disabled
+  :straight t
   :config
   (load-theme 'base16-equilibrium-gray-light t)
   )

@@ -1,5 +1,7 @@
 ;;; early-init.el --- early bird  -*- no-byte-compile: t -*-
 
+(message ">>>>> loading early-init.el")
+
 ;; Defer garbage collection further back in the startup process
 (setopt
  gc-cons-threshold most-positive-fixnum
@@ -31,7 +33,6 @@
 (advice-add #'x-apply-session-resources :override #'ignore)
 
 
-
 ;; ---------------------------------------------------
 
 ;; If non-nil, packages are made available before
@@ -44,5 +45,3 @@
 (eval-when-compile
   (require 'use-package))
 (require 'bind-key) 
-
-

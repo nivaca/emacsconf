@@ -1,6 +1,7 @@
 ;;; mylisp/myxmlsnippets.el -*- lexical-binding: t; -*-
 
-(message "Loading %s..." (buffer-file-name))
+(use-package transient
+  :straight t)
 
 (defvar allwits "#C #A #B #D #E #F #G #H #I")
 

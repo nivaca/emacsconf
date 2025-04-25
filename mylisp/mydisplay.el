@@ -1,15 +1,14 @@
 ;;; mylisp/mydisplay.el -*- lexical-binding: t; -*-
-
 ;; nivaca-pc: desktop casa
 ;; nivaca-dell: portátil dell
 ;; nivaca-xps: portátil dell xps 13
 
+;; (message "»»»»»»»»»»»» Loading mydisplay.el ««««««««««««« ")
+
 (use-package menu-bar
   :straight nil
-  :bind
-  ([S-f10] . menu-bar-mode)
   :config
-  (menu-bar-mode 1)
+  (menu-bar-mode 0)
   )
 
 
@@ -53,7 +52,7 @@
    font-lock-maximum-decoration t
    frame-inhibit-implied-resize t
    minibuffer-message-timeout 5
-   pixel-scroll-precision-mode 1
+   pixel-scroll-precision-mode t
    ring-bell-function 'ignore
    split-height-threshold 80
    split-width-threshold 125
@@ -91,7 +90,7 @@
   ;; (setq max-mini-window-height 0.25)
 
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
-  (tooltip-mode -1)
+  (tooltip-mode nil)
   (blink-cursor-mode -1)
   ;; transparency
   ;; (add-to-list 'default-frame-alist '(alpha-background . 90))
@@ -117,10 +116,10 @@
   :config
   (setq fontaine-presets
         '((pc
-           :default-height 140
+           :default-height 150
            :line-spacing 0.1)
           (xps
-           :default-height 150
+           :default-height 170
            :line-spacing 0.1)
           (mac
            :default-family "JetBrains Mono NL"
@@ -133,7 +132,7 @@
           (t
            :default-family "JetBrains Mono NL"
            :fixed-pitch-serif-family "JetBrains Mono NL"
-           :variable-pitch-family "Aptos Display"
+           :variable-pitch-family "JetBrains Mono NL"
            :default-weight Regular)))
   ;; select preset depending on system ------------------
   (pcase (system-name)
@@ -348,17 +347,6 @@
 (use-package rainbow-mode
   :straight t
   )
-
-
-;; prism disperses code into a spectrum of color by depth. 
-;; --------------------------------------------------------
-(use-package prism
-  :disabled t
-  :straight (prism :fetcher github :repo "alphapapa/prism.el")
-  ;; :config
-  ;; (prism-mode t)
-  )
-
 
 ;; ----------------------------------------------------------------
 (use-package prog-mode

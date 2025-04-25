@@ -1,5 +1,42 @@
 ;;; mylisp/myfunctions.el -*- lexical-binding: t; -*-
 
+
+;; ====================================================
+(defun nv-highlight-non-ascii ()
+  (interactive)
+  (highlight-regexp "[^[:ascii:]]" 'hi-yellow))
+
+;; ====================================================
+(defun nv-wrap-lines-with-l-tags ()
+  "Wrap each line in the selected region with <l> and </l>, 
+   except lines containing <pb>. Leading whitespace is preserved."
+  (interactive)
+  (when (use-region-p)  ;; Proceed only if a region is selected
+    (save-excursion
+      (let ((start (region-beginning))
+            (end (copy-marker (region-end)))) ;; Use a marker to avoid shifting the endpoint
+        (goto-char start)
+        (while (< (point) end)
+          (beginning-of-line)
+          (let ((line-start (point)))
+            (end-of-line)
+            (let* ((line-end (point))
+                   (line-text (buffer-substring-no-properties line-start line-end))
+                   (trimmed-line (string-trim-left line-text))  ;; Remove leading whitespace
+                   (leading-space (progn (string-match "^[[:space:]]*" line-text)
+                                         (match-string 0 line-text))))  ;; Capture leading spaces
+              ;; Skip lines that contain "<pb" but do NOT advance again in the loop
+              (if (string-match "<pb[[:space:]]*[^>]*>" trimmed-line)
+                  nil  ;; Do nothing, just let the loop advance normally
+                (progn
+                  (delete-region line-start line-end)  ;; Remove original line content
+                  (insert (format "%s<l>%s</l>" leading-space trimmed-line))))))
+          (forward-line 1))))))
+
+
+
+
+
 ;; =============================================
 ;; Source: https://www.emacswiki.org/emacs/misc-cmds.el
 (defun nv-revert-buffer-no-confirm ()
@@ -239,24 +276,6 @@ the given regular expression."
   (if (active-minibuffer-window)
       (select-window (active-minibuffer-window))
     (error "Minibuffer is not active")))
-
-
-;; =============================================
-(defun nv-terminal-here ()
-  "Open terminal in current working directory."
-  (interactive)
-  (cond ((eq system-type 'gnu/linux)
-         ;; Linux
-         (call-process "/usr/bin/konsole" nil 0 nil "--workdir" default-directory)
-         )
-        ((eq system-type 'darwin)
-         ;; Mac
-         ;; (call-process "/Users/nicolasvaughan/bin/iterm" nil 0 nil "--workdir" default-directory)
-         (call-process (expand-file-name "~/bin/iterm") nil 0 nil "--workdir" default-directory)
-         )
-        )
-  )
-
 
 
 ;; =============================================

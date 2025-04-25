@@ -17,7 +17,7 @@
     ;; (LaTeX-preview-setup)
     (jinx-mode)
     (outline-minor-mode)
-    (hs-minor-mode)
+    ;; (hs-minor-mode)
     )
   :hook
   (LaTeX-mode . nv-setup-auctex)
@@ -28,9 +28,6 @@
   (TeX-PDF-mode t)
   (LaTeX-beamer-item-overlay-flag nil)
   (TeX-PDF-mode t)
-  (TeX-quote-after-quote nil)
-  (TeX-open-quote "\"")
-  (TeX-close-quote "\"")
   (TeX-insert-macro-default-style 'mandatory-args-only)
   ;;
   :config
@@ -60,7 +57,7 @@
   (with-eval-after-load "tex"
     (add-to-list 'TeX-view-program-list '("okular" "/usr/bin/okular %o"))
     (setcdr (assq 'output-pdf TeX-view-program-selection) '("okular")))
-  (defun TeX-insert-quote ()
-    " "))
-  
+  )
+
+
 (provide 'myauctex)
