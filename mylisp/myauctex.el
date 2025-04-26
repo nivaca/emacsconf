@@ -56,8 +56,9 @@
   :config
   (with-eval-after-load "tex"
     (add-to-list 'TeX-view-program-list '("okular" "/usr/bin/okular %o"))
-    (setcdr (assq 'output-pdf TeX-view-program-selection) '("okular")))
-  )
+    (setcdr (assq 'output-pdf TeX-view-program-selection) '("okular"))))
+
+
 
 
 (provide 'myauctex)

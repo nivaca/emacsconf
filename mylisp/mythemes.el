@@ -3,15 +3,16 @@
 ;; (message "»»»»»»»»»»»» Loading mythemes.el ««««««««««««« ")
 
 
-(load-theme 'adwaita t)
+;; (load-theme 'adwaita t)
+(load-theme 'modus-operandi-tritanopia t)
 
 (use-package ef-themes
   :disabled
   :straight
   (ef-themes :type git :host github :repo "protesilaos/ef-themes")
   :config
-  ;; (load-theme 'ef-maris-light t)
-  (load-theme 'ef-elea-dark t)
+  (load-theme 'ef-maris-light t)
+  ;; (load-theme 'ef-elea-dark t)
   )
 
 
@@ -55,6 +56,7 @@
   :config
   (load-theme 'base16-equilibrium-gray-light t)
   )
+
 
 ;; --------------------------------------------------------------
 (provide 'mythemes)
