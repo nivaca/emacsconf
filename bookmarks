@@ -3,26 +3,27 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (#1=
- (#("2024-02-15_090937-conjetura_del_stemma_de_s_m.org" 0 49
-    (bmkp-full-record #1#))
-  (end-position . 452)
-  (filename
-   . "~/roamnotes/2024-02-15_090937-conjetura_del_stemma_de_s_m.org")
-  (buffer-name . "2024-02-15_090937-conjetura_del_stemma_de_s_m.org")
-  (front-context-string . "\n- #B ⇒ #N (mism")
-  (rear-context-string . "(#J) ⇒? #L ⇒? #Q")
-  (front-context-region-string) (rear-context-region-string)
-  (visits . 2) (time 26561 40922 515512 968000)
-  (created 26494 57764 895585 998000) (position . 452))
+(#("2024-02-15_090937-conjetura_del_stemma_de_s_m.org" 0 49
+   (bmkp-full-record #1#))
+ (end-position . 507)
+ (filename
+  . "~/roamnotes/2024-02-15_090937-conjetura_del_stemma_de_s_m.org")
+ (buffer-name . "2024-02-15_090937-conjetura_del_stemma_de_s_m.org")
+ (front-context-string . "\n- #B ⇒ #N (mism")
+ (rear-context-string . "(#J) ⇒? #L ⇒? #Q")
+ (front-context-region-string) (rear-context-region-string)
+ (visits . 3) (time 26648 4781 459006 636000)
+ (created 26494 57764 895585 998000) (position . 507))
 #1=
 (#("org-capture-last-stored" 0 23 (bmkp-full-record #1#)) (annotation)
- (tags) (filename . "~/roamnotes/2025-04-24-130429-sm_todos.org")
- (buffer-name . "2025-04-24-130429-sm_todos.org")
- (front-context-string . "#+filetags: \n#+S")
- (rear-context-string . "4-24 Thu 13:04]\n")
+ (tags)
+ (filename . "~/roamnotes/2025-05-14-172644-vscode_xml_validation.org")
+ (buffer-name . "2025-05-14-172644-vscode_xml_validation.org")
+ (front-context-string . "#+filetags: :com")
+ (rear-context-string . " xml validation\n")
  (front-context-region-string) (rear-context-region-string)
- (visits . 0) (time . #2=(26634 32241 977439 0)) (created . #2#)
- (position . 117))
+ (visits . 0) (time . #2=(26661 6310 725938 406000)) (created . #2#)
+ (position . 99))
 #1=
 (#("Pagos 2025" 0 10 (bmkp-full-record #1#)) (end-position . 376)
  (filename . "~/roamnotes/2024-12-24-120605-pagos_2025.org")

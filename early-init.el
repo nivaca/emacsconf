@@ -12,12 +12,6 @@
 ;; Require Common Lisp (for "case" etc.)
 (eval-when-compile (require 'cl-lib))
 
-;; Needs:
-;;   git checkout -b native-comp origin/feature/native-comp
-;;.  /configure --with-nativecomp 
-;; (setq comp-deferred-compilation t)
-
-
 ;; Prevent the glimpse of un-styled Emacs by disabling these UI elements early.
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(tool-bar-lines . 0) default-frame-alist)

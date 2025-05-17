@@ -4,10 +4,12 @@
 
 
 ;; (load-theme 'adwaita t)
-(load-theme 'modus-operandi-tritanopia t)
+;; (load-theme 'modus-operandi-tinted t)
+
+
 
 (use-package ef-themes
-  :disabled
+  ;; :disabled
   :straight
   (ef-themes :type git :host github :repo "protesilaos/ef-themes")
   :config
@@ -56,6 +58,8 @@
   :config
   (load-theme 'base16-equilibrium-gray-light t)
   )
+
+
 
 
 ;; --------------------------------------------------------------

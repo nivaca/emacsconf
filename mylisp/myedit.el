@@ -282,5 +282,4 @@
              :host github
              :repo "jdtsmith/speedrect"))
 
-
 (provide 'myedit)

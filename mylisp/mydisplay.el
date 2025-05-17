@@ -389,6 +389,4 @@
    ))
 
 
-
-
 (provide 'mydisplay)

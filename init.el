@@ -1,4 +1,4 @@
-;;; myinit.el -*- lexical-binding: t; -*-
+;;; init.el -*- lexical-binding: t; -*-
 
 ;;; Code:
 
@@ -11,9 +11,10 @@
 
 (add-to-list 'load-path user-lisp-directory)
 
+
 ;; Set eln-cache location
 (when (featurep 'native-compile)
-  (let ((eln-cache-dir (expand-file-name "~/.emacs/eln-cache")))
+  (let ((eln-cache-dir (expand-file-name "~/.emacs.d/eln-cache")))
     ;; Only create or set if we have native compilation
     (setq native-comp-eln-load-path 
           (list eln-cache-dir 
@@ -38,104 +39,41 @@
 
 ;; =============== Package Management ===============
 (require 'mypackages)
-                                        ; (use-package mypackages
-                                        ; :straight nil)
-
-
-;; =============== disable treesit ===============
-(use-package treesit-auto
-  :disabled t)
-
-(with-eval-after-load 'treesit-auto
-  (treesit-auto-mode -1)
-  (setq treesit-auto-install nil))
-
-(remove-hook 'after-init-hook #'global-treesit-auto-mode)
-
-(with-eval-after-load 'treesit-auto
-  (treesit-auto-mode -1)
-  (setq treesit-auto-install nil))
-
-;; Comprehensive treesit disabling
-(setq treesit-extra-load-path nil)
-(setq treesit-font-lock-level 0)
-(setq treesit-load-name-override-list nil)
-(setq major-mode-remap-alist nil)
-
-;; Prevent automatic grammar installations
-(advice-add 'treesit--install-language-grammar :around
-            (lambda (orig-fun &rest args) nil))
-
-;; Prevent treesit modes from being used (without cl-lib)
-(setq major-mode-remap-alist
-      (seq-filter (lambda (pair)
-                    (not (string-match-p "treesit" (symbol-name (cdr pair)))))
-                  (default-value 'major-mode-remap-alist)))
 
 ;; =================== ORG-mode ====================
-                                        ; (require 'myorg)
-(use-package myorg
-  :straight nil)
+(require 'myorg)
 
 ;; ================= My editor settings ===================
-                                        ; (require 'myedit)
-(use-package myedit
-  :straight nil)
+(require 'myedit)
+;; (load "myedit")
 
 ;; =================== desktop etc. ====================
-                                        ; (require 'mydesktop)
-(use-package mydesktop
-  :straight nil)
+(require 'mydesktop)
 
 ;; =============== Spell Checking ==================
-                                        ; (require 'myspell)
-(use-package myspell
-  :straight nil)
-
-
-;; =============== Flycheck ==================
-;; (use-package flycheck
-;;   ;; :straight t
-;;   :diminish flycheck-mode
-;;   :config
-;;   (setq flycheck-global-modes nil)
-;;   ;; (add-hook 'latex-mode-hook 'flycheck-mode)
-;;   ;;(global-flycheck-mode)
-;;   )
-
+(require 'myspell)
 
 ;; ================= AUCTEX =====================
-                                        ; (require 'myauctex)
-(use-package myauctex
-  :straight nil)
+(require 'myauctex)
 
 ;; =================  terminal ================
-                                        ; (require 'myterm)
-(use-package myterm
-  :straight nil)
+(require 'myterm)
 
 ;; =================  Parentheses ================
-                                        ; (require 'myparent)
-(use-package myparent
-  :straight nil)
+(require 'myparent)
 
 ;; ================ magit ===============
-                                        ; (require 'mymagit)
-(use-package mymagit
-  :straight nil)
+(require 'mymagit)
 
 ;; ===================== ediff ==========================
 (setopt ediff-split-window-function 'split-window-horizontally)
 
 ;; ================= yasnippet ==================
-                                        ; (require 'mycompletions)
-(use-package mycompletions
-  :straight nil)
+(require 'mycompletions)
 
 ;; ============== My minibuffer completion ===============
-                                        ; (require 'myconsult)
-(use-package myconsult
-  :straight nil)
+(require 'myconsult)
+
 
 ;; =================== minions ===================
 ;; mode manager
@@ -167,9 +105,7 @@
 ;; (require 'myhyp) ;; no por ahora...
 
 ;; ================= dired etc. ===================
-                                        ; (require 'mydired)
-(use-package mydired
-  :straight nil)
+(require 'mydired)
 
 ;; ================= Projectile ===================
 ;; (require 'myprojectile) ;; no por ahora...
@@ -178,20 +114,13 @@
 ;; (require 'mylsp)  ;; no por ahora..
 
 ;; ================= markdown ===================
-                                        ; (require 'mymarkdown)
-(use-package mymarkdown
-  :straight nil)
-
+(require 'mymarkdown)
 
 ;; ================= XML ===================
 (require 'myxml)
-(use-package myxml
-  :straight nil)
 
 ;; ================= Python ===================
-                                        ; (require 'mypython)
-(use-package mypython
-  :straight nil)
+;; (require 'mypython)
 
 ;; ================= pdf-tools ===================
 ;; (use-package pdf-tools
@@ -213,34 +142,38 @@
 
 
 ;; ===== Garbage Collector Magic Hack ====
-(use-package gcmh
-  :diminish
-  ;; :straight t
-  :custom
-  ;; Adopt a sneaky garbage collection strategy of waiting
-  ;; until idle time to collect; staving off the collector
-  ;; while the user is working.
-  (gcmh-idle-delay 5)
-  (gcmh-high-cons-threshold (* 16 1024 1024)) ; 16mb
-  (gcmh-verbose nil)
-  :init
-  (gcmh-mode 1))
+;; (use-package gcmh
+;;   :diminish
+;;   ;; :straight t
+;;   :custom
+;;   ;; Adopt a sneaky garbage collection strategy of waiting
+;;   ;; until idle time to collect; staving off the collector
+;;   ;; while the user is working.
+;;   (gcmh-idle-delay 5)
+;;   (gcmh-high-cons-threshold (* 16 1024 1024)) ; 16mb
+;;   (gcmh-verbose nil)
+;;   :init
+;;   (gcmh-mode 1))
+
+;; Garbage collection -----------------
+;; https://jackjamison.xyz/blog/emacs-garbage-collection/
+(defun my-minibuffer-setup-hook ()
+  (setq gc-cons-threshold most-positive-fixnum))
+(defun my-minibuffer-exit-hook ()
+  (setq gc-cons-threshold 800000000))
+(setq gc-cons-threshold most-positive-fixnum)
+(run-with-idle-timer 1.2 t 'garbage-collect)
 
 
 ;; ================= My functions ===================
-                                        ; (require 'myfunctions)
-(use-package myfunctions
-  :straight nil)
+(require 'myfunctions)
 
 ;; ================= My aliases ===================
-                                        ; (require 'myaliases)
-(use-package myaliases
-  :straight nil)
+(require 'myaliases)
+
 
 ;; ================= epubs ==================
-                                        ; (require 'myepub)
-(use-package myepub
-  :straight nil)
+(require 'myepub)
 
 ;; ================= server ==================
 (require 'server)
@@ -250,20 +183,20 @@
 
 ;; =============== Dashboard ===============
 (use-package dashboard
-  ;; :if IS-LINUX
   ;; :disabled
   :init
   (add-hook 'after-init-hook 'dashboard-open)
   :config
-  (setq dashboard-items '((bookmarks  . 10)
-                          (recents . 7)
+  (setq dashboard-items '((bookmarks  . 5)
+                          (recents . 15)
                           ;; (registers . 14)
                           ))
 
   ;; Header, footer, messages
   (setq dashboard-banner-logo-title "Welcome to Emacs!"
         dashboard-footer-messages '("")
-        dashboard-startup-banner 1)
+        dashboard-startup-banner 'logo
+        )
   ;; General config
   (setq dashboard-items-default-length 30
         dashboard-page-separator "\n\n"
@@ -323,23 +256,16 @@
 
 
 ;; ============= My display configuration ==========
-                                        ; (require 'mydisplay)
-(use-package mydisplay
-  :straight nil)
+(require 'mydisplay)
+;; (load "mydisplay")
 
 ;; ============= My themes configuration ==========
-                                        ; (require 'mythemes)
-(use-package mythemes
-  :straight nil)
+(require 'mythemes)
+;; (load "mythemes")
 
 ;; ================= KEY remap ===============
-                                        ; (require 'mykeys)
-(use-package mykeys
-  :straight nil)
+(require 'mykeys)
 
-;; overwrite selected text
-(delete-selection-mode 1)
-
-;; ------------------------------------------------------------
-(provide 'myinit)
-;;; myinit.el ends here
+;; -------------------------------------------------------------------
+(provide 'init)
+;;; init.el ends here
