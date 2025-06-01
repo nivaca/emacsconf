@@ -20,9 +20,6 @@
   ;; (consult-preview-mode)
   )
 
-(use-package consult-lsp
-  :disabled 
-  :straight t)
 
 ;; consult-org-roam
 (use-package consult-org-roam
@@ -52,7 +49,8 @@
 
 
 ;; -------------------- Vertico --------------------
-;; Vertico provides a performant and minimalistic vertical completion UI based on the default completion system.
+;; Vertico provides a performant and minimalistic
+;; vertical completion UI based on the default completion system.
 (use-package vertico
   :straight (:files (:defaults "extensions/*"))
   :custom
@@ -65,7 +63,8 @@
 
 
 ;; ------------------- consult-dir ---------------------
-;; Allows you to easily insert directory paths into the minibuffer prompt in Emacs.
+;; Allows you to easily insert directory paths
+;; into the minibuffer prompt in Emacs.
 (use-package consult-dir
   :straight t
   :bind (("C-x C-d" . consult-dir)
@@ -76,18 +75,23 @@
 
 ;; -------------------- marginalia --------------------
 ;; This package provides marginalia-mode which adds marginalia to the minibuffer completions. 
+;; (use-package marginalia
+;;   :straight t
+;;   :after vertico
+;;   :custom
+;;   (marginalia-annotators
+;;    '(marginalia-annotators-heavy
+;;      marginalia-annotators-light nil))
+;;   (marginalia-max-relative-age 0)
+;;   (marginalia-align 'right)
+;;   :init
+;;   (marginalia-mode))
 (use-package marginalia
   :straight t
-  :after vertico
-  :custom
-  (marginalia-annotators
-   '(marginalia-annotators-heavy
-     marginalia-annotators-light nil))
-  (marginalia-max-relative-age 0)
-  (marginalia-align 'right)
+  :bind (:map minibuffer-local-map
+              ("M-A" . marginalia-cycle))
   :init
   (marginalia-mode))
-
 
 ;; ------------------ Orderless ------------------
 ;; Provides an orderless completion style.
@@ -101,6 +105,7 @@
 ;; ---------------------- Embark -------------------------
 ;; Emacs Mini-Buffer Actions Rooted in Keymaps. This package provides a sort of right-click contextual menu for Emacs, accessed through the embark-act command (which you should bind to a convenient key), offering you relevant actions to use on a target determined by the context:
 (use-package embark
+  :disabled
   :straight t
   :bind
   (("C-." . embark-act)
@@ -117,7 +122,9 @@
                  (window-parameters (mode-line-format . none)))))
 
 
+
 ;; =============== embark-consult ===============
+;; Provides integration between Embark and Consult.
 (use-package embark-consult
   :straight t
   :hook
@@ -125,10 +132,9 @@
   )
 
 
-
-
 ;; =============== consult-notes ===============
 (use-package consult-notes
+  :disabled
   :straight (:type git :host github :repo "mclear-tools/consult-notes")
   :commands (consult-notes
              consult-notes-search-in-all-notes

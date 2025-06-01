@@ -7,6 +7,15 @@
 ;; (load-theme 'modus-operandi-tinted t)
 
 
+(use-package nano-theme
+  :disabled
+  :straight (nano-theme :type git :host github
+                        :repo "rougier/nano-theme")
+  :config
+  (nano-dark)
+  )
+
+
 
 (use-package ef-themes
   ;; :disabled

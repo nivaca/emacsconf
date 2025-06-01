@@ -184,6 +184,7 @@
 ;; =============== Dashboard ===============
 (use-package dashboard
   ;; :disabled
+  :if IS-LINUX
   :init
   (add-hook 'after-init-hook 'dashboard-open)
   :config
