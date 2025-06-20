@@ -3,27 +3,37 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (#1=
+(#("mylisp" 0 6 (bmkp-full-record #1#)) (buffer-name . "mylisp")
+ (front-context-string . "mydesktop.el\n  -")
+ (rear-context-string . "71 Mar 16  2024 ")
+ (front-context-region-string) (rear-context-region-string)
+ (visits . 0) (time . #2=(26703 7996 196786 706000)) (created . #2#)
+ (position . 567) (filename . "/home/nivaca/emacs/mylisp/")
+ (dired-directory . "~/emacs/mylisp/") (dired-marked)
+ (dired-switches . "-al") (dired-subdirs) (dired-hidden-dirs)
+ (handler . bmkp-jump-dired))
+#1=
 (#("2024-02-15_090937-conjetura_del_stemma_de_s_m.org" 0 49
    (bmkp-full-record #1#))
- (end-position . 507)
+ (end-position . 516)
  (filename
   . "~/roamnotes/2024-02-15_090937-conjetura_del_stemma_de_s_m.org")
  (buffer-name . "2024-02-15_090937-conjetura_del_stemma_de_s_m.org")
  (front-context-string . "\n- #B ⇒ #N (mism")
  (rear-context-string . "(#J) ⇒? #L ⇒? #Q")
  (front-context-region-string) (rear-context-region-string)
- (visits . 3) (time 26648 4781 459006 636000)
- (created 26494 57764 895585 998000) (position . 507))
+ (visits . 4) (time 26696 38132 858117 624000)
+ (created 26494 57764 895585 998000) (position . 516))
 #1=
 (#("org-capture-last-stored" 0 23 (bmkp-full-record #1#)) (annotation)
  (tags)
- (filename . "~/roamnotes/2025-05-31-140347-desktop_files_cache.org")
- (buffer-name . "2025-05-31-140347-desktop_files_cache.org")
+ (filename . "~/roamnotes/2025-06-11-113902-xslt_3_shallow_copy.org")
+ (buffer-name . "2025-06-11-113902-xslt_3_shallow_copy.org")
  (front-context-string . "#+filetags: :com")
- (rear-context-string . "top files cache\n")
+ (rear-context-string . "ntity transform\n")
  (front-context-region-string) (rear-context-region-string)
- (visits . 0) (time . #2=(26683 21203 63074 763000)) (created . #2#)
- (position . 97))
+ (visits . 0) (time . #2=(26697 45381 860804 0)) (created . #2#)
+ (position . 103))
 #1=
 (#("Pagos 2025" 0 10 (bmkp-full-record #1#)) (end-position . 373)
  (filename . "~/roamnotes/2024-12-24-120605-pagos_2025.org")
@@ -31,7 +41,7 @@
  (front-context-string . "\n- [ ] Gas ()\n- ")
  (rear-context-string . "] Claro Móvil ()")
  (front-context-region-string) (rear-context-region-string)
- (visits . 14) (time 26684 31087 398182 833000)
+ (visits . 16) (time 26692 22544 22074 60000)
  (created 26474 59982 199639 694000) (position . 373))
 #1=
 (#("Marcolfo" 0 8 (bmkp-full-record #1#)) (buffer-name . "Marcolfo")

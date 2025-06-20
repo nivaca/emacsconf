@@ -133,19 +133,33 @@
 
 
 ;; =============== consult-notes ===============
+;; (use-package consult-notes
+;;   :disabled
+;;   :straight (:type git :host github :repo "mclear-tools/consult-notes")
+;;   :commands (consult-notes
+;;              consult-notes-search-in-all-notes
+;;              ;; if using org-roam 
+;;              consult-notes-org-roam-find-node
+;;              consult-notes-org-roam-find-node-relation)
+;;   :config
+;;   (consult-notes-org-roam-mode)
+;;   (setq consult-notes-file-dir-sources
+;;         '(("Org" ?o "~/roamnotes/")))
+;;   ;; search only for text files in denote dir
+;;   (setq consult-notes-denote-files-function (function denote-directory-text-only-files)))
 (use-package consult-notes
-  :disabled
   :straight (:type git :host github :repo "mclear-tools/consult-notes")
   :commands (consult-notes
              consult-notes-search-in-all-notes
-             ;; if using org-roam 
              consult-notes-org-roam-find-node
              consult-notes-org-roam-find-node-relation)
   :config
-  (consult-notes-org-roam-mode)
   (setq consult-notes-file-dir-sources
-        '(("Org" ?o "~/roamnotes/")))
-  ;; search only for text files in denote dir
-  (setq consult-notes-denote-files-function (function denote-directory-text-only-files)))
+        '(("Org" ?o "~/roamnotes/"))
+        )
+  )
+
+
+
 
 (provide 'myconsult)

@@ -22,6 +22,22 @@
 (setopt backup-directory-alist `((".*" . ,nv-tmp-dir)))  ;; mind the comma!
 
 
+;; ==================== easyseasion ====================
+(use-package easysession
+  :ensure t
+  :commands (easysession-switch-to
+             easysession-save-as
+             easysession-save-mode
+             easysession-load-including-geometry)
+  :custom
+  (easysession-mode-line-misc-info nil)
+  (easysession-save-interval (* 10 60))  ; Save every 10 minutes
+  :init
+  (add-hook 'emacs-startup-hook #'easysession-save-mode 103)
+  :blackout easysession-save-mode
+  )
+
+
 ;; ============== Custom edit file ================
 (use-package cus-edit
   :straight

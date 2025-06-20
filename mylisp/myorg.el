@@ -32,8 +32,9 @@
         org-confirm-babel-evaluate t ;; nil
         org-cycle-separator-lines 2
         ;; org-link-descriptive t 
-        org-edit-src-content-indentation 2
+        org-edit-src-content-indentation 0
         org-export-with-smart-quotes t
+        org-src-fontify-natively t
         org-fontify-quote-and-verse-blocks t
         org-fontify-whole-heading-line t
         org-hide-block-startup nil

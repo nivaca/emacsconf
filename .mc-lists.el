@@ -35,4 +35,5 @@
 (setq mc/cmds-to-run-once
       '(
         TeX-insert-dollar
+        wdired-finish-edit
         ))

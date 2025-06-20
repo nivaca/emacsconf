@@ -116,7 +116,7 @@
   :config
   (setq fontaine-presets
         '((pc
-           :default-height 150
+           :default-height 140
            :line-spacing 0.1)
           (xps
            :default-height 170
@@ -233,19 +233,18 @@
 
 
 ;; -------------------------------------------------------------
-;;                              whitespace
+;;                            whitespace
 ;; -------------------------------------------------------------
 (use-package whitespace
-  :disabled
   :straight t
   :custom
-  (whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
+  (whitespace-style '(face tabs tab-mark spaces space-mark trailing newline newline-mark))
   (whitespace-display-mappings
-   ;; all numbers are Unicode codepoint in decimal. e.g. (insert-char 182 1)
    '(
-     (space-mark 32 [183] [46]) ; 32 SPACE 「 」, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
-     (newline-mark 10 [182 10]) ; 10 LINE FEED
-     (tab-mark 9 [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
+     (space-mark   ?\     [?\u00B7]     [?.])
+     (space-mark   ?\xA0  [?\u00A4]     [?_])
+     (newline-mark ?\n    [182 ?\n])
+     (tab-mark     ?\t    [?\u00BB ?\t] [?\\ ?\t])
      ))
   :init (setq highlight-indent-guides-method 'character)
   :blackout whitespace-mode)
