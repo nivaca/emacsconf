@@ -24,21 +24,25 @@
   (interactive)
   (cond ((eq system-type 'gnu/linux)
          ;; Linux
-         (call-process "/usr/bin/konsole" 
-          nil 0 nil "--workdir" default-directory)
+         ;; (call-process "/usr/bin/konsole" 
+         ;; nil 0 nil "--workdir" default-directory)
          ;; (let ((process-environment 
-         ;;        (append
-         ;;         '("DISPLAY=:0"
-         ;;           "WAYLAND_DISPLAY=wayland-0")
-         ;;         process-environment)))
-         ;;   (start-process "wezterm" nil "/usr/bin/wezterm" "start" "--cwd" default-directory))
+         ;;        (append process-environment 
+         ;;                (list (format "WAYLAND_DISPLAY=%s" (or (getenv "WAYLAND_DISPLAY") "wayland-0"))
+         ;;                      (format "XDG_SESSION_TYPE=%s" (or (getenv "XDG_SESSION_TYPE") "wayland"))))))
+         ;;   (start-process "kitty" nil "kitty" "--directory" default-directory))
+         (let ((process-environment 
+                (append process-environment 
+                        (list (format "WAYLAND_DISPLAY=%s" (or (getenv "WAYLAND_DISPLAY") "wayland-0"))
+                              (format "XDG_SESSION_TYPE=wayland")
+                              (format "XDG_RUNTIME_DIR=%s" (or (getenv "XDG_RUNTIME_DIR") "/run/user/1000"))))))
+           (start-process "kitty" nil "kitty" "--directory" default-directory))
          )
         ((eq system-type 'darwin)
          ;; Mac
-         (call-process "/Users/nicolasvaughan/bin/iterm" 
-          nil 0 nil "--workdir" default-directory)
-         )
-        )
-  )
+         ;; (call-process "/Users/nicolasvaughan/bin/iterm" 
+         ;; nil 0 nil "--workdir" default-directory)
+         (call-process "/Applications/kitty.app/Contents/MacOS/kitty" 
+                       nil 0 nil "--directory" default-directory))))
 
 (provide 'myterm)

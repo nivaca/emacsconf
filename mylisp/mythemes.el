@@ -16,9 +16,18 @@
   )
 
 
+(use-package tomorrow-night-deepblue-theme
+  :disabled
+  :straight t
+  :config
+  ;; Disable all themes and load the Tomorrow Night Deep Blue theme
+  (mapc #'disable-theme custom-enabled-themes)
+  ;; Load the tomorrow-night-deepblue theme
+  (load-theme 'tomorrow-night-deepblue t))
+
 
 (use-package ef-themes
-  ;; :disabled
+  :disabled
   :straight
   (ef-themes :type git :host github :repo "protesilaos/ef-themes")
   :config
@@ -62,10 +71,10 @@
   )
 
 (use-package base16-theme
-  :disabled
+  ;; :disabled
   :straight t
   :config
-  (load-theme 'base16-equilibrium-gray-light t)
+  (load-theme 'base16-atelier-sulphurpool t)
   )
 
 

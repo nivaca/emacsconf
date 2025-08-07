@@ -388,4 +388,15 @@
    ))
 
 
+;; vim-tar-bar -----------------------------------
+(use-package vim-tab-bar
+  :straight t
+  :commands vim-tab-bar-mode
+  :hook
+  (after-init . vim-tab-bar-mode)
+  :custom
+  (vim-tab-bar-show-groups nil)
+  :blackout)
+
+
 (provide 'mydisplay)

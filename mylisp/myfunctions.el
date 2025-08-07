@@ -1,5 +1,10 @@
 ;;; mylisp/myfunctions.el -*- lexical-binding: t; -*-
 
+(defun nv-disable-custom-themes ()
+  (interactive)
+  (mapc #'disable-theme custom-enabled-themes)
+  )
+
 
 ;; ====================================================
 (defun nv-highlight-non-ascii ()

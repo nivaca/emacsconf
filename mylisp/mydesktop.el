@@ -24,6 +24,7 @@
 
 ;; ==================== easyseasion ====================
 (use-package easysession
+  :disable t
   :ensure t
   :commands (easysession-switch-to
              easysession-save-as

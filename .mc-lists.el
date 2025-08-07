@@ -35,5 +35,6 @@
 (setq mc/cmds-to-run-once
       '(
         TeX-insert-dollar
+        ns-open-file-select-line
         wdired-finish-edit
         ))
