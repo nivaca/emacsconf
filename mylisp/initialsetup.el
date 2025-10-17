@@ -117,12 +117,8 @@
 (setopt select-enable-clipboard t)
 
 
-;; Remove command line options that aren't relevant to our current OS; that
-;; means less to process at startup.
-(unless IS-MAC   (setopt command-line-ns-option-alist nil))
-(unless IS-LINUX (setopt command-line-x-option-alist nil))
-
-
+;; No macOS
+(setopt command-line-ns-option-alist nil)
 
 ;;
 ;;; Optimizations
@@ -161,16 +157,6 @@
 ;; been determined, but we inhibit it there anyway.
 (setq inhibit-compacting-font-caches t)
 
-
-;; Remove command line options that aren't relevant to our current OS; means
-;; slightly less to process at startup.
-(unless IS-MAC   (setopt command-line-ns-option-alist nil))
-(unless IS-LINUX (setopt command-line-x-option-alist nil))
-
-
-;; Delete files to trash on macOS, as an extra layer of precaution against
-;; accidentally deleting wanted files.
-(setopt delete-by-moving-to-trash IS-MAC)
 
 
 ;; HACK `tty-run-terminal-initialization' is *tremendously* slow for some

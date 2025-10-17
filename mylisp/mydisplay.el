@@ -1,7 +1,7 @@
 ;;; mylisp/mydisplay.el -*- lexical-binding: t; -*-
-;; nivaca-pc: desktop casa
-;; nivaca-dell: portátil dell
-;; nivaca-xps: portátil dell xps 13
+;; nivaca-pc:   desktop casa
+;; nivaca-xps:  portátil dell xps 13
+;; n.vaughan20: portátil lenovo oficina
 
 ;; (message "»»»»»»»»»»»» Loading mydisplay.el ««««««««««««« ")
 
@@ -41,8 +41,7 @@
 ;; ====================================================
 (use-package emacs
   :config
-  (if IS-LINUX
-      (setenv "QT_QPA_PLATFORM" "wayland"))
+  (setenv "QT_QPA_PLATFORM" "wayland")
   (setopt
    column-number-mode t
    display-line-numbers-type t  ;; también: 'relative
@@ -116,36 +115,36 @@
   :config
   (setq fontaine-presets
         '((pc
-           :default-height 140
+           :default-height 130
            :line-spacing 0.1)
           (xps
-           :default-height 170
+           :default-height 140
            :line-spacing 0.1)
-          (mac
-           :default-family "JetBrains Mono NL"
-           :variable-pitch-family "Aptos"
-           :default-height 180)
+          (lenovo
+           :default-height 140
+           :line-spacing 0.1)
           (epub
-           :default-family "JetBrains Mono NL"
+           :default-family "Maple Mono Normal NL"
            :variable-pitch-family "Times New Roman"
            :default-height 160)
           (t
-           :default-family "JetBrains Mono NL"
-           :fixed-pitch-serif-family "JetBrains Mono NL"
-           :variable-pitch-family "JetBrains Mono NL"
+           :default-family "Maple Mono Normal NL"
+           :fixed-pitch-serif-family "Maple Mono Normal NL"
+           :variable-pitch-family "Maple Mono Normal NL"
            :default-weight Regular)))
   ;; select preset depending on system ------------------
   (pcase (system-name)
     ;; PC escritorio casa
     ("nivaca-pc"
      (fontaine-set-preset 'pc))
-    ;; XPS 13
+    ;;
+    ;;; XPS 13
     ("nivaca-xps"
      (fontaine-set-preset 'xps))
-    )
-  ;; Mac
-  (when IS-MAC
-    (fontaine-set-preset 'mac)
+    ;;
+    ;;; lenovo
+    ("n.vaughan20"
+     (fontaine-set-preset 'lenovo))
     )
   ;; reset to default scaling
   (text-scale-adjust 0)

@@ -14,6 +14,7 @@
         dired-toggle-read-only
         end-of-visual-line
         indent-for-tab-command
+        markdown-end-of-line
         markdown-outdent-or-delete
         mouse-set-region
         multiple-cursors-mode
@@ -26,6 +27,7 @@
         org-yank
         pixel-scroll-precision
         r-o-m
+        sgml-slash
         undo-only
         wdired--self-insert
         yank

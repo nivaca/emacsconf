@@ -1,9 +1,9 @@
 ;;; mylisp/mydesktop.el -*- lexical-binding: t; -*-
 
-;; perspective, savaplace, recentf
-
 ;; nivaca-pc: desktop casa
 ;; nivaca-xps: portátil dell xps 13
+;; n.vaughan20: portátil lenovo oficina
+
 
 (defvar nv-tmp-dir "/var/tmp/emacs")
 
@@ -22,23 +22,6 @@
 (setopt backup-directory-alist `((".*" . ,nv-tmp-dir)))  ;; mind the comma!
 
 
-;; ==================== easyseasion ====================
-(use-package easysession
-  :disable t
-  :ensure t
-  :commands (easysession-switch-to
-             easysession-save-as
-             easysession-save-mode
-             easysession-load-including-geometry)
-  :custom
-  (easysession-mode-line-misc-info nil)
-  (easysession-save-interval (* 10 60))  ; Save every 10 minutes
-  :init
-  (add-hook 'emacs-startup-hook #'easysession-save-mode 103)
-  :blackout easysession-save-mode
-  )
-
-
 ;; ============== Custom edit file ================
 (use-package cus-edit
   :straight
@@ -46,12 +29,13 @@
   (pcase (system-name)
     ;; PC escritorio casa
     ("nivaca-pc" (setq custom-file (concat user-emacs-directory "tmp/pc/custom.el")))
-    ;; XPS 13
+    ;;
+    ;;; XPS 13
     ("nivaca-xps" (setq custom-file (concat user-emacs-directory "tmp/xps/custom.el")))
+    ;;
+    ;;; lenovo
+    ("n.vaughan20" (setq custom-file (concat user-emacs-directory "tmp/lenovo/custom.el")))
     )
-  ;; Mac oficina
-  (when IS-MAC
-    (setq custom-file (concat user-emacs-directory "tmp/mac/custom.el")))
   :hook
   (after-init . (lambda ()
                   (unless (file-exists-p custom-file)
@@ -74,10 +58,9 @@
     ("nivaca-pc" (setq savehist-file (concat user-emacs-directory "tmp/pc/savehist")))
     ;; XPS 13
     ("nivaca-xps" (setq savehist-file (concat user-emacs-directory "tmp/xps/savehist")))
+    ;; lenovo
+    ("n.vaughan20" (setq savehist-file (concat user-emacs-directory "tmp/lenovo/savehist")))
     )
-  ;; Mac oficina
-  (when IS-MAC
-    (setq savehist-file (concat user-emacs-directory "tmp/mac/savehist")))
   :init
   (savehist-mode)
   )
@@ -94,12 +77,12 @@
   (pcase (system-name)
     ;; PC escritorio casa
     ("nivaca-pc" (setq save-place-file (concat user-emacs-directory "tmp/pc/saved-places")))
-    ;; XPS 13
+    ;;
+    ;;; XPS 13
     ("nivaca-xps" (setq save-place-file (concat user-emacs-directory "tmp/xps/saved-places")))
-    )
-  ;; Mac oficina
-  (when IS-MAC
-    (setq save-place-file (concat user-emacs-directory "tmp/mac/saved-places"))
+    ;;
+    ;;; lenovo
+    ("n.vaughan20" (setq save-place-file (concat user-emacs-directory "tmp/lenovo/saved-places")))
     )
   )
 
@@ -116,12 +99,10 @@
     ;;
     ;;; XPS 13
     ("nivaca-xps" (setq recentf-save-file (concat user-emacs-directory "tmp/xps/recentf")))
+    ;;
+    ;;; lenovo
+    ("n.vaughan20" (setq recentf-save-file (concat user-emacs-directory "tmp/lenovo/recentf")))
     )
-  ;;
-  ;;; Mac oficina
-  (when IS-MAC
-    (setq recentf-save-file (concat user-emacs-directory "tmp/mac/recentf")))
-  ;;
   ;;
   (setopt recentf-max-menu-items 200
           recentf-max-saved-items 200

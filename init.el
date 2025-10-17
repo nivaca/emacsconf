@@ -2,9 +2,6 @@
 
 ;;; Code:
 
-(defconst IS-MAC     (eq system-type 'darwin))
-(defconst IS-LINUX   (eq system-type 'gnu/linux))
-
 ;; Set some paths
 (setq user-emacs-directory (expand-file-name "~/emacs/"))
 (setq user-lisp-directory (expand-file-name "mylisp/" user-emacs-directory))
@@ -184,7 +181,6 @@
 ;; =============== Dashboard ===============
 (use-package dashboard
   ;; :disabled
-  :if IS-LINUX
   :init
   (add-hook 'after-init-hook 'dashboard-open)
   :config

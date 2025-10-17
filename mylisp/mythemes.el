@@ -4,7 +4,7 @@
 
 
 ;; (load-theme 'adwaita t)
-;; (load-theme 'modus-operandi-tinted t)
+;; (load-theme 'modus-vivendi-tinted t)
 
 
 (use-package nano-theme
@@ -43,7 +43,7 @@
   )
 
 (use-package doom-themes
-  :disabled
+  ;; :disabled
   :straight t
   :custom
   (doom-nord-brighter-comments t)
@@ -59,7 +59,8 @@
   ;; (load-theme 'doom-city-lights t)
   ;; (load-theme 'doom-spacegray t)
   ;; (load-theme 'doom-tokyo-night t)
-  (load-theme 'doom-dark+ t)
+  (load-theme 'doom-nord t)
+  ;; (load-theme 'doom-dark+ t)
   )
 
 
@@ -71,10 +72,10 @@
   )
 
 (use-package base16-theme
-  ;; :disabled
+  :disabled
   :straight t
   :config
-  (load-theme 'base16-atelier-sulphurpool t)
+  (load-theme 'base16-eva t)
   )
 
 

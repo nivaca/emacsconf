@@ -48,9 +48,9 @@
 
 
 ;; =============== Scrolling ==================
-;; only for nivaca-xps
+;; only for nivaca-xps and n.vaughan20
 (use-package ultra-scroll
-  :if (string= system-name "nivaca-xps")
+  :if (member system-name '("nivaca-xps" "n.vaughan20"))
   :straight (ultra-scroll
              :host github
              :repo "jdtsmith/ultra-scroll")
@@ -61,9 +61,9 @@
   (ultra-scroll-mode 1)
   )
 
-;; only for nivaca-pc or on MacOS
+;; only for nivaca-pc
 (use-package smooth-scroll
-  :if (or (string= system-name "nivaca-pc") IS-MAC)
+  :if (string= system-name "nivaca-pc")
   :straight t
   :config
   (smooth-scroll-mode t)
