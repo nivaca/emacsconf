@@ -3,12 +3,8 @@
 ;; (message "»»»»»»»»»»»» Loading mythemes.el ««««««««««««« ")
 
 
-(load-theme 'misterioso t)
 ;; (load-theme 'adwaita t)
 ;; (load-theme 'modus-vivendi-tinted t)
-
-
-
 
 
 (use-package nano-theme
@@ -47,7 +43,7 @@
   )
 
 (use-package doom-themes
-  :disabled
+  ;; :disabled
   :straight t
   :custom
   (doom-nord-brighter-comments t)

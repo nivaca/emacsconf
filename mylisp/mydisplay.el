@@ -115,7 +115,7 @@
   :config
   (setq fontaine-presets
         '((pc
-           :default-height 130
+           :default-height 140
            :line-spacing 0.1)
           (xps
            :default-height 140
@@ -128,10 +128,11 @@
            :variable-pitch-family "Times New Roman"
            :default-height 160)
           (t
-           :default-family "Maple Mono Normal NL"
-           :fixed-pitch-serif-family "Maple Mono Normal NL"
-           :variable-pitch-family "Maple Mono Normal NL"
+           :default-family "MapleMonoNormalNL-Regular"
+           :fixed-pitch-serif-family "MapleMonoNormalNL-Regular"
+           :variable-pitch-family "MapleMonoNormalNL-Regular"
            :default-weight Regular)))
+  ;;
   ;; select preset depending on system ------------------
   (pcase (system-name)
     ;; PC escritorio casa

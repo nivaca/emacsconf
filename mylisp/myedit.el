@@ -282,4 +282,20 @@
              :host github
              :repo "jdtsmith/speedrect"))
 
+;; ==================== kirigami ====================
+;; A Unified Interface for Text Folding
+(use-package kirigami
+  :straight (kirigami
+             :type git
+             :host github
+             :repo "jamescherti/kirigami.el")
+  :bind (("C-c k o" . kirigami-open-fold)   
+         ("C-c k O" . kirigami-open-fold-rec)
+         ("C-c k m" . kirigami-close-folds)  
+         ("C-c k c" . kirigami-close-fold)   
+         ("C-c k r" . kirigami-open-folds)   
+         ("C-c k TAB" . kirigami-toggle-fold)))
+
+
+
 (provide 'myedit)

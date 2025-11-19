@@ -48,7 +48,6 @@
   )
 
 
-
 ;; Other auctex settings ---------------------------------------------
 (use-package emacs
   :straight
@@ -59,6 +58,32 @@
     (setcdr (assq 'output-pdf TeX-view-program-selection) '("okular"))))
 
 
+
+
+(with-eval-after-load 'font-latex
+  (dolist (face '(font-latex-sectioning-0-face
+                  font-latex-sectioning-1-face
+                  font-latex-sectioning-2-face
+                  font-latex-sectioning-3-face
+                  font-latex-sectioning-4-face
+                  font-latex-sectioning-5-face
+                  font-latex-slide-title-face
+                  font-latex-bold-face
+                  font-latex-italic-face
+                  font-latex-math-face
+                  font-latex-string-face
+                  font-latex-warning-face
+                  font-latex-sedate-face
+                  font-latex-verbatim-face))
+    (set-face-attribute face nil 
+                        :family 'unspecified 
+                        :slant 'normal      ; Add this
+                        :inherit 'default))
+  ;; Disable font scaling for sectioning commands
+  (setq font-latex-fontify-sectioning 1.0)
+  ;; Optional: also disable script font changes (sub/superscripts)
+  (setq font-latex-fontify-script nil)
+  )
 
 
 (provide 'myauctex)

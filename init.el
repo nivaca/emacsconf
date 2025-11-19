@@ -239,6 +239,7 @@
   (blackout 'visual-line-mode)
   )
 
+
 ;; =========================================
 ;; Startup time
 
