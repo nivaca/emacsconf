@@ -3,9 +3,9 @@
 ;; (message "»»»»»»»»»»»» Loading mythemes.el ««««««««««««« ")
 
 
-(load-theme 'misterioso t)
+;; (load-theme 'misterioso t)
 ;; (load-theme 'adwaita t)
-;; (load-theme 'modus-vivendi-tinted t)
+(load-theme 'modus-vivendi-tinted t)
 
 
 

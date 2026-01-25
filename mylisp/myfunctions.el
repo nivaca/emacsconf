@@ -1,5 +1,26 @@
 ;;; mylisp/myfunctions.el -*- lexical-binding: t; -*-
 
+
+(defun nv-remove-bracketed-content ()
+  "Remove contents inside square brackets and parentheses from selected region.
+Keeps the brackets/parentheses themselves. Does nothing if no region is active."
+  (interactive)
+  (when (use-region-p)
+    (let ((start (region-beginning))
+          (end (region-end)))
+      (save-excursion
+        (save-restriction
+          (narrow-to-region start end)
+          (goto-char (point-min))
+          ;; Remove contents of square brackets, keeping []
+          (while (re-search-forward "\\[[^]]*\\]" nil t)
+            (replace-match "[]"))
+          ;; Remove contents of parentheses, keeping ()
+          (goto-char (point-min))
+          (while (re-search-forward "([^)]*)" nil t)
+            (replace-match "()")))))))
+
+
 (defun nv-disable-custom-themes ()
   (interactive)
   (mapc #'disable-theme custom-enabled-themes)

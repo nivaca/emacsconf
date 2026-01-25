@@ -10,6 +10,9 @@
          (org-mode . jinx-mode)
          (text-mode . jinx-mode)
          ;; (emacs-startup . global-jinx-mode)
+         (emacs-startup . (lambda ()
+                            (global-jinx-mode)
+                            (setq jinx-languages "es_CO")))
          )
   :config
   (cl-pushnew 'font-lock-comment-face (alist-get 'tex-mode jinx-exclude-faces))

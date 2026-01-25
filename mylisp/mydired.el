@@ -4,27 +4,29 @@
 (use-package dired
   :straight
   :defer t
-  :bind ([S-f8] . dired)
-  :custom
-  (dired-kill-when-opening-new-dired-buffer t)
-  ;; (mouse-1-click-follows-link 1.1)
   :init
-  ;; (add-hook 'dired-mode-hook #'all-the-icons-dired-mode)
   (add-hook 'dired-mode-hook
             (lambda ()
               (dired-hide-details-mode)
-              (all-the-icons-dired-mode)))
-  ;; (define-key dired-mode-map [mouse-2] #'ignore)
-  ;; (define-key dired-mode-map (kbd "<mouse-1>") nil)
-  ;; (define-key dired-mode-map (kbd "<mouse-2>") nil)
-  :bind
+              (all-the-icons-dired-mode)))  :bind ([S-f8] . dired)
   ("s-d" . dired)
-  )
+  :custom
+  (dired-kill-when-opening-new-dired-buffer t)
+  (dired-free-space nil)
+  (dired-dwim-target t)
+  (dired-deletion-confirmer 'y-or-n-p)
+  (dired-filter-verbose nil)
+  (dired-recursive-deletes 'top)
+  (dired-recursive-copies 'always)
+  (dired-vc-rename-file t)
+  (dired-create-destination-dirs 'ask)
+  (dired-clean-confirm-killing-deleted-buffers nil)
+  (auto-revert-remote-files nil)
+  (dired-auto-revert-buffer 'dired-buffer-stale-p)
+  ;; dired-omit-mode
+  (dired-omit-verbose nil
+                      dired-omit-files (concat "\\`[.]\\'")))
 
-;; (use-package dired-narrow
-;;   :straight t
-;;   :defer t
-;;   )
 
 (use-package dired-quick-sort
   :straight t

@@ -11,6 +11,7 @@
         TeX-insert-macro
         comment-line
         crux-move-beginning-of-line
+        dired-mark
         dired-toggle-read-only
         end-of-visual-line
         indent-for-tab-command

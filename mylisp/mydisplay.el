@@ -124,13 +124,13 @@
            :default-height 140
            :line-spacing 0.1)
           (epub
-           :default-family "Maple Mono Normal NL"
+           :default-family "JetBrains Mono NL"
            :variable-pitch-family "Times New Roman"
            :default-height 160)
           (t
-           :default-family "MapleMonoNormalNL-Regular"
-           :fixed-pitch-serif-family "MapleMonoNormalNL-Regular"
-           :variable-pitch-family "MapleMonoNormalNL-Regular"
+           :default-family "JetBrains Mono NL"
+           :fixed-pitch-serif-family "JetBrains Mono NL"
+           :variable-pitch-family "JetBrains Mono NL"
            :default-weight Regular)))
   ;;
   ;; select preset depending on system ------------------
