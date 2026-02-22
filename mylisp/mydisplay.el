@@ -77,6 +77,38 @@
   ;; highlight current line
   (setopt global-hl-line-mode nil)
 
+  ;; https://protesilaos.com/emacs/lin
+  (use-package lin
+    :straight t
+    :config
+    (lin-global-mode 1)
+    (lin-mode)
+    (setopt lin-face 'lin-mac-override-fg)
+    :hook
+    ((bongo-mode . lin-mode)
+     (dired-mode . lin-mode)
+     (elfeed-search-mode . lin-mode)
+     (git-rebase-mode . lin-mode)
+     (grep-mode . lin-mode)
+     (ibuffer-mode . lin-mode)
+     (ilist-mode . lin-mode)
+     (latex-mode . lin-mode)
+     (ledger-report-mode . lin-mode)
+     (log-view-mode . lin-mode)
+     (magit-log-mode . lin-mode)
+     (mu4e-headers-mode . lin-mode)
+     (notmuch-search-mode . lin-mode)
+     (notmuch-tree-mode . lin-mode)
+     (occur-mode . lin-mode)
+     (org-agenda-mode . lin-mode)
+     (org-mode . lin-mode)
+     (pdf-outline-buffer-mode . lin-mode)
+     (proced-mode . lin-mode)
+     (tabulated-list-mode . lin-mode))
+    )
+
+  
+  
   ;; Show me empty lines after buffer end
   (setopt indicate-empty-lines t)
 
@@ -115,10 +147,10 @@
   :config
   (setq fontaine-presets
         '((pc
-           :default-height 140
+           :default-height 130
            :line-spacing 0.1)
           (xps
-           :default-height 140
+           :default-height 130
            :line-spacing 0.1)
           (lenovo
            :default-height 140
@@ -171,7 +203,7 @@
 
 
 ;; ------------------------------------------------------------
-;;                             cursor type
+;;                         cursor type
 ;; ------------------------------------------------------------
 ;; valid values are t, nil, box, hollow, bar, (bar . WIDTH), hbar,
 ;; (hbar. HEIGHT); see the docs for set-cursor-type
@@ -185,7 +217,7 @@
      (overwrite-mode
       (setq cursor-type 'hollow))
      (t
-      (setq cursor-type '(bar . 2)))))
+      (setq cursor-type '(bar . 3)))))
   (add-hook 'post-command-hook 'nv-set-cursor-according-to-mode)
 
   ;; --------------------------------------------

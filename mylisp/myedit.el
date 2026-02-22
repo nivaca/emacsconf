@@ -6,6 +6,13 @@
   ;; Don't highlight matches with jump-char - it's distracting
   (setq jump-char-lazy-highlight-face nil)
 
+  ;; --- FIX: slower and controlled scrolling ---
+  (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+  (setq mouse-wheel-progressive-speed nil)
+  (setq auto-window-vscroll nil)
+  (setq scroll-step 1)
+  (setq scroll-preserve-screen-position t)
+
   ;; Easily navigate sillycased words
   (global-subword-mode 1)
 

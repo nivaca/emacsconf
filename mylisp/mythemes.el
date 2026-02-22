@@ -4,11 +4,8 @@
 
 
 ;; (load-theme 'misterioso t)
-;; (load-theme 'adwaita t)
-(load-theme 'modus-vivendi-tinted t)
-
-
-
+;; (load-theme 'deeper-blue t)
+(load-theme 'modus-operandi-tinted t)
 
 
 (use-package nano-theme

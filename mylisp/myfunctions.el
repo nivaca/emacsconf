@@ -1,6 +1,5 @@
 ;;; mylisp/myfunctions.el -*- lexical-binding: t; -*-
 
-
 (defun nv-remove-bracketed-content ()
   "Remove contents inside square brackets and parentheses from selected region.
 Keeps the brackets/parentheses themselves. Does nothing if no region is active."
@@ -167,16 +166,58 @@ enclosed in {}."
 ;; =============================================
 
 (defun nv-replace-in-buffer ()
-  "Replace text in whole buffer. The suggested OLD text is either the current region, or the next word (as mark-word would select it). The suggested text for the replacement is the same as the OLD text."
+  "Replace text in whole buffer.
+If a region is active, the default OLD string is the region text.
+Otherwise, the OLD string is blank."
   (interactive)
   (save-excursion
-    (if (equal mark-active nil) (mark-word))
-    (setq curr-word (buffer-substring-no-properties (mark) (point)))
-    (setq old-string (read-string "OLD string:\n" curr-word))
-    (setq new-string (read-string "NEW string:\n" old-string))
-    (query-replace old-string new-string nil (point-min) (point-max))
-    )
-  )
+    (let* ((curr-word (if (use-region-p)
+                          (buffer-substring-no-properties
+                           (region-beginning)
+                           (region-end))
+                        ""))
+           (old-string (read-string "OLD string:\n" curr-word))
+           (new-string (read-string "NEW string:\n" old-string)))
+      (query-replace old-string new-string nil (point-min) (point-max)))))
+
+
+;; (defun nv-replace-in-buffer ()
+;;   "Replace text in whole buffer. The suggested OLD text is either the current region, or the next word (as mark-word would select it). The suggested text for the replacement is the same as the OLD text."
+;;   (interactive)
+;;   (save-excursion
+;;     (if (equal mark-active nil) (mark-word))
+;;     (setq curr-word (buffer-substring-no-properties (mark) (point)))
+;;     (setq old-string (read-string "OLD string:\n" curr-word))
+;;     (setq new-string (read-string "NEW string:\n" old-string))
+;;     (query-replace old-string new-string nil (point-min) (point-max))
+;;     )
+;;   )
+
+
+;; =============================================
+(defun nv-replace-in-buffer-case-sensitive ()
+  "Query-replace literal text in buffer (always case-sensitive).
+- Always case-sensitive
+- Literal replacement (safe for LaTeX backslashes)
+- Respects narrowing
+- Uses active region as default OLD text
+- Starts from beginning of accessible buffer"
+  (interactive)
+  (let* ((case-fold-search nil)   ;; always case-sensitive
+         (case-replace nil)
+         (default-old
+          (if (use-region-p)
+              (buffer-substring-no-properties
+               (region-beginning)
+               (region-end))
+            ""))
+         (old (read-string "OLD string: " default-old
+                           'nv-replace-history))
+         (new (read-string "NEW string: " old
+                           'nv-replace-history)))
+    (save-excursion
+      (goto-char (point-min))     ;; start at beginning (of narrowing)
+      (query-replace old new))))
 
 
 ;; =============================================
@@ -227,6 +268,54 @@ buffer. For more information, see the documentation of `query-replace-regexp'"
              (buffer-end 1)))))
   (perform-replace regexp to-string t t delimited nil nil start end))
 
+
+;; =============================================
+(defun nv-tex-safe-slug (beg end)
+  "Convert region to a TeX-safe slug and abbreviate if longer than 40 chars."
+  (interactive "r")
+  (unless (use-region-p)
+    (user-error "No region selected"))
+
+  ;; ensure normalization is available
+  (require 'ucs-normalize nil t)
+
+  (let* ((maxlen 60)
+         (txt (buffer-substring-no-properties beg end)))
+
+    ;; --- normalize ---
+    (setq txt (downcase txt))
+
+    ;; remove accents if possible
+    (when (fboundp 'ucs-normalize-NFD-string)
+      (setq txt (ucs-normalize-NFD-string txt))
+      (setq txt (replace-regexp-in-string "\\p{Mn}" "" txt)))
+
+    ;; whitespace → hyphen
+    (setq txt (replace-regexp-in-string "\\s-+" "-" txt))
+    ;; keep safe chars only
+    (setq txt (replace-regexp-in-string "[^a-z0-9:-]" "" txt))
+    ;; collapse hyphens
+    (setq txt (replace-regexp-in-string "-+" "-" txt))
+    ;; trim ends
+    (setq txt (replace-regexp-in-string "\\`-\\|-\\'" "" txt))
+
+    ;; --- abbreviate if too long ---
+    (when (> (length txt) maxlen)
+      (let* ((words (split-string txt "-"))
+             (abbr
+              (mapconcat
+               (lambda (w)
+                 (if (> (length w) 6)
+                     (substring w 0 4)
+                   w))
+               words "-")))
+        (setq txt
+              (if (> (length abbr) maxlen)
+                  (substring abbr 0 maxlen)
+                abbr))))
+
+    (delete-region beg end)
+    (insert txt)))
 
 ;; =============================================
 

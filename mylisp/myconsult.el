@@ -16,9 +16,10 @@
    ("C-r" . consult-history))
   :custom
   (completion-in-region-function #'consult-completion-in-region)
-  ;; :config
-  ;; (consult-preview-mode)
-  )
+  :config
+  (consult-customize
+   consult-line
+   :preview-key '(:debounce 0.2 any)))
 
 
 ;; consult-org-roam
@@ -59,7 +60,8 @@
   :init
   (vertico-mode)
   :config
-  (vertico-mouse-mode))
+  (vertico-mouse-mode)
+  (define-key vertico-map (kbd "RET") #'vertico-exit))
 
 
 ;; ------------------- consult-dir ---------------------
