@@ -1,4 +1,4 @@
-;;; mylisp/myconsult.el -*- lexical-binding: t; -*-
+;;; Mylisp/myconsult.el -*- lexical-binding: t; -*-
 
 ;; ==================== Consult ====================
 ;; Consult provides practical commands based on the Emacs completion function completing-read. Completion allows you to quickly select an item from a list of candidates.
@@ -101,7 +101,10 @@
   :straight t
   :custom
   (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+  (orderless-component-separator #'orderless-escapable-split-on-space)
+  (completion-category-overrides
+   '((file (styles basic partial-completion))
+     (command (styles orderless)))))
 
 
 ;; ---------------------- Embark -------------------------
@@ -160,8 +163,6 @@
         '(("Org" ?o "~/roamnotes/"))
         )
   )
-
-
 
 
 (provide 'myconsult)

@@ -150,10 +150,10 @@
            :default-height 130
            :line-spacing 0.1)
           (xps
-           :default-height 130
+           :default-height 140
            :line-spacing 0.1)
           (lenovo
-           :default-height 140
+           :default-height 130
            :line-spacing 0.1)
           (epub
            :default-family "JetBrains Mono NL"
@@ -208,6 +208,7 @@
 ;; valid values are t, nil, box, hollow, bar, (bar . WIDTH), hbar,
 ;; (hbar. HEIGHT); see the docs for set-cursor-type
 (use-package emacs  ;; cursors etc.
+  ;; :disabled t
   :config
   (defun nv-set-cursor-according-to-mode ()
     "change cursor color and type according to some minor modes."
@@ -217,7 +218,7 @@
      (overwrite-mode
       (setq cursor-type 'hollow))
      (t
-      (setq cursor-type '(bar . 3)))))
+      (setq cursor-type '(bar . 2)))))
   (add-hook 'post-command-hook 'nv-set-cursor-according-to-mode)
 
   ;; --------------------------------------------

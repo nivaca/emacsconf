@@ -4,8 +4,8 @@
 (global-set-key (quote [C-f1]) 'goto-last-change)
 ;; (global-set-key (quote [S-f1]) 'clone-indirect-buffer)
 
-(global-unset-key (quote [f2]))
-;; (global-set-key (quote [f2]) 'save-buffer)
+;; (global-unset-key (quote [f2]))
+(global-set-key (quote [f2]) 'save-buffer)
 (global-set-key (kbd "C-x s") 'save-buffer)
 
 ;; (global-set-key (quote [f3]) 'kmacro-start-macro-or-insert-counter)

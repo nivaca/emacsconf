@@ -4,117 +4,154 @@
 ;; nivaca-xps: portátil dell xps 13
 ;; n.vaughan20: portátil lenovo oficina
 
+;; -------------------- Paths --------------------
 
 (defvar nv-tmp-dir "/var/tmp/emacs")
 
-;; create tmp dir if it doesn't exist
-(when (not (file-exists-p nv-tmp-dir))
-  (make-directory nv-tmp-dir t))
+(defvar nv-autosave-dir
+  (expand-file-name "autosave/" nv-tmp-dir))
+
+(defvar nv-backup-dir
+  (expand-file-name "backup/" nv-tmp-dir))
+
+(defvar nv-autosave-session-dir
+  (expand-file-name "autosave/sessions/" nv-tmp-dir))
+
+(dolist (dir (list nv-tmp-dir
+                   nv-autosave-dir
+                   nv-backup-dir
+                   nv-autosave-session-dir))
+  (unless (file-directory-p dir)
+    (make-directory dir t)))
+
+;;; File hygiene ----------------------------------------------
 
 (setopt
- auto-save-default nil
+ backup-directory-alist
+ `((".*" . ,nv-backup-dir)))
+
+(setopt
+ auto-save-file-name-transforms
+ `((".*" ,nv-autosave-dir t)))
+
+(setopt
+ auto-save-list-file-prefix
+ (expand-file-name ".saves-" nv-autosave-session-dir))
+
+
+;;; ============ Elite minibuffer & completion polish ============
+
+;; --- Safer autosaves (do NOT disable autosave) ---
+(setopt
+ auto-save-default t
+ auto-save-timeout 20
+ auto-save-interval 200)
+
+;; --- Recursive minibuffers (major quality-of-life improvement) ---
+(setq enable-recursive-minibuffers t)
+(minibuffer-depth-indicate-mode 1)
+
+;; --- Better Consult preview responsiveness ---
+(setq consult-preview-key '(:debounce 0.3 any))
+
+;; --- Orderless stability improvement ---
+(setq completion-category-defaults nil)
+
+;; --- Larger kill ring for consult-yank ---
+(setq kill-ring-max 200)
+
+;; --- Savehist smoother autosaving ---
+(setq savehist-autosave-interval 300)
+
+;; --- Recentf automatic maintenance ---
+(setopt recentf-auto-cleanup 'mode)
+(run-at-time 300 300 #'recentf-save-list)
+
+
+;; --- Vertico directory editing feels natural ---
+(use-package vertico-directory
+  :straight (:type built-in)
+  :after vertico
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
+  :bind (:map vertico-map
+              ("DEL" . vertico-directory-delete-char)
+              ("M-DEL" . vertico-directory-delete-word)))
+
+
+(defun nv--host-subdir ()
+  "Return host-specific subdirectory name."
+  (pcase (system-name)
+    ("nivaca-pc" "pc")
+    ("nivaca-xps" "xps")
+    ("n.vaughan20" "lenovo")
+    (_ "default")))
+
+(defun nv--state-file (name)
+  "Build a host-specific state file path."
+  (expand-file-name
+   (format "tmp/%s/%s" (nv--host-subdir) name)
+   user-emacs-directory))
+
+;; Ensure host tmp directory exists
+(let ((dir (file-name-directory (nv--state-file "dummy"))))
+  (unless (file-directory-p dir)
+    (make-directory dir t)))
+
+;; -------------------- Backups --------------------
+
+(setopt
  backup-inhibited nil
  delete-old-versions t
  kept-new-versions 6
  kept-old-versions 2
  version-control t)
 
-(setopt backup-directory-alist `((".*" . ,nv-tmp-dir)))  ;; mind the comma!
+;; -------------------- Custom file --------------------
 
-
-;; ============== Custom edit file ================
 (use-package cus-edit
-  :straight
+  :straight (:type built-in)
   :init
-  (pcase (system-name)
-    ;; PC escritorio casa
-    ("nivaca-pc" (setq custom-file (concat user-emacs-directory "tmp/pc/custom.el")))
-    ;;
-    ;;; XPS 13
-    ("nivaca-xps" (setq custom-file (concat user-emacs-directory "tmp/xps/custom.el")))
-    ;;
-    ;;; lenovo
-    ("n.vaughan20" (setq custom-file (concat user-emacs-directory "tmp/lenovo/custom.el")))
-    )
-  :hook
-  (after-init . (lambda ()
-                  (unless (file-exists-p custom-file)
-                    (write-region "" nil custom-file))
-                  (load custom-file))))
+  (setq custom-file (nv--state-file "custom.el"))
+  :config
+  (unless (file-exists-p custom-file)
+    (write-region "" nil custom-file))
+  (load custom-file t))
 
+;; -------------------- savehist --------------------
 
-
-;; =============== savehist ===============
-;; Remember mini-buffer history 
 (use-package savehist
-  :straight
+  :straight (:type built-in)
   :custom
   (history-length 1000)
   (savehist-save-minibuffer-history t)
-  (savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
+  (savehist-additional-variables
+   '(kill-ring search-ring regexp-search-ring))
   :init
-  (pcase (system-name)
-    ;; PC escritorio casa
-    ("nivaca-pc" (setq savehist-file (concat user-emacs-directory "tmp/pc/savehist")))
-    ;; XPS 13
-    ("nivaca-xps" (setq savehist-file (concat user-emacs-directory "tmp/xps/savehist")))
-    ;; lenovo
-    ("n.vaughan20" (setq savehist-file (concat user-emacs-directory "tmp/lenovo/savehist")))
-    )
-  :init
-  (savehist-mode)
-  )
+  (setq savehist-file (nv--state-file "savehist"))
+  (savehist-mode 1))
 
+;; -------------------- saveplace --------------------
 
-
-
-
-;; =================== saveplace ===================
 (use-package saveplace
-  :straight t
-  :config
-  (save-place-mode)
-  (pcase (system-name)
-    ;; PC escritorio casa
-    ("nivaca-pc" (setq save-place-file (concat user-emacs-directory "tmp/pc/saved-places")))
-    ;;
-    ;;; XPS 13
-    ("nivaca-xps" (setq save-place-file (concat user-emacs-directory "tmp/xps/saved-places")))
-    ;;
-    ;;; lenovo
-    ("n.vaughan20" (setq save-place-file (concat user-emacs-directory "tmp/lenovo/saved-places")))
-    )
-  )
+  :straight (:type built-in)
+  :init
+  (setq save-place-file (nv--state-file "saved-places"))
+  (save-place-mode 1))
 
+;; -------------------- recentf --------------------
 
-
-;; ============= recentf stuff ================
 (use-package recentf
-  :straight t
-  :config
-  (pcase (system-name)
-    ;;
-    ;;; PC escritorio casa
-    ("nivaca-pc" (setq recentf-save-file (concat user-emacs-directory "tmp/pc/recentf")))
-    ;;
-    ;;; XPS 13
-    ("nivaca-xps" (setq recentf-save-file (concat user-emacs-directory "tmp/xps/recentf")))
-    ;;
-    ;;; lenovo
-    ("n.vaughan20" (setq recentf-save-file (concat user-emacs-directory "tmp/lenovo/recentf")))
-    )
-  ;;
-  (setopt recentf-max-menu-items 200
-          recentf-max-saved-items 200
-          recentf-exclude
-          '("/auto-install/" ".recentf" "/repos/" "/elpa/"
-            ".gz" "~$" "/tmp/pc/" "/tmp/xps/" "/tmp/dell/"
-            "/tmp/mac/" "/ssh:" "/sudo:" "/scp:")
-          )
-  ;;
-  (recentf-mode t)
-  ;;
-  :bind ("C-x m" . consult-recent-file)
-  )
+  :straight (:type built-in)
+  :custom
+  (recentf-max-menu-items 200)
+  (recentf-max-saved-items 200)
+  (recentf-exclude
+   '("/auto-install/" ".recentf" "/repos/" "/elpa/"
+     ".gz" "~$" "/ssh:" "/sudo:" "/scp:"))
+  :init
+  (setq recentf-save-file (nv--state-file "recentf"))
+  (recentf-mode 1)
+  :bind
+  ("C-x m" . consult-recent-files))
 
 (provide 'mydesktop)

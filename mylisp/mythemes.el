@@ -2,20 +2,17 @@
 
 ;; (message "»»»»»»»»»»»» Loading mythemes.el ««««««««««««« ")
 
+(nv-disable-custom-themes)
 
 ;; (load-theme 'misterioso t)
 ;; (load-theme 'deeper-blue t)
-(load-theme 'modus-operandi-tinted t)
+;; (load-theme 'modus-operandi-tinted t)
 
 
-(use-package nano-theme
-  :disabled
-  :straight (nano-theme :type git :host github
-                        :repo "rougier/nano-theme")
+(use-package dracula-theme
+  :straight t
   :config
-  (nano-dark)
-  )
-
+  (load-theme 'dracula t))
 
 (use-package tomorrow-night-deepblue-theme
   :disabled
@@ -43,6 +40,7 @@
   (load-theme 'vscode-dark-plus t)
   )
 
+
 (use-package doom-themes
   :disabled
   :straight t
@@ -56,12 +54,12 @@
   (doom-dark+-padded-modeline nil)
   :config
   (doom-themes-visual-bell-config)
-  ;; (load-theme 'doom-one t)
   ;; (load-theme 'doom-city-lights t)
+  ;; (load-theme 'doom-dark+ t)
+  ;; (load-theme 'doom-nord t)
   ;; (load-theme 'doom-spacegray t)
   ;; (load-theme 'doom-tokyo-night t)
-  (load-theme 'doom-nord t)
-  ;; (load-theme 'doom-dark+ t)
+  (load-theme 'doom-one t)
   )
 
 

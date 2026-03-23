@@ -1,6 +1,7 @@
 ((casual-dired-sort-by-tmenu
   ("--all" "--group-directories-first" "--human-readable"))
  (casual-dired-tmenu nil)
+ (claude-code-ide-menu nil)
  (magit-commit nil)
  (magit-diff
   ("--no-ext-diff" "--stat"))

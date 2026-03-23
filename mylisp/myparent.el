@@ -11,24 +11,24 @@
   )
 
 
-
 (use-package smartparens
   :straight t
+  :custom
+  (sp-autoskip-closing-pair 'always)
   :config
   (require 'smartparens-config)
-
   ;; safer minibuffer behavior
   (add-hook 'minibuffer-setup-hook #'smartparens-mode)
-
   (show-smartparens-global-mode t)
   (smartparens-global-mode t)
-
-  ;; ensure skipping instead of overwriting
-  (setq sp-autoskip-closing-pair 'always)
   :blackout)
 
-(show-paren-mode 1)
+(with-eval-after-load 'smartparens-latex
+  (sp-local-pair 'LaTeX-mode "$" nil :actions nil))
 
+
+
+(show-paren-mode 1)
 
 
 (provide 'myparent)

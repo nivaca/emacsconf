@@ -169,12 +169,6 @@
               (advice-remove #'tty-run-terminal-initialization #'ignore)
               (tty-run-terminal-initialization (selected-frame) nil t))))
 
-
-;; Save whatever’s in the current (system) clipboard before
-;; replacing it with the Emacs’ text.
-;; https://github.com/dakrone/eos/blob/master/eos.org
-(setopt save-interprogram-paste-before-kill t)
-
 ;; Save clipboard contents into kill-ring before replacing them
 (setopt save-interprogram-paste-before-kill t)
 

@@ -172,6 +172,9 @@
 ;; ================= epubs ==================
 (require 'myepub)
 
+;; ================= LLMs ==================
+(require 'myllm)
+
 ;; ================= server ==================
 (require 'server)
 (unless (server-running-p)

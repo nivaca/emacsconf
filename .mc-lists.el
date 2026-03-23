@@ -26,9 +26,11 @@
         org-end-of-line
         org-self-insert-command
         org-yank
+        pixel-scroll-interpolate-up
         pixel-scroll-precision
         r-o-m
         sgml-slash
+        ultra-scroll
         undo-only
         wdired--self-insert
         yank

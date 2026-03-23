@@ -83,7 +83,9 @@
   :straight t
   :hook (prog-mode . snap-indent-mode)
   :custom ((snap-indent-format 'untabify)
-           (snap-indent-on-save t)))
+           (snap-indent-on-save t))
+  :config
+  (add-to-list 'snap-indent-excluded-modes 'snippet-mode))
 
 
 
@@ -127,9 +129,17 @@
 
 ;; =============== expand-region ==============
 (use-package expand-region
+  ;; :disabled t
   :straight t
-  :bind ("C-=" . er/expand-region)
-  :bind ("C-+" . er/expand-region)
+  :bind (("C-=" . er/expand-region)
+         ("C-+" . er/expand-region))
+  )
+
+(use-package expreg
+  :disabled t
+  :straight t
+  :bind (("C-=" . expreg-expand)
+         ("C-+" . expreg-expand))
   )
 
 
@@ -277,7 +287,11 @@
 
 
 ;; ===================== ediff ==========================
-(setq ediff-split-window-function 'split-window-horizontally)
+(use-package ediff
+  :straight nil
+  :config
+  ;; Split windows horizontally by default (optional)
+  (setq ediff-split-window-function 'split-window-horizontally))
 
 
 ;; ==================== speedrect ====================
@@ -303,6 +317,25 @@
          ("C-c k r" . kirigami-open-folds)   
          ("C-c k TAB" . kirigami-toggle-fold)))
 
+
+
+;; ----------------------------------------------------------------
+;; keep selection after copy 
+;; ----------------------------------------------------------------
+(defun nv-keep-region-after-copy ()
+  "Keep region active after copy commands."
+  (when (or (eq this-command 'kill-ring-save)
+            (eq this-command 'mouse-save-then-kill)
+            (string-match-p
+             "kill-ring-save"
+             (symbol-name this-command)))
+    (setq deactivate-mark nil)))
+
+(add-hook 'region-deactivate-hook #'nv-keep-region-after-copy)
+
+(transient-mark-mode 1)
+(setq select-enable-clipboard t)
+(setq save-interprogram-paste-before-kill t)
 
 
 (provide 'myedit)

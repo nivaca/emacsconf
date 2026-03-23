@@ -20,6 +20,8 @@ Keeps the brackets/parentheses themselves. Does nothing if no region is active."
             (replace-match "()")))))))
 
 
+;; ----------------------------------------------------------------
+
 (defun nv-disable-custom-themes ()
   (interactive)
   (mapc #'disable-theme custom-enabled-themes)
@@ -539,19 +541,7 @@ the region to title case.  Otherwise, work on the current line."
   (cl-map 'string (lambda (c) (or (cdr (assoc c nv-diacritics-to-non-diacritics-map)) c)) string))
 
 
-                                        ; =========================================================
-;; (defun nv-random-id ()
-;;   "Generates a random alphanumerical XML id: aaa_bbb_ccc."
-;;   (mapconcat
-;;    (lambda (_)
-;;      (mapconcat
-;;       (lambda (_)
-;;         (let* ((alnum "abcdefghijklmnopqrstuvwxyz0123456789")
-;;                (i (% (abs (random)) (length alnum))))
-;;           (substring alnum i (1+ i))))
-;;       (number-sequence 1 3) ""))
-;;    (number-sequence 1 3) "_")
-;;   )
+;; ======================================================================
 (defun nv-random-id ()
   "Generates a random alphanumerical XML id: aaa_bbb_ccc."
   (mapconcat
@@ -570,6 +560,182 @@ the region to title case.  Otherwise, work on the current line."
   (interactive)
   (insert (nv-random-id))
   )
+
+
+;; ======================================================================
+
+(defun nv-textbf-to-subparagraph (beg end)
+  "Replace \\textbf{...} in region with \\subparagraph{...} and add a \\label."
+  (interactive "r")
+  (cl-flet ((nv-tex-save-slug (text)
+              (thread-last text
+                           (replace-regexp-in-string "[áà]" "a")
+                           (replace-regexp-in-string "[éè]" "e")
+                           (replace-regexp-in-string "[íì]" "i")
+                           (replace-regexp-in-string "[óò]" "o")
+                           (replace-regexp-in-string "[úùü]" "u")
+                           (replace-regexp-in-string "[ñ]" "n")
+                           (downcase)
+                           (replace-regexp-in-string "[^a-z0-9]+" "-")
+                           (replace-regexp-in-string "^-\\|-$" ""))))
+    (let* ((text (buffer-substring-no-properties beg end))
+           (title (and (string-match "\\\\textbf{\\(.*\\)}" text)
+                       (match-string 1 text)))
+           (slug (nv-tex-save-slug title))
+           (replacement (format "\\subparagraph{%s}\n\\label{S:%s}" title slug)))
+      (delete-region beg end)
+      (insert replacement))))
+
+
+
+;; ======================================================================
+(defun nv-break-sentences (beg end)
+  "Break selected text into one sentence per line, splitting on `.`, `:`, and `;`."
+  (interactive "r")
+  (let* ((text (buffer-substring-no-properties beg end))
+         (result (replace-regexp-in-string
+                  "\\([.;:]\\)[[:space:]]+"
+                  "\\1\n"
+                  (string-trim text))))
+    (delete-region beg end)
+    (insert result)))
+
+
+;; ======================================================================
+(defun nv-dollar-to-cop (beg end)
+  "Replace \\$1.234.567 in region with \\COP{1234567}."
+  (interactive "r")
+  (let* ((text (buffer-substring-no-properties beg end))
+         (digits (replace-regexp-in-string "[\\$.]" "" text))
+         (replacement (format "\\COP{%s}" (string-trim digits))))
+    (delete-region beg end)
+    (insert replacement)))
+
+
+
+;; ======================================================================
+(defun nv-remove-textbf (beg end)
+  "Remove \\textbf{...} wrappers in region, leaving their contents."
+  (interactive "r")
+  (save-restriction
+    (narrow-to-region beg end)
+    (goto-char (point-min))
+    (while (re-search-forward "\\\\textbf{\\([^}]*\\)}" nil t)
+      (replace-match "\\1" t))))
+
+
+;; ======================================================================
+(defun nv-latex-table-bold-row ()
+  "Convert LaTeX table question lines into bold with midrules.
+Removes optional leading ¿ and trailing ? before & \\\\.
+Works on region or current line."
+  (interactive)
+  (save-excursion
+    (save-restriction
+      (if (use-region-p)
+          (narrow-to-region (region-beginning) (region-end))
+        (narrow-to-region (line-beginning-position) (line-end-position)))
+      (goto-char (point-min))
+      (while (re-search-forward
+              "^[ \t]*¿?[ \t]*\\([^&?\n][^&\n]*?\\)[ \t]*\\??[ \t]*&[ \t]*\\\\\\\\"
+              nil t)
+        (replace-match
+         "\\\\midrule\n\\\\textbf{\\1} & \\\\\\\\\n\\\\midrule"
+         t)))))
+
+;; ======================================================================
+(defun nv-latex-subparagraph-from-footnote (beg end)
+  "Transform selected LaTeX title+footnote into subparagraph form."
+  (interactive "r")
+  (let* ((text (buffer-substring-no-properties beg end))
+         (case-fold-search nil)
+         title url)
+    (unless (string-match
+             "\\`\\s-*\\(.+?\\)%?\\s-*\n\\\\footnote{\\\\url{\\([^}]+\\)}}\\s-*\\'"
+             text)
+      (user-error "Region does not match expected pattern"))
+    (setq title (match-string 1 text))
+    (setq url   (match-string 2 text))
+    (setq title (string-trim title))
+    (delete-region beg end)
+    (insert
+     (format
+      "\\subparagraph
+  [%s]
+  {%s\\texorpdfstring{\\footnotemark}{}}
+\\footnotetext{\\url{%s}}"
+      title title url))))
+
+;; ======================================================================
+(defun nv-unalign-current ()
+  "Remove alignment padding in the current paragraph or active region.
+Collapses runs of spaces into a single space."
+  (interactive)
+  (let* ((beg (if (use-region-p)
+                  (region-beginning)
+                (save-excursion (backward-paragraph) (point))))
+         (end (if (use-region-p)
+                  (region-end)
+                (save-excursion (forward-paragraph) (point)))))
+    (save-excursion
+      (goto-char beg)
+      (while (re-search-forward "[ \t][ \t]+" end t)
+        (replace-match " ")))))
+
+;; ======================================================================
+
+
+(defun nv-replace-decimal-commas-with-periods (beg end)
+  "Replace decimal commas with periods in region or whole buffer.
+Prompts for each replacement: yes, no, or all."
+  (interactive
+   (if (use-region-p)
+       (list (region-beginning) (region-end))
+     (list (point-min) (point-max))))
+  (let ((replace-all nil))
+    (save-excursion
+      (goto-char beg)
+      (while (re-search-forward "\\([0-9]\\),\\([0-9]\\)" end t)
+        (if replace-all
+            (replace-match "\\1.\\2")
+          (let ((choice
+                 (read-char-choice
+                  (format "Replace %s with '.'? (y=yes n=no a=all) "
+                          (match-string 0))
+                  '(?y ?n ?a))))
+            (cond
+             ((eq choice ?y)
+              (replace-match "\\1.\\2"))
+             ((eq choice ?a)
+              (setq replace-all t)
+              (replace-match "\\1.\\2"))
+             ((eq choice ?n)
+              nil))))))))
+
+;; ======================================================================
+
+(defun nv-sort-lines-nocase ()
+  (interactive)
+  (let ((sort-fold-case t))
+    (call-interactively 'sort-lines)))
+
+;; ======================================================================
+
+(defun nv-latex-wrap-begingroup ()
+  "Wrap the active region in \\begingroup ... \\endgroup."
+  (interactive)
+  (if (use-region-p)
+      (let ((beg (region-beginning))
+            (end (region-end)))
+        (goto-char end)
+        (insert "\n\\endgroup")
+        (goto-char beg)
+        (insert "\\begingroup\n"))
+    (message "No region selected")))
+
+;; ======================================================================
+;; ======================================================================
+;; ======================================================================
 
 
 (provide 'myfunctions)
