@@ -58,6 +58,7 @@
    suggest-key-bindings nil
    switch-to-buffer-in-dedicated-window 'pop
    switch-to-buffer-obey-display-actions t
+   truncate-lines t
    truncate-partial-width-windows nil
    visible-bell nil
    window-combination-resize t
@@ -156,13 +157,13 @@
            :default-height 130
            :line-spacing 0.1)
           (epub
-           :default-family "JetBrains Mono NL"
+           :default-family "JetBrainsMonoNL NFM"
            :variable-pitch-family "Times New Roman"
            :default-height 160)
           (t
-           :default-family "JetBrains Mono NL"
-           :fixed-pitch-serif-family "JetBrains Mono NL"
-           :variable-pitch-family "JetBrains Mono NL"
+           :default-family "JetBrainsMonoNL NFM"
+           :fixed-pitch-serif-family "JetBrainsMonoNL NFM"
+           :variable-pitch-family "JetBrainsMonoNL NFM"
            :default-weight Regular)))
   ;;
   ;; select preset depending on system ------------------
@@ -235,7 +236,7 @@
 
   ;; --------------------------------------------
   (setq global-font-lock-mode 1) ; everything should use fonts
-  (setq font-lock-maximum-decoration t)
+  (setq font-lock-maximum-decoration 2)
 
   ;; Set frame title to file name
   (setq frame-title-format

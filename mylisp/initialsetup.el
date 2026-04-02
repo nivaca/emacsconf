@@ -8,7 +8,7 @@
         echo-keystrokes 0.1
         global-auto-revert-mode t  ;; auto load changed files
         global-auto-revert-non-file-buffers t  ;; revert dired and other buffers
-        large-file-warning-threshold 536870911
+        large-file-warning-threshold 100000000 ;; 100MB
         load-prefer-newer t
         use-dialog-box nil  ;; don't pop up UI dialogs when prompting
         vc-follow-symlinks t  ;; Follow symbolic links

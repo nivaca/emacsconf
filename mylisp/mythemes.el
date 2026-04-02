@@ -10,6 +10,7 @@
 
 
 (use-package dracula-theme
+  :disabled
   :straight t
   :config
   (load-theme 'dracula t))
@@ -23,6 +24,14 @@
   ;; Load the tomorrow-night-deepblue theme
   (load-theme 'tomorrow-night-deepblue t))
 
+
+(use-package doric-themes
+  ;; :disabled
+  :straight
+  (ef-themes :type git :host github :repo "protesilaos/doric-themes")
+  :config
+  (load-theme 'doric-mermaid t)
+  )
 
 (use-package ef-themes
   :disabled

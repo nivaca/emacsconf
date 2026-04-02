@@ -171,6 +171,8 @@ some custom behavior added."
 
 (global-set-key (kbd "<f5>") 'revert-buffer-quick)
 
+(global-set-key (kbd "s-g") 'goto-last-change)
+
 
 (add-hook 'prog-mode-hook
           (lambda ()

@@ -37,6 +37,10 @@
 ;; =============== Package Management ===============
 (require 'mypackages)
 
+;; =============== Compile Angel ==============
+;; Ensure Emacs loads the most recent byte-compiled files.
+(setq load-prefer-newer t)
+
 ;; =================== ORG-mode ====================
 (require 'myorg)
 
@@ -222,6 +226,12 @@
   )
 
 (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+
+(use-package elfeed
+  :straight t
+  :defer t
+  :config
+  (load "~/emacs/elfeed-feeds.el"))
 
 
 ;; =====================================================

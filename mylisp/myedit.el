@@ -45,6 +45,16 @@
   (when (not (version< emacs-version "28"))
     (context-menu-mode))
 
+  ;; reduce expensive minor modes in large buffers
+  (setq so-long-action 'so-long-minor-mode)
+
+  ;; faster Emacs subprocess communication
+  (setq process-adaptive-read-buffering nil)
+
+  ;; disable bidi
+  (setq-default bidi-paragraph-direction 'left-to-right)
+  (setq bidi-inhibit-bpa t)
+
   ;; overwrite text
   (delete-selection-mode 1)
 
@@ -52,6 +62,17 @@
   ;; (selection-coding-system 'utf-8)
   ;; (select-enable-clipboard t "Use the clipboard")
   )
+
+
+;; =============== long lines ===============
+(use-package so-long
+  :straight nil
+  :config
+  (global-so-long-mode 1)
+  (add-hook 'so-long-mode-hook
+            (lambda ()
+              (display-line-numbers-mode -1))))
+
 
 
 ;; =============== Scrolling ==================
@@ -79,6 +100,7 @@
 
 
 ;; ================= snap-indent =================
+;; Provides simple automatic indentation (and optional formatting) when yanking/pasting text.
 (use-package snap-indent
   :straight t
   :hook (prog-mode . snap-indent-mode)
@@ -86,6 +108,15 @@
            (snap-indent-on-save t))
   :config
   (add-to-list 'snap-indent-excluded-modes 'snippet-mode))
+
+
+;; =============== outline-indent ===============
+;; Provides a minor mode for indentation-based code folding. 
+(use-package outline-indent
+  :straight t
+  :commands outline-indent-minor-mode
+  :custom
+  (outline-indent-ellipsis " ▼"))
 
 
 
@@ -303,6 +334,7 @@
              :host github
              :repo "jdtsmith/speedrect"))
 
+
 ;; ==================== kirigami ====================
 ;; A Unified Interface for Text Folding
 (use-package kirigami
@@ -316,6 +348,11 @@
          ("C-c k c" . kirigami-close-fold)   
          ("C-c k r" . kirigami-open-folds)   
          ("C-c k TAB" . kirigami-toggle-fold)))
+
+
+;; ==================== occult ====================
+(use-package occult
+  :straight (:host github :repo "agzam/occult.el"))
 
 
 

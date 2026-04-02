@@ -6,7 +6,7 @@
   :commands rainbow-delimiters-mode
   :hook(
         (prog-mode . rainbow-delimiters-mode)
-        (latex-mode . rainbow-delimiters-mode)
+        (LaTeX-mode . rainbow-delimiters-mode)
         )
   )
 
@@ -14,7 +14,7 @@
 (use-package smartparens
   :straight t
   :custom
-  (sp-autoskip-closing-pair 'always)
+  (sp-autoskip-closing-pair 'conservative)
   :config
   (require 'smartparens-config)
   ;; safer minibuffer behavior

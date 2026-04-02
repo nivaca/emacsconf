@@ -22,6 +22,7 @@
   (corfu-quit-at-boundary 'separator)
   (corfu-quit-no-match t)
   (tab-always-indent 'complete)
+  (read-process-output-max (* 1024 1024))
   ;; (corfu-preview-current nil)
   ;; (corfu-quit-at-boundary t)
   ;;

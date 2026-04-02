@@ -58,7 +58,15 @@
   (TeX-source-correlate-method 'synctex)
   (TeX-source-correlate-mode t)
   (TeX-source-correlate-start-server t)
-
+  ;; 
+  (TeX-tree-roots
+   (list
+    (concat (string-trim
+             (shell-command-to-string
+              "kpsewhich -var-value=TEXMFROOT"))
+            "/texmf-dist")
+    "/opt/texlive/texmf-local"
+    "~/texmf"))
   :config
   ;; ---------------- RefTeX ----------------
   (use-package reftex

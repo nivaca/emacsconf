@@ -25,6 +25,7 @@
         org-cycle
         org-end-of-line
         org-self-insert-command
+        org-shiftcontrolright
         org-yank
         pixel-scroll-interpolate-up
         pixel-scroll-precision
