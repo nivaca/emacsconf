@@ -10,7 +10,7 @@
 
 
 (use-package dracula-theme
-  :disabled
+  ;; :disabled
   :straight t
   :config
   (load-theme 'dracula t))
@@ -26,7 +26,7 @@
 
 
 (use-package doric-themes
-  ;; :disabled
+  :disabled
   :straight
   (ef-themes :type git :host github :repo "protesilaos/doric-themes")
   :config

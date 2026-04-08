@@ -73,7 +73,7 @@
    org-odd-levels-only nil)
   ;; ----------------------------------------------------------
   ;; org faces
-  (setq nv-frame-font "JetBrains Mono NL")
+  (setq nv-frame-font "JetBrainsMonoNL NFM")
   (set-face-attribute 'org-document-title nil
                       :font nv-frame-font :weight 'bold :height 1.3)
   (dolist (face '((org-level-1 . 1.3)

@@ -22,13 +22,18 @@
         jka-compr-verbose nil)
 
 ;; ==================== UTF-8 =======================
-;; Contrary to what many Emacs users have in their configs, you really don't
-;; need more than this to make UTF-8 the default coding system:
+(set-language-environment "UTF-8")
+(prefer-coding-system 'utf-8-unix)
+(set-default-coding-systems 'utf-8-unix)
+(setq-default buffer-file-coding-system 'utf-8-unix)
+(set-terminal-coding-system 'utf-8-unix)
+(set-selection-coding-system 'utf-8-unix)
 (when (fboundp 'set-charset-priority)
   (set-charset-priority 'unicode))
-(prefer-coding-system 'utf-8)
-(setopt locale-coding-system 'utf-8)
-(setopt selection-coding-system 'utf-8)
+(setq-default coding-system-for-read 'utf-8-unix)
+(setq-default coding-system-for-write 'utf-8-unix)
+
+(setq inhibit-eol-conversion nil)
 
 
 ;; Disable warnings from legacy advice system. They aren't useful, and what can

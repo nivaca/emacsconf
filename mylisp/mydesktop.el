@@ -38,6 +38,14 @@
  auto-save-list-file-prefix
  (expand-file-name ".saves-" nv-autosave-session-dir))
 
+(add-hook 'savehist-save-hook
+          (lambda ()
+            (setq kill-ring
+                  (mapcar #'substring-no-properties
+                          (cl-remove-if-not #'stringp kill-ring)))))
+
+(setq savehist-additional-variables
+      '(search-ring regexp-search-ring kill-ring))
 
 ;;; ============ Elite minibuffer & completion polish ============
 

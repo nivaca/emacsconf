@@ -52,15 +52,18 @@
   (setq process-adaptive-read-buffering nil)
 
   ;; disable bidi
-  (setq-default bidi-paragraph-direction 'left-to-right)
+  (setq-default bidi-display-reordering 'left-to-right
+                bidi-paragraph-direction 'left-to-right)
   (setq bidi-inhibit-bpa t)
 
   ;; overwrite text
   (delete-selection-mode 1)
 
-  ;; cliboard management
-  ;; (selection-coding-system 'utf-8)
-  ;; (select-enable-clipboard t "Use the clipboard")
+  (setq set-mark-command-repeat-pop t)
+
+  (advice-add 'save-place-find-file-hook :after
+              (lambda (&rest _)
+                (when buffer-file-name (ignore-errors (recenter)))))
   )
 
 
@@ -373,6 +376,6 @@
 (transient-mark-mode 1)
 (setq select-enable-clipboard t)
 (setq save-interprogram-paste-before-kill t)
-
+(setq save-interprogram-paste-before-kill t)
 
 (provide 'myedit)

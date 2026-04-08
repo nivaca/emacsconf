@@ -44,14 +44,17 @@
   (setenv "QT_QPA_PLATFORM" "wayland")
   (setopt
    column-number-mode t
-   display-line-numbers-type t  ;; también: 'relative
+   cursor-in-non-selected-windows nil
+   display-line-numbers-type t
    even-window-sizes 'height-only
    fit-frame-to-buffer t
    fit-window-to-buffer-horizontally t
    font-lock-maximum-decoration t
    frame-inhibit-implied-resize t
+   highlight-nonselected-windows nil
    minibuffer-message-timeout 5
    pixel-scroll-precision-mode t
+   redisplay-skip-fontification-on-input t
    ring-bell-function 'ignore
    split-height-threshold 80
    split-width-threshold 125
@@ -65,8 +68,7 @@
    window-min-height 3
    window-min-width 30
    window-sides-vertical nil
-   x-underline-at-descent-line nil
-   )
+   x-underline-at-descent-line nil)
 
   ;; Don't resize emacs in steps, it looks weird.
   (setopt window-resize-pixelwise t

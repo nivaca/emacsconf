@@ -27,17 +27,15 @@
 (global-set-key (quote [f8]) 'dired)
 (global-unset-key (quote [f9]))
 (global-unset-key (quote [f10]))
-(global-set-key (quote [f10]) 'nv-terminal-here)
-(global-set-key (quote [S-f10]) 'nv-terminal-here)
-(global-set-key (quote [M-f10]) 'eat)
+
+(global-set-key (kbd "C-c t") #'nv-terminal-here)
+(global-set-key (kbd "C-c e") #'eat)
 
 (global-set-key (quote [f12]) 'execute-extended-command)
 (global-set-key (quote [S-f12]) 'eval-expression)
 (global-set-key (quote [C-f12]) 'repeat-complex-command)
 
-(global-set-key (quote [s-f12]) 'nv-load-config)
-
-(bind-key "\C-x\C-m" 'execute-extended-command)
+(global-set-key (kbd "\C-x\C-m") #'execute-extended-command)
 
 (global-set-key (kbd "M-w") 'nv-select-word)
 
@@ -55,11 +53,10 @@
 
 (global-unset-key "\C-v")
 
+(global-set-key (kbd "M-v") #'scroll-down-command)
+(global-set-key (kbd "C-c v") #'scroll-up-command)
+
 (global-unset-key (kbd "M-DEL"))
-
-;; Map escape to cancel (like C-g)...
-(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
-
 
 (global-unset-key (kbd "<C-down-mouse-1>"))  ;; disable "buffer menu"
 (global-unset-key (kbd "<C-down-mouse-2>"))  ;; disable "buffer menu"
@@ -71,37 +68,27 @@
 ;; https://superuser.com/questions/521223/shift-click-to-extend-marked-region
 (define-key global-map (kbd "<S-down-mouse-1>") 'mouse-save-then-kill)
 
-(bind-key "C-/" 'comment-line) ;; defined in myfunctions.el
-
+(global-set-key (kbd "C-/") #'comment-line) ;; defined in myfunctions.el
+(global-set-key (kbd "C-_") #'comment-line)
 
 ;; Undo & redo
-(bind-key "C-z" 'undo-only)
-(bind-key "C-S-z" 'undo-redo)
+(global-set-key (kbd "C-z") #'undo-only)
+(global-set-key (kbd "C-c z") #'undo-redo)
 
 (global-unset-key (kbd "<S-return>"))
 
 
-(bind-key "C-k" 'kill-region)  ; Cut
+(global-set-key (kbd "C-k") #'kill-region)  ; Cut
 
 ;; Unset stardard Emacs copy, cut, paste keys
 ;; (global-unset-key "\C-k") ; cut
 ;; (global-unset-key "\C-y") ; yank
 ;; (global-unset-key "\C-w") ; kill-ring-save
 
-;; ====== previous and next buffer with mouse wheel =======
-(global-set-key (kbd "<s-mouse-5>") 'previous-buffer);
-(global-set-key (kbd "<s-mouse-4>") 'next-buffer);
 
-
-
-
-
-;; (advice-add 'keyboard-quit :around #'my-keyboard-quit-advice)
 ;; https://with-emacs.com/posts/tips/quit-current-context/
 (defun keyboard-quit-context+ ()
-  "Quit current context. This function is a combination of
-`keyboard-quit' and `keyboard-escape-quit' with some parts omitted and
-some custom behavior added."
+  "Quit current context."
   (interactive)
   (cond ((region-active-p)
          ;; Avoid adding the region to the window selection.
@@ -142,23 +129,11 @@ some custom behavior added."
 (global-set-key [remap mouse-yank-secondary] 'mouse-yank-primary)
 (global-set-key [remap mouse-secondary-save-then-kill] 'mouse-save-then-kill)
 
-;; Switch buffers with mouse scroll on mode-line
-(global-set-key [mode-line mouse-4] 'previous-buffer)
-(global-set-key [mode-line mouse-5] 'next-buffer)
-
-;; Kill all buffers
-(bind-key "<s-escape>" 'nv-kill-all-buffers)
-;; (bind-key "<s-escape>" nil)
-;; (unbind-key "<s-escape>")
-
 ;; defined in myedit.el
-(bind-key "C-M-n" 'narrow-or-widen-dwim)
+(global-set-key (kbd "C-M-n") #'narrow-or-widen-dwim)
 
 ;; unset ibuffer
 (global-set-key (kbd "C-x C-b") nil)
-
-;; multiple-cursors
-(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
 
 ;; hippie expand: M-/
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
@@ -171,13 +146,34 @@ some custom behavior added."
 
 (global-set-key (kbd "<f5>") 'revert-buffer-quick)
 
-(global-set-key (kbd "s-g") 'goto-last-change)
-
-
-(add-hook 'prog-mode-hook
-          (lambda ()
-            (local-set-key (kbd "M-q") 'fill-paragraph)))
 (define-key (current-global-map) (kbd "M-q") 'fill-paragraph)
+
+;; Map escape to cancel (like C-g)...
+(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+
+(when (display-graphic-p)
+  ;; (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+
+  ;; "Super"" bindings
+  (global-set-key (kbd "s-g") #'goto-last-change)
+  (global-set-key (kbd "<s-f12>") #'nv-load-config)
+  (global-set-key (kbd "<s-escape>") #'nv-kill-all-buffers)
+
+  ;; terminal
+  (global-set-key (quote [f10]) 'nv-terminal-here)
+  (global-set-key (quote [S-f10]) 'nv-terminal-here)
+  (global-set-key (quote [M-f10]) 'eat)
+
+  ;; mouse bindings
+  (global-set-key [mode-line mouse-4] #'previous-buffer)
+  (global-set-key [mode-line mouse-5] #'next-buffer)
+
+  ;; multiple cursors
+  (global-set-key (kbd "C-S-<mouse-1>") #'mc/add-cursor-on-click)
+
+  ;; mouse bindings
+  (global-set-key (kbd "<s-mouse-5>") #'previous-buffer)
+  (global-set-key (kbd "<s-mouse-4>") #'next-buffer))
 
 
 (provide 'mykeys)
