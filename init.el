@@ -5,7 +5,6 @@
 ;; Set some paths
 (setq user-emacs-directory (expand-file-name "~/emacs/"))
 (setq user-lisp-directory (expand-file-name "mylisp/" user-emacs-directory))
-
 (add-to-list 'load-path user-lisp-directory)
 
 
@@ -20,7 +19,7 @@
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setopt exec-path (append exec-path '("/usr/local/bin")))
-(add-to-list 'exec-path "~/.local/bin")
+(add-to-list 'exec-path (expand-file-name "~/.local/bin"))
 
 ;; ================== Initialization ==================
 (require 'initialsetup)
@@ -119,6 +118,13 @@
 
 ;; ================= XML ===================
 (require 'myxml)
+
+
+;; ==================== projects ====================
+(add-hook 'find-file-hook #'vc-refresh-state)
+(add-to-list 'vc-handled-backends 'Git)
+(advice-add 'project-root :filter-return #'expand-file-name)
+
 
 ;; ================= Python ===================
 ;; (require 'mypython)
