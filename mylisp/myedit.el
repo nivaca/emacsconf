@@ -110,7 +110,10 @@
   :custom ((snap-indent-format 'untabify)
            (snap-indent-on-save t))
   :config
-  (add-to-list 'snap-indent-excluded-modes 'snippet-mode))
+  (add-to-list 'snap-indent-excluded-modes 'snippet-mode)
+  :blackout
+  )
+
 
 
 ;; =============== outline-indent ===============

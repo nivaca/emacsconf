@@ -734,51 +734,25 @@ Prompts for each replacement: yes, no, or all."
     (message "No region selected")))
 
 ;; ======================================================================
-;; ======================================================================
-;; ======================================================================
 
-;; (require 'cl-lib)
-
-;; (defun nv-import-youtube-subscriptions-to-elfeed-file (file)
-;;   "Import YouTube subscriptions from FILE and write them to ~/emacs/elfeed-feeds.el."
-;;   (interactive "fSubscriptions file: ")
-;;   (let ((feeds '())
-;;         (count 0)
-;;         (output-file "~/emacs/elfeed-feeds.el"))
-;;     (with-temp-buffer
-;;       (insert-file-contents file)
-;;       (goto-char (point-min))
-
-;;       ;; Skip header if present
-;;       (when (looking-at "Channel")
-;;         (forward-line 1))
-
-;;       ;; Process each line
-;;       (while (not (eobp))
-;;         (let* ((line (buffer-substring-no-properties
-;;                       (line-beginning-position)
-;;                       (line-end-position)))
-;;                (fields (split-string line "[,\t]" t))
-;;                (channel-id (car fields)))
-;;           (when (and channel-id
-;;                      (string-match "^UC[[:alnum:]_-]+" channel-id))
-;;             (let ((feed-url
-;;                    (format
-;;                     "https://www.youtube.com/feeds/videos.xml?channel_id=%s"
-;;                     channel-id)))
-;;               (cl-pushnew `(,feed-url youtube)
-;;                           feeds
-;;                           :test #'equal)
-;;               (cl-incf count))))
-;;         (forward-line 1)))
-
-;;     ;; Write feeds file
-;;     (with-temp-file output-file
-;;       (insert "(setq elfeed-feeds\n      '")
-;;       (prin1 feeds (current-buffer))
-;;       (insert ")\n"))
-
-;;     (message "Saved %d feeds to %s" count output-file)))
+(defun nv-replace-umlauts-in-region (start end)
+  "Replace ä ë ï ö ü (and uppercase versions) with plain vowels in region."
+  (interactive "r")
+  (save-excursion
+    (let ((replacements '(("ä" . "a")
+                          ("ë" . "e")
+                          ("ï" . "i")
+                          ("ö" . "o")
+                          ("ü" . "u")
+                          ("Ä" . "A")
+                          ("Ë" . "E")
+                          ("Ï" . "I")
+                          ("Ö" . "O")
+                          ("Ü" . "U"))))
+      (dolist (pair replacements)
+        (goto-char start)
+        (while (search-forward (car pair) end t)
+          (replace-match (cdr pair) nil t))))))
 
 ;; ======================================================================
 

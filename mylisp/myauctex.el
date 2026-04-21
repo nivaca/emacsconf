@@ -38,6 +38,7 @@
      '("SI" 2)
      '("numrange" 2)
      '("SIrange" 3)
+     '("latin" 1)
      '("enquote" 1)
      '("textlcsc" 1)))
   ;;

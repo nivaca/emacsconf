@@ -1,0 +1,1 @@
+/home/nivaca/emacs/init.el

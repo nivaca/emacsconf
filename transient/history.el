@@ -2,6 +2,8 @@
   ("--all" "--group-directories-first" "--human-readable"))
  (casual-dired-tmenu nil)
  (claude-code-ide-menu nil)
+ (ellama-select-ollama-model nil)
+ (ellama-transient-main-menu nil)
  (magit-commit nil)
  (magit-diff
   ("--no-ext-diff" "--stat"))

@@ -1,4 +1,4 @@
-;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8; mode: lisp-data -*-
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
@@ -18,16 +18,16 @@
       (bmkp-full-record #1#))
     (annotation)
     (tags)
-    (filename . "~/roamnotes/2026-04-08-163916-prueba_borrar_luego_2026_04_08.org")
-    (buffer-name . "2026-04-08-163916-prueba_borrar_luego_2026_04_08.org")
-    (front-context-string . "#+filetags: :tes")
-    (rear-context-string . "4-08 Wed 16:39]\n")
+    (filename . "~/roamnotes/2026-04-20-102555-mac2026_tablas.org")
+    (buffer-name . "2026-04-20-102555-mac2026_tablas.org")
+    (front-context-string . "#+filetags: :Vir")
+    (rear-context-string . "ablas y figuras\n")
     (front-context-region-string)
     (rear-context-region-string)
     (visits . 0)
-    (created . #2=(27094 51985 949210 255000))
+    (created . #2=(27110 17827 940879 348000))
     (last-modified . #2#)
-    (position . 139))
+    (position . 102))
 #1=(#("mylisp" 0 6
       (bmkp-full-record #1#))
     (buffer-name . "mylisp")

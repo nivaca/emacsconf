@@ -70,6 +70,9 @@
    window-sides-vertical nil
    x-underline-at-descent-line nil)
 
+  ;; Don't show the time in the modeline
+  (display-time-mode -1)
+
   ;; Don't resize emacs in steps, it looks weird.
   (setopt window-resize-pixelwise t
           frame-resize-pixelwise t)
@@ -80,6 +83,7 @@
   ;; highlight current line
   (setopt global-hl-line-mode nil)
 
+  
   ;; https://protesilaos.com/emacs/lin
   (use-package lin
     :straight t
@@ -153,7 +157,7 @@
            :default-height 130
            :line-spacing 0.1)
           (xps
-           :default-height 140
+           :default-height 130
            :line-spacing 0.1)
           (lenovo
            :default-height 130

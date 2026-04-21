@@ -53,6 +53,7 @@
         org-cycle-separator-lines 1
         org-catch-invisible-edits 'smart ;; 'show-and-error 
         )
+  (setq org-agenda-files '("~/roamnotes/agenda-2026.org"))
   (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
   (org-babel-do-load-languages
    'org-babel-load-languages

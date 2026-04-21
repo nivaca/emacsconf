@@ -20,7 +20,7 @@
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setopt exec-path (append exec-path '("/usr/local/bin")))
-
+(add-to-list 'exec-path "~/.local/bin")
 
 ;; ================== Initialization ==================
 (require 'initialsetup)
@@ -192,7 +192,7 @@
   (add-hook 'after-init-hook 'dashboard-open)
   :config
   (setq dashboard-items '((bookmarks  . 5)
-                          (recents . 15)
+                          (recents . 5)
                           ;; (registers . 14)
                           ))
 

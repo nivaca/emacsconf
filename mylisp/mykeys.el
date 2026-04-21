@@ -151,29 +151,27 @@
 ;; Map escape to cancel (like C-g)...
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 
-(when (display-graphic-p)
-  ;; (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+;; (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 
-  ;; "Super"" bindings
-  (global-set-key (kbd "s-g") #'goto-last-change)
-  (global-set-key (kbd "<s-f12>") #'nv-load-config)
-  (global-set-key (kbd "<s-escape>") #'nv-kill-all-buffers)
+;; "Super"" bindings
+(global-set-key (kbd "s-g") #'goto-last-change)
+(global-set-key (kbd "<s-f12>") #'nv-load-config)
+(global-set-key (kbd "<s-escape>") #'nv-kill-all-buffers)
 
-  ;; terminal
-  (global-set-key (quote [f10]) 'nv-terminal-here)
-  (global-set-key (quote [S-f10]) 'nv-terminal-here)
-  (global-set-key (quote [M-f10]) 'eat)
+;; terminal
+(global-set-key (quote [f10]) 'nv-terminal-here)
+(global-set-key (quote [S-f10]) 'nv-terminal-here)
+(global-set-key (quote [M-f10]) 'eat)
 
-  ;; mouse bindings
-  (global-set-key [mode-line mouse-4] #'previous-buffer)
-  (global-set-key [mode-line mouse-5] #'next-buffer)
+;; mouse bindings
+(global-set-key [mode-line mouse-4] #'previous-buffer)
+(global-set-key [mode-line mouse-5] #'next-buffer)
 
-  ;; multiple cursors
-  (global-set-key (kbd "C-S-<mouse-1>") #'mc/add-cursor-on-click)
+;; multiple cursors
+(global-set-key (kbd "C-S-<mouse-1>") #'mc/add-cursor-on-click)
 
-  ;; mouse bindings
-  (global-set-key (kbd "<s-mouse-5>") #'previous-buffer)
-  (global-set-key (kbd "<s-mouse-4>") #'next-buffer))
-
+;; mouse bindings
+(global-set-key (kbd "<s-mouse-5>") #'previous-buffer)
+(global-set-key (kbd "<s-mouse-4>") #'next-buffer)
 
 (provide 'mykeys)
