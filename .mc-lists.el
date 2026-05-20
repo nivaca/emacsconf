@@ -12,6 +12,7 @@
         comment-line
         crux-move-beginning-of-line
         dired-mark
+        dired-next-line
         dired-toggle-read-only
         end-of-visual-line
         indent-for-tab-command

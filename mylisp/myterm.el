@@ -1,6 +1,5 @@
 ;;; mylisp/myterm.el -*- lexical-binding: t; -*-
 
-
 (use-package eat
   :straight (:host codeberg :repo "akib/emacs-eat"
                    :files ("*.el" ("term" "term/*.el") "*.texi" "*.ti"
@@ -12,6 +11,11 @@
   (setq process-adaptive-read-buffering nil)
   )
 
+
+;; =============================================
+(use-package shell-command-plus
+  :straight t
+  :bind (("M-!" . shell-command+)))
 
 ;; =============================================
 (defun nv-terminal-here ()

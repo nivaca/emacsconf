@@ -6,11 +6,20 @@
 
 ;; (load-theme 'misterioso t)
 ;; (load-theme 'deeper-blue t)
-;; (load-theme 'modus-operandi-tinted t)
 
+
+(use-package color-theme-modern
+  ;; :disabled
+  :straight t
+  :config
+  ;; (load-theme 'classic t)
+  (load-theme 'gnome2 t)
+  ;; (load-theme 'cobalt t)
+  ;; (load-theme 'subtle-hacker t)
+  )
 
 (use-package dracula-theme
-  ;; :disabled
+  :disabled
   :straight t
   :config
   (load-theme 'dracula t))
@@ -32,6 +41,7 @@
   :config
   (load-theme 'doric-mermaid t)
   )
+
 
 (use-package ef-themes
   :disabled

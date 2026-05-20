@@ -120,9 +120,14 @@
 ;; Provides a minor mode for indentation-based code folding. 
 (use-package outline-indent
   :straight t
+  :hook ((python-mode . outline-indent-minor-mode)
+         (latex-mode . outline-indent-minor-mode)
+         (markdown-mode . outline-indent-minor-mode)
+         (nxml-mode . outline-indent-minor-mode))
   :commands outline-indent-minor-mode
   :custom
-  (outline-indent-ellipsis " ▼"))
+  (outline-indent-ellipsis " ▼")
+  (outline-blank-line t))
 
 
 
@@ -348,6 +353,13 @@
              :type git
              :host github
              :repo "jamescherti/kirigami.el")
+  :commands (kirigami-open-fold
+             kirigami-open-fold-rec
+             kirigami-close-fold
+             kirigami-toggle-fold
+             kirigami-open-folds
+             kirigami-close-folds-except-current
+             kirigami-close-folds)
   :bind (("C-c k o" . kirigami-open-fold)   
          ("C-c k O" . kirigami-open-fold-rec)
          ("C-c k m" . kirigami-close-folds)  

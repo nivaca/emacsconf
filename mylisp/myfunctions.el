@@ -755,6 +755,53 @@ Prompts for each replacement: yes, no, or all."
           (replace-match (cdr pair) nil t))))))
 
 ;; ======================================================================
+(defun nv-normalize-text-region (start end)
+  (interactive "r")
+  (save-excursion
+    (let ((replacements '(("ä" . "a") ("ö" . "o") ("ü" . "u")
+                          ("Ä" . "A") ("Ö" . "O") ("Ü" . "U")
+                          ("ß" . "ss"))))
+      
+      ;; --- Replace umlauts ---
+      (dolist (pair replacements)
+        (goto-char start)
+        (while (search-forward (car pair) end t)
+          (replace-match (cdr pair) nil t)))
+
+      ;; --- Remove spaces BEFORE closing punctuation ---
+      ;; " x)" -> "x)"
+      (goto-char start)
+      (while (re-search-forward "\\s-+\\([])}]\\)" end t)
+        (replace-match "\\1"))
+
+      ;; --- Remove spaces AFTER opening parentheses ---
+      ;; "( x" -> "(x"
+      (goto-char start)
+      (while (re-search-forward "\\([({[]\\)\\s-+" end t)
+        (replace-match "\\1"))
+
+      ;; --- Remove spaces before dash ---
+      ;; " -" -> "-"
+      (goto-char start)
+      (while (re-search-forward "\\s-+-" end t)
+        (replace-match "-"))
+
+      ;; --- Remove spaces after dash ---
+      ;; "- " -> "-"
+      (goto-char start)
+      (while (re-search-forward "-\\s-+" end t)
+        (replace-match "-"))
+
+      ;; --- Trim region edges ---
+      (goto-char start)
+      (skip-chars-forward " \t\n")
+      (delete-region start (point))
+
+      (goto-char end)
+      (skip-chars-backward " \t\n")
+      (delete-region (point) end))))
+
+;; ======================================================================
 
 
 (provide 'myfunctions)
