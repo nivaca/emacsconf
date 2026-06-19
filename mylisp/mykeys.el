@@ -72,8 +72,11 @@
 (global-set-key (kbd "C-_") #'comment-line)
 
 ;; Undo & redo
-(global-set-key (kbd "C-z") #'undo-only)
-(global-set-key (kbd "C-c z") #'undo-redo)
+;; (global-set-key (kbd "C-z") #'undo-only)
+;; (global-set-key (kbd "C-S-z") #'undo-redo)
+
+(keymap-set global-map "C-z" #'undo-only)
+(keymap-set global-map "C-S-z" #'undo-redo)
 
 (global-unset-key (kbd "<S-return>"))
 
@@ -167,5 +170,20 @@
 ;; mouse bindings
 (global-set-key (kbd "<s-mouse-5>") #'previous-buffer)
 (global-set-key (kbd "<s-mouse-4>") #'next-buffer)
+
+
+;; (global-set-key (kbd "C-<wheel-up>")   #'text-scale-increase)
+;; (global-set-key (kbd "C-<wheel-down>") #'text-scale-decrease)
+
+
+;; --------------------------------------------------
+;; Zoom functions (myfunctions.el)
+(global-set-key (kbd "C-<wheel-up>")   #'nv-zoom-in)
+(global-set-key (kbd "C-<wheel-down>") #'nv-zoom-out)
+(global-set-key (kbd "C-=") #'nv-zoom-in)
+(global-set-key (kbd "C--") #'nv-zoom-out)
+(global-set-key (kbd "C-0") #'nv-zoom-reset)
+;; --------------------------------------------------
+
 
 (provide 'mykeys)

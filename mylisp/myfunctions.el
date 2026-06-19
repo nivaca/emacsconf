@@ -1,5 +1,12 @@
 ;;; mylisp/myfunctions.el -*- lexical-binding: t; -*-
 
+(defun nv-open-init-file ()
+  "Open the user's init.el file."
+  (interactive)
+  (find-file user-init-file))
+
+;; -------------------------------------------------------------------
+
 (defun nv-remove-bracketed-content ()
   "Remove contents inside square brackets and parentheses from selected region.
 Keeps the brackets/parentheses themselves. Does nothing if no region is active."
@@ -801,7 +808,29 @@ Prompts for each replacement: yes, no, or all."
       (skip-chars-backward " \t\n")
       (delete-region (point) end))))
 
-;; ======================================================================
+;; ==============================================================
+(defvar nv-default-font-height
+  (face-attribute 'default :height))
+
+(defun nv-zoom-in ()
+  (interactive)
+  (set-face-attribute
+   'default nil
+   :height (+ (face-attribute 'default :height) 10)))
+
+(defun nv-zoom-out ()
+  (interactive)
+  (set-face-attribute
+   'default nil
+   :height (- (face-attribute 'default :height) 10)))
+
+(defun nv-zoom-reset ()
+  (interactive)
+  (set-face-attribute
+   'default nil
+   :height nv-default-font-height))
+
+;; ==============================================================
 
 
 (provide 'myfunctions)

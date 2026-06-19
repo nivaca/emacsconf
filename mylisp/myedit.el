@@ -360,18 +360,26 @@
              kirigami-open-folds
              kirigami-close-folds-except-current
              kirigami-close-folds)
-  :bind (("C-c k o" . kirigami-open-fold)   
-         ("C-c k O" . kirigami-open-fold-rec)
-         ("C-c k m" . kirigami-close-folds)  
-         ("C-c k c" . kirigami-close-fold)   
-         ("C-c k r" . kirigami-open-folds)   
-         ("C-c k TAB" . kirigami-toggle-fold)))
+  :bind
+  (("C-c z o" . kirigami-open-fold)      ; Open fold at point
+   ("C-c z O" . kirigami-open-fold-rec)  ; Open fold recursively
+   ("C-c z r" . kirigami-open-folds)     ; Open all folds
+   ("C-c z c" . kirigami-close-fold)     ; Close fold at point
+   ("C-c z m" . kirigami-close-folds)    ; Close all folds
+   ("C-c z a" . kirigami-toggle-fold))   ; Toggle fold at point
+  )
 
 
 ;; ==================== occult ====================
 (use-package occult
   :straight (:host github :repo "agzam/occult.el"))
 
+
+;; ==================== hydra ====================
+(use-package hydra
+  :disabled
+  :straight t
+  :defer t)
 
 
 ;; ----------------------------------------------------------------

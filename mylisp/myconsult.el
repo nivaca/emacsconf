@@ -64,6 +64,22 @@
   (define-key vertico-map (kbd "RET") #'vertico-exit))
 
 
+
+;; ------------------- vertico-carrusel ---------------------
+;; Always shows the currently selected candidate
+;; on the first line of the candidate
+(use-package vertico-carousel
+  :disabled
+  :straight
+  (vertico-carousel
+   :host github
+   :repo "kn66/vertico-carousel")
+  :config
+  (vertico-carousel-mode 1)
+  )
+
+
+
 ;; ------------------- consult-dir ---------------------
 ;; Allows you to easily insert directory paths
 ;; into the minibuffer prompt in Emacs.

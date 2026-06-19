@@ -222,14 +222,28 @@
   )
 
 
-;; quickroam
+;; ==================== quickroam ====================
 ;; https://github.com/meedstrom/quickroam
 (use-package quickroam
+  :disabled
   :straight (quickroam :type git :host github :repo "meedstrom/quickroam")
   :after org-roam
   :config
   (add-hook 'org-mode-hook #'quickroam-enable)
   )
+
+
+;; ==================== org-roam-gt ====================
+(use-package org-roam-gt
+  :disabled 
+  :straight (org-roam-gt
+             :type git
+             :host github
+             :repo "dmgerman/org-roam-gt")
+  ;; :after (org-roam hydra)
+  :config
+  (org-roam-gt-mode 1))
+
 
 
 (provide 'myorg)

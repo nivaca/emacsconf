@@ -21,6 +21,10 @@
 (setopt exec-path (append exec-path '("/usr/local/bin")))
 (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
 
+
+(setenv "XDG_CURRENT_DESKTOP" "KDE")
+(setenv "QT_QPA_PLATFORMTHEME" "kde")
+
 ;; ================== Initialization ==================
 (require 'initialsetup)
 

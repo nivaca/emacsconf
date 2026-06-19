@@ -8,8 +8,23 @@
 ;; (load-theme 'deeper-blue t)
 
 
+(use-package nano-theme
+  :disabled
+  :straight
+  (nano-theme :type git :host github :repo "rougier/nano-theme")
+  :config
+  (load-theme 'nano-dark t))
+
+(use-package turbo-c-nv-theme
+  :disabled
+  :straight nil
+  :load-path "~/emacs/themes/"
+  :config
+  (load-theme 'turbo-c-nv t))
+
+
 (use-package color-theme-modern
-  ;; :disabled
+  :disabled
   :straight t
   :config
   ;; (load-theme 'classic t)
@@ -19,7 +34,7 @@
   )
 
 (use-package dracula-theme
-  :disabled
+  ;; :disabled
   :straight t
   :config
   (load-theme 'dracula t))
