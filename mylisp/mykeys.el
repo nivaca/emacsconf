@@ -150,6 +150,12 @@
 
 ;; (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 
+;; Remap case commands
+(bind-key [remap downcase-word] #'downcase-dwim)
+(bind-key [remap upcase-word] #'upcase-dwim)
+(bind-key [remap capitalize-word] #'capitalize-dwim)
+
+
 ;; "Super"" bindings
 (global-set-key (kbd "s-g") #'goto-last-change)
 (global-set-key (kbd "<s-f12>") #'nv-load-config)
