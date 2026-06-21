@@ -180,9 +180,9 @@
 ;; Zoom functions (myfunctions.el)
 (global-set-key (kbd "C-<wheel-up>")   #'nv-zoom-in)
 (global-set-key (kbd "C-<wheel-down>") #'nv-zoom-out)
-(global-set-key (kbd "C-=") #'nv-zoom-in)
-(global-set-key (kbd "C--") #'nv-zoom-out)
-(global-set-key (kbd "C-0") #'nv-zoom-reset)
+(global-set-key (kbd "C-x C-+") #'nv-zoom-in)
+(global-set-key (kbd "C-x C--") #'nv-zoom-out)
+(global-set-key (kbd "C-x C-0") #'nv-zoom-reset)
 ;; --------------------------------------------------
 
 

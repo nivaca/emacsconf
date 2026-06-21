@@ -64,22 +64,6 @@
   (define-key vertico-map (kbd "RET") #'vertico-exit))
 
 
-
-;; ------------------- vertico-carrusel ---------------------
-;; Always shows the currently selected candidate
-;; on the first line of the candidate
-(use-package vertico-carousel
-  :disabled
-  :straight
-  (vertico-carousel
-   :host github
-   :repo "kn66/vertico-carousel")
-  :config
-  (vertico-carousel-mode 1)
-  )
-
-
-
 ;; ------------------- consult-dir ---------------------
 ;; Allows you to easily insert directory paths
 ;; into the minibuffer prompt in Emacs.
@@ -91,25 +75,14 @@
          ("C-x C-j" . consult-dir-jump-file)))
 
 
-;; -------------------- marginalia --------------------
-;; This package provides marginalia-mode which adds marginalia to the minibuffer completions. 
-;; (use-package marginalia
-;;   :straight t
-;;   :after vertico
-;;   :custom
-;;   (marginalia-annotators
-;;    '(marginalia-annotators-heavy
-;;      marginalia-annotators-light nil))
-;;   (marginalia-max-relative-age 0)
-;;   (marginalia-align 'right)
-;;   :init
-;;   (marginalia-mode))
+;; -------------------- Marginalia --------------------
 (use-package marginalia
   :straight t
   :bind (:map minibuffer-local-map
               ("M-A" . marginalia-cycle))
   :init
   (marginalia-mode))
+
 
 ;; ------------------ Orderless ------------------
 ;; Provides an orderless completion style.
@@ -123,51 +96,7 @@
      (command (styles orderless)))))
 
 
-;; ---------------------- Embark -------------------------
-;; Emacs Mini-Buffer Actions Rooted in Keymaps. This package provides a sort of right-click contextual menu for Emacs, accessed through the embark-act command (which you should bind to a convenient key), offering you relevant actions to use on a target determined by the context:
-(use-package embark
-  :disabled
-  :straight t
-  :bind
-  (("C-." . embark-act)
-   ("M-." . embark-dwim)
-   ("C-h B" . embark-bindings))
-  :init
-  ;; Optionally replace the key help with a completing-read interface
-  (setq prefix-help-command #'embark-prefix-help-command)
-  :config
-  ;; Hide the mode line of the Embark live/completions buffers
-  (add-to-list 'display-buffer-alist
-               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
-                 (window-parameters (mode-line-format . none)))))
-
-
-
-;; =============== embark-consult ===============
-;; Provides integration between Embark and Consult.
-(use-package embark-consult
-  :straight t
-  :hook
-  (embark-collect-mode . consult-preview-at-point-mode)
-  )
-
-
 ;; =============== consult-notes ===============
-;; (use-package consult-notes
-;;   :disabled
-;;   :straight (:type git :host github :repo "mclear-tools/consult-notes")
-;;   :commands (consult-notes
-;;              consult-notes-search-in-all-notes
-;;              ;; if using org-roam 
-;;              consult-notes-org-roam-find-node
-;;              consult-notes-org-roam-find-node-relation)
-;;   :config
-;;   (consult-notes-org-roam-mode)
-;;   (setq consult-notes-file-dir-sources
-;;         '(("Org" ?o "~/roamnotes/")))
-;;   ;; search only for text files in denote dir
-;;   (setq consult-notes-denote-files-function (function denote-directory-text-only-files)))
 (use-package consult-notes
   :straight (:type git :host github :repo "mclear-tools/consult-notes")
   :commands (consult-notes

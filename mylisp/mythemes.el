@@ -7,9 +7,8 @@
 ;; (load-theme 'misterioso t)
 ;; (load-theme 'deeper-blue t)
 
-
 (use-package nano-theme
-  :disabled
+  ;; :disabled
   :straight
   (nano-theme :type git :host github :repo "rougier/nano-theme")
   :config
@@ -33,11 +32,7 @@
   ;; (load-theme 'subtle-hacker t)
   )
 
-(use-package dracula-theme
-  ;; :disabled
-  :straight t
-  :config
-  (load-theme 'dracula t))
+
 
 (use-package tomorrow-night-deepblue-theme
   :disabled
