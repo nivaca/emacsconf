@@ -46,4 +46,10 @@
   )
 
 
+(use-package straight-overview
+  :disabled
+  :defer
+  :straight (:host github :repo "alberti42/straight-overview")
+  :commands (straight-overview))
+
 (provide 'mypackages)
