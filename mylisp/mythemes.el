@@ -9,14 +9,15 @@
 
 
 (use-package kusanagi-theme
+  :disabled
   :straight (:host github :repo "LionyxML/kusanagi-theme")
   :config
   (add-to-list 'custom-theme-load-path
-     (file-name-directory (locate-library "kusanagi-theme")))
+               (file-name-directory (locate-library "kusanagi-theme")))
   (load-theme 'kusanagi t))
 
 (use-package nano-theme
-  :disabled
+  ;; :disabled
   :straight
   (nano-theme :type git :host github :repo "rougier/nano-theme")
   :config

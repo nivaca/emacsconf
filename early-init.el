@@ -1,7 +1,9 @@
 ;;; early-init.el --- Early init -*- lexical-binding: t; -*-
 (message ">>>>> loading early-init.el")
 
-(setq warning-suppress-types '((files)))
+;; (setq warning-suppress-log-types '((files missing-lexbind-cookie)))
+
+;; (setq warning-suppress-types '((files)))
 
 ;; Defer garbage collection further back in the startup process
 (setopt

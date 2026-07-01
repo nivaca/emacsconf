@@ -346,15 +346,12 @@ the given regular expression."
 
 
 ;; =============================================
-
-
 (defun nv-remove-newlines-in-region ()
-  "Removes all newlines in the region."
+  "Collapse whitespace in the active region."
   (interactive)
-  (save-restriction
-    (narrow-to-region (point) (mark))
-    (goto-char (point-min))
-    (while (search-forward "\n" nil t) (replace-match " " nil t))))
+  (replace-regexp-in-region
+   "[[:space:]]+" " "
+   (region-beginning) (region-end)))
 
 
 
