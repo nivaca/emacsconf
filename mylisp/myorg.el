@@ -135,7 +135,7 @@
       (consult-ripgrep org-roam-directory)))
   ;;
   :bind
-  (;;("<f7>" . org-roam-node-find)
+  (("<f7>" . org-roam-node-find)
    ("S-<f7>" . org-roam-rg-search)
    (:map org-mode-map
          ("C-c n i" . org-roam-node-insert)
@@ -249,16 +249,19 @@
 ;; A database layer for your org-mode notes. 
 (use-package vulpea
   :straight t
+  ;; :bind
+  ;; ("<f7>" . vulpea-find)
   :config
   (setq vulpea-db-sync-directories '("~/roamnotes/"))
   (setq vulpea-db-autosync-mode +1)
   )
 
 (use-package consult-vulpea
+  ;; :disabled
   :straight t
   :after vulpea
   :bind
-  ("<f7>" . consult-vulpea-find)
+  ("C-<f7>" . consult-vulpea-find)
   :config
   (consult-vulpea-mode 1))
 

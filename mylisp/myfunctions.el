@@ -828,6 +828,14 @@ Prompts for each replacement: yes, no, or all."
    :height nv-default-font-height))
 
 ;; ==============================================================
+(defun nv-make-file-read-only ()
+  (interactive)
+  (add-file-local-variable 'buffer-read-only t))
+
+;; ==============================================================
 
 
+
+;; ==============================================================
 (provide 'myfunctions)
+

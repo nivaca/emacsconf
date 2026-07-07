@@ -7,17 +7,17 @@
 ;; (load-theme 'misterioso t)
 ;; (load-theme 'deeper-blue t)
 
-
-(use-package kusanagi-theme
-  :disabled
-  :straight (:host github :repo "LionyxML/kusanagi-theme")
+(use-package modus-themes
+  ;; :disabled
+  :straight t
   :config
-  (add-to-list 'custom-theme-load-path
-               (file-name-directory (locate-library "kusanagi-theme")))
-  (load-theme 'kusanagi t))
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil)
+  (modus-themes-load-theme 'modus-vivendi-tinted)
+  )
 
 (use-package nano-theme
-  ;; :disabled
+  :disabled
   :straight
   (nano-theme :type git :host github :repo "rougier/nano-theme")
   :config

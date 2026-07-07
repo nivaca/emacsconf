@@ -134,9 +134,12 @@
   ;; (add-to-list 'default-frame-alist '(alpha-background . 90))
 
   (setq display-buffer-base-action
-        '(display-buffer-reuse-mode-window
-          display-buffer-reuse-window
-          display-buffer-same-window))
+        '((display-buffer-reuse-window
+           display-buffer-same-window)))
+
+  ;; never split frames
+  (setq split-height-threshold nil)
+  (setq split-width-threshold nil)
 
   ;; If a popup does happen,
   ;; don't resize windows to be equal-sized

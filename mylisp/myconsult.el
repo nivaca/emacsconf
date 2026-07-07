@@ -18,7 +18,13 @@
   (completion-in-region-function #'consult-completion-in-region)
   :config
   (consult-customize
-   consult-line
+   consult-buffer
+   consult-bookmark
+   consult-recent-file
+   consult-imenu
+   consult-outline
+   consult-org-roam-file-find
+   consult-org-roam-search
    :preview-key '(:debounce 0.2 any)))
 
 
