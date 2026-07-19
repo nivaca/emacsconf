@@ -7,8 +7,22 @@
 ;; (load-theme 'misterioso t)
 ;; (load-theme 'deeper-blue t)
 
+
+(use-package kaolin-themes
+  :straight t
+  :config
+  (load-theme 'kaolin-ocean t)
+  )
+
+(use-package apropospriate-theme
+  :disabled
+  :straight t
+  :config 
+  (load-theme 'apropospriate-dark t)
+  )
+
 (use-package modus-themes
-  ;; :disabled
+  :disabled
   :straight t
   :config
   (setq modus-themes-italic-constructs t

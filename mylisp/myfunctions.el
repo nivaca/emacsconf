@@ -821,11 +821,13 @@ Prompts for each replacement: yes, no, or all."
    'default nil
    :height (- (face-attribute 'default :height) 10)))
 
+(defvar nv-original-font-height
+  (face-attribute 'default :height))
+
 (defun nv-zoom-reset ()
   (interactive)
-  (set-face-attribute
-   'default nil
-   :height nv-default-font-height))
+  (set-face-attribute 'default nil
+                      :height nv-original-font-height))
 
 ;; ==============================================================
 (defun nv-make-file-read-only ()

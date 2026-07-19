@@ -252,6 +252,7 @@
   ;; :bind
   ;; ("<f7>" . vulpea-find)
   :config
+  (setq vulpea-db-async-extraction 'full)
   (setq vulpea-db-sync-directories '("~/roamnotes/"))
   (setq vulpea-db-autosync-mode +1)
   )

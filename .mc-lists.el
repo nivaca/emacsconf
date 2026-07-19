@@ -15,6 +15,7 @@
         dired-mark
         dired-next-line
         dired-toggle-read-only
+        dired-unmark-backward
         end-of-visual-line
         ignore
         indent-for-tab-command
