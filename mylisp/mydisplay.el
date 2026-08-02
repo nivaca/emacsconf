@@ -170,9 +170,9 @@
            :variable-pitch-family "Times New Roman"
            :default-height 160)
           (t
-           :default-family "JetBrainsMonoNL NFM"
-           :fixed-pitch-serif-family "JetBrainsMonoNL NFM"
-           :variable-pitch-family "JetBrainsMonoNL NFM"
+           :default-family "Maple Mono Normal NL"
+           :fixed-pitch-serif-family "Maple Mono Normal NL"
+           :variable-pitch-family "Maple Mono Normal NL"
            :default-weight Regular)))
   ;;
   ;; select preset depending on system ------------------

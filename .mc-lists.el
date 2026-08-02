@@ -16,6 +16,7 @@
         dired-next-line
         dired-toggle-read-only
         dired-unmark-backward
+        downcase-dwim
         end-of-visual-line
         ignore
         indent-for-tab-command
@@ -36,6 +37,7 @@
         pixel-scroll-precision
         r-o-m
         sgml-slash
+        sp-backward-delete-char
         ultra-scroll
         undo-only
         wdired--self-insert

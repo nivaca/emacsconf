@@ -189,6 +189,9 @@
 ;; ================= LLMs ==================
 (require 'myllm)
 
+;; ================= flycheck ==================
+(require 'myflycheck)
+
 ;; ================= server ==================
 (require 'server)
 (unless (server-running-p)
