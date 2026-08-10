@@ -834,6 +834,21 @@ Prompts for each replacement: yes, no, or all."
   (interactive)
   (add-file-local-variable 'buffer-read-only t))
 
+
+;; ==============================================================
+(defun nv-spanish-quotes-to-english ()
+  "Replace Spanish guillemets (« ») with English curly quotes (“ ”)."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (search-forward-regexp "[«»]" nil t)
+      (replace-match
+       (if (string= (match-string 0) "«")
+           "“"
+         "”")
+       t t))))
+
+
 ;; ==============================================================
 
 

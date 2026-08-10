@@ -1,5 +1,9 @@
 ;;; mylisp/mypackages.el -*- lexical-binding: t; -*-
 
+;;; Commentary:
+
+;;; Code:
+
 ;; package manager settings
 ;; ========================
 
@@ -53,3 +57,4 @@
   :commands (straight-overview))
 
 (provide 'mypackages)
+;;; mypackages.el ends here

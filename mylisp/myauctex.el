@@ -1,4 +1,7 @@
 ;;; mylisp/myauctex.el -*- lexical-binding: t; -*-
+;;; Commentary:
+
+;;; Code:
 
 (use-package tex
   :straight auctex
@@ -52,14 +55,14 @@
   (TeX-clean-confirm nil)
   (TeX-command-default "LatexMk")
   (TeX-complete-expert t)
-  (TeX-insert-macro-default-style 'plain)
+  (TeX-insert-macro-default-style 'mandatory-args-only)
   (TeX-parse-self t)
   (TeX-save-query nil)
   (TeX-show-compilation t)
   (TeX-source-correlate-method 'synctex)
   (TeX-source-correlate-mode t)
   (TeX-source-correlate-start-server t)
-  ;; 
+  ;;
   (TeX-tree-roots
    (list
     (concat (string-trim
@@ -68,7 +71,6 @@
             "/texmf-dist")
     "/opt/texlive/texmf-local"
     "~/texmf"))
-  :config
   ;; ---------------- RefTeX ----------------
   (use-package reftex
     :straight nil
@@ -87,6 +89,7 @@
     (auctex-latexmk-setup))
   )
 
+
 ;; ---------------- Viewer ----------------
 (use-package emacs
   :after tex
@@ -96,6 +99,7 @@
                  '("okular" "okular --unique file:%o#src:%n%a"))
     (setcdr (assq 'output-pdf TeX-view-program-selection)
             '("okular"))))
+
 
 ;; ---------------- Font LaTeX tweaks ----------------
 (with-eval-after-load 'font-latex
@@ -120,8 +124,12 @@
   (setq font-latex-fontify-sectioning 1.0)
   (setq font-latex-fontify-script nil))
 
+
 ;; ---------------- Pretty mode ----------------
 (with-eval-after-load 'pretty-mode
   (add-hook 'LaTeX-mode-hook #'pretty-mode-disable))
 
+
+
 (provide 'myauctex)
+;;; myauctex.el ends here

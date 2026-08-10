@@ -2,34 +2,19 @@
 
 (use-package flycheck
   :straight t
-
-  :hook
-  (after-init . global-flycheck-mode)
-
+  :hook (prog-mode . flycheck-mode)
+  :bind ("C-c !" . flycheck-command-map)
   :custom
-
-  ;; Don't check while typing every character
   (flycheck-check-syntax-automatically
    '(save idle-change mode-enabled))
-
-  ;; Wait before rechecking
   (flycheck-idle-change-delay 0.4)
-
-  ;; Highlight the whole line
-  (flycheck-highlighting-mode 'lines)
-
-  ;; Show errors in right fringe
-  (flycheck-indication-mode 'right-fringe)
-
-  ;; Automatically refresh after changing checkers
   (flycheck-display-errors-delay 0.25)
-
-  ;; Emacs Lisp configuration
+  (flycheck-highlighting-mode 'lines)
+  (flycheck-indication-mode 'right-fringe)
   (flycheck-emacs-lisp-load-path 'inherit)
-
-  :bind
-  (("C-c !" . flycheck-command-map)))
-
+  :config
+  (when (fboundp 'global-flycheck-eglot-mode)
+    (global-flycheck-eglot-mode 1)))
 
 
 (use-package flycheck-posframe
@@ -39,3 +24,4 @@
 
 
 (provide 'myflycheck)
+;;; myflycheck.el ends here

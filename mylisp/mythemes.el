@@ -8,7 +8,10 @@
 ;; (load-theme 'deeper-blue t)
 
 
+(load-theme 'modus-vivendi-tinted t)
+
 (use-package kaolin-themes
+  :disabled
   :straight t
   :config
   (load-theme 'kaolin-ocean t)

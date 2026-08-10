@@ -18,19 +18,20 @@
   :bind (("M-!" . shell-command+)))
 
 ;; =============================================
+;; (defun nv-terminal-here ()
+;;   "Open terminal in current working directory."
+;;   (interactive)
+;;   (call-process "/usr/bin/konsole" 
+;;                 nil 0 nil "--workdir" default-directory))
+
 (defun nv-terminal-here ()
-  "Open terminal in current working directory."
+  "Open Kitty in the current working directory."
   (interactive)
-  (cond
-   ((eq system-type 'gnu/linux)
-    ;; Linux
-    (call-process "/usr/bin/konsole" 
-                  nil 0 nil "--workdir" default-directory))
-   ((eq system-type 'darwin)
-    ;; Mac
-    ;; (call-process "/Users/nicolasvaughan/bin/iterm" 
-    ;; nil 0 nil "--workdir" default-directory)
-    (call-process "/Applications/kitty.app/Contents/MacOS/kitty" 
-                  nil 0 nil "--directory" default-directory))))
+  (let ((default-directory default-directory))
+    (setenv "DISPLAY" ":0")
+    (setenv "WAYLAND_DISPLAY" "wayland-0")
+    (start-process
+     "kitty" nil
+     "/home/nivaca/.local/bin/kitty")))
 
 (provide 'myterm)

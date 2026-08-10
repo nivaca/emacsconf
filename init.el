@@ -130,6 +130,20 @@
 (advice-add 'project-root :filter-return #'expand-file-name)
 
 
+;; ================= Speedbar ===================
+(use-package speedbar
+  :straight nil
+  :commands (speedbar)
+  :config
+  ;; Without 'speedbar-prefer-window' the 'speedbar' shows up in a separate frame, which I consider impractical.
+  (setq speedbar-prefer-window t)
+
+  ;; No bitmap icons, thanks! A non-nil value here refers to the 'cdr'
+  ;; of each 'speedbar-expand-image-button-alist', so in theory we can
+  ;; still make this look prettier, which I might do in the future.
+  (setq speedbar-use-images nil))
+
+
 ;; ================= Python ===================
 ;; (require 'mypython)
 
@@ -150,6 +164,18 @@
 ;;   (add-to-list 'revert-without-query ".pdf")
 ;;   (add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
 ;;   )
+
+
+
+;; ==================== emacs reader ====================
+;; sudo dnf install -y mutool mupdf-devel
+;; (use-package reader
+;;   :straight '(reader :type git :host codeberg :repo "divyaranjan/emacs-reader"
+;;                      :files ("*.el" "render-core.so")
+;;                      :pre-build ("make" "all"))
+;;   :blackout "RM"
+;;   )
+
 
 
 ;; ===== Garbage Collector Magic Hack ====
@@ -220,6 +246,11 @@
          ("C-c C-d" . helpful-at-point)
          ("C-h F" . helpful-function)))
 
+
+;; ==================== bible-gateway ====================
+(use-package bible-gateway
+  :straight t
+  :defer t)
 
 ;; ============= buffer terminator ===============
 (use-package buffer-terminator
