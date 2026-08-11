@@ -1,4 +1,4 @@
-;;; mylisp/mydisplay.el -*- lexical-binding: t; -*-
+;;; mylisp/myspell.el -*- lexical-binding: t; -*-
 
 ;; ==================== Jinx ====================
 ;; Required in Fedora: enchant2-devel, pkgconf
@@ -19,13 +19,33 @@
     ("C-M-$" . jinx-languages))
   ;; ([remap ispell-word] . jinx-correct)
   :config
-  (setq jinx-languages "EN_US ES_CO la")
-  (setq text-mode-ispell-word-completion nil)
-  (setq jinx-exclude-faces
-        '((prog-mode font-lock-comment-face font-lock-string-face)))
-  (cl-pushnew 'font-lock-comment-face (alist-get 'tex-mode jinx-exclude-faces))
+  (setq jinx-languages "en_US es_CO la")
+
+  ;; NOTE: `jinx-exclude-faces' is *extended*, never overwritten — the
+  ;; defaults carry sensible entries for org, markdown, prog-mode, etc.
+  ;;
+  ;; AUCTeX's `LaTeX-mode' derives from `TeX-mode' → `text-mode', not from
+  ;; the built-in `tex-mode', so Jinx's `tex-mode' defaults never apply in
+  ;; AUCTeX buffers.  This entry is what stops \enquote and friends from
+  ;; being checked; `font-latex-sedate-face' covers generic control
+  ;; sequences, including macros you define yourself.
+  (setf (alist-get 'LaTeX-mode jinx-exclude-faces)
+        '(font-latex-math-face
+          font-latex-sedate-face
+          font-latex-verbatim-face
+          font-latex-warning-face
+          font-lock-constant-face       ; \label, \ref, \cite arguments
+          font-lock-function-name-face  ; \begin, \end
+          font-lock-keyword-face
+          font-lock-variable-name-face))
+
+  ;; Belt and braces: skip every backslash-plus-letters sequence outright,
+  ;; whatever face font-latex happened to give it.
+  (setf (alist-get 'LaTeX-mode jinx-exclude-regexps)
+        '("\\\\[a-zA-Z@]+"))
+
   (blackout 'jinx-mode)
-  (global-jinx-mode 1)
-  )
+  (global-jinx-mode 1))
 
 (provide 'myspell)
+;;; myspell.el ends here
