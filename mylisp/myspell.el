@@ -20,6 +20,7 @@
   ;; ([remap ispell-word] . jinx-correct)
   :config
   (setq jinx-languages "EN_US ES_CO la")
+  (setq text-mode-ispell-word-completion nil)
   (setq jinx-exclude-faces
         '((prog-mode font-lock-comment-face font-lock-string-face)))
   (cl-pushnew 'font-lock-comment-face (alist-get 'tex-mode jinx-exclude-faces))

@@ -1,4 +1,5 @@
-((casual-dired-sort-by-tmenu
+((bible-gateway nil)
+ (casual-dired-sort-by-tmenu
   ("--all" "--group-directories-first" "--human-readable"))
  (casual-dired-tmenu nil)
  (claude-code-ide-menu nil)
