@@ -806,28 +806,35 @@ Prompts for each replacement: yes, no, or all."
       (delete-region (point) end))))
 
 ;; ==============================================================
-(defvar nv-default-font-height
-  (face-attribute 'default :height))
+;; ==============================================================
+(defun nv-current-fontaine-height ()
+  "Return the default height of the current Fontaine preset."
+  (or (plist-get (cdr (assq fontaine-current-preset fontaine-presets))
+                 :default-height)
+      (plist-get (cdr (assq t fontaine-presets))
+                 :default-height)
+      100))
 
 (defun nv-zoom-in ()
+  "Increase the default font size."
   (interactive)
   (set-face-attribute
    'default nil
    :height (+ (face-attribute 'default :height) 10)))
 
 (defun nv-zoom-out ()
+  "Decrease the default font size."
   (interactive)
   (set-face-attribute
    'default nil
    :height (- (face-attribute 'default :height) 10)))
 
-(defvar nv-original-font-height
-  (face-attribute 'default :height))
-
 (defun nv-zoom-reset ()
+  "Reset the default font size to the current Fontaine preset."
   (interactive)
-  (set-face-attribute 'default nil
-                      :height nv-original-font-height))
+  (set-face-attribute
+   'default nil
+   :height (nv-current-fontaine-height)))
 
 ;; ==============================================================
 (defun nv-make-file-read-only ()
