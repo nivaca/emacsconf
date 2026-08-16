@@ -28,10 +28,9 @@
   (sp-autoskip-closing-pair 'conservative)
   :hook ((prog-mode . smartparens-mode)
          (LaTeX-mode . smartparens-mode)
-         ;; Structural editing shines in Lisp.
-         (emacs-lisp-mode . smartparens-strict-mode)
-         (lisp-interaction-mode . smartparens-strict-mode)
-         (lisp-mode . smartparens-strict-mode))
+         (emacs-lisp-mode . smartparens-mode)
+         (lisp-interaction-mode . smartparens-mode)
+         (lisp-mode . smartparens-mode))
   :config
   (require 'smartparens-config)
   :blackout)

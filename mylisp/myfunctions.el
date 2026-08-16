@@ -857,6 +857,13 @@ Prompts for each replacement: yes, no, or all."
 
 
 ;; ==============================================================
+(defun nv-save-as-utf8-with-bom ()
+  "Save the current file as UTF-8 with a BOM."
+  (interactive)
+  (set-buffer-file-coding-system 'utf-8-with-signature)
+  (save-buffer))
+
+;; ==============================================================
 
 
 
